@@ -6,37 +6,72 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/19 13:27:15 by edos-san         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/19 03:11:42 by edos-san         ###   ########.fr       */
->>>>>>> ezequiel
+/*   Updated: 2022/06/19 15:05:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_scene_util.h>
 
-<<<<<<< HEAD
-static int	__teste(void)
+static int	__update(void)
 {
-	return (printf("object->scene\n"));
+	t_element	*e;
+	t_object	*o;
+
+	e = array(fthis()->scene->objects)->begin;
+	while (e)
+	{
+		o = e->value;
+		if (o)
+		{
+			fthis()->object = o;
+			o->update();
+		}
+		e = e->next;
+	}
+	return (1);
+}
+
+static int	__destroy(t_object *o)
+{
+	t_scene	*scene;
+	t_array	*this;
+
+	this = fthis()->array;
+	scene = (t_scene *) o;
+	free_ob(scene->c);
+	free_ob(scene->f);
+	printf("destroy->scene\n");
+	array(scene->objects)->destroy();
+	array(this);
+	return (o != 0);
+}
+
+static t_object	*__add(t_object *o)
+{
+	t_element	*e;
+
+	e = array((fthis()->scene)->objects)->add(o);
+	if (e)
+		e->destroy = __destroy_element_object;
+	return (o);
 }
 
 t_scene	*new_scene(void *file)
 {
-	t_scene	*scene;
+	t_scene		*s;
+	t_array		*this;
 
-	scene = malloc_ob(sizeof(t_scene));
-	scene->update = __teste;
-	if (0 && file)
-		(array(file))->for_each(check_color, scene);
-	return (scene);
-=======
-t_scene	*new_scene(void *file)
-{
-	static t_scene	scene;
-
-	(array(file))->for_each(check_color, &scene);
-	return (&scene);
->>>>>>> ezequiel
+	this = fthis()->array;
+	s = malloc_ob(sizeof(t_scene));
+	s->img = 0;
+	s->update = __update;
+	s->add = __add;
+	s->destroy = __destroy;
+	s->objects = new_array();
+	s->c = 0;
+	s->f = 0;
+	if (file)
+		(array(file))->for_each(check_color, s);
+	array(this);
+	return (scene(s));
 }

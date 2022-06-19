@@ -6,11 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/19 11:34:29 by edos-san         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/19 02:43:07 by edos-san         ###   ########.fr       */
->>>>>>> ezequiel
+/*   Updated: 2022/06/19 15:12:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +19,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <mlx.h>
-# include <ft_engine.h>
-<<<<<<< HEAD
 # include <ft_object.h>
-=======
->>>>>>> ezequiel
+# include <ft_engine.h>
 
 # define BUFFER_SIZE 999999
 
@@ -37,17 +30,18 @@ typedef struct s_this
 	t_array			*array_main;
 	t_hashmap		*hashmap;
 	t_engine		*engine;
-<<<<<<< HEAD
+	t_scene			*scene;
 	t_object		*object;
-=======
->>>>>>> ezequiel
 
 }	t_this;
 
+//			this
 t_this		*fthis(void);
+t_scene		*scene(t_scene *scene);
 
 //			util
 char		*get_next_line(int fd);
+void		__destroy_element_object(t_element	*e);
 
 //			memory
 int			free_ob(void *v);

@@ -8,6 +8,8 @@
 		"ft_engine.h": "c",
 		"ft_scene_util.h": "c",
 		"stdio.h": "c",
-		"ft_object_base.h": "c"
+		"ft_object_base.h": "c",
+		"ft_string.h": "c",
+		"ft_object.h": "c"
 	}
 }

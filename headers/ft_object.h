@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 13:26:19 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:51:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,14 @@ typedef struct s_object	t_object;
 
 struct s_object
 {
+	void			*img;
+	int				x;
+	int				y;
+	int				width;
+	int				height;
 	int				(*update)(void);
 	int				(*render)(void);
+	int				(*destroy)(t_object *o);
 	void			*asd;
 };
 

@@ -6,11 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/19 13:27:32 by edos-san         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/19 03:11:51 by edos-san         ###   ########.fr       */
->>>>>>> ezequiel
+/*   Updated: 2022/06/19 15:51:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +21,19 @@ typedef struct s_scene	t_scene;
 
 struct s_scene
 {
-<<<<<<< HEAD
+	void		*img;
+	int				x;
+	int				y;
+	int			width;
+	int			height;
 	int			(*update)(void);
 	int			(*render)(void);
+	int			(*destroy)(t_object *o);
 	char		*f;
 	char		*c;
 	void		**map;
-=======
-	void	*file;
-	char	*f;
-	char	*c;
-	void	**map;
-	int		(*close)(char *msg);
->>>>>>> ezequiel
+	void		*objects;
+	t_object	*(*add)(t_object *o);
 };
 
 t_scene	*new_scene(void *file);

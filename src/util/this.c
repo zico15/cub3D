@@ -6,11 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 00:06:50 by edos-san          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/19 11:37:08 by edos-san         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/19 02:51:06 by edos-san         ###   ########.fr       */
->>>>>>> ezequiel
+/*   Updated: 2022/06/19 14:14:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +27,11 @@ t_array	*array(t_array *a)
 
 t_engine	*engine(void)
 {
-<<<<<<< HEAD
 	return (fthis()->engine);
 }
 
-=======
-	return (this()->engine);
+t_scene	*scene(t_scene *scene)
+{
+	fthis()->scene = scene;
+	return (scene);
 }
->>>>>>> ezequiel
