@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:13:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 01:44:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:33:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	**__to_str_hashmpa(void)
 	int			i;
 	char		*str_temp;
 
-	if (!this()->array)
+	if (!fthis()->array)
 		return (NULL);
-	list = malloc_ob(sizeof(void *) * ((this()->array)->size + 1));
+	list = malloc_ob(sizeof(void *) * ((fthis()->array)->size + 1));
 	if (!list)
 		return (NULL);
 	i = 0;
-	temp = (this()->array)->begin;
+	temp = (fthis()->array)->begin;
 	while (temp)
 	{
 		str_temp = string().join(temp->key, "=");
@@ -41,30 +41,30 @@ void	**__to_str_hashmpa(void)
 
 static int	base_destroy_hashmap(void)
 {
-	if (!this()->hashmap)
+	if (!fthis()->hashmap)
 		return (0);
-	if (this()->hashmap->list)
+	if (fthis()->hashmap->list)
 	{
-		array(this()->hashmap->list)->destroy();
-		this()->hashmap->list = NULL;
+		array(fthis()->hashmap->list)->destroy();
+		fthis()->hashmap->list = NULL;
 	}
-	free_ob(this()->hashmap);
-	this()->hashmap = NULL;
+	free_ob(fthis()->hashmap);
+	fthis()->hashmap = NULL;
 	return (1);
 }
 
 static int	base_size_hashmap(void)
 {
-	if (!this()->hashmap)
+	if (!fthis()->hashmap)
 		return (0);
-	return (array(this()->hashmap->list)->size);
+	return (array(fthis()->hashmap->list)->size);
 }
 
 t_hashmap	*hashmap(t_hashmap *a)
 {
 	if (a)
-		this()->array = a->list;
-	this()->hashmap = a;
+		fthis()->array = a->list;
+	fthis()->hashmap = a;
 	return (a);
 }
 

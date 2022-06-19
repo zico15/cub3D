@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 16:13:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 01:14:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:33:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ t_element	*__put_hasmap(char *key, void	*value)
 {
 	t_element	*v;
 
-	v = hashmap(this()->hashmap)->get_key(key);
+	v = hashmap(fthis()->hashmap)->get_key(key);
 	if (!v)
-		v = array(this()->array)->add(value);
+		v = array(fthis()->array)->add(value);
 	else
 	{
 		free_ob(v->key);
@@ -36,7 +36,7 @@ t_element	*__get_index_hasmap(int index)
 {
 	t_element	*e;
 
-	e = array(this()->array)->get(index);
+	e = array(fthis()->array)->get(index);
 	if (e)
 		return (e);
 	return (NULL);
@@ -48,9 +48,9 @@ t_element	*__get_key_hasmap(char *key)
 	t_element	*e;
 
 	i = 0;
-	if (!this()->array)
+	if (!fthis()->array)
 		return (NULL);
-	e = (this()->array)->begin;
+	e = (fthis()->array)->begin;
 	while (e)
 	{
 		if (string().equals(key, e->key))
@@ -63,14 +63,14 @@ t_element	*__get_key_hasmap(char *key)
 
 void	__remove_element_hasmap(char	*key)
 {
-	if (!key || !this()->hashmap)
+	if (!key || !fthis()->hashmap)
 		return ;
-	array(this()->array)->remove(__get_key_hasmap(key));
+	array(fthis()->array)->remove(__get_key_hasmap(key));
 }
 
 void	__remove_index_hasmap(int index)
 {
-	if (index < 0 || !this()->hashmap)
+	if (index < 0 || !fthis()->hashmap)
 		return ;
-	array(this()->array)->remove_index(index);
+	array(fthis()->array)->remove_index(index);
 }

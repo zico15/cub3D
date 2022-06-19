@@ -6,11 +6,12 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 22:15:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 01:21:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:17:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <stdlib.h>
 
 int	free_ob(void *v)
 {
@@ -42,5 +43,7 @@ void	*malloc_ob(size_t __size)
 	if (__size < 1)
 		return (NULL);
 	v = malloc(__size);
+	if (!v)
+		engine()->close("Error");
 	return (v);
 }

@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_engine.h                                        :+:      :+:    :+:   */
+/*   ft_scene_util.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 11:51:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 12:01:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ENGINE_H
-# define FT_ENGINE_H
+#ifndef FT_SCENE_UTIL_H
+# define FT_SCENE_UTIL_H
 
-# include <ft_scene.h>
+# include <ft_util.h>
 
-typedef struct s_engine	t_engine;
-
-struct s_engine
-{
-	void			*mlx;
-	void			*win;
-	t_scene			*scene;
-	void			(*load_scene)(char *patch);
-	int				(*close)(char *msg);
-};
-
-t_engine	*engine(void);
-t_engine	*cread_engine(char *title, int width, int height);
+void	check_color(t_element *e, void *o);
 
 #endif

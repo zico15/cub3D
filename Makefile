@@ -6,7 +6,7 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/19 01:43:20 by edos-san         ###   ########.fr        #
+#    Updated: 2022/06/19 02:48:53 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,6 @@ m: fclean
 v:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D
 r:
-	@make re && make clean && clear && ./cub3D
+	@make re && make clean && clear && ./cub3D map/map1.car
 
 .PHONY: all re clean fclean m

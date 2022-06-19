@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 01:47:10 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 11:33:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	__base_for_each(void (*fun)(t_element *e, void *v), void *o)
 	int			index;
 	void		*this_list;
 
-	if (!this()->array)
+	if (!fthis()->array)
 		return ;
-	this_list = this()->array;
-	temp = (this()->array)->begin;
+	this_list = fthis()->array;
+	temp = (fthis()->array)->begin;
 	index = 0;
 	while (temp)
 	{
@@ -41,9 +41,9 @@ t_element	*__base_set_element(int index, void *value)
 	t_element	*e;
 
 	i = 0;
-	if (!this()->array)
+	if (!fthis()->array)
 		return (NULL);
-	e = (this()->array)->begin;
+	e = (fthis()->array)->begin;
 	while (e)
 	{
 		if (i == index)
@@ -65,14 +65,14 @@ void	__base_remove_element_index(int index)
 	t_element	*e;
 
 	i = 0;
-	if (!this()->array)
+	if (!fthis()->array)
 		return ;
-	e = (this()->array)->begin;
+	e = (fthis()->array)->begin;
 	while (e)
 	{
 		if (i == index)
 		{
-			(this()->array)->remove(e);
+			(fthis()->array)->remove(e);
 			return ;
 		}
 		e = e->next;
@@ -86,13 +86,13 @@ void	**__to_str(void)
 	void		**list;
 	int			i;
 
-	if (!this()->array)
+	if (!fthis()->array)
 		return (NULL);
-	list = malloc_ob(sizeof(void *) * ((this()->array)->size + 1));
+	list = malloc_ob(sizeof(void *) * ((fthis()->array)->size + 1));
 	if (!list)
 		return (NULL);
 	i = 0;
-	temp = (this()->array)->begin;
+	temp = (fthis()->array)->begin;
 	while (temp)
 	{
 		list[i++] = temp->value;

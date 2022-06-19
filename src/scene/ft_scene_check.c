@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_engine.h                                        :+:      :+:    :+:   */
+/*   ft_scene_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 11:51:56 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/19 03:01:53 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/19 12:01:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ENGINE_H
-# define FT_ENGINE_H
+#include <ft_util.h>
 
-# include <ft_scene.h>
-
-typedef struct s_engine	t_engine;
-
-struct s_engine
+void	check_color(t_element *e, void *o)
 {
-	void			*mlx;
-	void			*win;
-	t_scene			*scene;
-	void			(*load_scene)(char *patch);
-	int				(*close)(char *msg);
-};
+	t_scene	*scene;
 
-t_engine	*engine(void);
-t_engine	*cread_engine(char *title, int width, int height);
-
-#endif
+	scene = o;
+	if (string().equals_n(e->value, "F ", 2))
+	{
+		if (scene->f)
+			engine()->close("Error");
+		scene->f = e->value;
+		printf("F: %s", scene->f);
+	}
+	if (string().equals_n(e->value, "C ", 2))
+	{
+		if (scene->c)
+			engine()->close("Error");
+		scene->c = e->value;
+		printf("C: %s", scene->c);
+	}
+}

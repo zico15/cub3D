@@ -17,7 +17,7 @@ static t_element	*base_add_element(void *value)
 {
 	t_element	*e;
 
-	if (!this()->array || !value)
+	if (!fthis()->array || !value)
 		return (NULL);
 	e = malloc_ob(sizeof(t_element));
 	if (!e)
@@ -26,12 +26,12 @@ static t_element	*base_add_element(void *value)
 	e->value = value;
 	e->next = NULL;
 	e->destroy = __destroy_element;
-	if (!(this()->array)->begin)
-		(this()->array)->begin = e;
+	if (!(fthis()->array)->begin)
+		(fthis()->array)->begin = e;
 	else
-		(this()->array)->end->next = e;
-	(this()->array)->end = e;
-	(this()->array)->size++;
+		(fthis()->array)->end->next = e;
+	(fthis()->array)->end = e;
+	(fthis()->array)->size++;
 	return (e);
 }
 
@@ -41,9 +41,9 @@ static void	*base_get_element(int index)
 	t_element	*e;
 
 	i = 0;
-	if (!this()->array || index < 0 || index >= this()->array->size)
+	if (!fthis()->array || index < 0 || index >= fthis()->array->size)
 		return (NULL);
-	e = (this()->array)->begin;
+	e = (fthis()->array)->begin;
 	while (e)
 	{
 		if (i == index)
@@ -59,23 +59,23 @@ static void	base_remove_element(t_element	*e)
 	t_element	*prev;
 	t_element	*atual;
 
-	if (!this()->array || !e)
+	if (!fthis()->array || !e)
 		return ;
-	atual = (this()->array)->begin;
+	atual = (fthis()->array)->begin;
 	prev = NULL;
 	while (atual)
 	{
 		if (atual == e)
 		{
-			if ((this()->array)->end == e)
-				(this()->array)->end = prev;
+			if ((fthis()->array)->end == e)
+				(fthis()->array)->end = prev;
 			if (prev)
 				prev->next = atual->next;
 			else
-				(this()->array)->begin = atual->next;
+				(fthis()->array)->begin = atual->next;
 			if (e->destroy)
 				e->destroy(e);
-			(this()->array)->size--;
+			(fthis()->array)->size--;
 		}
 		prev = atual;
 		atual = atual->next;
@@ -87,11 +87,11 @@ static int	base_destroy(void)
 	t_element	*b;
 	t_element	*temp;
 
-	if (!this()->array)
+	if (!fthis()->array)
 		return (0);
-	b = (this()->array)->begin;
-	(this()->array)->begin = NULL;
-	this()->array->size = 0;
+	b = (fthis()->array)->begin;
+	(fthis()->array)->begin = NULL;
+	fthis()->array->size = 0;
 	while (b)
 	{
 		temp = b;
@@ -99,9 +99,9 @@ static int	base_destroy(void)
 		if (temp && temp->destroy)
 			temp->destroy(temp);
 	}
-	(this()->array)->end = NULL;
-	free_ob(this()->array);
-	this()->array = NULL;
+	(fthis()->array)->end = NULL;
+	free_ob(fthis()->array);
+	fthis()->array = NULL;
 	return (1);
 }
 
