@@ -6,7 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/19 11:33:26 by edos-san         ###   ########.fr       */
+=======
+/*   Updated: 2022/06/19 03:13:50 by edos-san         ###   ########.fr       */
+>>>>>>> ezequiel
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +54,10 @@ t_engine	*cread_engine(char *title, int width, int height)
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_loop_hook(e.mlx, game_loop, &e);
+<<<<<<< HEAD
 	fthis()->engine = &e;
+=======
+	this()->engine = &e;
+>>>>>>> ezequiel
 	return (&e);
 }
