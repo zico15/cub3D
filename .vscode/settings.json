@@ -5,6 +5,7 @@
 		"stdlib.h": "c",
 		"string_util.h": "c",
 		"mlx.h": "c",
-		"ft_engine.h": "c"
+		"ft_engine.h": "c",
+		"ft_scene_util.h": "c"
 	}
 }

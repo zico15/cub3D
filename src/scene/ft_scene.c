@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   this.c                                             :+:      :+:    :+:   */
+/*   ft_scene.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 00:06:50 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 02:51:06 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/19 03:11:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_util.h>
+#include <ft_scene_util.h>
 
-t_this	*this(void)
+t_scene	*new_scene(void *file)
 {
-	static t_this	t;
+	static t_scene	scene;
 
-	return (&t);
-}
-
-t_array	*array(t_array *a)
-{
-	this()->array = a;
-	return (a);
-}
-
-t_engine	*engine(void)
-{
-	return (this()->engine);
+	(array(file))->for_each(check_color, &scene);
+	return (&scene);
 }

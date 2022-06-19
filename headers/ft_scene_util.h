@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   this.c                                             :+:      :+:    :+:   */
+/*   ft_scene_util.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 00:06:50 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 02:51:06 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/19 03:11:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_util.h>
+#ifndef FT_SCENE_UTIL_H
+# define FT_SCENE_UTIL_H
 
-t_this	*this(void)
-{
-	static t_this	t;
+# include <ft_util.h>
 
-	return (&t);
-}
+void	check_color(t_element *e, void *o);
 
-t_array	*array(t_array *a)
-{
-	this()->array = a;
-	return (a);
-}
-
-t_engine	*engine(void)
-{
-	return (this()->engine);
-}
+#endif

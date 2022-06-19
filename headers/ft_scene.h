@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 02:23:15 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 03:11:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ typedef struct s_scene	t_scene;
 
 struct s_scene
 {
-	void	*mlx;
-	void	*win;
+	void	*file;
+	char	*f;
+	char	*c;
+	void	**map;
 	int		(*close)(char *msg);
 };
+
+t_scene	*new_scene(void *file);
 
 #endif

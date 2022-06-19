@@ -6,11 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 02:10:07 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 02:43:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_engine.h>
+#include <ft_util.h>
 
 int	main(int argc, char **argv)
 {
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	(void) argc;
 	(void) argv;
 	e = cread_engine("cub3D", 800, 600);
+	e->load_scene(argv[1]);
 	mlx_hook(e->win, 17, 0, e->close, "exit");
 	return (mlx_loop(e->mlx));
 }

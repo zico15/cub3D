@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   this.c                                             :+:      :+:    :+:   */
+/*   ft_scene_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 00:06:50 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 02:51:06 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/19 03:01:53 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/19 03:14:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-t_this	*this(void)
+void	check_color(t_element *e, void *o)
 {
-	static t_this	t;
+	t_scene	*scene;
 
-	return (&t);
-}
-
-t_array	*array(t_array *a)
-{
-	this()->array = a;
-	return (a);
-}
-
-t_engine	*engine(void)
-{
-	return (this()->engine);
+	scene = o;
+	if (string().equals_n(e->value, "F ", 2))
+	{
+		if (scene->f)
+			engine()->close("Error");
+		scene->f = e->value;
+		printf("F: %s", scene->f);
+	}
+	if (string().equals_n(e->value, "C ", 2))
+	{
+		if (scene->c)
+			engine()->close("Error");
+		scene->c = e->value;
+		printf("C: %s", scene->c);
+	}
 }

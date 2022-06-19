@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 01:38:00 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 02:43:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <mlx.h>
+# include <ft_engine.h>
 
 # define BUFFER_SIZE 999999
 
@@ -28,6 +29,7 @@ typedef struct s_this
 	t_array			*array;
 	t_array			*array_main;
 	t_hashmap		*hashmap;
+	t_engine		*engine;
 
 }	t_this;
 
