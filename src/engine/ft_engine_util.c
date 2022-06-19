@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 16:13:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/19 16:33:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	__funct_key(int key, void *o)
 	{
 		scene = array(e->scenes)->get(0);
 		object = new_object();
-		object->img = mlx_xpm_file_to_image(e->mlx, "src/engine/wall.xpm", \
+		object->img = mlx_xpm_file_to_image(e->mlx, "imgs/wall.xpm", \
 		&object->width, &object->height);
 		scene->add(object);
 	}
