@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 02:10:07 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/19 02:23:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_engine.h>
+#ifndef FT_SCENE_H
+# define FT_SCENE_H
 
-int	main(int argc, char **argv)
+# include <ft_util.h>
+
+# define SCENE_EXTENSION ".cub"
+
+typedef struct s_scene	t_scene;
+
+struct s_scene
 {
-	t_engine	*e;
+	void	*mlx;
+	void	*win;
+	int		(*close)(char *msg);
+};
 
-	(void) argc;
-	(void) argv;
-	e = cread_engine("cub3D", 800, 600);
-	mlx_hook(e->win, 17, 0, e->close, "exit");
-	return (mlx_loop(e->mlx));
-}
+#endif
