@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/21 01:18:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/21 17:02:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ t_scene	*new_scene(void *file)
 	s->vector.y = 0;
 	if (file)
 		(array(file))->for_each(check_color, s);
+	fthis()->scene = s;
 	check_map(s, -1, -1);
 	printf("px: %i py: %i\n", s->player.x, s->player.y);
-	array(this);
-	fthis()->scene = s;
 	cread_map(s);
+	array(this);
 	return (scene(s));
 }

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 03:01:53 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/21 01:31:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/21 22:39:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,22 @@ static int	cread_space(char *buff, int i)
 	return (i);
 }
 
+static void	clear_check_buff(t_scene	*scene, char	**map, int size_h)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < 100)
+	{
+		x = -1;
+		while (++x < 100)
+			scene->check[y][x] = 0;
+	}
+	scene->maps = map;
+	scene->vector.h = size_h * 32;
+}
+
 void	check_map(t_scene	*scene, int x, int y)
 {
 	char	buff[BUFFER_SIZE];
@@ -91,6 +107,5 @@ void	check_map(t_scene	*scene, int x, int y)
 		scene->vector.w = string().size(buff) * 32;
 		map[y] = string().copy(buff);
 	}
-	scene->maps = map;
-	scene->vector.h = y * 32;
+	clear_check_buff(scene, map, y);
 }
