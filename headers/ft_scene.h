@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/21 01:25:57 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/21 16:33:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # define SCENE_EXTENSION ".cub"
 
 typedef struct s_scene	t_scene;
+typedef struct s_node	t_node;
+
+struct s_node
+{
+	int		x;
+	int		y;
+	int		v;
+	void	*nodes;
+};
 
 struct s_scene
 {
@@ -40,5 +49,6 @@ struct s_scene
 t_scene	*new_scene(void *file);
 void	cread_map(t_scene *scene);
 void	print_check_map(t_scene *scene);
+int		check_maps_nodes(t_scene *scene, t_vector start);
 
 #endif

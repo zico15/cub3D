@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/21 01:58:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/21 22:26:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ void	print_check_map(t_scene *scene)
 			else if (scene->dir == 1)
 				dir = v.y / 32;
 			else if (scene->dir == 2)
-				dir = scene->check[v.y / 32][v.x / 32];
+				dir = scene->check[v.y / 32][v.x / 32] == 1;
 			b[0] = ('0' + dir / 10);
 			b[1] = ('0' + dir % 10);
-			if ((scene->dir != 2 ||  dir) && scene->maps[v.y / 32][v.x / 32] != '1' && \
-			scene->maps[v.y / 32][v.x / 32] != ' ')
+			if ((scene->dir != 2 ||  dir) && scene->maps[v.y / 32][v.x / 32] \
+			!= '1' && scene->maps[v.y / 32][v.x / 32] != ' ')
 				mlx_string_put(engine()->mlx, engine()->win, v.x + 5, v.y + 5, \
 				0x111111, b);
 			v.x += 32;
