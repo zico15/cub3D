@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 03:01:53 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 18:07:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/21 01:31:40 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,19 @@ void	check_map(t_scene	*scene, int x, int y)
 		i = 0;
 		while (map[y] && map[y][++x])
 		{
+			scene->check[y][x] = 0;
 			if (map[y][x] == '\t')
 				i = cread_space(buff, i);
 			else
 				buff[i++] = map[y][x];
+			if (map[y][x] == 'N')
+				scene->player = vector(x, y, 0, 0);
 		}
 		free_ob(map[y]);
 		buff[i] = 0 * (printf("%s", map[y]));
+		scene->vector.w = string().size(buff) * 32;
 		map[y] = string().copy(buff);
 	}
+	scene->maps = map;
+	scene->vector.h = y * 32;
 }

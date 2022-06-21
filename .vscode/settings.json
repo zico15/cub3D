@@ -10,6 +10,7 @@
 		"stdio.h": "c",
 		"ft_object_base.h": "c",
 		"ft_string.h": "c",
-		"ft_object.h": "c"
+		"ft_object.h": "c",
+		"ft_engine_util.h": "c"
 	}
 }

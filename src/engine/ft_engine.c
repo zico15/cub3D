@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 15:53:50 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/21 01:12:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,30 +49,30 @@ void	__update(t_element *e, void *o)
 	t_scene		*s;
 
 	s = (t_scene *) e->value;
+	fthis()->scene = s;
 	s->update();
 	array(o);
 }
 
 int	game_loop(t_engine *e)
 {
-	//system("clear");
-	//printf("scene: %i\r", array(e->scenes)->size);
 	(array(engine()->scenes))->for_each(__update, engine()->scenes);
 	return (e != 0);
 }
 
-t_engine	*cread_engine(char *title, int width, int height)
+t_engine	*cread_engine(char *title, char *path, int width, int height)
 {
 	static t_engine	e;
 
+	fthis()->engine = &e;
 	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, width, height, title);
-	mlx_key_hook(e.win, __funct_key, &e);
 	e.scenes = new_array();
 	e.load_scene = __load_scene;
+	e.load_scene(path);
 	e.close = __close;
-	e.print = __print;
+	e.win = mlx_new_window(e.mlx, fthis()->scene->vector.w + width, \
+	fthis()->scene->vector.h + height, title);
+	mlx_key_hook(e.win, __funct_key, &e);
 	mlx_loop_hook(e.mlx, game_loop, &e);
-	fthis()->engine = &e;
 	return (&e);
 }

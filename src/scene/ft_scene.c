@@ -6,10 +6,11 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 18:03:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/21 01:18:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ft_util.h>
 #include <ft_scene_util.h>
 
 static int	__update(void)
@@ -17,6 +18,8 @@ static int	__update(void)
 	t_element	*e;
 	t_object	*o;
 
+	render().print_ob((t_object *)fthis()->scene);
+	print_check_map(fthis()->scene);
 	e = array(fthis()->scene->objects)->begin;
 	while (e)
 	{
@@ -71,9 +74,15 @@ t_scene	*new_scene(void *file)
 	s->map = new_array();
 	s->c = 0;
 	s->f = 0;
+	s->dir = 0;
+	s->vector.x = 0;
+	s->vector.y = 0;
 	if (file)
 		(array(file))->for_each(check_color, s);
 	check_map(s, -1, -1);
+	printf("px: %i py: %i\n", s->player.x, s->player.y);
 	array(this);
+	fthis()->scene = s;
+	cread_map(s);
 	return (scene(s));
 }
