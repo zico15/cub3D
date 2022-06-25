@@ -39,6 +39,7 @@ typedef struct s_array
 	void			(*remove)(t_element	*e);
 	void			(*remove_index)(int index);
 	int				(*destroy)();
+	void			(*destroy_element)(t_element	*e);
 	void			(*for_each)(void (*fun)(t_element *e, void *v), void *o);
 	void			**(*to_str)(void);
 }	t_array;

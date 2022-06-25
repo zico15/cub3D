@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/21 16:33:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:33:44 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,16 @@ struct s_node
 
 struct s_scene
 {
-	void		*img;
-	t_vector	vector;
-	int			(*update)(void);
-	int			(*render)(void);
-	int			(*destroy)(t_object *o);
-	char		*f;
-	char		*c;
-	int			dir;
-	void		*map;
-	char		**maps;
-	int			check[100][100];
-	void		*objects;
-	t_vector	player;
-	t_object	*(*add)(t_object *o);
+	t_type			type;
+	void			*img;
+	t_vector		vector;
+	void			(*update)(void);
+	void			(*render)(void);
+	void			(*destroy)(t_object *o);
+	void			*objects;
+	t_object		*(*add)(t_object *o);
 };
 
-t_scene	*new_scene(void *file);
-void	cread_map(t_scene *scene);
-void	print_check_map(t_scene *scene);
-int		check_maps_nodes(t_scene *scene, t_vector start);
+t_scene	*new_scene(void);
 
 #endif

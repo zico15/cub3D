@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 22:53:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:19:43 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ struct s_engine
 	void			*mlx;
 	void			*win;
 	void			*scenes;
-	void			(*load_scene)(char *path);
+	t_map			*map;
+	void			(*add_scene)(t_scene *scene);
 	int				(*close)(char *msg);
 };
 

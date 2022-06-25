@@ -25,7 +25,7 @@ static t_element	*base_add_element(void *value)
 	e->key = NULL;
 	e->value = value;
 	e->next = NULL;
-	e->destroy = __destroy_element;
+	e->destroy = fthis()->array->destroy_element;
 	if (!(fthis()->array)->begin)
 		(fthis()->array)->begin = e;
 	else
@@ -123,6 +123,7 @@ void	*new_array(void)
 		a->set = __base_set_element;
 		a->remove_index = __base_remove_element_index;
 		a->to_str = __to_str;
+		a->destroy_element = __destroy_element;
 		array(a);
 	}
 	return (a);
