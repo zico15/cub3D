@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_object_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:37:03 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/25 14:56:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <ft_object_base.h>
 
-int	main(int argc, char **argv)
+void	__update_ob(void)
 {
-	t_engine	*e;
+	render().print_ob(this());
+}
 
-	(void) argc;
-	(void) argv;
-	printf("PID: %i\n", getpid());
-	e = cread_engine("cub3D", argv[1], 0, 0);
-	mlx_hook(e->win, 17, 0, e->close, "exit");
-	//return (mlx_loop(e->mlx));
+void	__destroy_ob(t_object *o)
+{
+	printf("destroy->object: %i\n", o->type);
+}
+
+void	__render_ob(void)
+{
+
+}
+
+t_object	*new_object(void)
+{
+	t_object	*o;
+
+	o = new_object_instance(sizeof(t_object));
+	return (o);
 }

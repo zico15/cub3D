@@ -6,26 +6,25 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/21 22:28:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:48:21 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_util.h>
-#include <pthread.h>
+#include <ft_check.h>
 
-static int	check_case(t_scene *scene, t_vector v, t_node *n)
+static int	check_case(t_map *map, t_vector v, t_node *n)
 {
 	(void) n;
 	if ((v.x >= 0 && v.x < v.w) && (v.y >= 0 && v.y < v.h) && \
-	scene->maps[v.y][v.x] != '1' && !scene->check[v.y][v.x])
+	map->maps[v.y][v.x] != '1' && !map->check[v.y][v.x])
 	{
-		if (scene->maps[v.y][v.x] == ' ')
+		if (map->maps[v.y][v.x] == ' ')
 		{
-			scene->check[v.y][v.x] = 0;
-			printf("ERRR\n");
+			map->check[v.y][v.x] = 0;
+			map->is_map_ok = 0;
 			return (0);
 		}
-		scene->check[v.y][v.x] = 1;
+		map->check[v.y][v.x] = 1;
 		return (1);
 	}
 	return (0);
@@ -42,63 +41,55 @@ static t_node	*create_node(int x, int y, int v)
 	n->y = y;
 	n->v = v;
 	n->nodes = new_array();
+	array(n->nodes)->destroy_element = destroy_element_node;
 	array(this);
 	return (n);
 }
 
-static void	expand(t_scene *scene, t_node *n, int size_w, int size_h)
+static void	expand(t_map *map, t_node *n, int size_w, int size_h)
 {
 	if (!n)
 		return ;
-	// baixo
-	if (check_case(scene, vector(n->x, n->y + 1, size_w, size_h), n))
+	if (check_case(map, vector(n->x, n->y + 1, size_w, size_h), n))
 		(array(n->nodes))->add(create_node(n->x, n->y + 1, n->v + 1));
-	// direita
-	if (check_case(scene, vector(n->x + 1, n->y, size_w, size_h), n))
+	if (check_case(map, vector(n->x + 1, n->y, size_w, size_h), n))
 		(array(n->nodes))->add(create_node(n->x + 1, n->y, n->v + 1));
-	// cima
-	if (check_case(scene, vector(n->x, n->y - 1, size_w, size_h), n))
+	if (check_case(map, vector(n->x, n->y - 1, size_w, size_h), n))
 		(array(n->nodes))->add(create_node(n->x, n->y - 1, n->v + 1));
-	// esquerda
-	if (check_case(scene, vector(n->x - 1, n->y, size_w, size_h), n))
+	if (check_case(map, vector(n->x - 1, n->y, size_w, size_h), n))
 		(array(n->nodes))->add(create_node(n->x - 1, n->y, n->v + 1));
 }
 
-void	*satrt_nodes_checks(void *o)
+static void	*satrt_nodes_checks(t_node *n, t_map	*map)
 {
 	int			i;
 	t_array		*this;
-	t_scene		*scene;
-	t_node		*n;
 
-	n = (t_node *) o;
-	scene = fthis()->scene;
-	if (!scene || !n)
+	if (!map || !n)
 		return (NULL);
-	expand(scene, n, scene->vector.w / 32, scene->vector.h / 32);
-	usleep(100000);
+	expand(map, n, map->vector.w / 32, map->vector.h / 32);
 	this = fthis()->array;
 	if (array(n->nodes)->size)
 	{
 		i = -1;
 		while (++i < array(n->nodes)->size)
 		{
-			satrt_nodes_checks(array(n->nodes)->get(i));
+			satrt_nodes_checks(array(n->nodes)->get(i), map);
 			array(this);
 		}
-		return (o);
+		return (map);
 	}
 	return (NULL);
 }
 
-int	check_maps_nodes(t_scene *scene, t_vector start)
+int	check_maps_nodes(t_map *map, t_vector start)
 {
 	t_node		*n;
-	pthread_t	p;
 
 	n = create_node(start.x, start.y, 0);
-	check_case(scene, vector(n->x, n->y, scene->vector.w / 32, \
-	scene->vector.h / 32), n);
-	pthread_create(&p, NULL, satrt_nodes_checks, n);
-	return (1);
+	check_case(map, vector(n->x, n->y, map->vector.w / 32, \
+	map->vector.h / 32), n);
+	satrt_nodes_checks(n, map);
+	destroy_node(n);
+	return (map->is_map_ok);
 }

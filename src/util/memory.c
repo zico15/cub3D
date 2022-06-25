@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 22:15:49 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 13:39:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 14:24:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,16 @@ int	free_list(char **str)
 
 void	*malloc_ob(size_t __size)
 {
-	void	*v;
+	void			*v;
+	unsigned char	*temp;
 
 	if (__size < 1)
 		return (NULL);
 	v = malloc(__size);
 	if (!v)
 		engine()->close("Error");
+	temp = (unsigned char *) v;
+	while (__size-- > 0)
+		*(temp++) = (unsigned char) 0;
 	return (v);
 }

@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_object_base_util.c                              :+:      :+:    :+:   */
+/*   ft_check.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 15:55:27 by edos-san         ###   ########.fr       */
+/*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
+/*   Updated: 2022/06/25 15:34:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_util.h>
-#include <ft_object_base.h>
+#ifndef FT_CHECK_H
+# define FT_CHECK_H
 
-t_object	*this(void)
-{
-	return (fthis()->object);
-}
+# include <ft_util.h>
 
+void	check_color(t_element *e, void *o);
+void	check_map(t_map	*map, int x, int y);
+int		check_maps_nodes(t_map *map, t_vector start);
+void	destroy_element_node(t_element	*e);
+void	destroy_node(t_node	*n);
+void	cread_map(t_map *scene);
+void	print_check_map(t_map *scene);
+#endif

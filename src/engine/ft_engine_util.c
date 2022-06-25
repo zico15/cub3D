@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/21 17:02:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 15:22:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,10 @@ int	__funct_key(int key, void *o)
 		object->vector.y += ((key == 1) - (key == 13)) * 32;
 	}
 	if (key == 7)
-		scene->dir = 0;
+		e->map->dir = 0;
 	if (key == 16)
-		scene->dir = 1;
+		e->map->dir = 1;
 	if (key == 8)
-		scene->dir = 2;
-	if (key == 76)
-		check_maps_nodes(scene, scene->player);
+		e->map->dir = 2;
 	return (o != 0);
 }

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 15:55:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/06/25 14:49:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 t_object	*this(void);
 
-
+void			__destroy_ob(t_object *o);
+void			__update_ob(void);
 #endif
