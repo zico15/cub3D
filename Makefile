@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
+#    By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/06/19 02:48:53 by edos-san         ###   ########.fr        #
+#    Updated: 2022/07/01 23:26:10 by ezequeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,21 +16,33 @@ CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror
 RM			= 	/bin/rm -f
 NAME		= 	cub3D
-INCLUDES	= 	./headers
-MILIB		=	-I /usr/X11/include -g -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit
+INCLUDES	= 	-Iheaders/
+MILIB		=	-I /usr/X11/include -g -L /usr/X11/lib -l minilibx-linux -framework OpenGL -framework AppKit
 
 SRCS		=   main.c $(shell find src/ -name '*.c')
 OBJS		= 	$(SRCS:.c=.o)
 
-.c.o:
-	@$(CC) $(CFLAGS) -I$(INCLUDES) -Imlx -c $< -o $(<:.c=.o)
 
-all: $(NAME)
+MLX_LIB_DIR = mlx_linux/
+#directories with .h
+LIBFT_INCLUDE = -ILIBFT/include
+MLX_INCLUDE = -Imlx_linux
+
+COLOUR_GREEN=\033[7;1;32m
+COLOUR_END=\033[0m
+COLOUR_YELLOW=\033[7;1;33m
+
+MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
+
+# ^ primeira dependencia
+# @ nome da regra
+all: $(NAME) 
 
 $(NAME): $(OBJS)
-	@echo "\033[0;32mOBJECT FILES COMPILED\033[0m"
-	@$(CC) $(CFLAGS) -I$(INCLUDES) $(OBJS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	@echo "\033[0;32mMINISHELL IS READY TO USE\033[0m"
+		@$(CC) $(^) $(MLX_FLAGS) -o $(@)
+
+%.o: %.c
+	@$(CC) $(INCLUDES) $(MLX_INCLUDE) -c $(^) -o $(@)
 
 bonus: all
 
@@ -52,6 +64,6 @@ m: fclean
 v:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D
 r:
-	@make re && make clean && clear && ./cub3D map/map1.car
+	@make re && make clean && clear && ./cub3D map/map1.car map/map2.car
 
 .PHONY: all re clean fclean m

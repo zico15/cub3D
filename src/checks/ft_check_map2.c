@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 03:01:53 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:45:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:16:53 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,12 @@ void	check_color(t_element *e, void *o)
 		if (m->f)
 			engine()->close("Error");
 		m->f = string().copy(e->value);
-		printf("F: %s", m->f);
 	}
 	if (string().equals_n(e->value, "C ", 2))
 	{
 		if (m->c)
 			engine()->close("Error");
 		m->c = string().copy(e->value);
-		printf("C: %s", m->c);
 	}
 }
 
@@ -103,9 +101,10 @@ void	check_map(t_map	*m, int x, int y)
 				m->player = vector(x, y, 0, 0);
 		}
 		free_ob(map[y]);
-		buff[i] = 0 * (printf("%s", map[y]));
+		buff[i] = 0;
 		m->vector.w = string().size(buff) * 32;
 		map[y] = string().copy(buff);
 	}
+	generation(m->player, vector(7, 2, 0, 0));
 	clear_check_buff(m, map, y);
 }

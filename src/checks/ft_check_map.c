@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:48:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:13:07 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_check.h>
 
-static int	check_case(t_map *map, t_vector v, t_node *n)
+int	check_case(t_map *map, t_vector v, t_node *n)
 {
 	(void) n;
 	if ((v.x >= 0 && v.x < v.w) && (v.y >= 0 && v.y < v.h) && \
@@ -30,7 +30,7 @@ static int	check_case(t_map *map, t_vector v, t_node *n)
 	return (0);
 }
 
-static t_node	*create_node(int x, int y, int v)
+t_node	*create_node(int x, int y, int v)
 {
 	t_node	*n;
 	t_array	*this;

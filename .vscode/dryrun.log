@@ -1,0 +1,33 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ezequeil/Documents/GitHub/cub3d'
+gcc -Iheaders/ -Imlx_linux -c main.c -o main.o
+gcc -Iheaders/ -Imlx_linux -c src/transforme/ft_vector3.c -o src/transforme/ft_vector3.o
+gcc -Iheaders/ -Imlx_linux -c src/nav_mesh/nav_mash.c -o src/nav_mesh/nav_mash.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/scene/ft_scene.c -o src/objects/scene/ft_scene.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/teste/ft_teste.c -o src/objects/teste/ft_teste.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/map/ft_map.c -o src/objects/map/ft_map.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/map/ft_map_util.c -o src/objects/map/ft_map_util.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/base/ft_object_base_util.c -o src/objects/base/ft_object_base_util.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/base/ft_object_base.c -o src/objects/base/ft_object_base.o
+gcc -Iheaders/ -Imlx_linux -c src/util/array/base_array_util.c -o src/util/array/base_array_util.o
+gcc -Iheaders/ -Imlx_linux -c src/util/array/base_array.c -o src/util/array/base_array.o
+gcc -Iheaders/ -Imlx_linux -c src/util/array/hasmap/base_hasmap.c -o src/util/array/hasmap/base_hasmap.o
+gcc -Iheaders/ -Imlx_linux -c src/util/array/hasmap/base_hasmap_util.c -o src/util/array/hasmap/base_hasmap_util.o
+gcc -Iheaders/ -Imlx_linux -c src/util/string/string_util.c -o src/util/string/string_util.o
+gcc -Iheaders/ -Imlx_linux -c src/util/string/string_util2.c -o src/util/string/string_util2.o
+gcc -Iheaders/ -Imlx_linux -c src/util/string/string.c -o src/util/string/string.o
+gcc -Iheaders/ -Imlx_linux -c src/util/string/string_util4.c -o src/util/string/string_util4.o
+gcc -Iheaders/ -Imlx_linux -c src/util/string/string_util3.c -o src/util/string/string_util3.o
+gcc -Iheaders/ -Imlx_linux -c src/util/this.c -o src/util/this.o
+gcc -Iheaders/ -Imlx_linux -c src/util/get_next_line.c -o src/util/get_next_line.o
+gcc -Iheaders/ -Imlx_linux -c src/util/memory.c -o src/util/memory.o
+gcc -Iheaders/ -Imlx_linux -c src/util/util.c -o src/util/util.o
+gcc -Iheaders/ -Imlx_linux -c src/checks/ft_check_util.c -o src/checks/ft_check_util.o
+gcc -Iheaders/ -Imlx_linux -c src/checks/ft_check_map2.c -o src/checks/ft_check_map2.o
+gcc -Iheaders/ -Imlx_linux -c src/checks/ft_check_map.c -o src/checks/ft_check_map.o
+gcc -Iheaders/ -Imlx_linux -c src/engine/ft_engine.c -o src/engine/ft_engine.o
+gcc -Iheaders/ -Imlx_linux -c src/engine/ft_render.c -o src/engine/ft_render.o
+gcc -Iheaders/ -Imlx_linux -c src/engine/ft_engine_util.c -o src/engine/ft_engine_util.o
+gcc main.o src/transforme/ft_vector3.o src/nav_mesh/nav_mash.o src/objects/scene/ft_scene.o src/objects/teste/ft_teste.o src/objects/map/ft_map.o src/objects/map/ft_map_util.o src/objects/base/ft_object_base_util.o src/objects/base/ft_object_base.o src/util/array/base_array_util.o src/util/array/base_array.o src/util/array/hasmap/base_hasmap.o src/util/array/hasmap/base_hasmap_util.o src/util/string/string_util.o src/util/string/string_util2.o src/util/string/string.o src/util/string/string_util4.o src/util/string/string_util3.o src/util/this.o src/util/get_next_line.o src/util/memory.o src/util/util.o src/checks/ft_check_util.o src/checks/ft_check_map2.o src/checks/ft_check_map.o src/engine/ft_engine.o src/engine/ft_render.o src/engine/ft_engine_util.o -Lmlx_linux/ -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o cub3D
+make: Leaving directory '/home/ezequeil/Documents/GitHub/cub3d'
+ 

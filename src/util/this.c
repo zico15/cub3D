@@ -30,8 +30,7 @@ t_engine	*engine(void)
 	return (fthis()->engine);
 }
 
-t_scene	*scene(t_scene *scene)
+t_scene	*scene(void)
 {
-	fthis()->scene = scene;
-	return (scene);
+	return (fthis()->scene);
 }

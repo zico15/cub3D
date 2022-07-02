@@ -18,9 +18,12 @@ void	__update_ob(void)
 	render().print_ob(this());
 }
 
-void	__destroy_ob(t_object *o)
+void	__destroy_ob(void *o)
 {
-	printf("destroy->object: %i\n", o->type);
+	t_object *ob;
+
+	ob = (t_object *) o;
+	printf("destroy->object: %i\n", ob->type);
 }
 
 void	__render_ob(void)

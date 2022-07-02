@@ -15,5 +15,7 @@
 
 int		__funct_key(int key, void *o);
 void	__print(t_object *o);
+t_scene	*__set_scene(int index_scene);
+t_scene	*__load_maps(char **args, int size);
 
 #endif

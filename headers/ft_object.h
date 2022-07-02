@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:47:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:04:55 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ struct s_object
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(void);
-	void			(*destroy)(t_object *o);
+	void			(*destroy)(void *o);
+	void			(*funct_key)(int key, int type_event);
 };
 
 struct s_map
@@ -51,7 +52,8 @@ struct s_map
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(void);
-	void			(*destroy)(t_object *o);
+	void			(*destroy)(void *o);
+	void			(*funct_key)(int key, int type_event);
 	char			*f;
 	char			*c;
 	int				dir;
@@ -69,7 +71,8 @@ struct s_player
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(void);
-	void			(*destroy)(t_object *o);
+	void			(*destroy)(void *o);
+	void			(*funct_key)(int key, int type_event);
 	void			(*atacar)(void);
 	void			*mlx;
 };
@@ -77,6 +80,7 @@ struct s_player
 t_object	*new_object(void);
 void		*new_object_instance(size_t size);
 void		*new_map(char *path);
+void		*new_teste(void);
 t_vector	vector(int x, int y, int w, int h);
 t_vector	vector_zero(void);
 

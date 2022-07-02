@@ -3,59 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:22:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/01 23:57:51 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
-/*
-static void	check_case(t_scene *scene, t_vector v)
+
+t_scene	*__set_scene(int index_scene)
 {
-	if ((v.x >= 0 && v.x < v.w) && (v.y >= 0 && v.y < v.h))
+	t_scene *s;
+
+	s = (t_scene *) array(engine()->scenes)->get(index_scene);
+	fthis()->scene = s;
+	engine()->index_scene = index_scene;
+	mlx_clear_window(engine()->mlx, engine()->win);
+	return (s);
+}
+
+t_scene	*__load_maps(char **args, int size)
+{
+	t_scene		*scene;
+	void		*o;
+	int			i;
+
+	i = 0;
+	while (++i < size)
 	{
-		if (scene->maps[v.y][v.x] != '1')
-		{
-			scene->check[v.y][v.x] = scene->player.w;
-			printf("x: %i y: %i | w: %i h: %i case: %i\n", v.x, v.y, v.w, v.h, scene->check[v.y][v.x]);
-		}
+		scene = engine()->add_scene(new_scene());
+		scene->add(new_map(args[i]));
 	}
-}
+	o = array(engine()->scenes)->get(0);
+	if (!o)
+		return (NULL);
+	scene = (t_scene *) o;
+	fthis()->scene = scene;
+	return (scene);
+} 
 
-void	teste(t_scene *scene, int size_w, int size_h)
-{
-	int		x1;
-	int		y1;
-	int		x2;
-	int		y2;
-
-	scene->player.w += 1;
-	scene->player.h += 1;
-	x1 = scene->player.x - scene->player.w;
-	y1 = scene->player.y - scene->player.h;
-	x2 = scene->player.x + scene->player.w;
-	y2 = scene->player.y + scene->player.h;
-	check_case(scene, vector(x1, y1, size_w, size_h));
-	check_case(scene, vector(x2, y1, size_w, size_h));
-	check_case(scene, vector(x1, y2, size_w, size_h));
-	check_case(scene, vector(x2, y2, size_w, size_h));
-	check_case(scene, vector(x1, scene->player.y, size_w, size_h));
-	check_case(scene, vector(x2, scene->player.y, size_w, size_h));
-	check_case(scene, vector(scene->player.x, y1, size_w, size_h));
-	check_case(scene, vector(scene->player.x, y2, size_w, size_h));
-}
-*/
 int	__funct_key(int key, void *o)
 {
 	t_engine		*e;
-	t_scene			*scene;
 	static t_object	*object;
+	int				i;
 
-	//printf("key: %i\n", key);
+
+	if (scene())
+		scene()->funct_key(key, 1);
+	if (key == 65451 || 65453)
+	{
+		i = engine()->index_scene;
+		i += ((key == 65451) - (key == 65453)); 
+		if (i >= 0 && i < array(engine()->scenes)->size)
+			engine()->set_scene(i);
+	}
 	e = o;
-	scene = array(e->scenes)->get(0);
 	if (key == 53)
 		engine()->close("exit");
 	if (key == 35 && !object)
@@ -63,7 +67,7 @@ int	__funct_key(int key, void *o)
 		object = new_object();
 		object->img = mlx_xpm_file_to_image(e->mlx, "imgs/wall.xpm", \
 		&object->vector.w, &object->vector.h);
-		scene->add(object);
+		scene()->add(object);
 	}
 	if (object)
 	{

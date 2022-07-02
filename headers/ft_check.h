@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:34:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:13:16 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,6 @@ void	destroy_element_node(t_element	*e);
 void	destroy_node(t_node	*n);
 void	cread_map(t_map *scene);
 void	print_check_map(t_map *scene);
+int	    check_case(t_map *map, t_vector v, t_node *n);
+t_node	*create_node(int x, int y, int v);
 #endif

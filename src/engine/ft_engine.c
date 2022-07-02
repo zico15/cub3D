@@ -22,24 +22,16 @@ static int	__close(char *msg)
 	return (0);
 }
 
-static void	__add_scene(t_scene *scene)
+static t_scene	*__add_scene(t_scene *scene)
 {
 	array(engine()->scenes)->add(scene);
-}
-
-void	__update(t_element *e, void *o)
-{
-	t_scene		*s;
-
-	s = (t_scene *) e->value;
-	fthis()->scene = s;
-	s->update();
-	array(o);
+	return (scene);
 }
 
 int	game_loop(t_engine *e)
 {
-	(array(engine()->scenes))->for_each(__update, engine()->scenes);
+	if (scene())
+		scene()->update();
 	return (e != 0);
 }
 
@@ -49,13 +41,14 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 
 	fthis()->engine = &e;
 	e.mlx = mlx_init();
-	e.map = new_map(path);
+	e.index_scene = 0;
 	e.scenes = new_array();
 	array(e.scenes)->destroy_element = __destroy_element_object;
 	e.add_scene = __add_scene;
+	e.load_maps = __load_maps;
 	e.close = __close;
-	e.win = mlx_new_window(e.mlx, e.map->vector.w + width, \
-	e.map->vector.h + height, title);
+	e.set_scene = __set_scene;
+	e.win = mlx_new_window(e.mlx,  width, height, title);
 	mlx_key_hook(e.win, __funct_key, &e);
 	mlx_loop_hook(e.mlx, game_loop, &e);
 	return (&e);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:45:15 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/01 23:20:00 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	get_color(t_map *m, int x, int y)
 		return (0x000000FF);
 	if (m->maps[y][x] == 'N')
 		return (0x0000FF00);
+	if (m->maps[y][x] == 'D')
+		return (0x00CC9900);
 	return (0x0);
 }
 
@@ -31,6 +33,7 @@ void	print_check_map(t_map *m)
 
 	v = m->vector;
 	b[2] = 0;
+	dir = 0;
 	while (v.y < v.h)
 	{
 		v.x = 0;
@@ -43,7 +46,7 @@ void	print_check_map(t_map *m)
 			else if (m->dir == 2)
 				dir = m->check[v.y / 32][v.x / 32] == 1;
 			b[0] = ('0' + dir / 10);
-			b[1] = ('0' + dir % 10);
+			b[1] = ('0' + (dir % 10));
 			if ((m->dir != 2 || dir) && m->maps[v.y / 32][v.x / 32] \
 			!= '1' && m->maps[v.y / 32][v.x / 32] != ' ')
 				mlx_string_put(engine()->mlx, engine()->win, v.x + 5, v.y + 5, \

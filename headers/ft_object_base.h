@@ -17,6 +17,6 @@
 
 t_object	*this(void);
 
-void			__destroy_ob(t_object *o);
+void			__destroy_ob(void *o);
 void			__update_ob(void);
 #endif

@@ -33,7 +33,10 @@ struct s_engine
 	void			*win;
 	void			*scenes;
 	t_map			*map;
-	void			(*add_scene)(t_scene *scene);
+	int				index_scene;
+	t_scene			*(*add_scene)(t_scene *scene);
+	t_scene			*(*set_scene)(int	index_scene);
+	t_scene			*(*load_maps)(char **args, int size);
 	int				(*close)(char *msg);
 };
 
