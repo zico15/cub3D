@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 17:44:27 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:19:56 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int	check_case(t_map *map, t_vector v, int check_value)
 {
 	if ((v.x >= 0 && v.x < v.w) && (v.y >= 0 && v.y < v.h) && \
-	map->maps[v.y][v.x] != '1' && !map->check[v.y][v.x])
+	map->maps[(int)v.y][(int)v.x] != '1' && !map->check[(int)v.y][(int)v.x])
 	{
-		if (map->maps[v.y][v.x] == ' ')
+		if (map->maps[(int)v.y][(int)v.x] == ' ')
 		{
-			map->check[v.y][v.x] = 0;
+			map->check[(int)v.y][(int)v.x] = 0;
 			map->is_map_ok = 0;
 			return (0);
 		}
-		map->check[v.y][v.x] = check_value;
+		map->check[(int)v.y][(int)v.x] = check_value;
 		return (1);
 	}
 	return (0);

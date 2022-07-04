@@ -6,11 +6,12 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:31:55 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/03 21:30:48 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:04:26 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <ft_engine_util.h>
 
 static void	__pixel_put_rec(t_data *data, int color, t_vector vector)
 {
@@ -52,8 +53,8 @@ static void	__print_txt(char *str, t_vector v, int color)
 
 t_render	render(void)
 {
-	static t_render	r = {__print, __pixel_put, __pixel_put_rec,
-	__print_txt
+	static t_render	r = {__print, __pixel_put, __pixel_put_rec, \
+	__print_txt, __pixel_put_win
 	};
 
 	return (r);

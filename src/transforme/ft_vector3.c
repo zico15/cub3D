@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:44:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 22:55:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:17:28 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-t_vector	vector(int x, int y, int w, int h)
+t_vector	vector(float x, float y, float w, float h)
 {
 	t_vector	v;
 

@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/03 19:43:13 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:20:58 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static int	check_case_node_free(t_nav_mesh *agent, int x, int y)
 int	check_case_node(t_nav_mesh *agent, t_vector v, int check_value)
 {
 	if ((v.x >= 0 && v.x < v.w) && (v.y >= 0 && v.y < v.h) && \
-	agent->map->maps[v.y][v.x] != '1' && \
+	agent->map->maps[(int)v.y][(int)v.x] != '1' && \
 	check_case_node_free(agent, v.x, v.y))
 	{
-		if (agent->map->maps[v.y][v.x] == ' ' || \
-		agent->map->maps[v.y][v.x] == 'N')
+		if (agent->map->maps[(int)v.y][(int)v.x] == ' ' || \
+		agent->map->maps[(int)v.y][(int)v.x] == 'N')
 			return (0);
 		return (1);
 	}

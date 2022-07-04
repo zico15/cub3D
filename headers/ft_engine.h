@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 16:50:51 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:04:17 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct s_engine
 	t_scene			*(*add_scene)(t_scene *scene);
 	t_scene			*(*set_scene)(int	index_scene);
 	t_scene			*(*load_maps)(char **args, int size);
-	void 			*(*load_img)(t_object *ob, char *file_name);
+	void			*(*load_img)(t_object *ob, char *file_name);
 	int				(*close)(char *msg);
 };
 
@@ -46,7 +46,8 @@ struct s_render
 	void			(*print_ob)(t_object *o);
 	void			(*pixel_put)(t_data *data, int x, int y, int color);
 	void			(*pixel_put_rec)(t_data *data, int color, t_vector vector);
-	void 			(*print_txt)(char *str, t_vector v, int color);
+	void			(*print_txt)(char *str, t_vector v, int color);
+	void			(*pixel_put_win)(int x, int y, int color);
 };
 
 t_engine	*engine(void);

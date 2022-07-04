@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/04 17:59:30 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/04 20:14:25 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,3 @@ t_nav_mesh	*new_nav_mesh(void)
 	agent->set_destination = __set_destination;
 	return (agent);
 }
-

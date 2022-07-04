@@ -6,12 +6,13 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/03 21:33:30 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/04 22:16:04 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
+#include <ft_component.h>
 
 static void	__funct_key(int key, int type_event)
 {
@@ -47,6 +48,7 @@ static void	__update(void)
 	p = (t_player *) this();
 	fthis()->agent = p->agent;
 	render().print_ob(this());
+	print_raycast(p);
 	if (p->agent->rota)
 	{
 		if (array(p->agent->rota)->size == 0)

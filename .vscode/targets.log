@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jul  4 17:48:18 2022
+# Make data base, printed on Mon Jul  4 21:17:10 2022
 
 # Variables
 
@@ -14,6 +14,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 GDK_BACKEND = x11
 # environment
 LC_ALL = C
+ 
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
@@ -23,7 +24,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0aa7e79e-3671-4244-a871-f18a3c32aecd.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d4bb3894-ef7b-45de-8ed2-95f78cead1d6.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -109,7 +110,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2022
+VSCODE_PID = 13433
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -239,7 +240,7 @@ MANAGERPID = 1101
 # environment
 LC_MEASUREMENT = pt_PT.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1977
+GIO_LAUNCHED_DESKTOP_FILE_PID = 13382
 # environment
 _ = /snap/code/99/usr/share/code/code
 # environment
@@ -279,7 +280,6 @@ IM_CONFIG_PHASE = 1
 # makefile (from 'Makefile', line 26)
 MLX_LIB_DIR = mlx_linux/
 # default
- 
 .RECIPEPREFIX := 
 # automatic
 <F = $(notdir $<)
@@ -298,6 +298,7 @@ SNAP_COMMON = /var/snap/code/common
 # makefile (from 'Makefile', line 15)
 CC = gcc
 # environment
+ 
 SNAP_USER_DATA = /home/ezequeil/snap/code/99
 # environment
 XDG_MENU_PREFIX = gnome-
@@ -560,7 +561,6 @@ main.o: main.c
 # automatic
 # @ := main.o
 # automatic
- 
 # * := main
 # automatic
 # < := main.c
@@ -601,6 +601,7 @@ src/engine/ft_render.o:
 # Not a target:
 src/util/array/base_array_util.o:
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -625,7 +626,7 @@ src/nav_meshs/nav_mash.o:
 
 cub3D: main.o src/transforme/ft_vector3.o src/objects/player/ft_player.o src/objects/scene/ft_scene.o src/objects/scene/ft_scene_util.o src/objects/teste/ft_teste.o src/objects/map/ft_map.o src/objects/map/ft_map_util.o src/objects/base/ft_object_base_util.o src/objects/base/ft_object_base.o src/util/array/base_array_util.o src/util/array/base_array.o src/util/array/hasmap/base_hasmap.o src/util/array/hasmap/base_hasmap_util.o src/util/string/string_util.o src/util/string/string_util2.o src/util/string/string.o src/util/string/string_util4.o src/util/string/string_util3.o src/util/this.o src/util/get_next_line.o src/util/memory.o src/util/util.o src/checks/ft_check_util.o src/checks/ft_check_map2.o src/checks/ft_check_map.o src/nav_meshs/nav_mash_util.o src/nav_meshs/nav_mash.o src/engine/event_controller/ft_event_controller.o src/engine/ft_engine.o src/engine/ft_render.o src/engine/ft_engine_util.o src/components/ft_comonets.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-03 21:40:25.395754199
+#  Last modified 2022-07-04 20:15:55.420774421
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -664,6 +665,6 @@ src/util/string/string_util.o:
 # strcache performance: lookups = 95 / hit rate = 31%
 # hash-table stats:
 # Load=65/8192=1%, Rehash=0, Collisions=0/95=0%
-# Finished Make data base on Mon Jul  4 17:48:18 2022
+# Finished Make data base on Mon Jul  4 21:17:10 2022
 
  

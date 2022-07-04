@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_component.h                                     :+:      :+:    :+:   */
+/*   ft_render_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/04 22:10:59 by ezequeil         ###   ########.fr       */
+/*   Created: 2022/06/20 22:31:55 by edos-san          #+#    #+#             */
+/*   Updated: 2022/07/04 22:01:27 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_COMPONENT_H
-# define FT_COMPONENT_H
+#include <ft_util.h>
 
-# include <ft_util.h>
-# include <ft_nav_mesh.h>
-
-
-void	print_raycast(t_player *p);
-
-#endif
+void	__pixel_put_win(int x, int y, int color)
+{
+	mlx_pixel_put(engine()->mlx, engine()->win, x, y, color);
+}

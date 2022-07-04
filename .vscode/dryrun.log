@@ -29,6 +29,7 @@ gcc -Iheaders/ -Imlx_linux -c src/checks/ft_check_map.c -o src/checks/ft_check_m
 gcc -Iheaders/ -Imlx_linux -c src/nav_meshs/nav_mash_util.c -o src/nav_meshs/nav_mash_util.o
 gcc -Iheaders/ -Imlx_linux -c src/nav_meshs/nav_mash.c -o src/nav_meshs/nav_mash.o
 gcc -Iheaders/ -Imlx_linux -c src/engine/event_controller/ft_event_controller.c -o src/engine/event_controller/ft_event_controller.o
+ 
 gcc -Iheaders/ -Imlx_linux -c src/engine/ft_engine.c -o src/engine/ft_engine.o
 gcc -Iheaders/ -Imlx_linux -c src/engine/ft_render.c -o src/engine/ft_render.o
 gcc -Iheaders/ -Imlx_linux -c src/engine/ft_engine_util.c -o src/engine/ft_engine_util.o
