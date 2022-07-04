@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object_base.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 14:49:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/03 19:56:46 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 t_object	*this(void);
 
-void			__destroy_ob(void *o);
-void			__update_ob(void);
+void		__destroy_ob(void *o);
+void		__update_ob(void);
 #endif

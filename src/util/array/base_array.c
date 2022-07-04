@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 13:43:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:38:43 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	**__to_str(void)
 void	__destroy_element(t_element	*e)
 {
 	free_ob(e->key);
-	free_ob(e->value);
+	if (fthis()->array->is_value_destroy)
+		free_ob(e->value);
 	free_ob(e);
 }

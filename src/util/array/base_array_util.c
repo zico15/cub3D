@@ -124,6 +124,7 @@ void	*new_array(void)
 		a->remove_index = __base_remove_element_index;
 		a->to_str = __to_str;
 		a->destroy_element = __destroy_element;
+		a->is_value_destroy = 1;
 		array(a);
 	}
 	return (a);

@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 00:09:42 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:23:06 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	__funct_key(int key, int type_event)
 }
 
 
-void	*new_teste(void)
+t_object	*new_teste(void)
 {
 	t_object	*ob;
 	

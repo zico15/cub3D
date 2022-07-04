@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/25 15:50:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:16:56 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ static t_scene	*__add_scene(t_scene *scene)
 
 int	game_loop(t_engine *e)
 {
+	static int	delay;
+
+	if (++delay < 7000)
+		return (0);
+	delay = 0;
 	if (scene())
 		scene()->update();
 	return (e != 0);
@@ -48,8 +53,10 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.load_maps = __load_maps;
 	e.close = __close;
 	e.set_scene = __set_scene;
-	e.win = mlx_new_window(e.mlx,  width, height, title);
+	e.load_img = __load_img;
+	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_key_hook(e.win, __funct_key, &e);
+	mlx_mouse_hook(e.win, __funct_mousse, &e);
 	mlx_loop_hook(e.mlx, game_loop, &e);
 	return (&e);
 }

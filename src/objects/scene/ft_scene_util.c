@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_object_base.c                                   :+:      :+:    :+:   */
+/*   ft_scene_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 16:13:08 by ezequeil         ###   ########.fr       */
+/*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
+/*   Updated: 2022/07/03 21:25:13 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
-#include <ft_object_base.h>
+#include <ft_scene_util.h>
 
-void	__update_ob(void)
+void	__funct_mouse_scene(int x, int y, int type_event)
 {
-	render().print_ob(this());
-}
+	t_element	*e;
+	t_object	*ob;
 
-void	__destroy_ob(void *o)
-{
-	t_object *ob;
-
-	ob = (t_object *) o;
-	printf("destroy->object: %i\n", ob->type);
-}
-
-void	__render_ob(void)
-{
-
-}
-
-t_object	*new_object(void)
-{
-	t_object	*o;
-
-	o = new_object_instance(sizeof(t_object));
-	return (o);
+	if (array(scene()->mouse_list) <= 0)
+		return ;
+	e = array(scene()->mouse_list)->begin;
+	while (e)
+	{
+		ob = (t_object *) e->value;
+		ob->funct_mouse(x, y, type_event);
+		e = e->next;
+	}
 }

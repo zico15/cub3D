@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/01 23:55:20 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/02 10:55:58 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	*new_object_instance(size_t size)
 	object->update = __update_ob;
 	object->destroy = __destroy_ob;
 	object->funct_key = NULL;
+	fthis()->object = o;
 	return (o);
 }

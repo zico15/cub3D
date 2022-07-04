@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 00:08:33 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:22:26 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	__update(void)
 	t_element	*e;
 	t_object	*o;
 
-	render().print_ob((t_object *)fthis()->scene);
+	//render().print_ob((t_object *)fthis()->scene);
 	e = array(fthis()->scene->objects)->begin;
 	while (e)
 	{
@@ -29,14 +29,14 @@ static void	__update(void)
 			o->update();
 		}
 		e = e->next;
-	}
+	}	
 }
 
 static void	__destroy(void *object)
 {
-	t_scene	*scene;
-	t_array	*this;
-	t_object *o;
+	t_scene		*scene;
+	t_array		*this;
+	t_object	*o;
 
 	o = (t_object *) object;
 	this = fthis()->array;
@@ -44,18 +44,21 @@ static void	__destroy(void *object)
 	printf("destroy->scene\n");
 	array(scene->objects)->destroy();
 	free_ob(scene->key_list);
+	free_ob(scene->mouse_list);
 	array(this);
 }
 
 static t_object	*__add(void *o)
 {
-	t_object *ob;
+	t_object	*ob;
 
 	if (!o)
 		return (NULL);
 	ob = (t_object *) o;
 	if (ob->funct_key)
 		array(scene()->key_list)->add(ob);
+	if (ob->funct_mouse)
+		array(scene()->mouse_list)->add(ob);
 	array((fthis()->scene)->objects)->add(o);
 	return (ob);
 }
@@ -89,6 +92,8 @@ t_scene	*new_scene(void)
 	s->destroy = __destroy;
 	s->objects = new_array();
 	s->funct_key = __funct_key;
+	s->funct_mouse = __funct_mouse_scene;
+	s->mouse_list = new_array();
 	s->key_list = new_array();
 	array(s->objects)->destroy_element = __destroy_element_object;
 	fthis()->scene = s;

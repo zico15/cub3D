@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_object_base.c                                   :+:      :+:    :+:   */
+/*   ft_transform.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 16:13:08 by ezequeil         ###   ########.fr       */
+/*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
+/*   Updated: 2022/07/03 20:03:08 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_util.h>
-#include <ft_object_base.h>
+#ifndef FT_TRANSFORM_H
+# define FT_TRANSFORM_H
 
-void	__update_ob(void)
+typedef struct s_nav_node	t_nav_node;
+typedef struct s_vector		t_vector;
+
+struct s_vector
 {
-	render().print_ob(this());
-}
+	int			x;
+	int			y;
+	int			z;
+	int			w;
+	int			h;
+};
 
-void	__destroy_ob(void *o)
-{
-	t_object *ob;
+t_vector	vector(int x, int y, int w, int h);
+t_vector	vector_zero(void);
 
-	ob = (t_object *) o;
-	printf("destroy->object: %i\n", ob->type);
-}
-
-void	__render_ob(void)
-{
-
-}
-
-t_object	*new_object(void)
-{
-	t_object	*o;
-
-	o = new_object_instance(sizeof(t_object));
-	return (o);
-}
+#endif

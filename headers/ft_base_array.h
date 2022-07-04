@@ -33,6 +33,7 @@ typedef struct s_array
 	t_element		*end;
 	t_element		*next;
 	int				size;
+	int				is_value_destroy;
 	t_element		*(*add)(void	*value);
 	void			*(*get)(int	index);
 	t_element		*(*set)(int index, void *value);

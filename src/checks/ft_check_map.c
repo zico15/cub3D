@@ -6,15 +6,14 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 00:13:07 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/02 17:44:27 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_check.h>
 
-int	check_case(t_map *map, t_vector v, t_node *n)
+int	check_case(t_map *map, t_vector v, int check_value)
 {
-	(void) n;
 	if ((v.x >= 0 && v.x < v.w) && (v.y >= 0 && v.y < v.h) && \
 	map->maps[v.y][v.x] != '1' && !map->check[v.y][v.x])
 	{
@@ -24,7 +23,7 @@ int	check_case(t_map *map, t_vector v, t_node *n)
 			map->is_map_ok = 0;
 			return (0);
 		}
-		map->check[v.y][v.x] = 1;
+		map->check[v.y][v.x] = check_value;
 		return (1);
 	}
 	return (0);
@@ -50,13 +49,13 @@ static void	expand(t_map *map, t_node *n, int size_w, int size_h)
 {
 	if (!n)
 		return ;
-	if (check_case(map, vector(n->x, n->y + 1, size_w, size_h), n))
+	if (check_case(map, vector(n->x, n->y + 1, size_w, size_h), 1))
 		(array(n->nodes))->add(create_node(n->x, n->y + 1, n->v + 1));
-	if (check_case(map, vector(n->x + 1, n->y, size_w, size_h), n))
+	if (check_case(map, vector(n->x + 1, n->y, size_w, size_h), 1))
 		(array(n->nodes))->add(create_node(n->x + 1, n->y, n->v + 1));
-	if (check_case(map, vector(n->x, n->y - 1, size_w, size_h), n))
+	if (check_case(map, vector(n->x, n->y - 1, size_w, size_h), 1))
 		(array(n->nodes))->add(create_node(n->x, n->y - 1, n->v + 1));
-	if (check_case(map, vector(n->x - 1, n->y, size_w, size_h), n))
+	if (check_case(map, vector(n->x - 1, n->y, size_w, size_h), 1))
 		(array(n->nodes))->add(create_node(n->x - 1, n->y, n->v + 1));
 }
 
@@ -88,7 +87,7 @@ int	check_maps_nodes(t_map *map, t_vector start)
 
 	n = create_node(start.x, start.y, 0);
 	check_case(map, vector(n->x, n->y, map->vector.w / 32, \
-	map->vector.h / 32), n);
+	map->vector.h / 32), 1);
 	satrt_nodes_checks(n, map);
 	destroy_node(n);
 	return (map->is_map_ok);

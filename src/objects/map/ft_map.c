@@ -6,23 +6,22 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 00:05:28 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:32:36 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <ft_object_base.h>
 #include <ft_check.h>
 
-void	*new_map(char *path)
+static void	__load_map(char *path)
 {
-	t_map		*map;
 	int			fd;
 	void		*file;
+	t_map		*map;
 
-	printf("\nload map: %s\n", path);
-	map = new_object_instance(sizeof(t_map));
-	map->is_map_ok = 1;
-	map->map = new_array();
+	map = (t_map *) this();
+	printf("load map: %s\n", path);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		engine()->close("Error");
@@ -36,5 +35,16 @@ void	*new_map(char *path)
 	if (!check_maps_nodes(map, map->player))
 		printf("ERROR MAP\n");
 	cread_map(map);
+}
+
+t_map	*new_map(void)
+{
+	t_map		*map;
+
+	map = new_object_instance(sizeof(t_map));
+	map->is_map_ok = 1;
+	map->type = MAP;
+	map->map = new_array();
+	map->load = __load_map;
 	return (map);
 }

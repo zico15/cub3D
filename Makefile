@@ -6,7 +6,7 @@
 #    By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/07/01 23:26:10 by ezequeil         ###   ########.fr        #
+#    Updated: 2022/07/02 18:40:40 by ezequeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,6 @@ m: fclean
 v:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D
 r:
-	@make re && make clean && clear && ./cub3D map/map1.car map/map2.car
+	@make re && make clean && clear && ./cub3D map/map0.car map/map1.car map/map2.car
 
 .PHONY: all re clean fclean m

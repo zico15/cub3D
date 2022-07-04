@@ -6,16 +6,22 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 00:04:55 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:14:54 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_OBJECT_H
 # define FT_OBJECT_H
 
+# include <ft_util.h>
+
 typedef struct s_object		t_object;
-typedef struct s_vector		t_vector;
+typedef struct s_player		t_player;
 typedef struct s_map		t_map;
+typedef struct s_nav_mesh	t_nav_mesh;
+typedef struct s_nav_node	t_nav_node;
+
+
 
 typedef enum e_type_ob
 {
@@ -24,15 +30,6 @@ typedef enum e_type_ob
 	MAP,
 	PLAYER
 }	t_type;
-
-struct s_vector
-{
-	int			x;
-	int			y;
-	int			z;
-	int			w;
-	int			h;
-};
 
 struct s_object
 {
@@ -43,6 +40,7 @@ struct s_object
 	void			(*render)(void);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
 };
 
 struct s_map
@@ -54,6 +52,8 @@ struct s_map
 	void			(*render)(void);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*load)(char *path);
 	char			*f;
 	char			*c;
 	int				dir;
@@ -73,15 +73,41 @@ struct s_player
 	void			(*render)(void);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*atacar)(void);
-	void			*mlx;
+	t_nav_mesh		*agent;
+	t_map			*map;
 };
+
+struct s_nav_node
+{
+	int			x;
+	int			y;
+	int			v;
+	int			g;
+	int			h;
+	int			f;
+	t_nav_node	*previu;
+	t_nav_node	*next;
+};
+
+struct s_nav_mesh
+{
+	void		*open;
+	void		*close;
+	void		*rota;
+	t_map		*map;
+	t_nav_node	*begin;
+	t_vector	start;
+	t_vector	dest;
+	void		*(*set_destination)(t_map *map, t_vector start, t_vector dest);
+};
+
 
 t_object	*new_object(void);
 void		*new_object_instance(size_t size);
-void		*new_map(char *path);
-void		*new_teste(void);
-t_vector	vector(int x, int y, int w, int h);
-t_vector	vector_zero(void);
+t_map		*new_map(void);
+t_object	*new_teste(void);
+t_player	*new_player(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/01 23:34:03 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:18:35 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ struct s_scene
 	void			(*render)(void);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
 	void			*objects;
 	void			*key_list;
+	void			*mouse_list;
 	t_object		*(*add)(void *o);
+	int				is_print;
 };
 
 t_scene	*new_scene(void);

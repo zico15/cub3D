@@ -6,13 +6,14 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/01 23:46:45 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/03 20:33:20 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_UTIL_H
 # define FT_UTIL_H
 
+# include <ft_transform.h>
 # include <ft_base_array.h>
 # include <ft_string.h>
 # include <fcntl.h>
@@ -20,7 +21,9 @@
 # include <unistd.h>
 # include <mlx.h>
 # include <ft_object.h>
+# include <ft_nav_mesh.h>
 # include <ft_engine.h>
+
 
 # define BUFFER_SIZE 999999
 
@@ -32,6 +35,7 @@ typedef struct s_this
 	t_engine		*engine;
 	t_scene			*scene;
 	t_object		*object;
+	t_nav_mesh		*agent;
 
 }	t_this;
 

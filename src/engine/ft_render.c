@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_render.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:31:55 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/20 23:14:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:30:48 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,17 @@ static void	__print(t_object *o)
 		o->img, o->vector.x, o->vector.y);
 }
 
+static void	__print_txt(char *str, t_vector v, int color)
+{
+	mlx_string_put(engine()->mlx, engine()->win, \
+	v.x, v.y, color, str);
+}
+
 t_render	render(void)
 {
-	static t_render	r = {__print, __pixel_put, __pixel_put_rec};
+	static t_render	r = {__print, __pixel_put, __pixel_put_rec,
+	__print_txt
+	};
 
 	return (r);
 }

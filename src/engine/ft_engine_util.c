@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/01 23:57:51 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/03 21:08:54 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_scene	*__set_scene(int index_scene)
 {
-	t_scene *s;
+	t_scene	*s;
 
 	s = (t_scene *) array(engine()->scenes)->get(index_scene);
 	fthis()->scene = s;
@@ -26,6 +26,7 @@ t_scene	*__set_scene(int index_scene)
 t_scene	*__load_maps(char **args, int size)
 {
 	t_scene		*scene;
+	t_map		*map;
 	void		*o;
 	int			i;
 
@@ -33,7 +34,8 @@ t_scene	*__load_maps(char **args, int size)
 	while (++i < size)
 	{
 		scene = engine()->add_scene(new_scene());
-		scene->add(new_map(args[i]));
+		map = (t_map *) scene->add(new_map());
+		map->load(args[i]);
 	}
 	o = array(engine()->scenes)->get(0);
 	if (!o)
@@ -41,44 +43,13 @@ t_scene	*__load_maps(char **args, int size)
 	scene = (t_scene *) o;
 	fthis()->scene = scene;
 	return (scene);
-} 
+}
 
-int	__funct_key(int key, void *o)
+void	*__load_img(t_object *ob, char *file_name)
 {
-	t_engine		*e;
-	static t_object	*object;
-	int				i;
+	void	*img;
 
-
-	if (scene())
-		scene()->funct_key(key, 1);
-	if (key == 65451 || 65453)
-	{
-		i = engine()->index_scene;
-		i += ((key == 65451) - (key == 65453)); 
-		if (i >= 0 && i < array(engine()->scenes)->size)
-			engine()->set_scene(i);
-	}
-	e = o;
-	if (key == 53)
-		engine()->close("exit");
-	if (key == 35 && !object)
-	{
-		object = new_object();
-		object->img = mlx_xpm_file_to_image(e->mlx, "imgs/wall.xpm", \
-		&object->vector.w, &object->vector.h);
-		scene()->add(object);
-	}
-	if (object)
-	{
-		object->vector.x += ((key == 2) - (key == 0)) * 32;
-		object->vector.y += ((key == 1) - (key == 13)) * 32;
-	}
-	if (key == 7)
-		e->map->dir = 0;
-	if (key == 16)
-		e->map->dir = 1;
-	if (key == 8)
-		e->map->dir = 2;
-	return (o != 0);
+	img = mlx_xpm_file_to_image(engine()->mlx, file_name, \
+	&ob->vector.w, &ob->vector.h);
+	return (img);
 }
