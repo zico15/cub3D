@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/03 21:08:54 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/06 18:37:56 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,12 @@ t_scene	*__load_maps(char **args, int size)
 void	*__load_img(t_object *ob, char *file_name)
 {
 	void	*img;
+	int		h;
+	int		w;
 
 	img = mlx_xpm_file_to_image(engine()->mlx, file_name, \
-	&ob->vector.w, &ob->vector.h);
+	&w, &h);
+	ob->vector.w = w;
+	ob->vector.h = h;
 	return (img);
 }
