@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/03 20:32:36 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:34:57 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,21 @@ static void	__load_map(char *path)
 	cread_map(map);
 }
 
+static void	__update(void)
+{
+	render().print_ob(this());
+}
+
 t_map	*new_map(void)
 {
 	t_map		*map;
 
 	map = new_object_instance(sizeof(t_map));
 	map->is_map_ok = 1;
+	map->update = __update;
 	map->type = MAP;
 	map->map = new_array();
 	map->load = __load_map;
+	fthis()->map = map;
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/04 22:19:07 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:33:31 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,38 +23,6 @@ static int	get_color(t_map *m, int x, int y)
 	if (m->maps[y][x] == 'D')
 		return (0x00CC9900);
 	return (0x0);
-}
-
-void	print_check_map(t_map *m)
-{
-	t_vector	v;
-	char		b[3];
-	int			dir;
-
-	v = m->vector;
-	b[2] = 0;
-	dir = 0;
-	while (v.y < v.h)
-	{
-		v.x = 0;
-		while (v.x < v.w)
-		{
-			if (m->dir == 0)
-				dir = v.x / 32;
-			else if (m->dir == 1)
-				dir = v.y / 32;
-			else if (m->dir == 2)
-				dir = m->check[(int)v.y / 32][(int)v.x / 32] == 1;
-			b[0] = ('0' + dir / 10);
-			b[1] = ('0' + (dir % 10));
-			if ((m->dir != 2 || dir) && m->maps[(int)v.y / 32][(int)v.x / 32] \
-			!= '1' && m->maps[(int)v.y / 32][(int)v.x / 32] != ' ')
-				mlx_string_put(engine()->mlx, engine()->win, v.x + 5, v.y + 5, \
-				0x111111, b);
-			v.x += 32;
-		}
-		v.y += 32;
-	}
 }
 
 void	cread_map(t_map *m)
@@ -81,5 +49,10 @@ void	cread_map(t_map *m)
 		y += 32;
 	}
 	m->img = data.img;
+}
+
+t_map	*map(void)
+{
+	return (fthis()->map);
 }
 

@@ -6,13 +6,13 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:44:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/04 22:17:28 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:44:11 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-t_vector	vector(float x, float y, float w, float h)
+t_vector	vector(double x, double y, double w, double h)
 {
 	t_vector	v;
 
@@ -32,5 +32,6 @@ t_vector	vector_zero(void)
 	v.z = 0;
 	v.w = 0;
 	v.h = 0;
+	v.angle = 0;
 	return (v);
 }

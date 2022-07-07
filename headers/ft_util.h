@@ -6,13 +6,14 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/03 20:33:20 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:34:29 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_UTIL_H
 # define FT_UTIL_H
 
+# include <math.h>
 # include <ft_transform.h>
 # include <ft_base_array.h>
 # include <ft_string.h>
@@ -26,6 +27,14 @@
 
 
 # define BUFFER_SIZE 999999
+# define PI 3.14159265
+# define GRID_SIZE 32
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_A 97
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 typedef struct s_this
 {
@@ -36,12 +45,14 @@ typedef struct s_this
 	t_scene			*scene;
 	t_object		*object;
 	t_nav_mesh		*agent;
+	t_map			*map;
 
 }	t_this;
 
 //			this
 t_this		*fthis(void);
 t_scene		*scene(void);
+t_map		*map(void);
 
 //			util
 char		*get_next_line(int fd);

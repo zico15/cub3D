@@ -6,14 +6,14 @@
 #    By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/07/02 18:40:40 by ezequeil         ###   ########.fr        #
+#    Updated: 2022/07/06 18:53:41 by ezequeil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 #CC			= 	gcc -fsanitize=address -g
 CC			= 	gcc
-CFLAGS		= 	-Wall -Wextra -Werror
+CFLAGS		= 	-Wall -Wextra -Werror -fsanitize=address
 RM			= 	/bin/rm -f
 NAME		= 	cub3D
 INCLUDES	= 	-Iheaders/

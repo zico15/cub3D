@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/04 22:20:58 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:36:38 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static int	check_case_node_free(t_nav_mesh *agent, int x, int y)
 int	check_case_node(t_nav_mesh *agent, t_vector v, int check_value)
 {
 	if ((v.x >= 0 && v.x < v.w) && (v.y >= 0 && v.y < v.h) && \
-	agent->map->maps[(int)v.y][(int)v.x] != '1' && \
+	map()->maps[(int)v.y][(int)v.x] != '1' && \
 	check_case_node_free(agent, v.x, v.y))
 	{
-		if (agent->map->maps[(int)v.y][(int)v.x] == ' ' || \
-		agent->map->maps[(int)v.y][(int)v.x] == 'N')
+		if (map()->maps[(int)v.y][(int)v.x] == ' ' || \
+		map()->maps[(int)v.y][(int)v.x] == 'N')
 			return (0);
 		return (1);
 	}
@@ -102,7 +102,7 @@ t_nav_node	*create_nav_node(t_nav_mesh *agent, t_nav_node *previu, t_vector v)
 		n->g += previu->g;
 	n->h = cal_cust(vector(n->x, n->y, 0, 0), agent->dest);
 	n->f = n->g + n->h;
-	agent->map->check[n->y][n->x] = n->h;
+	map()->check[n->y][n->x] = n->h;
 	if (!v.h)
 		(array(agent->open))->add(n);
 	return (n);

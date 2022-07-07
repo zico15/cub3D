@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/03 21:14:54 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:20:08 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef enum e_type_ob
 	OBJECT,
 	SCENE,
 	MAP,
-	PLAYER
+	PLAYER,
+	WALL
 }	t_type;
 
 struct s_object
@@ -41,6 +42,8 @@ struct s_object
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*colison)(t_object *collided);
+	void			(*set_position)(t_vector v);
 };
 
 struct s_map
@@ -53,6 +56,8 @@ struct s_map
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*colison)(t_object *collided);
+	void			(*set_position)(t_vector v);
 	void			(*load)(char *path);
 	char			*f;
 	char			*c;
@@ -74,9 +79,10 @@ struct s_player
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*colison)(t_object *collided);
+	void			(*set_position)(t_vector v);
 	void			(*atacar)(void);
 	t_nav_mesh		*agent;
-	t_map			*map;
 };
 
 struct s_nav_node
@@ -96,11 +102,10 @@ struct s_nav_mesh
 	void		*open;
 	void		*close;
 	void		*rota;
-	t_map		*map;
 	t_nav_node	*begin;
 	t_vector	start;
 	t_vector	dest;
-	void		*(*set_destination)(t_map *map, t_vector start, t_vector dest);
+	void		*(*set_destination)(t_vector start, t_vector dest);
 };
 
 
@@ -109,5 +114,6 @@ void		*new_object_instance(size_t size);
 t_map		*new_map(void);
 t_object	*new_teste(void);
 t_player	*new_player(void);
+t_object	*new_wall(void);
 
 #endif

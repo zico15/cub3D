@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/03 21:22:26 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 18:04:46 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	__update(void)
 	t_element	*e;
 	t_object	*o;
 
-	//render().print_ob((t_object *)fthis()->scene);
-	e = array(fthis()->scene->objects)->begin;
+	fthis()->map = scene()->map;
+	e = array(scene()->updade_list)->begin;
 	while (e)
 	{
 		o = e->value;
@@ -27,6 +27,25 @@ static void	__update(void)
 		{
 			fthis()->object = o;
 			o->update();
+		}
+		e = e->next;
+	}	
+}
+
+static void	__render(void)
+{
+	t_element	*e;
+	t_object	*o;
+
+	fthis()->map = scene()->map;
+	e = array(scene()->render_list)->begin;
+	while (e)
+	{
+		o = e->value;
+		if (o)
+		{
+			fthis()->object = o;
+			o->render();
 		}
 		e = e->next;
 	}	
@@ -42,9 +61,17 @@ static void	__destroy(void *object)
 	this = fthis()->array;
 	scene = (t_scene *) o;
 	printf("destroy->scene\n");
+	array(scene->key_list)->is_value_destroy = 0;
+	array(scene->key_list)->destroy();
+	array(scene->mouse_list)->is_value_destroy = 0;
+	array(scene->mouse_list)->destroy();
+	array(scene->updade_list)->is_value_destroy = 0;
+	array(scene->updade_list)->destroy();
+	array(scene->render_list)->is_value_destroy = 0;
+	array(scene->render_list)->destroy();
+	array(scene->colliders_list)->is_value_destroy = 0;
+	array(scene->colliders_list)->destroy();
 	array(scene->objects)->destroy();
-	free_ob(scene->key_list);
-	free_ob(scene->mouse_list);
 	array(this);
 }
 
@@ -59,24 +86,14 @@ static t_object	*__add(void *o)
 		array(scene()->key_list)->add(ob);
 	if (ob->funct_mouse)
 		array(scene()->mouse_list)->add(ob);
+	if (ob->update)
+		array(scene()->updade_list)->add(ob);
+	if (ob->render)
+		array(scene()->render_list)->add(ob);
+	if (ob->colison)
+		array(scene()->colliders_list)->add(ob);
 	array((fthis()->scene)->objects)->add(o);
 	return (ob);
-}
-
-static void	__funct_key(int key, int type_event)
-{
-	t_element	*e;
-	t_object	*ob;
-
-	if (array(scene()->key_list) <= 0)
-		return ;
-	e = array(scene()->key_list)->begin;
-	while (e)
-	{
-		ob = (t_object *) e->value;
-		ob->funct_key(key, type_event);
-		e = e->next;
-	}
 }
 
 t_scene	*new_scene(void)
@@ -88,13 +105,17 @@ t_scene	*new_scene(void)
 	s = new_object_instance(sizeof(t_scene));
 	s->type = SCENE;
 	s->update = __update;
+	s->render = __render;
 	s->add = __add;
 	s->destroy = __destroy;
 	s->objects = new_array();
-	s->funct_key = __funct_key;
+	s->funct_key = __funct_key_scene;
 	s->funct_mouse = __funct_mouse_scene;
 	s->mouse_list = new_array();
 	s->key_list = new_array();
+	s->updade_list = new_array();
+	s->render_list = new_array();
+	s->colliders_list = new_array();
 	array(s->objects)->destroy_element = __destroy_element_object;
 	fthis()->scene = s;
 	array(this);

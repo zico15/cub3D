@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_component.h                                     :+:      :+:    :+:   */
+/*   ft_player.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 18:49:27 by ezequeil         ###   ########.fr       */
+/*   Created: 2022/07/07 12:23:21 by ezequeil          #+#    #+#             */
+/*   Updated: 2022/07/07 18:19:19 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_COMPONENT_H
-# define FT_COMPONENT_H
+#ifndef FT_PLAYER_H
+# define FT_PLAYER_H
 
 # include <ft_util.h>
-# include <ft_nav_mesh.h>
 
-
-void	print_raycast(t_player *p);
+void		__funct_key(int key, int type_event);
+void		__funct_mouse(int x, int y, int type_event);
+void		__set_position(t_vector v);
+t_nav_mesh	nav_mesh(t_nav_mesh	*agent);
 
 #endif

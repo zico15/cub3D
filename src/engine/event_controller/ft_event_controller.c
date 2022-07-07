@@ -6,13 +6,13 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:08:19 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/03 21:15:47 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:57:48 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-int	__funct_key(int key, void *o)
+int	__funct_key_engine(int key, void *o)
 {
 	t_engine		*e;
 	int				i;
@@ -33,7 +33,7 @@ int	__funct_key(int key, void *o)
 	return (o != 0);
 }
 
-int	__funct_mousse(int keycode, void *vars)
+int	__funct_mousse_engine(int keycode, void *vars)
 {
 	int	x;
 	int	y;

@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/06 18:37:56 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:39:58 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_scene	*__load_maps(char **args, int size)
 	{
 		scene = engine()->add_scene(new_scene());
 		map = (t_map *) scene->add(new_map());
+		scene->map = map;
 		map->load(args[i]);
 	}
 	o = array(engine()->scenes)->get(0);

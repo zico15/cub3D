@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Wed Jul  6 18:30:13 2022
+# Make data base, printed on Thu Jul  7 17:09:54 2022
 
 # Variables
 
@@ -21,11 +22,9 @@ SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 SNAP_INSTANCE_KEY = 
 # environment
-ELECTRON_ENABLE_STACK_DUMPING = 1
-# environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-5f5614c6-667a-4024-9d10-b1ca29443e4e.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0622145e-cd5b-42eb-b281-f30c3c8e3971.sock
 # environment
 LC_NAME = pt_PT.UTF-8
 # environment
@@ -67,7 +66,7 @@ VSCODE_CODE_CACHE_PATH = /home/ezequeil/.config/Code/CachedData/30d9c6cd9483b2cc
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.GQVTO1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.UIQWO1
 # default
 .LOADED := 
 # default
@@ -80,6 +79,8 @@ CURDIR := /home/ezequeil/Documents/GitHub/cub3d
 VSCODE_PIPE_LOGGING = true
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
 # makefile (from 'Makefile', line 22)
 SRCS = main.c $(shell find src/ -name '*.c')
 # automatic
@@ -109,17 +110,17 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 23087
+VSCODE_PID = 2810
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/gitkraken_gitkraken.desktop
+BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile (from 'Makefile', line 19)
 INCLUDES = -Iheaders/
 # environment
-SESSION_MANAGER = local/ezequeil-Aspire-A515-54G:@/tmp/.ICE-unix/1216,unix/ezequeil-Aspire-A515-54G:/tmp/.ICE-unix/1216
+SESSION_MANAGER = local/ezequeil-Aspire-A515-54G:@/tmp/.ICE-unix/1272,unix/ezequeil-Aspire-A515-54G:/tmp/.ICE-unix/1272
 # automatic
 *F = $(notdir $*)
 # makefile (from 'Makefile', line 20)
@@ -152,12 +153,14 @@ GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 SHLVL = 0
 # environment
 MAKELEVEL := 0
+# environment
+IM_CONFIG_CHECK_ENV = 1
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
 SNAP_COOKIE = ivixzH3CgFj4adzQlGKPjzNvzi7EL80KtNKIS0-pwJ_96oX7VCoQ
 # environment
-PATH = /home/ezequeil/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+PATH = /home/ezequeil/.local/bin:/home/ezequeil/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
 # default
 MAKEFILES := 
 # environment
@@ -173,7 +176,7 @@ LC_TIME = pt_PT.UTF-8
 # environment
 SNAP = /snap/code/99
 # environment
-INVOCATION_ID = cf782fc4ca774a10b48928283098b1c0
+INVOCATION_ID = 7502c13cf7024a4180cdf2ba280dc0e5
 # environment
 SNAP_REVISION = 99
 # environment
@@ -186,30 +189,34 @@ USERNAME = ezequeil
 GNOME_SETUP_DISPLAY = :1
 # environment
 LC_TELEPHONE = pt_PT.UTF-8
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
 # automatic
 ?F = $(notdir $?)
 # makefile (from 'Makefile', line 18)
 NAME = cub3D
 # environment
 XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
 DESKTOP_SESSION = ubuntu
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = Unity
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
 LOGNAME = ezequeil
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/gitkraken_gitkraken.desktop
+GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
 SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1235
+SYSTEMD_EXEC_PID = 1291
 # makefile (from 'Makefile', line 17)
 RM = /bin/rm -f
 # environment
@@ -229,17 +236,19 @@ SNAP_DATA = /var/snap/code/99
 # environment
 SNAP_CONTEXT = ivixzH3CgFj4adzQlGKPjzNvzi7EL80KtNKIS0-pwJ_96oX7VCoQ
 # environment
-MANAGERPID = 1081
+MANAGERPID = 1139
 # environment
 LC_MEASUREMENT = pt_PT.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 22111
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2447
+# environment
+_ = /snap/code/99/usr/share/code/code
 # environment
 LC_PAPER = pt_PT.UTF-8
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'Makefile', line 16)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 # makefile (from 'Makefile', line 31)
 COLOUR_GREEN = \033[7;1;32m
 # environment
@@ -247,7 +256,7 @@ GDK_PIXBUF_MODULE_FILE = /home/ezequeil/snap/code/common/.cache/gdk-pixbuf-loade
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-JOURNAL_STREAM = 8:31116
+JOURNAL_STREAM = 8:23378
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -289,18 +298,18 @@ SNAP_COMMON = /var/snap/code/common
 # makefile (from 'Makefile', line 15)
 CC = gcc
 # environment
+ 
 SNAP_USER_DATA = /home/ezequeil/snap/code/99
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
 GDMSESSION = ubuntu
- 
 # environment
 LC_IDENTIFICATION = pt_PT.UTF-8
 # environment
 SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=144/1024=14%, Rehash=0, Collisions=7/187=4%
+# Load=148/1024=14%, Rehash=0, Collisions=10/191=5%
 
 # Pattern-specific Variable Values
 
@@ -401,6 +410,12 @@ src/engine/render/ft_render_util.o:
 #  File has not been updated.
 
 # Not a target:
+src/objects/player/ft_player_util.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/objects/scene/ft_scene_util.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -415,9 +430,15 @@ src/objects/base/ft_object_base_util.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-02 18:40:40.358665065
+#  Last modified 2022-07-06 18:53:41.160200335
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+src/components/colliders/ft_colison.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/util/string/string_util4.o:
@@ -545,7 +566,7 @@ src/objects/map/ft_map.o:
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-02 16:09:16.321979316
+#  Last modified 2022-07-06 18:57:12.215241949
 #  File has been updated.
 #  Successfully updated.
 
@@ -574,11 +595,11 @@ main.o: main.c
 # automatic
 # ^ := main.c
 # automatic
- 
 # ? := main.c
 # automatic
 # | := 
 # variable set hash-table stats:
+ 
 # Load=8/32=25%, Rehash=0, Collisions=2/16=12%
 #  recipe to execute (from 'Makefile', line 45):
 	@$(CC) $(INCLUDES) $(MLX_INCLUDE) -c $(^) -o $(@)
@@ -589,6 +610,12 @@ r:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 67):
 	@make re && make clean && clear && ./cub3D map/map0.car map/map1.car map/map2.car
+
+# Not a target:
+src/components/nav_meshs/nav_mash_util2.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/objects/map/ft_map_util.o:
@@ -627,9 +654,9 @@ src/components/raycast/ft_raycast.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-cub3D: main.o src/transforme/ft_vector3.o src/objects/player/ft_player.o src/objects/scene/ft_scene.o src/objects/scene/ft_scene_util.o src/objects/teste/ft_teste.o src/objects/map/ft_map.o src/objects/map/ft_map_util.o src/objects/base/ft_object_base_util.o src/objects/base/ft_object_base.o src/util/array/base_array_util.o src/util/array/base_array.o src/util/array/hasmap/base_hasmap.o src/util/array/hasmap/base_hasmap_util.o src/util/string/string_util.o src/util/string/string_util2.o src/util/string/string.o src/util/string/string_util4.o src/util/string/string_util3.o src/util/this.o src/util/get_next_line.o src/util/memory.o src/util/util.o src/checks/ft_check_util.o src/checks/ft_check_map2.o src/checks/ft_check_map.o src/engine/event_controller/ft_event_controller.o src/engine/render/ft_render.o src/engine/render/ft_render_util.o src/engine/ft_engine.o src/engine/ft_engine_util.o src/components/raycast/ft_raycast.o src/components/ft_comonets.o src/components/nav_meshs/nav_mash_util.o src/components/nav_meshs/nav_mash.o
+cub3D: main.o src/transforme/ft_vector3.o src/objects/player/ft_player.o src/objects/player/ft_player_util.o src/objects/scene/ft_scene.o src/objects/scene/ft_scene_util.o src/objects/teste/ft_teste.o src/objects/map/ft_map.o src/objects/map/ft_map_util.o src/objects/base/ft_object_base_util.o src/objects/base/ft_object_base.o src/util/array/base_array_util.o src/util/array/base_array.o src/util/array/hasmap/base_hasmap.o src/util/array/hasmap/base_hasmap_util.o src/util/string/string_util.o src/util/string/string_util2.o src/util/string/string.o src/util/string/string_util4.o src/util/string/string_util3.o src/util/this.o src/util/get_next_line.o src/util/memory.o src/util/util.o src/checks/ft_check_util.o src/checks/ft_check_map2.o src/checks/ft_check_map.o src/engine/event_controller/ft_event_controller.o src/engine/render/ft_render.o src/engine/render/ft_render_util.o src/engine/ft_engine.o src/engine/ft_engine_util.o src/components/raycast/ft_raycast.o src/components/colliders/ft_colison.o src/components/ft_comonets.o src/components/nav_meshs/nav_mash_util.o src/components/nav_meshs/nav_mash_util2.o src/components/nav_meshs/nav_mash.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-05 14:12:29.767175637
+#  Last modified 2022-07-07 14:12:01.456002186
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -655,19 +682,19 @@ src/util/string/string_util.o:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=50/1024=5%, Rehash=0, Collisions=4/111=4%
+# Load=53/1024=5%, Rehash=0, Collisions=6/117=5%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 67 / storage = 1241 B / avg = 18 B
-# current buf: size = 8162 B / used = 1241 B / count = 67 / avg = 18 B
+# strcache buffers: 1 (0) / strings = 70 / storage = 1357 B / avg = 19 B
+# current buf: size = 8162 B / used = 1357 B / count = 70 / avg = 19 B
 
-# strcache performance: lookups = 97 / hit rate = 30%
+# strcache performance: lookups = 100 / hit rate = 30%
 # hash-table stats:
-# Load=67/8192=1%, Rehash=0, Collisions=0/97=0%
-# Finished Make data base on Wed Jul  6 18:30:13 2022
+# Load=70/8192=1%, Rehash=0, Collisions=0/100=0%
+# Finished Make data base on Thu Jul  7 17:09:54 2022
 
  

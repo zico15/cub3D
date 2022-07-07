@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 03:01:53 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/02 16:23:23 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 17:29:59 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	check_map(t_map	*m, int x, int y)
 	char		buff[BUFFER_SIZE];
 	char		**map;
 	int			i;
-	t_player	*player;
 
 	map = (char **) array(m->map)->to_str();
 	while (map && map[++y])
@@ -94,26 +93,17 @@ void	check_map(t_map	*m, int x, int y)
 		while (map[y] && map[y][++x])
 		{
 			m->check[y][x] = 0;
-			if (map[y][x] == 'N')
-			{
-				m->player = vector(x * 32, y * 32, 0, 0);
+			add_object_scene(x, y, map[y][x]);
+			if (string().contains("NSWE", _str(map[y][x])))
 				map[y][x] = '0';
-			}
 			if (map[y][x] == '\t')
 				i = cread_space(buff, i);
 			else
 				buff[i++] = map[y][x];
 		}
-		free_ob(map[y]);
-		buff[i] = 0;
+		buff[i] = !free_ob(map[y]);
 		m->vector.w = string().size(buff) * 32;
 		map[y] = string().copy(buff);
-	}
-	if (scene())
-	{
-		player = (t_player *) scene()->add(new_player());
-		player->vector = m->player;
-		player->map = m;
 	}
 	clear_check_buff(m, map, y);
 }

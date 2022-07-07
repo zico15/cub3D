@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/04 22:17:52 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/07 21:45:29 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,30 @@
 
 typedef struct s_nav_node	t_nav_node;
 typedef struct s_vector		t_vector;
+typedef struct s_colison	t_colison;
+typedef struct s_object		t_object;
 
 struct s_vector
 {
-	float			x;
-	float			y;
-	float			z;
-	float			w;
-	float			h;
+	double			x;
+	double			y;
+	double			z;
+	double			w;
+	double			h;
+	double			angle;
+	double			radius;
 };
 
-t_vector	vector(float x, float y, float w, float h);
+struct s_colison
+{
+	int		(*colison_ob)(t_object *object, double x, double y);
+	int		(*circular)(t_vector a, t_vector b);
+	int		(*rectangular)(t_vector a, t_vector b);
+	int		(*pixel)(t_object *object, double px, double py);
+};
+
+t_vector	vector(double x, double y, double w, double h);
 t_vector	vector_zero(void);
+t_colison	colison(void);
 
 #endif
