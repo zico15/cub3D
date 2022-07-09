@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 12:26:33 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:55:37 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	game_loop(t_engine *e)
 	delay = 0;
 	if (scene())
 		scene()->update();
+	if (scene())
+		scene()->render();
 	return (e != 0);
 }
 
@@ -55,7 +57,8 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.set_scene = __set_scene;
 	e.load_img = __load_img;
 	e.win = mlx_new_window(e.mlx, width, height, title);
-	mlx_key_hook(e.win, __funct_key_engine, &e);
+	mlx_hook(e.win, 2, (1L << 0), __funct_key_Press, NULL);
+	//mlx_hook(e.win, 3, (1L << 1), __funct_key_Release, NULL);
 	mlx_mouse_hook(e.win, __funct_mousse_engine, &e);
 	mlx_loop_hook(e.mlx, game_loop, &e);
 	return (&e);

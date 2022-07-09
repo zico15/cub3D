@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/07 17:37:12 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:04:23 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static void	*__set_destination(t_vector start, t_vector dest)
 		array((agent)->rota)->destroy();
 		agent->rota = NULL;
 	}
-	dest.x /= 32;
-	dest.y /= 32;
+	dest.x /= GRID_SIZE;
+	dest.y /= GRID_SIZE;
 	agent->open = new_array();
 	agent->close = new_array();
 	agent->start = start;
 	agent->dest = dest;
-	agent->start.x /= 32;
-	agent->start.y /= 32;
+	agent->start.x /= GRID_SIZE;
+	agent->start.y /= GRID_SIZE;
 	agent->start.h = 1;
 	agent->begin = create_nav_node(agent, NULL, agent->start);
 	__expand(agent, agent->begin);

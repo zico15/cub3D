@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 18:04:46 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 13:06:15 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static void	__update(void)
 	t_element	*e;
 	t_object	*o;
 
-	fthis()->map = scene()->map;
+	if (!array(scene()->updade_list)->to_str)
+		return ;
 	e = array(scene()->updade_list)->begin;
 	while (e)
 	{
@@ -37,7 +38,8 @@ static void	__render(void)
 	t_element	*e;
 	t_object	*o;
 
-	fthis()->map = scene()->map;
+	if (!array(scene()->render_list)->size)
+		return ;
 	e = array(scene()->render_list)->begin;
 	while (e)
 	{

@@ -6,20 +6,20 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:21:02 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/07 22:00:21 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 20:05:50 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-static int	__colison_ob(t_object *object, double x, double y)
+static t_object	*__colison_ob(t_object *object, double x, double y)
 {
 	t_element	*e;
 	t_object	*o;
 	t_vector	v;
 
 	if (!array(scene()->colliders_list)->size)
-		return (0);
+		return (NULL);
 	v = object->vector;
 	v.x = x;
 	v.y = y;
@@ -31,11 +31,11 @@ static int	__colison_ob(t_object *object, double x, double y)
 		{
 			object->colison(o);
 			o->colison(object);
-			return (1);
+			return (o);
 		}
 		e = e->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 static int	__circular_collision(t_vector a, t_vector b)

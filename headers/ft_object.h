@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 18:20:08 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 19:35:37 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ struct s_nav_mesh
 	t_vector	dest;
 	void		*(*set_destination)(t_vector start, t_vector dest);
 };
-
 
 t_object	*new_object(void);
 void		*new_object_instance(size_t size);

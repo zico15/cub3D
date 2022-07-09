@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/07 21:47:33 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:02:40 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	print_ray(t_player *p, double rel_angle)
 	int			max;
 
 	max = 100;
-	x = p->vector.x + (32 / 2);
-	y = p->vector.y + (32 / 2);
+	x = p->vector.x + (GRID_SIZE / 2);
+	y = p->vector.y + (GRID_SIZE / 2);
 	val = PI / 180;
 	delta = vector_zero();
 	delta.w = GRID_SIZE;
@@ -34,7 +34,7 @@ void	print_ray(t_player *p, double rel_angle)
 	{
 		delta.y = y - (i * cos((p->vector.angle + rel_angle) * val));
 		delta.x = x + (i * sin((p->vector.angle + rel_angle) * val));
-		if (colison().pixel(p, delta.x, delta.y))
+		if (colison().pixel((t_object *) p, delta.x, delta.y))
 			return ;
 		(render()).pixel_put_win(delta.x, delta.y, 0x00990099);
 	}

@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 03:01:53 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 17:29:59 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 12:42:56 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	clear_check_buff(t_map	*map, char	**maps, int size_h)
 			map->check[y][x] = 0;
 	}
 	map->maps = maps;
-	map->vector.h = size_h * 32;
+	map->vector.h = size_h * GRID_SIZE;
 }
 
 void	check_map(t_map	*m, int x, int y)
@@ -93,17 +93,15 @@ void	check_map(t_map	*m, int x, int y)
 		while (map[y] && map[y][++x])
 		{
 			m->check[y][x] = 0;
-			add_object_scene(x, y, map[y][x]);
-			if (string().contains("NSWE", _str(map[y][x])))
-				map[y][x] = '0';
 			if (map[y][x] == '\t')
 				i = cread_space(buff, i);
 			else
 				buff[i++] = map[y][x];
 		}
 		buff[i] = !free_ob(map[y]);
-		m->vector.w = string().size(buff) * 32;
+		m->vector.w = string().size(buff) * GRID_SIZE;
 		map[y] = string().copy(buff);
 	}
 	clear_check_buff(m, map, y);
+	add_object_all_map(m);
 }

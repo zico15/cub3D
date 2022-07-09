@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/07 21:47:11 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 20:12:08 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,33 @@ void	__funct_key(int key, int type_event)
 	p->vector.angle += (((key == KEY_RIGHT) - (key == KEY_LEFT)) * 5);
 	if (key != 65293)
 		return ;
-	(nav_mesh(p->agent).set_destination)(this()->vector, \
-	vector(4 * 32, 1 * 32, 0, 0));
 }
 
 void	__funct_mouse(int x, int y, int type_event)
 {
 	t_player	*p;
+	t_object	*o;
+	t_vector	v;
 
-	printf("colison: %i | x: %i y: %i\n", colison().pixel(this(), x, y), x, y);
+	if (type_event == 3)
+	{
+		o = colison().colison_ob(this(), x, y);
+		printf("colison--> %i\n", o != NULL);
+		if (o)
+		{
+			v = vector(x, y, 1, 1);
+			v.radius = 1;
+			printf("colison: %i | x: %i y: %i\n", \
+			colison().circular(o->vector, v), x, y);
+		}
+	}
 	if (type_event != 1)
 		return ;
 	p = (t_player *) this();
-	x /= 32;
-	y /= 32;
+	x /= GRID_SIZE;
+	y /= GRID_SIZE;
 	(p->agent)->set_destination(this()->vector, \
-	vector(x * 32, y * 32, 0, 0));
+	vector(x * GRID_SIZE, y * GRID_SIZE, 0, 0));
 }
 
 void	__set_position(t_vector v)
@@ -54,4 +65,3 @@ void	__set_position(t_vector v)
 	v.angle = this()->vector.angle;
 	this()->vector = v;
 }
-

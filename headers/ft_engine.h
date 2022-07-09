@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/04 22:04:17 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 19:59:41 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct s_engine
 	t_scene			*(*add_scene)(t_scene *scene);
 	t_scene			*(*set_scene)(int	index_scene);
 	t_scene			*(*load_maps)(char **args, int size);
-	void			*(*load_img)(t_object *ob, char *file_name);
+	void			*(*load_img)(t_vector *v, char *file_name);
 	int				(*close)(char *msg);
 };
 

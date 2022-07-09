@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 17:34:29 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 11:55:08 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 # include <ft_nav_mesh.h>
 # include <ft_engine.h>
 
-
 # define BUFFER_SIZE 999999
 # define PI 3.14159265
 # define GRID_SIZE 32
+# define GRID_MIN_SIZE 32
 # define KEY_W 119
 # define KEY_S 115
 # define KEY_D 100

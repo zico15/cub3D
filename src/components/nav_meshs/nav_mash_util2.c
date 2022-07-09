@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/07 17:36:53 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:03:36 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	__expand(t_nav_mesh *agent, t_nav_node *n)
 	int	size_w;
 	int	size_h;
 
-	size_w = map()->vector.w / 32;
-	size_h = map()->vector.h / 32;
+	size_w = map()->vector.w / GRID_SIZE;
+	size_h = map()->vector.h / GRID_SIZE;
 	if (!agent)
 		return (0);
 	if (check_case_node(agent, vector(n->x, n->y + 1, size_w, size_h), 10))
@@ -55,8 +55,8 @@ static void	create_rota(t_nav_mesh	*agent, t_nav_node *node)
 	while (start)
 	{
 		v = malloc_ob(sizeof(t_vector));
-		v->x = start->x * 32;
-		v->y = start->y * 32;
+		v->x = start->x * GRID_SIZE;
+		v->y = start->y * GRID_SIZE;
 		array(agent->rota)->add(v);
 		start = start->next;
 	}

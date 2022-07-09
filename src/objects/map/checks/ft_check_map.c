@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/04 22:19:56 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/08 17:59:09 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	*satrt_nodes_checks(t_node *n, t_map	*map)
 
 	if (!map || !n)
 		return (NULL);
-	expand(map, n, map->vector.w / 32, map->vector.h / 32);
+	expand(map, n, map->vector.w / GRID_SIZE, map->vector.h / GRID_SIZE);
 	this = fthis()->array;
 	if (array(n->nodes)->size)
 	{
@@ -86,8 +86,8 @@ int	check_maps_nodes(t_map *map, t_vector start)
 	t_node		*n;
 
 	n = create_node(start.x, start.y, 0);
-	check_case(map, vector(n->x, n->y, map->vector.w / 32, \
-	map->vector.h / 32), 1);
+	check_case(map, vector(n->x, n->y, map->vector.w / GRID_SIZE, \
+	map->vector.h / GRID_SIZE), 1);
 	satrt_nodes_checks(n, map);
 	destroy_node(n);
 	return (map->is_map_ok);

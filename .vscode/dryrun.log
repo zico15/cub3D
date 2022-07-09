@@ -7,13 +7,16 @@ gcc -Iheaders/ -Imlx_linux -c src/objects/player/ft_player_util.c -o src/objects
 gcc -Iheaders/ -Imlx_linux -c src/objects/scene/ft_scene.c -o src/objects/scene/ft_scene.o
 gcc -Iheaders/ -Imlx_linux -c src/objects/scene/ft_scene_util.c -o src/objects/scene/ft_scene_util.o
 gcc -Iheaders/ -Imlx_linux -c src/objects/teste/ft_teste.c -o src/objects/teste/ft_teste.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/wall/ft_wall.c -o src/objects/wall/ft_wall.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/map/checks/ft_check_util.c -o src/objects/map/checks/ft_check_util.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/map/checks/ft_check_map2.c -o src/objects/map/checks/ft_check_map2.o
+gcc -Iheaders/ -Imlx_linux -c src/objects/map/checks/ft_check_map.c -o src/objects/map/checks/ft_check_map.o
 gcc -Iheaders/ -Imlx_linux -c src/objects/map/ft_map.c -o src/objects/map/ft_map.o
 gcc -Iheaders/ -Imlx_linux -c src/objects/map/ft_map_util.c -o src/objects/map/ft_map_util.o
 gcc -Iheaders/ -Imlx_linux -c src/objects/base/ft_object_base_util.c -o src/objects/base/ft_object_base_util.o
 gcc -Iheaders/ -Imlx_linux -c src/objects/base/ft_object_base.c -o src/objects/base/ft_object_base.o
 gcc -Iheaders/ -Imlx_linux -c src/util/array/base_array_util.c -o src/util/array/base_array_util.o
 gcc -Iheaders/ -Imlx_linux -c src/util/array/base_array.c -o src/util/array/base_array.o
- 
 gcc -Iheaders/ -Imlx_linux -c src/util/array/hasmap/base_hasmap.c -o src/util/array/hasmap/base_hasmap.o
 gcc -Iheaders/ -Imlx_linux -c src/util/array/hasmap/base_hasmap_util.c -o src/util/array/hasmap/base_hasmap_util.o
 gcc -Iheaders/ -Imlx_linux -c src/util/string/string_util.c -o src/util/string/string_util.o
@@ -25,14 +28,10 @@ gcc -Iheaders/ -Imlx_linux -c src/util/this.c -o src/util/this.o
 gcc -Iheaders/ -Imlx_linux -c src/util/get_next_line.c -o src/util/get_next_line.o
 gcc -Iheaders/ -Imlx_linux -c src/util/memory.c -o src/util/memory.o
 gcc -Iheaders/ -Imlx_linux -c src/util/util.c -o src/util/util.o
-gcc -Iheaders/ -Imlx_linux -c src/checks/ft_check_util.c -o src/checks/ft_check_util.o
-gcc -Iheaders/ -Imlx_linux -c src/checks/ft_check_map2.c -o src/checks/ft_check_map2.o
-gcc -Iheaders/ -Imlx_linux -c src/checks/ft_check_map.c -o src/checks/ft_check_map.o
 gcc -Iheaders/ -Imlx_linux -c src/engine/event_controller/ft_event_controller.c -o src/engine/event_controller/ft_event_controller.o
 gcc -Iheaders/ -Imlx_linux -c src/engine/render/ft_render.c -o src/engine/render/ft_render.o
 gcc -Iheaders/ -Imlx_linux -c src/engine/render/ft_render_util.c -o src/engine/render/ft_render_util.o
 gcc -Iheaders/ -Imlx_linux -c src/engine/ft_engine.c -o src/engine/ft_engine.o
- 
 gcc -Iheaders/ -Imlx_linux -c src/engine/ft_engine_util.c -o src/engine/ft_engine_util.o
 gcc -Iheaders/ -Imlx_linux -c src/components/raycast/ft_raycast.c -o src/components/raycast/ft_raycast.o
 gcc -Iheaders/ -Imlx_linux -c src/components/colliders/ft_colison.c -o src/components/colliders/ft_colison.o
@@ -40,6 +39,6 @@ gcc -Iheaders/ -Imlx_linux -c src/components/ft_comonets.c -o src/components/ft_
 gcc -Iheaders/ -Imlx_linux -c src/components/nav_meshs/nav_mash_util.c -o src/components/nav_meshs/nav_mash_util.o
 gcc -Iheaders/ -Imlx_linux -c src/components/nav_meshs/nav_mash_util2.c -o src/components/nav_meshs/nav_mash_util2.o
 gcc -Iheaders/ -Imlx_linux -c src/components/nav_meshs/nav_mash.c -o src/components/nav_meshs/nav_mash.o
-gcc main.o src/transforme/ft_vector3.o src/objects/player/ft_player.o src/objects/player/ft_player_util.o src/objects/scene/ft_scene.o src/objects/scene/ft_scene_util.o src/objects/teste/ft_teste.o src/objects/map/ft_map.o src/objects/map/ft_map_util.o src/objects/base/ft_object_base_util.o src/objects/base/ft_object_base.o src/util/array/base_array_util.o src/util/array/base_array.o src/util/array/hasmap/base_hasmap.o src/util/array/hasmap/base_hasmap_util.o src/util/string/string_util.o src/util/string/string_util2.o src/util/string/string.o src/util/string/string_util4.o src/util/string/string_util3.o src/util/this.o src/util/get_next_line.o src/util/memory.o src/util/util.o src/checks/ft_check_util.o src/checks/ft_check_map2.o src/checks/ft_check_map.o src/engine/event_controller/ft_event_controller.o src/engine/render/ft_render.o src/engine/render/ft_render_util.o src/engine/ft_engine.o src/engine/ft_engine_util.o src/components/raycast/ft_raycast.o src/components/colliders/ft_colison.o src/components/ft_comonets.o src/components/nav_meshs/nav_mash_util.o src/components/nav_meshs/nav_mash_util2.o src/components/nav_meshs/nav_mash.o -Lmlx_linux/ -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o cub3D
+gcc main.o src/transforme/ft_vector3.o src/objects/player/ft_player.o src/objects/player/ft_player_util.o src/objects/scene/ft_scene.o src/objects/scene/ft_scene_util.o src/objects/teste/ft_teste.o src/objects/wall/ft_wall.o src/objects/map/checks/ft_check_util.o src/objects/map/checks/ft_check_map2.o src/objects/map/checks/ft_check_map.o src/objects/map/ft_map.o src/objects/map/ft_map_util.o src/objects/base/ft_object_base_util.o src/objects/base/ft_object_base.o src/util/array/base_array_util.o src/util/array/base_array.o src/util/array/hasmap/base_hasmap.o src/util/array/hasmap/base_hasmap_util.o src/util/string/string_util.o src/util/string/string_util2.o src/util/string/string.o src/util/string/string_util4.o src/util/string/string_util3.o src/util/this.o src/util/get_next_line.o src/util/memory.o src/util/util.o src/engine/event_controller/ft_event_controller.o src/engine/render/ft_render.o src/engine/render/ft_render_util.o src/engine/ft_engine.o src/engine/ft_engine_util.o src/components/raycast/ft_raycast.o src/components/colliders/ft_colison.o src/components/ft_comonets.o src/components/nav_meshs/nav_mash_util.o src/components/nav_meshs/nav_mash_util2.o src/components/nav_meshs/nav_mash.o -Lmlx_linux/ -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz -o cub3D
 make: Leaving directory '/home/ezequeil/Documents/GitHub/cub3d'
  

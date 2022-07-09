@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/07 18:23:00 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 20:07:02 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 static void	__reander(void)
 {
 	t_player	*p;
+	t_vector	v;
 
 	p = (t_player *) this();
 	fthis()->agent = p->agent;
+	render().print_ob(this());
+	print_raycast(p);
 }
-
 
 static void	__update(void)
 {
@@ -31,8 +33,6 @@ static void	__update(void)
 
 	p = (t_player *) this();
 	fthis()->agent = p->agent;
-	render().print_ob(this());
-	print_raycast(p);
 	if (p->agent->rota)
 	{
 		if (array(p->agent->rota)->size == 0)
@@ -44,9 +44,9 @@ static void	__update(void)
 
 static void	__colison(t_object *collided)
 {
-	printf("collided: %i\n", collided->type);
+	if (!collided)
+		printf("collided: %i\n", collided->type);
 }
-
 
 t_player	*new_player(void)
 {
@@ -57,7 +57,7 @@ t_player	*new_player(void)
 	p->funct_key = __funct_key;
 	p->update = __update;
 	p->render = __reander;
-	p->img = engine()->load_img((t_object *) p, "imgs/player.xpm");
+	p->img = engine()->load_img(NULL, "imgs/player.xpm");
 	p->agent = new_nav_mesh();
 	p->funct_mouse = __funct_mouse;
 	p->colison = __colison;

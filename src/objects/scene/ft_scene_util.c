@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 00:10:40 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/09 13:15:53 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	__funct_mouse_scene(int x, int y, int type_event)
 	while (e)
 	{
 		ob = (t_object *) e->value;
+		fthis()->object = ob;
 		ob->funct_mouse(x, y, type_event);
 		e = e->next;
 	}
@@ -40,6 +41,7 @@ void	__funct_key_scene(int key, int type_event)
 	while (e)
 	{
 		ob = (t_object *) e->value;
+		fthis()->object = ob;
 		ob->funct_key(key, type_event);
 		e = e->next;
 	}
