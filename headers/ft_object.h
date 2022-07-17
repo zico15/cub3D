@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 19:35:37 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/15 15:00:52 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ typedef struct s_player		t_player;
 typedef struct s_map		t_map;
 typedef struct s_nav_mesh	t_nav_mesh;
 typedef struct s_nav_node	t_nav_node;
-
-
 
 typedef enum e_type_ob
 {
@@ -105,6 +103,7 @@ struct s_nav_mesh
 	t_nav_node	*begin;
 	t_vector	start;
 	t_vector	dest;
+	t_object	*o;
 	void		*(*set_destination)(t_vector start, t_vector dest);
 };
 

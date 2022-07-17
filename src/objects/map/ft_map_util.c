@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/08 18:12:40 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:18:01 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	cread_map(t_map *m)
 		while (v.x < v.w)
 		{
 			(render()).pixel_put_rec(&data, get_color(m, v), \
-			vector(v.x, v.y,  GRID_MIN_SIZE, GRID_MIN_SIZE));
+			vector(v.x, v.y, GRID_MIN_SIZE, GRID_MIN_SIZE));
 			v.x += GRID_MIN_SIZE;
 		}
 		v.y += GRID_MIN_SIZE;

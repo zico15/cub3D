@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 20:04:46 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/15 13:54:59 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ struct s_colison
 	t_object	*(*colison_ob)(t_object *object, double x, double y);
 	int			(*circular)(t_vector a, t_vector b);
 	int			(*rectangular)(t_vector a, t_vector b);
-	int			(*pixel)(t_object *object, double px, double py);
+	t_object	*(*pixel)(t_object *object, double px, double py);
 };
 
 t_vector	vector(double x, double y, double w, double h);

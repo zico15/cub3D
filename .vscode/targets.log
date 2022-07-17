@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul  9 19:31:30 2022
+# Make data base, printed on Sun Jul 17 12:10:47 2022
 
 # Variables
 
@@ -39,7 +39,7 @@ QT_ACCESSIBILITY = 1
 # environment
 SNAP_INSTANCE_NAME = code
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/100/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/101/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -57,11 +57,11 @@ COLOUR_YELLOW = \033[7;1;33m
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/ezequeil/.config/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = /home/ezequeil/.config/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.8QO2O1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.8MILP1
 # default
 .LOADED := 
 # default
@@ -101,7 +101,7 @@ SNAP_REEXEC =
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 30813
+VSCODE_PID = 4117
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -111,7 +111,7 @@ BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile (from 'Makefile', line 19)
 INCLUDES = -Iheaders/
 # environment
-SESSION_MANAGER = local/ezequeil-Aspire-A515-54G:@/tmp/.ICE-unix/1266,unix/ezequeil-Aspire-A515-54G:/tmp/.ICE-unix/1266
+SESSION_MANAGER = local/ezequeil-Aspire-A515-54G:@/tmp/.ICE-unix/1952,unix/ezequeil-Aspire-A515-54G:/tmp/.ICE-unix/1952
 # automatic
 *F = $(notdir $*)
 # makefile (from 'Makefile', line 20)
@@ -151,7 +151,7 @@ MAKE = $(MAKE_COMMAND)
 # environment
 SNAP_COOKIE = ivixzH3CgFj4adzQlGKPjzNvzi7EL80KtNKIS0-pwJ_96oX7VCoQ
 # environment
-PATH = /home/ezequeil/.local/bin:/home/ezequeil/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+PATH = /home/ezequeil/.local/bin:/home/ezequeil/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/ezequeil/.dotnet/tools:/home/ezequeil/.dotnet/tools
 # default
 MAKEFILES := 
 # environment
@@ -165,11 +165,11 @@ MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 # environment
 LC_TIME = pt_PT.UTF-8
 # environment
-SNAP = /snap/code/100
+SNAP = /snap/code/101
 # environment
-INVOCATION_ID = 1ae980893c3442c4a46967c23e9f3dce
+INVOCATION_ID = 0f044f1945ac40a89c2e12dee68cb10a
 # environment
-SNAP_REVISION = 100
+SNAP_REVISION = 101
 # environment
 SNAP_REAL_HOME = /home/ezequeil
 # environment
@@ -205,7 +205,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 1285
+SYSTEMD_EXEC_PID = 1975
 # makefile (from 'Makefile', line 17)
 RM = /bin/rm -f
 # environment
@@ -221,17 +221,17 @@ MAKE_VERSION := 4.3
 # environment
 DISABLE_WAYLAND = 1
 # environment
-SNAP_DATA = /var/snap/code/100
+SNAP_DATA = /var/snap/code/101
 # environment
 SNAP_CONTEXT = ivixzH3CgFj4adzQlGKPjzNvzi7EL80KtNKIS0-pwJ_96oX7VCoQ
 # environment
-MANAGERPID = 1134
+MANAGERPID = 1765
 # environment
 LC_MEASUREMENT = pt_PT.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 30769
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4063
 # environment
-_ = /snap/code/100/usr/share/code/code
+_ = /snap/code/101/usr/share/code/code
 # environment
 LC_PAPER = pt_PT.UTF-8
 # environment
@@ -245,7 +245,7 @@ GDK_PIXBUF_MODULE_FILE = /home/ezequeil/snap/code/common/.cache/gdk-pixbuf-loade
 # environment
 LC_CTYPE = pt_PT.UTF-8
 # environment
-JOURNAL_STREAM = 8:33440
+JOURNAL_STREAM = 8:35126
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -259,11 +259,11 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-0fb073e2-1.69.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-0fb073e2-1.69.1-main.sock
 # environment
 SNAP_NAME = code
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/100/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/101/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
 # makefile (from 'Makefile', line 26)
@@ -273,10 +273,11 @@ MLX_LIB_DIR = mlx_linux/
 # automatic
 <F = $(notdir $<)
 # environment
-SNAP_VERSION = 92d25e35
+SNAP_VERSION = b06ae3b2
 # default
 SUFFIXES := 
 # environment
+ 
 VSCODE_CLI = 1
 # environment
 ELECTRON_NO_ATTACH_CONSOLE = 1
@@ -284,11 +285,10 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
- 
 # makefile (from 'Makefile', line 15)
 CC = gcc
 # environment
-SNAP_USER_DATA = /home/ezequeil/snap/code/100
+SNAP_USER_DATA = /home/ezequeil/snap/code/101
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -413,7 +413,7 @@ src/objects/base/ft_object_base_util.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-06 18:53:41.160200335
+#  Last modified 2022-07-09 20:16:41.469052989
 #  File has been updated.
 #  Successfully updated.
 
@@ -557,11 +557,12 @@ src/objects/map/ft_map.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+ 
 
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-06 18:57:12.215241949
+#  Last modified 2022-07-09 20:16:41.469052989
 #  File has been updated.
 #  Successfully updated.
 
@@ -570,7 +571,6 @@ src/util/memory.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 
 main.o: main.c
 #  Implicit rule search has been done.
@@ -651,7 +651,7 @@ src/components/raycast/ft_raycast.o:
 
 cub3D: main.o src/transforme/ft_vector3.o src/objects/player/ft_player.o src/objects/player/ft_player_util.o src/objects/scene/ft_scene.o src/objects/scene/ft_scene_util.o src/objects/teste/ft_teste.o src/objects/wall/ft_wall.o src/objects/map/checks/ft_check_util.o src/objects/map/checks/ft_check_map2.o src/objects/map/checks/ft_check_map.o src/objects/map/ft_map.o src/objects/map/ft_map_util.o src/objects/base/ft_object_base_util.o src/objects/base/ft_object_base.o src/util/array/base_array_util.o src/util/array/base_array.o src/util/array/hasmap/base_hasmap.o src/util/array/hasmap/base_hasmap_util.o src/util/string/string_util.o src/util/string/string_util2.o src/util/string/string.o src/util/string/string_util4.o src/util/string/string_util3.o src/util/this.o src/util/get_next_line.o src/util/memory.o src/util/util.o src/engine/event_controller/ft_event_controller.o src/engine/render/ft_render.o src/engine/render/ft_render_util.o src/engine/ft_engine.o src/engine/ft_engine_util.o src/components/raycast/ft_raycast.o src/components/colliders/ft_colison.o src/components/ft_comonets.o src/components/nav_meshs/nav_mash_util.o src/components/nav_meshs/nav_mash_util2.o src/components/nav_meshs/nav_mash.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-09 13:16:53.865379238
+#  Last modified 2022-07-16 17:53:10.717503145
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -690,6 +690,6 @@ src/util/string/string_util.o:
 # strcache performance: lookups = 100 / hit rate = 30%
 # hash-table stats:
 # Load=70/8192=1%, Rehash=0, Collisions=0/100=0%
-# Finished Make data base on Sat Jul  9 19:31:30 2022
+# Finished Make data base on Sun Jul 17 12:10:47 2022
 
  

@@ -6,7 +6,7 @@
 /*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:21:02 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/09 20:05:50 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/15 13:54:36 by ezequeil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	__rectangular_collision(t_vector a, t_vector b)
 	return (0);
 }
 
-static int	__pixel_collision(t_object *object, double px, double py)
+static t_object	*__pixel_collision(t_object *object, double px, double py)
 {
 	t_element	*e;
 	t_object	*o;
@@ -75,10 +75,10 @@ static int	__pixel_collision(t_object *object, double px, double py)
 	{
 		o = e->value;
 		if (object != o && colison().rectangular(o->vector, v))
-			return (1);
+			return (o);
 		e = e->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 t_colison	colison(void)
