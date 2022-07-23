@@ -55,18 +55,6 @@ void	__funct_mouse(int x, int y, int type_event)
 	t_object	*o;
 	t_vector	v;
 
-	if (type_event == 3)
-	{
-		o = colison().colison_ob(this(), x, y);
-		printf("colison--> %i\n", o != NULL);
-		if (o)
-		{
-			v = vector(x, y, 1, 1);
-			v.radius = 1;
-			printf("colison: %i | x: %i y: %i\n", \
-			colison().circular(o->vector, v), x, y);
-		}
-	}
 	if (type_event != 1)
 		return ;
 	p = (t_player *) this();

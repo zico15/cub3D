@@ -28,6 +28,25 @@ static void	__colison(t_object *collided)
 	(void) collided;
 }
 
+static void	__funct_mouse(int x, int y, int type_event)
+{
+	t_object	*o;
+	t_vector	v;
+
+	if (type_event == 3)
+	{
+		o = colison().pixel(NULL, x, y);
+		printf("mouse: x: %i y: %i\n", x, y);
+		if (o)
+		{
+			v = vector(x, y, 1, 1);
+			v.radius = 1;
+			printf("colison: %i | x: %i y: %i\n", \
+			colison().circular(o->vector, v), x, y);
+		}
+	}
+}
+
 static void	__reander(void)
 {
 	render().print_ob(this());
@@ -41,6 +60,7 @@ t_object	*new_teste(void)
 	ob->funct_key = __funct_key;
 	ob->render = __reander;
 	ob->colison = __colison;
+	ob->funct_mouse = __funct_mouse;
 	ob->img = engine()->load_img(NULL, "imgs/tester.xpm");
 	return (ob);
 }

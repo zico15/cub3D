@@ -21,7 +21,6 @@ static void	__load_map(char *path)
 	t_map		*map;
 
 	map = (t_map *) this();
-	printf("load map: %s\n", path);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		engine()->close("Error");
@@ -34,7 +33,9 @@ static void	__load_map(char *path)
 	array(file)->destroy();
 	add_object_all_map(map);
 	if (!check_maps_nodes(map, map->player)) // not checking because player is NULL
-		printf("ERROR MAP\n");
+		printf("load map: %s (ERROR)\n", path);
+	else
+		printf("load map: %s\n", path);
 	cread_map(map);
 }
 
