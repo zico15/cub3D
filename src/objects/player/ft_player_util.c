@@ -23,12 +23,30 @@ void	__funct_key(int key, int type_event)
 	(void) type_event;
 	p = (t_player *) this();
 	v = p->vector;
-	v.x += (((key == KEY_D) - (key == KEY_A)) * 5);
-	v.y += (((key == KEY_S) - (key == KEY_W)) * 5);
+	printf("Angle: %f\nPosition: %f, %f", v.angle, v.x, v.y);
+	if (key == KEY_W)
+	{
+		v.x += MOVE_LEN * sin(v.angle * M_PI / 180); 
+		v.y -= MOVE_LEN * cos(v.angle * M_PI / 180);
+	}
+	if (key == KEY_S)
+	{
+		v.x -= MOVE_LEN * sin(v.angle * M_PI / 180); 
+		v.y += MOVE_LEN * cos(v.angle * M_PI / 180);
+	}
+	if (key == KEY_A)
+	{
+		v.x -= MOVE_LEN * cos(v.angle * M_PI / 180); 
+		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);	
+	}
+	// v.x += (((key == KEY_D) - (key == KEY_A)) * 1);
+	// v.y += (((key == KEY_S) - (key == KEY_W)) * 1);
 	p->set_position(v);
 	p->vector.angle += (((key == KEY_RIGHT) - (key == KEY_LEFT)) * 5);
-	if (key != 65293)
-		return ;
+	if (p->vector.angle > 360)
+		p->vector.angle -= 360;
+	if (p->vector.angle < 0)
+		p->vector.angle += 360;
 }
 
 void	__funct_mouse(int x, int y, int type_event)

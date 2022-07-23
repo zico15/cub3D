@@ -85,6 +85,7 @@ int	check_maps_nodes(t_map *map, t_vector start)
 {
 	t_node		*n;
 
+	map->is_map_ok = 1;
 	n = create_node(start.x, start.y, 0);
 	check_case(map, vector(n->x, n->y, map->vector.w / GRID_SIZE, \
 	map->vector.h / GRID_SIZE), 1);

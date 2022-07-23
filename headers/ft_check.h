@@ -25,5 +25,6 @@ void	print_check_map(t_map *scene);
 int		check_case(t_map *map, t_vector v, int check_value);
 t_node	*create_node(int x, int y, int v);
 void	add_object_all_map(t_map *map);
+void	add_object_scene(double x, double y, char c);
 
 #endif

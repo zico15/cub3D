@@ -66,4 +66,8 @@ v:
 r:
 	@make re && make clean && clear && ./cub3D map/map0.car map/map1.car map/map2.car
 
+rr:
+	@make re && make clean && clear && ./cub3D map/map0.car
+
+
 .PHONY: all re clean fclean m

@@ -18,7 +18,7 @@ void	destroy_node(t_node	*n)
 	free_ob(n);
 }
 
-static void	add_object_scene(double x, double y, char c)
+void	add_object_scene(double x, double y, char c)
 {
 	double		angle;
 	t_object	*obj;
@@ -41,6 +41,8 @@ static void	add_object_scene(double x, double y, char c)
 	obj->vector = vector(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
 	obj->vector.angle = angle;
 	obj->vector.radius = GRID_SIZE;
+	if (string().contains("NSWE", _str(c)) || c == 'T')
+		obj->vector.radius = 15;
 }
 
 void	add_object_all_map(t_map *map)
@@ -52,6 +54,7 @@ void	add_object_all_map(t_map *map)
 	v = map->vector;
 	v.w = v.w / GRID_SIZE;
 	v.h = v.h / GRID_SIZE;
+	y = 0;
 	while (y < v.h)
 	{
 		x = 0;

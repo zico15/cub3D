@@ -35,6 +35,7 @@
 # define KEY_A 97
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
+# define MOVE_LEN 10
 
 typedef struct s_this
 {

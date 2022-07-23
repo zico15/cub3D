@@ -103,5 +103,4 @@ void	check_map(t_map	*m, int x, int y)
 		map[y] = string().copy(buff);
 	}
 	clear_check_buff(m, map, y);
-	add_object_all_map(m);
 }

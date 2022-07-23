@@ -14,10 +14,15 @@
 #include <ft_object_base.h>
 #include <ft_check.h>
 
-static void	__colison(t_object *collided)
+void	__colison(t_object *collided)
 {
 	(void) collided;
 	printf("wall: %i\n", collided->type);
+}
+
+static void	__reander(void)
+{
+	render().print_ob(this());
 }
 
 t_object	*new_wall(void)
@@ -28,8 +33,9 @@ t_object	*new_wall(void)
 	wall = new_object_instance(sizeof(t_object));
 	wall->type = WALL;
 	if (!img)
-		img = engine()->load_img(NULL, "imgs/player.xpm");
+		img = engine()->load_img(NULL, "imgs/wall.xpm");
 	wall->img = img;
 	wall->colison = __colison;
+	wall->render = __reander;
 	return (wall);
 }

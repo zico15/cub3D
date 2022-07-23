@@ -22,7 +22,7 @@ void	print_ray(t_player *p, double rel_angle)
 	int			i;
 	int			max;
 
-	max = 100;
+	max = 50;
 	x = p->vector.x + (GRID_SIZE / 2);
 	y = p->vector.y + (GRID_SIZE / 2);
 	val = PI / 180;

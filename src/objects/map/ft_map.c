@@ -32,7 +32,8 @@ static void	__load_map(char *path)
 		(array(file))->for_each(check_color, map);
 	check_map(map, -1, -1);
 	array(file)->destroy();
-	if (!check_maps_nodes(map, map->player))
+	add_object_all_map(map);
+	if (!check_maps_nodes(map, map->player)) // not checking because player is NULL
 		printf("ERROR MAP\n");
 	cread_map(map);
 }
