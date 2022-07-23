@@ -29,7 +29,10 @@ void	add_object_scene(double x, double y, char c)
 	else if (c == '1')
 		obj = scene()->add(new_wall());
 	else if (string().contains("NSWE", _str(c)))
+	{
 		obj = scene()->add(new_player());
+		map()->player = vector(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+	}
 	else
 		return ;
 	if (c == 'S')
