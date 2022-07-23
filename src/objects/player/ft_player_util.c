@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/23 15:14:37 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/07/23 15:21:15 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	__funct_key(int key, int type_event)
 	v = p->vector;
 	if (key == KEY_W)
 	{
-		v.x += MOVE_LEN * sin(v.angle *if (key == KEY_A)
+		v.x += MOVE_LEN * sin(v.angle * M_PI / 180); 
+		v.y -= MOVE_LEN * cos(v.angle * M_PI / 180);
+	}
+	if (key == KEY_S)
 	{
-		v.x -= MOVE_LEN * cos(v.angle * M_PI / 180); 
-		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);
-	} M_PI / 180);
+		v.x -= MOVE_LEN * sin(v.angle * M_PI / 180); 
+		v.y += MOVE_LEN * cos(v.angle * M_PI / 180);
 	}
 	if (key == KEY_A)
 	{
