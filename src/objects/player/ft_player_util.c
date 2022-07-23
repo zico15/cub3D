@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/09 20:12:08 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:21:15 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	__funct_key(int key, int type_event)
 	(void) type_event;
 	p = (t_player *) this();
 	v = p->vector;
-	printf("Angle: %f\nPosition: %f, %f", v.angle, v.x, v.y);
 	if (key == KEY_W)
 	{
 		v.x += MOVE_LEN * sin(v.angle * M_PI / 180); 
@@ -37,10 +36,13 @@ void	__funct_key(int key, int type_event)
 	if (key == KEY_A)
 	{
 		v.x -= MOVE_LEN * cos(v.angle * M_PI / 180); 
-		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);	
+		v.y -= MOVE_LEN * sin(v.angle * M_PI / 180);
 	}
-	// v.x += (((key == KEY_D) - (key == KEY_A)) * 1);
-	// v.y += (((key == KEY_S) - (key == KEY_W)) * 1);
+	if (key == KEY_D)
+	{
+		v.x += MOVE_LEN * cos(v.angle * M_PI / 180); 
+		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);
+	}
 	p->set_position(v);
 	p->vector.angle += (((key == KEY_RIGHT) - (key == KEY_LEFT)) * 5);
 	if (p->vector.angle > 360)
@@ -68,6 +70,6 @@ void	__set_position(t_vector v)
 {
 	if (colison().colison_ob(this(), v.x, v.y))
 		return ;
-	v.angle = this()->vector.angle;
-	this()->vector = v;
+	this()->vector.x = v.x;
+	this()->vector.y = v.y;
 }
