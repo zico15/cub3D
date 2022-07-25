@@ -38,6 +38,7 @@ t_scene	*__load_maps(char **args, int size)
 		map = (t_map *) scene->add(new_map());
 		scene->map = map;
 		map->load(args[i]);
+		scene->add(new_menu());
 	}
 	o = array(engine()->scenes)->get(0);
 	if (!o)

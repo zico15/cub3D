@@ -56,6 +56,8 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.close = __close;
 	e.set_scene = __set_scene;
 	e.load_img = __load_img;
+	e.width = width;
+	e.height = height;
 	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_Press, NULL);
 	//mlx_hook(e.win, 3, (1L << 1), __funct_key_Release, NULL);

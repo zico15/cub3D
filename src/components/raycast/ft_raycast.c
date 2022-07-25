@@ -36,7 +36,7 @@ void	print_ray(t_player *p, double rel_angle)
 		delta.x = x + (i * sin((p->vector.angle + rel_angle) * val));
 		if (colison().pixel((t_object *) p, delta.x, delta.y))
 			return ;
-		(render()).pixel_put_win(delta.x, delta.y, 0x00990099);
+		//(render()).pixel_put_win(delta.x, delta.y, 0x00990099);
 	}
 }
 

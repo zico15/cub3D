@@ -113,5 +113,6 @@ t_map		*new_map(void);
 t_object	*new_teste(void);
 t_player	*new_player(void);
 t_object	*new_wall(void);
+t_object	*new_menu(void);
 
 #endif

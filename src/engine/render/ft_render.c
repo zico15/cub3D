@@ -13,28 +13,33 @@
 #include <ft_util.h>
 #include <ft_engine_util.h>
 
-static void	__pixel_put_rec(t_data *data, int color, t_vector vector)
+static void	__pixel_put_rec(void *img, int color, t_vector vector)
 {
-	int	x;
+	int			x;
 
 	vector.w += vector.x;
 	vector.h += vector.y;
+	
 	while (vector.y < vector.h)
 	{
 		x = vector.x;
 		while (x < vector.w)
 		{
-			(render().pixel_put)(data, x++, vector.y, color);
+			(render().pixel_put)(img, x++, vector.y, color);
 		}
 		vector.y++;
 	}
 }
 
-static void	__pixel_put(t_data *data, int x, int y, int color)
+static void	__pixel_put(void *img, int x, int y, int color)
 {
-	char	*dst;
+	char		*dst;
+	t_data		data;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	data.img = img;
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
+	&data.line_length, &data.endian);
+	dst = data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 

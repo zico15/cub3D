@@ -34,6 +34,8 @@ struct s_engine
 	void			*scenes;
 	t_map			*map;
 	int				index_scene;
+	int 			width;
+	int				height;
 	t_scene			*(*add_scene)(t_scene *scene);
 	t_scene			*(*set_scene)(int	index_scene);
 	t_scene			*(*load_maps)(char **args, int size);
@@ -44,8 +46,8 @@ struct s_engine
 struct s_render
 {
 	void			(*print_ob)(t_object *o);
-	void			(*pixel_put)(t_data *data, int x, int y, int color);
-	void			(*pixel_put_rec)(t_data *data, int color, t_vector vector);
+	void			(*pixel_put)(void *img, int x, int y, int color);
+	void			(*pixel_put_rec)(void *img, int color, t_vector vector);
 	void			(*print_txt)(char *str, t_vector v, int color);
 	void			(*pixel_put_win)(int x, int y, int color);
 };
