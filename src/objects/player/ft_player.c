@@ -20,7 +20,7 @@ static void	__reander(void)
 	t_player	*p;
 	t_vector	v;
 
-	p = fthis()->player;
+	p = (t_player *) this();
 	fthis()->agent = p->agent;
 	render().print_ob(this());
 	print_raycast(p);
