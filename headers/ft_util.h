@@ -46,6 +46,7 @@ typedef struct s_this
 	t_scene			*scene;
 	t_object		*object;
 	t_nav_mesh		*agent;
+	t_player		*player;
 	t_map			*map;
 
 }	t_this;

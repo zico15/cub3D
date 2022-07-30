@@ -20,7 +20,7 @@ static void	__reander(void)
 	t_player	*p;
 	t_vector	v;
 
-	p = (t_player *) this();
+	p = fthis()->player;
 	fthis()->agent = p->agent;
 	render().print_ob(this());
 	print_raycast(p);
@@ -31,7 +31,7 @@ static void	__update(void)
 	t_player	*p;
 	t_vector	v;
 
-	p = (t_player *) this();
+	p = fthis()->player;
 	fthis()->agent = p->agent;
 	if (p->agent->rota)
 	{
@@ -63,5 +63,6 @@ t_player	*new_player(void)
 	p->colison = __colison;
 	p->vector.angle = 90;
 	p->set_position = __set_position;
+	fthis()->player = p;
 	return (p);
 }
