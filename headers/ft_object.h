@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/15 15:00:52 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:30:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_player		t_player;
 typedef struct s_map		t_map;
 typedef struct s_nav_mesh	t_nav_mesh;
 typedef struct s_nav_node	t_nav_node;
+typedef struct s_buffer		t_buffer;
 
 typedef enum e_type_ob
 {
@@ -30,13 +31,44 @@ typedef enum e_type_ob
 	WALL
 }	t_type;
 
+
+
+typedef struct f_image
+{
+	void	(*rectangle)(void *img, t_vector vector, int color);
+	void	(*pixel)(void *img, int x, int y, int color);
+	void	(*txt)(char *str, t_vector v, int color);
+	void	*(*new)(int w, int h);
+}	t_image;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+struct s_buffer
+{
+	void	*buffer;
+	t_data	data;
+	void	(*rectangle)(t_vector v, int color);
+	void	(*pixel)(int x, int y, int color);
+	int		(*get_color_imge)(t_data	data, int x, int y);
+	void	(*image)(t_vector v, void *img);
+	void	(*image_sub)(t_vector v, void *img, t_vector sub);
+	void	(*object)(t_object *ob);
+};
+
 struct s_object
 {
 	t_type			type;
 	void			*img;
 	t_vector		vector;
 	void			(*update)(void);
-	void			(*render)(void);
+	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
@@ -50,7 +82,7 @@ struct s_map
 	void			*img;
 	t_vector		vector;
 	void			(*update)(void);
-	void			(*render)(void);
+	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
@@ -63,6 +95,7 @@ struct s_map
 	void			*map;
 	char			**maps;
 	t_vector		player;
+	t_vector		vector_mini_map;
 	int				check[100][100];
 	int				is_map_ok;
 };
@@ -73,7 +106,7 @@ struct s_player
 	void			*img;
 	t_vector		vector;
 	void			(*update)(void);
-	void			(*render)(void);
+	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);

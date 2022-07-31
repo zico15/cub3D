@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_event_controller.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:08:19 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/09 12:21:43 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:54:43 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	__funct_mousse_engine(int keycode, void *vars)
 int	__funct_key_Press(int key, void *o)
 {
 	(void) o;
-	printf("__funct_key_Press\n");
 	__funct_key_engine(key, 1);
 	return (0);
 }

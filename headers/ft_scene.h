@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 18:20:18 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:54:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ struct s_scene
 	void			*img;
 	t_vector		vector;
 	void			(*update)(void);
-	void			(*render)(void);
+	void			(*render)(t_buffer	*b);
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
@@ -49,6 +49,7 @@ struct s_scene
 	t_object		*(*add)(void *o);
 	int				is_print;
 	t_map			*map;
+	t_player		*player;
 };
 
 t_scene	*new_scene(void);

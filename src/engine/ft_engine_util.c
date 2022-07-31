@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 13:04:48 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:57:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_scene	*__set_scene(int index_scene)
 	s = (t_scene *) array(engine()->scenes)->get(index_scene);
 	fthis()->scene = s;
 	fthis()->map = s->map;
+	fthis()->player = s->player;
 	engine()->index_scene = index_scene;
 	mlx_clear_window(engine()->mlx, engine()->win);
 	return (s);
@@ -38,14 +39,10 @@ t_scene	*__load_maps(char **args, int size)
 		map = (t_map *) scene->add(new_map());
 		scene->map = map;
 		map->load(args[i]);
+		scene->player = fthis()->player;
 		scene->add(new_menu());
 	}
-	o = array(engine()->scenes)->get(0);
-	if (!o)
-		return (NULL);
-	scene = (t_scene *) o;
-	fthis()->scene = scene;
-	fthis()->map = scene->map;
+	scene = __set_scene(0);
 	return (scene);
 }
 

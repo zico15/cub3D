@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wall.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/11 17:39:11 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 16:58:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	__colison(t_object *collided)
 	printf("wall: %i\n", collided->type);
 }
 
-static void	__reander(void)
+static void	__reander(t_buffer *b)
 {
-	render().print_ob(this());
+	b->rectangle(this()->vector, 0x0000FF00);
 }
 
 t_object	*new_wall(void)

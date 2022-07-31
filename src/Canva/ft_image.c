@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_render.c                                        :+:      :+:    :+:   */
+/*   ft_image.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/20 22:31:55 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/04 22:04:26 by ezequeil         ###   ########.fr       */
+/*   Created: 2022/07/31 21:11:01 by edos-san          #+#    #+#             */
+/*   Updated: 2022/07/31 22:23:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include <ft_util.h>
 #include <ft_engine_util.h>
-
-static void	__pixel_put_rec(void *img, int color, t_vector vector)
-{
-	int			x;
-
-	vector.w += vector.x;
-	vector.h += vector.y;
-	
-	while (vector.y < vector.h)
-	{
-		x = vector.x;
-		while (x < vector.w)
-		{
-			(render().pixel_put)(img, x++, vector.y, color);
-		}
-		vector.y++;
-	}
-}
 
 static void	__pixel_put(void *img, int x, int y, int color)
 {
@@ -43,11 +26,21 @@ static void	__pixel_put(void *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	__print(t_object *o)
+static void	__pixel_put_rec(void *img, t_vector vector, int color)
 {
-	if (o && o->img)
-		mlx_put_image_to_window(engine()->mlx, engine()->win, \
-		o->img, o->vector.x, o->vector.y);
+	int			x;
+
+	vector.w += vector.x;
+	vector.h += vector.y;
+	while (vector.y < vector.h)
+	{
+		x = vector.x;
+		while (x < vector.w)
+		{
+			__pixel_put(img, x++, vector.y, color);
+		}
+		vector.y++;
+	}
 }
 
 static void	__print_txt(char *str, t_vector v, int color)
@@ -56,11 +49,19 @@ static void	__print_txt(char *str, t_vector v, int color)
 	v.x, v.y, color, str);
 }
 
-t_render	render(void)
+static void	*__new_img(int w, int h)
 {
-	static t_render	r = {__print, __pixel_put, __pixel_put_rec, \
-	__print_txt, __pixel_put_win
-	};
+	void	*img;
+
+	img = mlx_new_image(engine()->mlx, w, h);
+	__pixel_put_rec(img, vector(0, 0, w, h), COLOR_TRANSPARENT);
+	return (img);
+}
+
+t_image	image(void)
+{
+	static t_image	r = {__pixel_put_rec, __pixel_put, \
+	__print_txt, __new_img};
 
 	return (r);
 }

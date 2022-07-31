@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 12:55:37 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:37:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ int	game_loop(t_engine *e)
 	if (++delay < 7000)
 		return (0);
 	delay = 0;
-	if (scene())
-		scene()->update();
-	if (scene())
-		scene()->render();
-	return (e != 0);
+	if (!scene())
+		return (0);
+	scene()->update();
+	e->canva->rectangle(vector(0, 0, e->width, e->height), 0xc4994a);
+	scene()->render(e->canva);
+	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
+	, 0, 0);
+	return (0);
 }
 
 t_engine	*cread_engine(char *title, char *path, int width, int height)
@@ -58,6 +61,7 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.load_img = __load_img;
 	e.width = width;
 	e.height = height;
+	e.canva = __canva();
 	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_Press, NULL);
 	//mlx_hook(e.win, 3, (1L << 1), __funct_key_Release, NULL);

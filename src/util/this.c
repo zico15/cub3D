@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   this.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 00:06:50 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 17:34:14 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:06:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ t_array	*array(t_array *a)
 t_engine	*engine(void)
 {
 	return (fthis()->engine);
+}
+
+t_buffer	*canva(void)
+{
+	return (fthis()->engine->canva);
 }
 
 t_scene	*scene(void)

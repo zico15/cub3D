@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 13:06:15 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 15:45:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	__update(void)
 	}	
 }
 
-static void	__render(void)
+static void	__render(t_buffer *b)
 {
 	t_element	*e;
 	t_object	*o;
@@ -47,7 +47,7 @@ static void	__render(void)
 		if (o)
 		{
 			fthis()->object = o;
-			o->render();
+			o->render(b);
 		}
 		e = e->next;
 	}	

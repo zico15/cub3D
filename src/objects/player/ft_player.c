@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/09 20:07:02 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:49:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <ft_component.h>
 #include <ft_player.h>
 
-static void	__reander(void)
+static void	__reander(t_buffer *b)
 {
 	t_player	*p;
 	t_vector	v;
 
 	p = (t_player *) this();
 	fthis()->agent = p->agent;
-	render().print_ob(this());
+	b->object(this());
 	print_raycast(p);
 }
 

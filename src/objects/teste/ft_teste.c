@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_teste.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 20:01:29 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 19:49:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static void	__funct_mouse(int x, int y, int type_event)
 	}
 }
 
-static void	__reander(void)
+static void	__reander(t_buffer *b)
 {
-	render().print_ob(this());
+	b->object(this());
 }
 
 t_object	*new_teste(void)

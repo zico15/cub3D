@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/08 21:02:40 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 20:08:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_ray(t_player *p, double rel_angle)
 	int			i;
 	int			max;
 
-	max = 50;
+	max = 99999;
 	x = p->vector.x + (GRID_SIZE / 2);
 	y = p->vector.y + (GRID_SIZE / 2);
 	val = PI / 180;
@@ -34,9 +34,12 @@ void	print_ray(t_player *p, double rel_angle)
 	{
 		delta.y = y - (i * cos((p->vector.angle + rel_angle) * val));
 		delta.x = x + (i * sin((p->vector.angle + rel_angle) * val));
+		if (delta.x < 0 || delta.y < 0 || delta.x >= \
+		engine()->width || delta.y >= engine()->height)
+			return ;
 		if (colison().pixel((t_object *) p, delta.x, delta.y))
 			return ;
-		(render()).pixel_put_win(delta.x, delta.y, 0x00990099);
+		(canva())->pixel(delta.x, delta.y, 0x00990099);
 	}
 }
 

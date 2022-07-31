@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_util.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/17 12:18:01 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:01:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,7 @@ static int	get_color(t_map *m, t_vector v)
 	y = (v.y / GRID_MIN_SIZE);
 	if (m->maps[y][x] == '1')
 		return (0x00FF0000);
-	if (m->maps[y][x] == '0' || m->maps[y][x] == '2')
-		return (0x000000FF);
-	if (m->maps[y][x] == 'N')
-		return (0x0000FF00);
-	if (m->maps[y][x] == 'D')
-		return (0x00CC9900);
-	return (0x0);
+	return (0x53eeeb);
 }
 
 void	cread_map(t_map *m)
@@ -37,14 +31,16 @@ void	cread_map(t_map *m)
 	v = m->vector;
 	v.w = (v.w / GRID_SIZE) * GRID_MIN_SIZE;
 	v.h = (v.h / GRID_SIZE) * GRID_MIN_SIZE;
-	m->img = mlx_new_image(engine()->mlx, m->vector.w, m->vector.h);
+	m->img = image().new((int) v.w + 100, (int) v.h + 100);
+	m->vector_mini_map = vector(0, 0, v.w + 100, v.h + 100);
 	while (v.y < v.h)
 	{
 		v.x = 0;
 		while (v.x < v.w)
 		{
-			(render()).pixel_put_rec(m->img, get_color(m, v), \
-			vector(v.x, v.y, GRID_MIN_SIZE, GRID_MIN_SIZE));
+			image().rectangle(m->img, \
+			vector(v.x + 50, v.y + 50, GRID_MIN_SIZE, GRID_MIN_SIZE), \
+			get_color(m, v));
 			v.x += GRID_MIN_SIZE;
 		}
 		v.y += GRID_MIN_SIZE;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+         #
+#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/07/06 18:53:41 by ezequeil         ###   ########.fr        #
+#    Updated: 2022/07/31 22:26:04 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ r:
 	@make re && make clean && clear && ./cub3D map/map0.car map/map1.car map/map2.car
 
 rr:
-	@make re && make clean && clear && ./cub3D map/map0.car
+	@make re && make clean && clear && ./cub3D map/map1.car
 
 
 .PHONY: all re clean fclean m

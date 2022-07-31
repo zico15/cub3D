@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 22:54:33 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 21:24:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	__load_map(char *path)
 	check_map(map, -1, -1);
 	array(file)->destroy();
 	add_object_all_map(map);
-	if (!check_maps_nodes(map, map->player)) // not checking because player is NULL
+	if (!check_maps_nodes(map, map->player))
 		printf("load map: %s (ERROR)\n", path);
 	else
 		printf("load map: %s\n", path);
@@ -41,7 +41,7 @@ static void	__load_map(char *path)
 
 static void	__update(void)
 {
-	render().print_ob(this());
+
 }
 
 t_map	*new_map(void)

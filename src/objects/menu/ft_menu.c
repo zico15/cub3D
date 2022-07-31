@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_teste.c                                         :+:      :+:    :+:   */
+/*   ft_menu.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 20:01:29 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:52:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,24 @@
 #include <ft_check.h>
 #include <ft_object_base.h>
 
-static int	get_color(t_map *m, t_vector v)
+static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 {
-	int	x;
-	int	y;
-
-	x = v.x;
-	y = v.y;
-	if (m->maps[y][x] == '1')
-		return (0x00FF0000);
-	if (m->maps[y][x] == '0' || m->maps[y][x] == '2')
-		return (0x000000FF);
-	if (m->maps[y][x] == 'N')
-		return (0x0000FF00);
-	if (m->maps[y][x] == 'D')
-		return (0x00CC9900);
-	return (0x0);
-}
-
-static void	__reander(void)
-{
-	int 		x;
 	t_vector	v;
 
-	v = map()->vector;
-	v.w = (v.w / GRID_SIZE);
-	v.h = (v.h / GRID_SIZE);
-	while (v.y < v.h && v.y < 10)
-	{
-		v.x = 0;
-		while (v.x < v.w && v.x < 10)
-		{
-			(render()).pixel_put_rec(this()->img, get_color(map(), v), \
-			vector(v.x * 20, v.y * 25, 20, 25));
-			v.x++;
-		}
-		v.y++;
-	}
-	render().print_ob(this());
+	v = vector(p.x * GRID_MIN_SIZE, p.y * GRID_MIN_SIZE, 200, 150);
+	b->rectangle(m, 0xd5f44e);
+	b->image_sub(this()->vector, map()->img, v);
+	b->rectangle(vector(m.x + 95, m.y + 70, 10, 10), 0xd36a0d);
+}
+
+static void	__reander(t_buffer *b)
+{
+	t_vector	p;
+
+	p = fthis()->player->vector;
+	p.x = ((p.x - p.w) / GRID_SIZE) - 1;
+	p.y = ((p.y - p.h) / GRID_SIZE);
+	mini_map(b, p, this()->vector);
 }
 
 
@@ -64,10 +44,7 @@ t_object	*new_menu(void)
 	ob->render = __reander;
 	ob->vector.w = 200;
 	ob->vector.h = 150;
-	ob->img = mlx_new_image(engine()->mlx, ob->vector.w , \
-	ob->vector.h);
-	render().pixel_put_rec(ob->img, 0x0000FFFF,ob->vector);
 	ob->vector.x = engine()->width - ob->vector.w;
-	ob->vector.y = 0;//engine()->height - ob->vector.h;
+	ob->vector.y = 0;
 	return (ob);
 }
