@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 22:52:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/31 23:28:21 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	t_vector	v;
 
 	v = vector(p.x * GRID_MIN_SIZE, p.y * GRID_MIN_SIZE, 200, 150);
-	b->rectangle(m, 0xd5f44e);
+	b->rectangle(m, 0xe5e6e6);
 	b->image_sub(this()->vector, map()->img, v);
-	b->rectangle(vector(m.x + 95, m.y + 70, 10, 10), 0xd36a0d);
+	b->rectangle(vector(m.x + 95, m.y + 75, 10, 10), 0xd36a0d);
 }
 
 static void	__reander(t_buffer *b)
