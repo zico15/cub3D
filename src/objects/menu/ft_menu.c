@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 23:28:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:29:25 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static void	__reander(t_buffer *b)
 	p.y = ((p.y - p.h) / GRID_SIZE);
 	mini_map(b, p, this()->vector);
 }
-
-
 
 t_object	*new_menu(void)
 {
