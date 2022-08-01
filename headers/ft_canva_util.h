@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 21:53:29 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:59:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <ft_util.h>
 
 void	__rectangle(t_vector v, int color);
+void	__rectangle_border(t_vector v, int color, int border, int color_border);
 void	__pixel(int x, int y, int color);
 int		__get_color_imge(t_data	data, int x, int y);
 void	__image(t_vector v, void *img);

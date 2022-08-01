@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 23:01:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:09:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,26 @@ static int	get_color(t_map *m, t_vector v)
 	x = (v.x / GRID_MIN_SIZE);
 	y = (v.y / GRID_MIN_SIZE);
 	if (m->maps[y][x] == '1')
-		return (0x00FF0000);
-	return (0x53eeeb);
+		return (0x949e9e);
+	if (m->maps[y][x] == ' ')
+		return (0xd87041);
+	return (0xe5e6e6);
+}
+
+static void	_printf_rectangle(t_map *m,	t_vector p, t_vector v)
+{
+	int	color;
+
+	color = get_color(m, v);
+	if (color == 0x949e9e)
+	{
+		(image()).rectangle(m->img, p, 0x111313);
+		p.x += 1;
+		p.y += 1;
+		p.w -= 2;
+		p.h -= 2;
+	}
+	(image()).rectangle(m->img, p, color);
 }
 
 void	cread_map(t_map *m)
@@ -38,9 +56,8 @@ void	cread_map(t_map *m)
 		v.x = 0;
 		while (v.x < v.w)
 		{
-			image().rectangle(m->img, \
-			vector(v.x + 50, v.y + 50, GRID_MIN_SIZE, GRID_MIN_SIZE), \
-			get_color(m, v));
+			_printf_rectangle(m, vector(v.x + 50, v.y + 50, \
+			GRID_MIN_SIZE, GRID_MIN_SIZE), v);
 			v.x += GRID_MIN_SIZE;
 		}
 		v.y += GRID_MIN_SIZE;

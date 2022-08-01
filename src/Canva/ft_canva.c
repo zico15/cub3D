@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 19:49:16 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:04:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,28 @@ void	__rectangle(t_vector v, int color)
 	}
 }
 
+void	__rectangle_border(t_vector v, int color, int border, int color_border)
+{
+	int			x;
+	t_vector	v_b;
+
+	v.w += v.x;
+	v.h += v.y;
+	v_b = vector(v.x + border, v.y + border, v.w - border, v.h - border);
+	while (v.y < v.h)
+	{
+		x = v.x;
+		while (x < v.w)
+		{
+			if (x <= v_b.x || x >= v_b.w || (v.y <= v_b.y || v.y >= v_b.h))
+				__pixel(x++, v.y, color_border);
+			else
+				__pixel(x++, v.y, color);
+		}
+		v.y++;
+	}
+}
+
 t_buffer	*__canva(void)
 {
 	static t_buffer	b;
@@ -67,6 +89,7 @@ t_buffer	*__canva(void)
 	b.image = __image;
 	b.image_sub = __image_sub;
 	b.object = __object;
+	b.rectangle_border = __rectangle_border;
 	return (&b);
 }
 

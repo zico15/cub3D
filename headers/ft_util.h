@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 22:24:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:33:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_A 97
+# define KEY_SPACE 32
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define MOVE_LEN 10
 # define W_WIDTH 1200
 # define W_HEIGHT 900
+# define VIEW_ANGLE 90
 # define COLOR_TRANSPARENT 0xd411aa
 
 typedef struct s_this
@@ -51,7 +53,7 @@ typedef struct s_this
 	t_nav_mesh		*agent;
 	t_player		*player;
 	t_map			*map;
-
+	t_camera		*camera;
 }	t_this;
 
 //			this

@@ -43,6 +43,7 @@ typedef struct s_array
 	void			(*destroy_element)(t_element	*e);
 	void			(*for_each)(void (*fun)(t_element *e, void *v), void *o);
 	void			**(*to_str)(void);
+	void			(*remove_value)(void *value);
 }	t_array;
 
 typedef struct s_hasmap

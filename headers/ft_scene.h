@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 22:54:30 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:46:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct s_scene
 	int				is_print;
 	t_map			*map;
 	t_player		*player;
+	t_camera		*camera;
 };
 
 t_scene	*new_scene(void);
