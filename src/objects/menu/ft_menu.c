@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 18:28:07 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:34:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_object	*new_menu(void)
 	ob->render = __reander;
 	ob->vector.w = 206;
 	ob->vector.h = 156;
-	ob->vector.x = engine()->width - ob->vector.w - 3;
+	ob->vector.x = engine()->width - ob->vector.w;
 	ob->vector.y = 0;
 	return (ob);
 }

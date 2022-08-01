@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/01 18:04:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:32:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	__funct_key(int key, int type_event)
 	t_door		*door;
 
 	(void) type_event;
-	if (key == KEY_SPACE)
+	door = (t_door *) this();
+	if (key == KEY_SPACE && !door->is_open)
 	{
-		door = (t_door *) this();
 		p = fthis()->player->vector;
 		v = this()->vector;
 		v.x -= 7;
@@ -41,7 +41,7 @@ static void	__funct_key(int key, int type_event)
 
 static void	__colison(t_object *collided)
 {
-	printf("dor--> %i\n", collided->type);
+	(void) collided;
 }
 
 static void	__updade(void)

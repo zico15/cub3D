@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/01 17:57:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:17:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ static void	__reander(t_buffer *b)
 {
 	t_player	*p;
 	t_vector	v;
+	void		*list;
 
 	p = (t_player *) this();
 	fthis()->agent = p->agent;
 	b->rectangle(this()->vector, 0xf2ad0d);
-	print_raycast(p);
+	list = print_raycast(p);
+	if (list)
+		array(list)->destroy();
 }
 
 static void	__update(void)

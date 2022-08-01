@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 14:13:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:18:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 static void	__colison(t_object *collided)
 {
 	(void) collided;
-	printf("wall: %i\n", collided->type);
 }
 
 static void	__reander(t_buffer *b)
 {
 	b->rectangle(this()->vector, 0x0000FF00);
-	
 }
 
 t_object	*new_wall(void)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/23 15:21:15 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/01 19:15:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,21 @@
 #include <ft_component.h>
 #include <ft_player.h>
 
+void printf_element(t_element *e, void *o)
+{
+	t_vector *v;
+	t_player *p;
+
+	p = o;
+	v = (t_vector *) e->value;
+	printf("x: %f y: %f d> %f\n", v->x, v->y, get_vectors_distance(*v , p->vector));
+}
+
 void	__funct_key(int key, int type_event)
 {
 	t_player	*p;
 	t_vector	v;
+	void		*ray_return;
 
 	(void) type_event;
 	p = (t_player *) this();
@@ -43,7 +54,15 @@ void	__funct_key(int key, int type_event)
 		v.x += MOVE_LEN * cos(v.angle * M_PI / 180); 
 		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);
 	}
-	p->set_position(v);
+	if (key == 65421)
+	{
+		ray_return = print_raycast(p);
+		array(ray_return)->for_each(printf_element, p);
+		array(ray_return)->for_each(fthis()->camera->render_view, p);
+		array(ray_return)->destroy();
+
+	}
+ 	p->set_position(v);
 	p->vector.angle += (((key == KEY_RIGHT) - (key == KEY_LEFT)) * 5);
 	if (p->vector.angle > 360)
 		p->vector.angle -= 360;

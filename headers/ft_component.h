@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_component.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 18:49:27 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:16:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 # include <ft_nav_mesh.h>
 
 
-void	print_raycast(t_player *p);
+void	*print_raycast(t_player *p);
 
 #endif
