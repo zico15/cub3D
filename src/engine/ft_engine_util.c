@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 22:57:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:54:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_scene	*__set_scene(int index_scene)
 	fthis()->scene = s;
 	fthis()->map = s->map;
 	fthis()->player = s->player;
+	fthis()->camera = s->camera;
 	engine()->index_scene = index_scene;
 	mlx_clear_window(engine()->mlx, engine()->win);
 	return (s);
@@ -40,6 +41,7 @@ t_scene	*__load_maps(char **args, int size)
 		scene->map = map;
 		map->load(args[i]);
 		scene->player = fthis()->player;
+		scene->add(new_camera());
 		scene->add(new_menu());
 	}
 	scene = __set_scene(0);

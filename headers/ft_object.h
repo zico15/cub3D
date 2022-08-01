@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 22:30:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:52:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_map		t_map;
 typedef struct s_nav_mesh	t_nav_mesh;
 typedef struct s_nav_node	t_nav_node;
 typedef struct s_buffer		t_buffer;
+typedef struct s_camera		t_camera;
 
 typedef enum e_type_ob
 {
@@ -116,6 +117,22 @@ struct s_player
 	t_nav_mesh		*agent;
 };
 
+struct s_camera
+{
+	t_type			type;
+	void			*img;
+	t_vector		vector;
+	void			(*update)(void);
+	void			(*render)(t_buffer	*b);
+	void			(*destroy)(void *o);
+	void			(*funct_key)(int key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*colison)(t_object *collided);
+	void			(*set_position)(t_vector v);
+	void			(*render_view)(t_element *e, void *o);
+};
+
+
 struct s_nav_node
 {
 	int			x;
@@ -147,5 +164,6 @@ t_object	*new_teste(void);
 t_player	*new_player(void);
 t_object	*new_wall(void);
 t_object	*new_menu(void);
+t_object	*new_camera(void);
 
 #endif

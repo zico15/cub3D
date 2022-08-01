@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/06 18:57:12 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:43:11 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		printf("ERROR ARG!\n");
-	e = cread_engine("cub3D", argv[1], 1200, 600);
+	e = cread_engine("cub3D", argv[1], W_WIDTH, W_HEIGHT);
 	e->load_maps(argv, argc);
 	mlx_hook(e->win, 17, 0, e->close, "exit");
 	return (mlx_loop(e->mlx));

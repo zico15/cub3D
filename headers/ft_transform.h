@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_transform.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/15 13:54:59 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:51:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ struct s_colison
 t_vector	vector(double x, double y, double w, double h);
 t_vector	vector_zero(void);
 t_colison	colison(void);
+t_vector	*copy_vector(t_vector *v);
+double		get_vectors_distance(t_vector a, t_vector b);
+
 
 #endif
