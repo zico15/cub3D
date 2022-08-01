@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 12:43:44 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:33:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define KEY_S 115
 # define KEY_D 100
 # define KEY_A 97
+# define KEY_SPACE 32
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define MOVE_LEN 10

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 19:52:40 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:59:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	add_object_scene(double x, double y, char c)
 	angle = 0;
 	if (c == 'T')
 		obj = scene()->add(new_teste());
+	if (c == 'D')
+		obj = scene()->add(new_door());
 	else if (c == '1')
 		obj = scene()->add(new_wall());
 	else if (string().contains("NSWE", _str(c)))
@@ -45,7 +47,11 @@ void	add_object_scene(double x, double y, char c)
 	obj->vector.angle = angle;
 	obj->vector.radius = GRID_SIZE;
 	if (string().contains("NSWE", _str(c)) || c == 'T')
+	{
+		obj->vector.w = 10;
+		obj->vector.h = 10;
 		obj->vector.radius = 15;
+	}
 }
 
 void	add_object_all_map(t_map *map)

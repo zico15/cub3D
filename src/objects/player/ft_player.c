@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/31 19:49:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:57:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	__reander(t_buffer *b)
 
 	p = (t_player *) this();
 	fthis()->agent = p->agent;
-	b->object(this());
+	b->rectangle(this()->vector, 0xf2ad0d);
 	print_raycast(p);
 }
 
@@ -57,11 +57,12 @@ t_player	*new_player(void)
 	p->funct_key = __funct_key;
 	p->update = __update;
 	p->render = __reander;
-	p->img = engine()->load_img(NULL, "imgs/player.xpm");
 	p->agent = new_nav_mesh();
 	p->funct_mouse = __funct_mouse;
 	p->colison = __colison;
 	p->vector.angle = 90;
+	p->vector.w = 10;
+	p->vector.h = 10;
 	p->set_position = __set_position;
 	fthis()->player = p;
 	return (p);

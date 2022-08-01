@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/01 12:55:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 18:00:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	update_print_ray(t_player *p, double rel_angle, void *ray_return)
 	int			max;
 
 	max = 500;
-	x = p->vector.x + (GRID_SIZE / 2);
-	y = p->vector.y + (GRID_SIZE / 2);
+	x = p->vector.x + (p->vector.w / 2);
+	y = p->vector.y + (p->vector.h / 2);
 	val = PI / 180;
 	delta = vector_zero();
-	delta.w = GRID_SIZE;
-	delta.h = GRID_SIZE;
+	delta.w = p->vector.w;
+	delta.h = p->vector.h;
 	i = -1;
 	while (++i < max)
 	{
