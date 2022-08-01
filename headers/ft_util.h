@@ -36,6 +36,8 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define MOVE_LEN 10
+# define W_WIDTH 1200
+# define W_HEIGHT 900
 # define COLOR_TRANSPARENT 0xd411aa
 
 typedef struct s_this

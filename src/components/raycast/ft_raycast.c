@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/31 20:08:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/07/30 18:47:21 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	print_raycast(t_player *p)
 {
 	int		rel_angle;
 
+	ray_return = new_array();
 	rel_angle = -45;
 	while (rel_angle < 45)
 	{

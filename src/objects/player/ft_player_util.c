@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/23 15:21:15 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/07/30 18:59:31 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,13 @@ void	__funct_key(int key, int type_event)
 		v.x += MOVE_LEN * cos(v.angle * M_PI / 180); 
 		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);
 	}
-	p->set_position(v);
+	if (key == 65421)
+	{
+		ray_return = print_raycast(p);
+		array(ray_return)->for_each(printf_element, p);
+
+	}
+ 	p->set_position(v);
 	p->vector.angle += (((key == KEY_RIGHT) - (key == KEY_LEFT)) * 5);
 	if (p->vector.angle > 360)
 		p->vector.angle -= 360;
