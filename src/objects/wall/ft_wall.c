@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 16:58:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 14:13:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <ft_object_base.h>
 #include <ft_check.h>
 
-void	__colison(t_object *collided)
+static void	__colison(t_object *collided)
 {
 	(void) collided;
 	printf("wall: %i\n", collided->type);
@@ -23,6 +23,7 @@ void	__colison(t_object *collided)
 static void	__reander(t_buffer *b)
 {
 	b->rectangle(this()->vector, 0x0000FF00);
+	
 }
 
 t_object	*new_wall(void)

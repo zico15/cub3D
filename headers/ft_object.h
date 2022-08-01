@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 12:52:12 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:00:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ struct s_buffer
 	void	*buffer;
 	t_data	data;
 	void	(*rectangle)(t_vector v, int color);
+	void	(*rectangle_border)(t_vector v, int color, int \
+	border, int color_border);
 	void	(*pixel)(int x, int y, int color);
 	int		(*get_color_imge)(t_data	data, int x, int y);
 	void	(*image)(t_vector v, void *img);
