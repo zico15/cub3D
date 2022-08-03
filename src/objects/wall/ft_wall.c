@@ -27,13 +27,13 @@ static void	__reander(t_buffer *b)
 t_object	*new_wall(void)
 {
 	t_object		*wall;
-	static void		*img;
+	static t_sprite	*sprite;
 
 	wall = new_object_instance(sizeof(t_object));
 	wall->type = WALL;
-	if (!img)
-		img = engine()->load_img(NULL, "imgs/wall.xpm");
-	wall->img = img;
+	if (!sprite)
+		sprite = engine()->load_sprite("imgs/wall.xpm");
+	wall->sprite = sprite;
 	wall->colison = __colison;
 	wall->render = __reander;
 	return (wall);

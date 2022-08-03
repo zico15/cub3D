@@ -23,5 +23,6 @@ t_scene		*__load_maps(char **args, int size);
 void		*__load_img(t_vector *v, char *file_name);
 void		__pixel_put_win(int x, int y, int color);
 t_buffer	*__canva(void);
+t_sprite	*__load_sprite(char *file_name);
 
 #endif

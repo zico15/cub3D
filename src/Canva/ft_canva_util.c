@@ -12,22 +12,22 @@
 
 #include <ft_canva_util.h>
 
-void	__image(t_vector v, void *img)
+void	__image(t_sprite *sprite)
 {
 	t_data	data;
 	int		x;
 	int		y;
 
-	data.img = img;
+	data.img = sprite->img;
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
 	y = -1;
-	while (++y < v.h)
+	while (++y < sprite->v.h)
 	{
 		x = -1;
-		while (++x < v.w)
+		while (++x < sprite->v.w)
 		{
-			__pixel(v.x + x, v.y + y, \
+			__pixel(sprite->v.x + x, sprite->v.y + y, \
 			__get_color_imge(data, x, y));
 		}
 	}
@@ -46,24 +46,24 @@ static t_vector	get_vector_sub(t_vector img, t_vector sub)
 	return (sub);
 }
 
-void	__image_sub(t_vector v, void *img, t_vector sub)
+void	__image_sub(t_sprite *sprite, t_vector sub)
 {
 	t_data	data;
 	int		x;
 	int		y;
 	int		w;
 
-	data.img = img;
+	data.img = sprite->img;
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
 	y = -1;
-	while (++y < v.h && --sub.h > 0)
+	while (++y < sprite->v.h && --sub.h > 0)
 	{
 		x = -1;
 		w = sub.w;
-		while (++x < v.w && --w > 0)
+		while (++x < sprite->v.w && --w > 0)
 		{
-			__pixel(v.x + x, v.y + y, \
+			__pixel(sprite->v.x + x, sprite->v.y + y, \
 			__get_color_imge(data, x + sub.x, y + sub.y));
 		}
 	}
@@ -71,8 +71,8 @@ void	__image_sub(t_vector v, void *img, t_vector sub)
 
 void	__object(t_object *ob)
 {
-	if (ob->img)
-		__image(ob->vector, ob->img);
+	if (ob->sprite)
+		__image(ob->sprite);
 }
 
 

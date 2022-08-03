@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/01 19:17:29 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/03 21:59:00 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ static void	__reander(t_buffer *b)
 
 static void	__update(void)
 {
-	t_player	*p;
-	t_vector	v;
+	t_player		*p;
+	t_vector		v;
+	static int		count;
 
 	p = fthis()->player;
 	fthis()->agent = p->agent;
@@ -43,6 +44,11 @@ static void	__update(void)
 		p->set_position(*((t_vector *) array(p->agent->rota)->get(0)));
 		array(p->agent->rota)->remove_index(0);
 	}
+	if (++count < 5000)
+		count = 0;
+	if (p->animation.is_run)
+		set_animation((t_object *) p, 0);
+		
 }
 
 static void	__colison(t_object *collided)
@@ -61,12 +67,14 @@ t_player	*new_player(void)
 	p->update = __update;
 	p->render = __reander;
 	p->agent = new_nav_mesh();
+	p->sprite = engine()->load_sprite("imgs/IMG/Arma01.xpm");
 	p->funct_mouse = __funct_mouse;
 	p->colison = __colison;
 	p->vector.angle = 90;
 	p->vector.w = 10;
 	p->vector.h = 10;
 	p->set_position = __set_position;
+	__load_animation(p);
 	fthis()->player = p;
 	return (p);
 }

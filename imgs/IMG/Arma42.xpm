@@ -3,7 +3,7 @@ static char *Arma42_xpm[] = {
 /* width height num_colors chars_per_pixel */
 "   1024   768      256            2",
 /* colors */
-"`` c None",
+"`` c #d411aa",
 "`. c #000001",
 "`# c #091508",
 "`a c #16150b",

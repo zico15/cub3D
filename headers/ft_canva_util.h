@@ -19,8 +19,8 @@ void	__rectangle(t_vector v, int color);
 void	__rectangle_border(t_vector v, int color, int border, int color_border);
 void	__pixel(int x, int y, int color);
 int		__get_color_imge(t_data	data, int x, int y);
-void	__image(t_vector v, void *img);
-void	__image_sub(t_vector v, void *img, t_vector sub);
+void	__image(t_sprite *sprite);
+void	__image_sub(t_sprite *sprite, t_vector sub);
 void	__object(t_object *ob);
 
 #endif

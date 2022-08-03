@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 17:33:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:54:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <math.h>
 # include <ft_transform.h>
+# include <ft_animation.h>
 # include <ft_base_array.h>
 # include <ft_string.h>
 # include <fcntl.h>
@@ -38,7 +39,7 @@
 # define KEY_RIGHT 65363
 # define MOVE_LEN 10
 # define W_WIDTH 1200
-# define W_HEIGHT 900
+# define W_HEIGHT 768
 # define VIEW_ANGLE 90
 # define COLOR_TRANSPARENT 0xd411aa
 

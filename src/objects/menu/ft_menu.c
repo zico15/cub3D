@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 18:34:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/02 12:33:44 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	m.y += 3;
 	m.w -= 6;
 	m.h -= 6;
-	b->image_sub(m, map()->img, v);
+	map()->sprite->v = m;
+	b->image_sub(map()->sprite, v);
 	b->rectangle(vector(m.x + 91, m.y + 72, 10, 10), 0xd36a0d);
 }
 
@@ -36,6 +37,8 @@ static void	__reander(t_buffer *b)
 	p.x = ((p.x - (p.w / 2) - GRID_SIZE) / GRID_SIZE) - 1;
 	p.y = ((p.y - (p.h / 2) - GRID_SIZE) / GRID_SIZE);
 	mini_map(b, p, this()->vector);
+	if (fthis()->player->sprite)
+		b->image(fthis()->player->sprite);
 }
 
 t_object	*new_menu(void)

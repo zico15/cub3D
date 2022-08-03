@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 17:28:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/02 14:03:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,16 @@ struct s_buffer
 	border, int color_border);
 	void	(*pixel)(int x, int y, int color);
 	int		(*get_color_imge)(t_data	data, int x, int y);
-	void	(*image)(t_vector v, void *img);
-	void	(*image_sub)(t_vector v, void *img, t_vector sub);
+	void	(*image)(t_sprite *sprite);
+	void	(*image_sub)(t_sprite *sprite, t_vector sub);
 	void	(*object)(t_object *ob);
 };
 
 struct s_object
 {
 	t_type			type;
-	void			*img;
+	t_sprite		*sprite;
+	t_animation		animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
@@ -83,7 +84,8 @@ struct s_object
 struct s_map
 {
 	t_type			type;
-	void			*img;
+	t_sprite		*sprite;
+	t_animation		animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
@@ -107,7 +109,8 @@ struct s_map
 struct s_player
 {
 	t_type			type;
-	void			*img;
+	t_sprite		*sprite;
+	t_animation		animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
@@ -123,7 +126,8 @@ struct s_player
 struct s_camera
 {
 	t_type			type;
-	void			*img;
+	t_sprite		*sprite;
+	t_animation		animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
@@ -138,7 +142,8 @@ struct s_camera
 struct s_door
 {
 	t_type			type;
-	void			*img;
+	t_sprite		*sprite;
+	t_animation		animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);

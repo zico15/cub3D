@@ -62,3 +62,17 @@ void	*__load_img(t_vector *v, char *file_name)
 	v->h = h;
 	return (img);
 }
+
+t_sprite	*__load_sprite(char *file_name)
+{
+	t_sprite *s;
+	int		  w;
+	int		  h;
+
+	s = malloc_ob(sizeof(*s));
+	s->img = mlx_xpm_file_to_image(engine()->mlx, file_name, \
+	&w, &h);
+	s->v.w = w;
+	s->v.h = h;
+	return (s);
+}

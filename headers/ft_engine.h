@@ -32,6 +32,7 @@ struct s_engine
 	t_scene			*(*set_scene)(int	index_scene);
 	t_scene			*(*load_maps)(char **args, int size);
 	void			*(*load_img)(t_vector *v, char *file_name);
+	t_sprite		*(*load_sprite)(char *file_name);
 	int				(*close)(char *msg);
 };
 

@@ -31,7 +31,7 @@ struct s_node
 struct s_scene
 {
 	t_type			type;
-	void			*img;
+	t_sprite		*sprite;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);

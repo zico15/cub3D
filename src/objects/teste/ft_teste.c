@@ -49,7 +49,7 @@ static void	__funct_mouse(int x, int y, int type_event)
 
 static void	__reander(t_buffer *b)
 {
-	b->object(this());
+	//b->object(this());
 }
 
 t_object	*new_teste(void)
@@ -61,6 +61,5 @@ t_object	*new_teste(void)
 	ob->render = __reander;
 	ob->colison = __colison;
 	ob->funct_mouse = __funct_mouse;
-	ob->img = engine()->load_img(NULL, "imgs/tester.xpm");
 	return (ob);
 }

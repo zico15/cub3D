@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/01 19:15:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/03 21:57:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ void	__funct_key(int key, int type_event)
 	}
 	if (key == 65421)
 	{
-		ray_return = print_raycast(p);
+		p->animation.is_run = 1;
+		/*ray_return = print_raycast(p);
 		array(ray_return)->for_each(printf_element, p);
 		array(ray_return)->for_each(fthis()->camera->render_view, p);
-		array(ray_return)->destroy();
+		array(ray_return)->destroy();*/
 
 	}
  	p->set_position(v);
