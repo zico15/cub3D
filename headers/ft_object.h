@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/02 14:03:29 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:14:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ struct s_door
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
 	int				is_open;
+	int				count;
 };
 
 

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 22:47:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:12:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,3 @@ t_buffer	*__canva(void)
 	b.rectangle_border = __rectangle_border;
 	return (&b);
 }
-
-

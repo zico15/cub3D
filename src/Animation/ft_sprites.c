@@ -2,9 +2,9 @@
 
 #include <ft_util.h>
 
-t_sprite *new_sprite (int w, int h)
+t_sprite	*new_sprite(int w, int h)
 {
-	t_sprite *s;
+	t_sprite	*s;
 
 	s = malloc_ob(sizeof(t_sprite));
 	s->v.w = w;

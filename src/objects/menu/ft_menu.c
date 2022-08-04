@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/02 12:33:44 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:30:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	__reander(t_buffer *b)
 	p.x = ((p.x - (p.w / 2) - GRID_SIZE) / GRID_SIZE) - 1;
 	p.y = ((p.y - (p.h / 2) - GRID_SIZE) / GRID_SIZE);
 	mini_map(b, p, this()->vector);
-	if (fthis()->player->sprite)
+	if (0 && fthis()->player->sprite)
 		b->image(fthis()->player->sprite);
 }
 

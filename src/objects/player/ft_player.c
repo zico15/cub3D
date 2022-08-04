@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/03 21:59:00 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:13:00 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void	__update(void)
 		count = 0;
 	if (p->animation.is_run)
 		set_animation((t_object *) p, 0);
-		
 }
 
 static void	__colison(t_object *collided)

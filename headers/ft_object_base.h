@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object_base.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 00:07:51 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:28:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@
 t_object	*this(void);
 
 void		__destroy_ob(void *o);
+void		__colison_base(t_object *collided);
 #endif

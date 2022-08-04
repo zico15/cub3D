@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object_base_util.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 18:12:35 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:27:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 t_object	*this(void)
 {
 	return (fthis()->object);
+}
+
+void	__colison_base(t_object *collided)
+{
+	(void) collided;
 }
 
 void	*new_object_instance(size_t size)

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 22:33:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:12:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,3 @@ void	__object(t_object *ob)
 	if (ob->sprite)
 		__image(ob->sprite);
 }
-
-
-
