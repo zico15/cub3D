@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_component.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 19:16:27 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:05:52 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 
 
 void	*print_raycast(t_player *p);
+void	update_print_ray(t_vector p, double rel_angle, void *ray_return, int max);
 
 #endif

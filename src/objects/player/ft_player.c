@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/04 18:13:00 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:51:08 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 #include <ft_component.h>
 #include <ft_player.h>
 
-static void	__reander(t_buffer *b)
-{
-	t_player	*p;
-	t_vector	v;
-	void		*list;
+// static void	__reander(t_buffer *b)
+// {
+// 	t_player	*p;
+// 	t_vector	v;
+// 	void		*list;
 
-	p = (t_player *) this();
-	fthis()->agent = p->agent;
-	b->rectangle(this()->vector, 0xf2ad0d);
-	list = print_raycast(p);
-	if (list)
-		array(list)->destroy();
-}
+// 	p = (t_player *) this();
+// 	fthis()->agent = p->agent;
+// 	b->rectangle(this()->vector, 0xf2ad0d);
+// 	list = print_raycast(p);
+// 	if (list)
+// 		array(list)->destroy();
+// }
 
 static void	__update(void)
 {
@@ -64,7 +64,7 @@ t_player	*new_player(void)
 	p->type = PLAYER;
 	p->funct_key = __funct_key;
 	p->update = __update;
-	p->render = __reander;
+	// p->render = __reander;
 	p->agent = new_nav_mesh();
 	p->sprite = engine()->load_sprite("imgs/IMG/Arma01.xpm");
 	p->funct_mouse = __funct_mouse;
