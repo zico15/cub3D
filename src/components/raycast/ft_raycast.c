@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/22 20:37:07 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/22 20:55:42 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	update_print_ray(t_vector p, double rel_angle, void *ray_return, int max)
 			array(ray_return)->add(copy_vector(&delta));
 			return ;
 		}
-		(canva())->pixel(delta.x, delta.y, 0x00990099);
+		// (canva())->pixel(delta.x, delta.y, 0x00990099);
 	}
 }
 

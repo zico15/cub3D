@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/22 20:35:21 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/22 20:57:13 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_vector obj, int ray_count)
 {
 	t_vector	column;
 	double		distance;
-
 
 	distance = get_vectors_distance(p->vector, obj);
 	column.h = W_HEIGHT / (distance);

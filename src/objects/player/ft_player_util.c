@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/03 21:57:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:03:31 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ void	__funct_key(int key, int type_event)
 		v.x += MOVE_LEN * cos(v.angle * M_PI / 180); 
 		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);
 	}
-	if (key == 65421)
+	if (key == 32)
 	{
+		canva()->rectangle(vector(0, 0, W_WIDTH, W_HEIGHT), 0xc4994a);
 		p->animation.is_run = 1;
-		/*ray_return = print_raycast(p);
-		array(ray_return)->for_each(printf_element, p);
+		ray_return = print_raycast(p);
+		// array(ray_return)->for_each(printf_element, p);
 		array(ray_return)->for_each(fthis()->camera->render_view, p);
-		array(ray_return)->destroy();*/
+		array(ray_return)->destroy();
 
 	}
  	p->set_position(v);
