@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wall.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 19:18:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:50:07 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void	__colison(t_object *collided)
 	(void) collided;
 }
 
-static void	__reander(t_buffer *b)
-{
-	b->rectangle(this()->vector, 0x0000FF00);
-}
+// static void	__reander(t_buffer *b)
+// {
+// 	// b->rectangle(this()->vector, 0x0000FF00);
+// }
 
 t_object	*new_wall(void)
 {
@@ -35,6 +35,6 @@ t_object	*new_wall(void)
 		sprite = engine()->load_sprite("imgs/wall.xpm");
 	wall->sprite = sprite;
 	wall->colison = __colison;
-	wall->render = __reander;
+	// wall->render = __reander;
 	return (wall);
 }

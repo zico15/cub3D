@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_door.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/04 18:32:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/22 19:51:35 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,24 @@ static void	__updade(void)
 	}
 }
 
-static void	__render(t_buffer *b)
-{
-	t_door	*door;
+// static void	__render(t_buffer *b)
+// {
+// 	t_door	*door;
 
-	door = (t_door *) this();
-	if (!door->is_open)
-		b->rectangle(this()->vector, 0xee00ff);
-	else
-		b->rectangle_border(this()->vector, COLOR_TRANSPARENT, \
-		3, 0xee00ff);
-}
+// 	door = (t_door *) this();
+// 	if (!door->is_open)
+// 		b->rectangle(this()->vector, 0xee00ff);
+// 	else
+// 		b->rectangle_border(this()->vector, COLOR_TRANSPARENT, \
+// 		3, 0xee00ff);
+// }
 
 t_object	*new_door(void)
 {
 	t_door	*door;
 
 	door = new_object_instance(sizeof(t_door));
-	door->render = __render;
+	// door->render = __render;
 	door->update = __updade;
 	door->colison = __colison_base;
 	door->funct_key = __funct_key;

@@ -3,47 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/01 18:00:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:55:42 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_check.h>
 
-void	update_print_ray(t_player *p, double rel_angle, void *ray_return)
+void	update_print_ray(t_vector p, double rel_angle, void *ray_return, int max)
 {
 	double		val;
 	double		x;
 	double		y;
 	t_vector	delta;
 	int			i;
-	int			max;
 
-	max = 500;
-	x = p->vector.x + (p->vector.w / 2);
-	y = p->vector.y + (p->vector.h / 2);
+	x = p.x + (p.w / 2);
+	y = p.y + (p.h / 2);
 	val = PI / 180;
 	delta = vector_zero();
-	delta.w = p->vector.w;
-	delta.h = p->vector.h;
+	delta.w = p.w;
+	delta.h = p.h;
 	i = -1;
 	while (++i < max)
 	{
-		delta.y = y - (i * cos((p->vector.angle + rel_angle) * val));
-		delta.x = x + (i * sin((p->vector.angle + rel_angle) * val));
+		delta.y = y - (i * cos((p.angle + rel_angle) * val));
+		delta.x = x + (i * sin((p.angle + rel_angle) * val));
 		if (delta.x < 0 || delta.y < 0 || delta.x >= \
 		engine()->width || delta.y >= engine()->height)
 			return ;
-		if (colison().pixel((t_object *) p, delta.x, delta.y))
+		if (colison().pixel(scene()->player, delta.x, delta.y))
 		{
-			//printf("delta.x: %f delta.y: %f\n", delta.x, delta.y);
 			array(ray_return)->add(copy_vector(&delta));
 			return ;
 		}
-		(canva())->pixel(delta.x, delta.y, 0x00990099);
+		// (canva())->pixel(delta.x, delta.y, 0x00990099);
 	}
 }
 
@@ -56,7 +53,7 @@ void	*print_raycast(t_player *p)
 	rel_angle = -VIEW_ANGLE / 2;
 	while (rel_angle < VIEW_ANGLE / 2)
 	{
-		update_print_ray(p, rel_angle, ray_return);
+		update_print_ray(p->vector, rel_angle, ray_return, 500);
 		rel_angle++;
 	}
 	return (ray_return);
