@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/22 20:57:13 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 12:13:30 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,25 @@ static void	__render_column(t_buffer *b, t_object *p, \
 t_vector obj, int ray_count)
 {
 	t_vector	column;
+	double		render_scale;
 	double		distance;
+	double		distance_hor;
 
 	distance = get_vectors_distance(p->vector, obj);
-	column.h = W_HEIGHT / (distance);
+	distance_hor = distance * cos(obj.angle * PI / 180);
+	// render_scale = distance / GRID_SIZE;
+	// if (render_scale < 0)
+	// 	render_scale = 1;
+	// printf("render scale %f\n", render_scale);
+	column.h = W_HEIGHT / distance_hor;
 	column.w = W_WIDTH / VIEW_ANGLE;
 	column.x = (ray_count * column.w);
-	// column.x = (ray_count * column.w) + p->vector.x;
 	column.y = W_HEIGHT / 2 + column.h / 2;
 	b->rectangle(column, GREEN);
 }
 
 static void	__render_view(t_element *e, void *o)
 {
-	int			ray_count;
 	t_vector	*obj;
 	t_object	*p;
 
