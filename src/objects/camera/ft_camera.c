@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/27 15:52:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 17:42:03 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ t_vector obj, int ray_count)
 
 	distance = get_vectors_distance(p->vector, obj);
 	distance_hor = distance * cos(obj.angle * M_PI / 180);
-	// render_scale = distance / GRID_SIZE;
-	// if (render_scale < 0)
-	// 	render_scale = 1;
-	// printf("render scale %f\n", render_scale);
 	column.h = (int) W_HEIGHT / distance_hor;
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
