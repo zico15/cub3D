@@ -6,12 +6,13 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/27 12:50:38 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 14:51:32 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
+#include <ft_component.h>
 
 #define GREEN 0x0000FF00
 
@@ -48,14 +49,29 @@ static void	__render_view(t_element *e, void *o)
 	__render_column(canva(), p, *obj, e->index);
 }
 
+void	__render(t_buffer *b)
+{
+	t_player	*p;
+	void		*ray_return;
+
+	p = scene()->player;
+	if (!p)
+		return ;
+	canva()->rectangle(vector(0, 0, W_WIDTH, W_HEIGHT), 0xc4994a);
+	// p->animation.is_run = 1;
+	ray_return = print_raycast(p);
+	array(ray_return)->for_each(fthis()->camera->render_view, p);
+	array(ray_return)->destroy();
+}
+
 t_object	*new_camera(void)
 {
 	t_camera	*camera;
 
 	camera = new_object_instance(sizeof(t_camera));
-	// camera->render = __render;
-	camera->vector = vector(0, 0, W_WIDTH, W_HEIGHT);
 	camera->render_view = __render_view;
+	camera->render = __render;
+	camera->vector = vector(0, 0, W_WIDTH, W_HEIGHT);
 	fthis()->camera = camera;
 	fthis()->scene->camera = camera;
 	return ((t_object *) camera);

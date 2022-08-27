@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/27 14:10:38 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 14:50:07 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void	*print_raycast(t_player *p)
 		update_print_ray(p->vector, rel_angle, ray_return, 500);
 		rel_angle += (double) VIEW_ANGLE / N_RAYS;
 	}
+	//printf("size: %d\n", array(ray_return)->size);
 	return (ray_return);
 }
