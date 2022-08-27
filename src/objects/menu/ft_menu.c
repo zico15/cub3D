@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/22 20:37:35 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 19:42:16 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	t_vector	v;
 	t_vector	p_rel;
 	t_vector	direction;
-	float		val;
+	double		val;
 
 	v = vector(p.x * GRID_MIN_SIZE, p.y * GRID_MIN_SIZE, 200, 150);
 	b->rectangle_border(m, 0xe5e6e6, 3, 0xdf0707);
@@ -31,12 +31,12 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	p_rel.x = m.x + 91;
 	p_rel.y = m.y + 72;
 	p_rel.angle = p.angle;
-	val = PI / 180;
-	direction.y = p_rel.y - (20 * cos(p.angle * val));
-	direction.x = p_rel.x + (20 * sin(p.angle * val));
+	val = M_PI / 180;
+	direction.y = p_rel.y - (20 * sin(p.angle * val));
+	direction.x = p_rel.x + (20 * cos(p.angle * val));
 	b->image_sub(map()->sprite, v);
-	b->rectangle(vector(m.x + 91, m.y + 72, 10, 10), 0xd36a0d);
-	b->rectangle(vector(direction.x, direction.y, 5, 5), 0x00990099);
+	b->rectangle(vector(p_rel.x, p_rel.y, 10, 10), 0xd36a0d);
+	b->rectangle(vector(direction.x + 5 - 1, direction.y + 5 - 1, 2, 2), 0x00990099);
 }
 
 static void	__reander(t_buffer *b)
