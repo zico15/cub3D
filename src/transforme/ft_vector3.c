@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:44:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/22 20:58:15 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 15:36:31 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_vector	vector(double x, double y, double w, double h)
 	v.y = y;
 	v.w = w;
 	v.h = h;
+	v.angle = 0;
 	return (v);
 }
 
@@ -45,6 +46,7 @@ t_vector	*copy_vector(t_vector *v)
 	cp_v->y = v->y;
 	cp_v->w = v->w;
 	cp_v->h = v->h;
+	cp_v->angle = v->angle;
 	return (cp_v);
 }
 
