@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/22 21:03:31 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 12:56:53 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ void printf_element(t_element *e, void *o)
 	p = o;
 	v = (t_vector *) e->value;
 	printf("x: %f y: %f d> %f\n", v->x, v->y, get_vectors_distance(*v , p->vector));
+}
+
+void	update_view(t_player *p, void *ray_return)
+{
+	canva()->rectangle(vector(0, 0, W_WIDTH, W_HEIGHT), 0xc4994a);
+	p->animation.is_run = 1;
+	ray_return = print_raycast(p);
+	// array(ray_return)->for_each(printf_element, p);
+	array(ray_return)->for_each(fthis()->camera->render_view, p);
+	array(ray_return)->destroy();
 }
 
 void	__funct_key(int key, int type_event)
@@ -55,15 +65,7 @@ void	__funct_key(int key, int type_event)
 		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);
 	}
 	if (key == 32)
-	{
-		canva()->rectangle(vector(0, 0, W_WIDTH, W_HEIGHT), 0xc4994a);
-		p->animation.is_run = 1;
-		ray_return = print_raycast(p);
-		// array(ray_return)->for_each(printf_element, p);
-		array(ray_return)->for_each(fthis()->camera->render_view, p);
-		array(ray_return)->destroy();
-
-	}
+		update_view(p, ray_return);
  	p->set_position(v);
 	p->vector.angle += (((key == KEY_RIGHT) - (key == KEY_LEFT)) * 5);
 	if (p->vector.angle > 360)

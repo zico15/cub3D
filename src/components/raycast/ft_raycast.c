@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/27 12:16:02 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/27 14:10:38 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	update_print_ray(t_vector p, double rel_angle, void *ray_return, int max)
 	t_vector	delta;
 	int			i;
 
-	x = p.x + (p.w / 2);
-	y = p.y + (p.h / 2);
-	val = PI / 180;
+	x = p.x;
+	y = p.y;
+	val = M_PI / 180;
 	delta = vector_zero();
 	delta.w = p.w;
 	delta.h = p.h;
@@ -48,14 +48,14 @@ void	update_print_ray(t_vector p, double rel_angle, void *ray_return, int max)
 void	*print_raycast(t_player *p)
 {
 	double		rel_angle;
-	void	*ray_return;
+	void		*ray_return;
 
 	ray_return = new_array();
-	rel_angle = -VIEW_ANGLE / 2;
-	while (rel_angle < VIEW_ANGLE / 2)
+	rel_angle = (double) -VIEW_ANGLE / 2;
+	while (rel_angle < (double) VIEW_ANGLE / 2)
 	{
 		update_print_ray(p->vector, rel_angle, ray_return, 500);
-		rel_angle++;
+		rel_angle += (double) VIEW_ANGLE / N_RAYS;
 	}
 	return (ray_return);
 }

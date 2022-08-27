@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/02 12:54:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:52:52 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define W_WIDTH 1200
 # define W_HEIGHT 768
 # define VIEW_ANGLE 90
+# define N_RAYS	1200
 # define COLOR_TRANSPARENT 0xd411aa
 
 typedef struct s_this
