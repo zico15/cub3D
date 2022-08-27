@@ -48,23 +48,26 @@ static t_vector	get_vector_sub(t_vector img, t_vector sub)
 
 void	__image_sub(t_sprite *sprite, t_vector sub)
 {
-	t_data	data;
-	int		x;
-	int		y;
-	int		w;
+	static t_data	data;
+	t_vector		temp;
+	static double	x;
+	static double	y;
 
 	data.img = sprite->img;
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
-	y = -1;
-	while (++y < sprite->v.h && --sub.h > 0)
+	temp.y = -1;
+	while (++temp.y < sprite->v.h && --sub.h > 0)
 	{
-		x = -1;
-		w = sub.w;
-		while (++x < sprite->v.w && --w > 0)
+		temp.x = -1;
+		temp.w = sub.w;
+		while (++temp.x < sprite->v.w && --temp.w > 0)
 		{
-			__pixel(sprite->v.x + x, sprite->v.y + y, \
-			__get_color_imge(data, x + sub.x, y + sub.y));
+			x = temp.x + sub.x;
+			y = temp.y + sub.y;
+			if (x >= 0 && y >= 0)
+				__pixel(sprite->v.x + temp.x, sprite->v.y + \
+				temp.y, __get_color_imge(data, x, y));
 		}
 	}
 }
