@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 12:54:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/28 19:33:50 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ t_scene	*__load_maps(char **args, int size)
 		scene->map = map;
 		map->load(args[i]);
 		scene->player = fthis()->player;
-		scene->add(new_camera());
+		// scene->add(new_camera());		
+		scene->add(new_teste());
 		scene->add(new_menu());
 	}
 	scene = __set_scene(0);

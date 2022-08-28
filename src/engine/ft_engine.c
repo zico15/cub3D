@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/22 20:54:33 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/28 15:00:49 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	game_loop(t_engine *e)
 	if (!scene())
 		return (0);
 	scene()->update();
-	// e->canva->rectangle(vector(0, 0, e->width, e->height), 0xc4994a);
+	e->canva->rectangle(vector(0, 0, e->width, e->height), 0xc4994a);
 	scene()->render(e->canva);
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
 	, 0, 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/02 14:03:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:27:27 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,12 @@ static void	__load_map(char *path)
 	cread_map(map);
 }
 
-static void	__update(void)
-{
-
-}
-
 t_map	*new_map(void)
 {
 	t_map		*map;
 
 	map = new_object_instance(sizeof(t_map));
 	map->is_map_ok = 1;
-	map->update = __update;
 	map->type = MAP;
 	map->map = new_array();
 	map->load = __load_map;

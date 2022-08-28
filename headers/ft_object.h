@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/04 18:14:15 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:22:16 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ struct s_buffer
 	void	(*image)(t_sprite *sprite);
 	void	(*image_sub)(t_sprite *sprite, t_vector sub);
 	void	(*object)(t_object *ob);
+	void	(*line)(t_vector begin, t_vector end, int color);
 };
 
 struct s_object

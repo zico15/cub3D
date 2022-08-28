@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/22 19:50:07 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/28 19:30:36 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	__colison(t_object *collided)
 
 // static void	__reander(t_buffer *b)
 // {
-// 	// b->rectangle(this()->vector, 0x0000FF00);
+// 	b->rectangle(this()->vector, 0x0000FF00);
 // }
 
 t_object	*new_wall(void)

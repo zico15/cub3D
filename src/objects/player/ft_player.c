@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/22 19:51:08 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/28 19:31:47 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 #include <ft_component.h>
 #include <ft_player.h>
 
+void	raycast(t_player *p, double rel_angle);
+
 // static void	__reander(t_buffer *b)
 // {
 // 	t_player	*p;
 // 	t_vector	v;
-// 	void		*list;
+// 	t_vector	dir;
 
 // 	p = (t_player *) this();
 // 	fthis()->agent = p->agent;
-// 	b->rectangle(this()->vector, 0xf2ad0d);
-// 	list = print_raycast(p);
-// 	if (list)
-// 		array(list)->destroy();
+// 	b->rectangle(vector(p->vector.x - p->vector.w / 2, p->vector.y - p->vector.h / 2, p->vector.w, p->vector.h), 0xf2ad0d);
+// 	dir.x = (int) p->vector.x + ft_cos(p->vector.angle) * 20;
+// 	dir.y = (int) p->vector.y - ft_sin(p->vector.angle) * 20;
+// 	b->rectangle(vector(dir.x - 1, dir.y - 1, 2, 2), 0xdf0707);
 // }
 
 static void	__update(void)

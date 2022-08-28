@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/27 19:44:06 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/28 20:09:19 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define MOVE_LEN 10
-# define W_WIDTH 640
-# define W_HEIGHT 480
+# define W_WIDTH 1200
+# define W_HEIGHT 1000
 # define VIEW_ANGLE 60
-# define N_RAYS	W_WIDTH
+# define N_RAYS	100
 # define COLOR_TRANSPARENT 0xd411aa
 
 typedef struct s_this

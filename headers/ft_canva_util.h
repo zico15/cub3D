@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_canva_util.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 14:59:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:22:25 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int		__get_color_imge(t_data	data, int x, int y);
 void	__image(t_sprite *sprite);
 void	__image_sub(t_sprite *sprite, t_vector sub);
 void	__object(t_object *ob);
+void	__print_line(t_vector begin, t_vector end, int color);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_transform.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 12:51:07 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/28 12:51:27 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_vector	vector_zero(void);
 t_colison	colison(void);
 t_vector	*copy_vector(t_vector *v);
 double		get_vectors_distance(t_vector a, t_vector b);
-
+double		ft_cos(double angle);
+double		ft_sin(double angle);
+double		ft_tan(double angle);
 
 #endif

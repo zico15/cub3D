@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_canva_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/04 18:12:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/08/28 16:35:52 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,28 @@ void	__object(t_object *ob)
 {
 	if (ob->sprite)
 		__image(ob->sprite);
+}
+
+void	__print_line(t_vector begin, t_vector end, int color)
+{
+	static int	offset_y;
+	static int	offset_x;
+
+	offset_x = 	(begin.x < end.x) - (begin.x >= end.x);
+	offset_y = 	(begin.y < end.y) - (begin.y >= end.y);
+	begin.x = (int) begin.x; 
+	begin.y = (int) begin.y;
+	while (1)
+	{
+		if (begin.x != end.x)
+			begin.x += offset_x;
+		if (begin.y != end.y)
+			begin.y += offset_y;
+		if (begin.y >= 0 && begin.y < W_HEIGHT && begin.x >= 0 && begin.x < W_WIDTH)
+			__pixel(begin.x , begin.y, color);
+		else
+			break;
+		if (begin.x == end.x && begin.y == end.y)
+			break;
+	}
 }

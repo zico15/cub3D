@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/27 17:42:03 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/28 18:25:54 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vector obj, int ray_count)
 	double		distance_hor;
 
 	distance = get_vectors_distance(p->vector, obj);
-	distance_hor = distance * cos(obj.angle * M_PI / 180);
+	distance_hor = distance * ft_cos(obj.angle);
 	column.h = (int) W_HEIGHT / distance_hor;
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
@@ -69,8 +69,8 @@ t_object	*new_camera(void)
 	t_camera	*camera;
 
 	camera = new_object_instance(sizeof(t_camera));
-	camera->render_view = __render_view;
-	camera->render = __render;
+	// camera->render_view = __render_view;
+	// camera->render = __render;
 	camera->vector = vector(0, 0, W_WIDTH, W_HEIGHT);
 	fthis()->camera = camera;
 	fthis()->scene->camera = camera;
