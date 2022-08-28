@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/28 20:10:39 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/28 20:27:57 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,30 @@ void	print_column(double distance_hor, int rel_angle)
 void	update_print_ray(t_vector p, double rel_angle, int max)
 {
 	double		val;
-	double		x;
-	double		y;
 	t_vector	delta;
 	double		i;
 
-	x = p.x;
-	y = p.y;
 	delta = vector_zero();
 	delta.w = p.w;
 	delta.h = p.h;
 	delta.angle = rel_angle;
-	i = 0;
+	i = 0; // first intersection with hor/ver line
 	while (i < max)
 	{
-		delta.y = y - (i * ft_sin(p.angle + rel_angle));
-		delta.x = x + (i * ft_cos(p.angle + rel_angle));
+		delta.y = p.y - (i * ft_sin(p.angle + rel_angle));
+		delta.x = p.x + (i * ft_cos(p.angle + rel_angle));
 		if (delta.x < 0 || delta.y < 0 || delta.x >= \
 			engine()->width || delta.y >= engine()->height)
 			return ;
 		if (colison().pixel(scene()->player, delta.x, delta.y))
 		{
-			canva()->pixel(delta.x, delta.y, 0xff0000);
+			// canva()->pixel(delta.x, delta.y, 0xff0000);
 			print_column(get_vectors_distance(delta, p) * ft_cos(delta.angle), rel_angle);
 			// canva()->pixel(delta.x, delta.y, 0x00000000);
 			//printf("Distance: %f\n", get_vectors_distance(delta, p) * ft_cos(delta.angle));
 			return ;
 		}
-		i++;
+		i++; // distance to get to next hor/ver line
 	}
 }
 
