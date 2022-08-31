@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/28 20:27:57 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/08/31 19:51:05 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_column(double distance_hor, int rel_angle)
 	t_vector	column;
 	int			i;
 
-	i = rel_angle + VIEW_ANGLE / 2;
+	i = -(rel_angle - VIEW_ANGLE / 2);
 	column.h = (int) W_HEIGHT * 10 / distance_hor;
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
@@ -70,11 +70,11 @@ void	*print_raycast(t_player *p)
 	void		*ray_return;
 
 	ray_return = new_array();
-	rel_angle = (double) -VIEW_ANGLE / 2;
-	while (rel_angle < (double) VIEW_ANGLE / 2)
+	rel_angle = (double) + VIEW_ANGLE / 2;
+	while (rel_angle > (double) - VIEW_ANGLE / 2)
 	{
 		update_print_ray(p->vector, rel_angle, 500);
-		rel_angle++;
+		rel_angle--;
 	}
 	return (ray_return);
 }
