@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/02 19:41:00 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/06 21:01:19 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void render_point(t_buffer *b)
 	p = scene()->player->vector;
 	x = ((int) p.x /  GRID_SIZE) * GRID_SIZE;
 	y = ((int) p.y /  GRID_SIZE) * GRID_SIZE;
-	b->rectangle_border(vector(x, y, GRID_SIZE, GRID_SIZE), COLOR_TRANSPARENT, 2, 0xdd0000ff);
+	// b->rectangle_border(vector(x, y, GRID_SIZE, GRID_SIZE), COLOR_TRANSPARENT, 2, 0xdd0000ff);
 	// b->pixel(x, y, 0x1979e6);
 	// x = ((int) p.x /  GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 	// y = ((int) p.y /  GRID_SIZE) * GRID_SIZE;
