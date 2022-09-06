@@ -6,7 +6,7 @@
 #    By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/08/28 11:09:14 by nprimo           ###   ########.fr        #
+#    Updated: 2022/09/06 19:17:10 by nprimo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ m: fclean
 v:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D
 r:
-	@make re && make clean && clear && ./cub3D map/map1.car map/map2.car
+	@make re && make clean && clear && ./cub3D map/map3.car map/map1.car map/map2.car
 
 rr:
 	@make re && make clean && clear && ./cub3D map/map1.car

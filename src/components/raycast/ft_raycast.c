@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/31 20:43:08 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/06 19:14:51 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	update_print_ray(t_vector p, double rel_angle, int max)
 	}
 }
 
-void update_ray(t_vector p, double rel_anlge, int max_loop)
+void update_ray_hor(t_vector p, double rel_anlge, int max_loop)
 {
 	t_vector	cross;
 	t_vector	offset;
@@ -121,7 +121,7 @@ void	*print_raycast(t_player *p)
 		update_print_ray(p->vector, rel_angle, 500);
 		rel_angle--;
 		if (rel_angle == 0)
-			update_ray(p->vector, rel_angle, 10);
+			update_ray_hor(p->vector, rel_angle, 10);
 	}
 	return (ray_return);
 }
