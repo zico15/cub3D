@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/28 16:35:52 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/06 20:25:15 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,35 @@ void	__object(t_object *ob)
 
 void	__print_line(t_vector begin, t_vector end, int color)
 {
-	static int	offset_y;
-	static int	offset_x;
+	t_vector	offset;
+	double		m;
+	double		c;
+	t_vector	point;
 
-	offset_x = 	(begin.x < end.x) - (begin.x >= end.x);
-	offset_y = 	(begin.y < end.y) - (begin.y >= end.y);
-	begin.x = (int) begin.x; 
-	begin.y = (int) begin.y;
-	while (1)
+	offset.x = (begin.x < end.x) - (begin.x >= end.x);
+	offset.y = (begin.y < end.y) - (begin.y >= end.y);
+	if ((begin.x - end.x) == 0)
+		m = 1e30;
+	else
+		m = (begin.y - end.y) / (begin.x - end.x);
+	c = begin.y - (m * begin.x);
+	point.x = begin.x;
+	point.y = begin.y;
+	while ((point.x <= end.x && point.x >= begin.x)
+		|| (point.x >= end.x && point.x <= begin.x))
 	{
-		if (begin.x != end.x)
-			begin.x += offset_x;
-		if (begin.y != end.y)
-			begin.y += offset_y;
-		if (begin.y >= 0 && begin.y < W_HEIGHT && begin.x >= 0 && begin.x < W_WIDTH)
-			__pixel(begin.x , begin.y, color);
-		else
-			break;
-		if (begin.x == end.x && begin.y == end.y)
-			break;
+		point.x += offset.x;
+		point.y = point.x * m + c;
+		canva()->pixel(point.x, point.y, color);
+	}
+	point.x = begin.x;
+	point.y = begin.y;
+	while ((point.y <= end.y && point.y >= begin.y)
+		|| (point.y >= end.y && point.y <= begin.y))
+	{
+		point.y += offset.y;
+		if (m != 1e30)
+			point.x = (point.y - c) / m;
+		canva()->pixel(point.x, point.y, color);
 	}
 }
