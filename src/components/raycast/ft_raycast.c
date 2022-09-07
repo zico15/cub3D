@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/07 18:44:42 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 18:51:26 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_vector	get_distance(t_vector p, double rel_angle)
 	return (dist);
 }
 
-void	print_raycast(t_player *p)
+void	render_view(t_player *p)
 {
 	double		rel_angle;
 	t_vector	dist;
