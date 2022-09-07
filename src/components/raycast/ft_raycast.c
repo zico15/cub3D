@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/07 17:53:00 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 18:15:01 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 #include <ft_check.h>
 
 #define GREEN 0x0000FF00
+#define D_GREEN 0x00cc00
+#define RED	0x00ff0000
+#define	D_RED 0x00cc0000
 
 void	print_column(double distance_hor, int pos, int color)
 {
 	t_vector	column;
 
-	column.h = (int) W_HEIGHT * 10 / distance_hor;
+	column.h = (W_HEIGHT * 20 / distance_hor);
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
 	column.w = 1;
@@ -31,35 +34,6 @@ void	print_column(double distance_hor, int pos, int color)
 		column.x = 0;
 	canva()->rectangle(column, color);
 }
-
-// void	update_print_ray(t_vector p, double rel_angle, int max)
-// {
-// 	t_vector	delta;
-// 	double		i;
-
-// 	delta = vector_zero();
-// 	delta.w = p.w;
-// 	delta.h = p.h;
-// 	delta.angle = rel_angle;
-// 	i = 0; // first intersection with hor/ver line
-// 	while (i < max)
-// 	{
-// 		delta.y = p.y - (i * ft_sin(p.angle + rel_angle));
-// 		delta.x = p.x + (i * ft_cos(p.angle + rel_angle));
-// 		if (delta.x < 0 || delta.y < 0 || delta.x >= \
-// 			engine()->width || delta.y >= engine()->height)
-// 			return ;
-// 		if (colison().pixel(scene()->player, delta.x, delta.y))
-// 		{
-// 			// canva()->pixel(delta.x, delta.y, 0xff0000);
-// 			print_column(get_vectors_distance(delta, p, p.angle + rel_angle) * ft_cos(delta.angle), rel_angle);
-// 			// canva()->pixel(delta.x, delta.y, 0x00000000);
-// 			//printf("Distance: %f\n", get_vectors_distance(delta, p) * ft_cos(delta.angle));
-// 			return ;
-// 		}
-// 		i++; // distance to get to next hor/ver line
-// 	}
-// }
 
 t_vector	get_cross_position(t_vector cross, t_vector offset, int max_loop)
 {
@@ -87,19 +61,19 @@ t_vector	get_cross_position(t_vector cross, t_vector offset, int max_loop)
 	return (cross);
 }
 
-t_vector	update_ray_hor(t_vector p, double rel_anlge, int max_loop)
+t_vector	ray_check_hor(t_vector p, double rel_anlge, int max_loop)
 {
 	t_vector	cross;
 	t_vector	offset;
 	double		angle;
 	
 	angle = p.angle + rel_anlge;
-	if (ft_sin(angle) > 0.001) // is looking up
+	if (ft_sin(angle) > 0.001)
 	{
 		cross.y = ((int) (p.y / GRID_SIZE)) * GRID_SIZE - 0.0001;
 		offset.y = -GRID_SIZE;
 	}
-	else if (ft_sin(angle) < -0.001) // is looking down
+	else if (ft_sin(angle) < -0.001)
 	{
 		cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		offset.y = GRID_SIZE;
@@ -117,19 +91,19 @@ t_vector	update_ray_hor(t_vector p, double rel_anlge, int max_loop)
 	return cross;
 }
 
-t_vector	update_ray_ver(t_vector p, double rel_anlge, int max_loop)
+t_vector	ray_check_ver(t_vector p, double rel_anlge, int max_loop)
 {
 	t_vector	cross;
 	t_vector	offset;
 	double		angle;
 	
 	angle = p.angle + rel_anlge;
-	if (ft_cos(angle) < -0.001) // is looking left
+	if (ft_cos(angle) < -0.001)
 	{
 		cross.x = ((int) (p.x / GRID_SIZE)) * GRID_SIZE - 0.0001;
 		offset.x = -GRID_SIZE;
 	}
-	else if (ft_cos(angle) > 0.001) // is looking right
+	else if (ft_cos(angle) > 0.001)
 	{
 		cross.x = ((int) p.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		offset.x = GRID_SIZE;
@@ -147,24 +121,37 @@ t_vector	update_ray_ver(t_vector p, double rel_anlge, int max_loop)
 	return (cross);
 }
 
-double get_distance(t_vector p, double rel_angle)
+double *get_distance(t_vector p, double rel_angle)
 {
 	double		dist_h;
 	double		dist_v;
-	double		dist;
+	int			is_v;
+	char		wall_face;
+	static double	dist[2];
 
 	dist_v = get_vectors_distance(
-		update_ray_ver(p, rel_angle, (int) map()->vector.w / GRID_SIZE),
+		ray_check_ver(p, rel_angle, (int) map()->vector.w / GRID_SIZE),
 		p, p.angle + rel_angle);
 	dist_h = get_vectors_distance(
-		update_ray_hor(p, rel_angle, (int) map()->vector.h / GRID_SIZE),
+		ray_check_hor(p, rel_angle, (int) map()->vector.h / GRID_SIZE),
 		p, p.angle + rel_angle);
+	is_v = 1;
 	if (dist_h < dist_v && dist_h > 0)
-		dist = dist_h;
+		dist[0] = dist_h;
 	else if (dist_v > 0)
-		dist = dist_v;
+		dist[0] = dist_v;
 	else
-		dist = dist_h;
+		dist[0] = dist_h;
+	if (dist[0] == dist_h)
+		is_v = 0;
+	if (ft_cos(p.angle + rel_angle) > 0.001 && is_v == 1)
+		dist[1] = 'W';
+	if (ft_cos(p.angle + rel_angle) < -0.001 && is_v == 1)
+		dist[1] = 'E';
+	if (ft_sin(p.angle + rel_angle) > 0.001 && is_v == 0)
+		dist[1] = 'S';
+	if (ft_sin(p.angle + rel_angle) < -0.001 && is_v == 0)
+		dist[1] = 'N';
 	return (dist);
 }
 
@@ -172,7 +159,8 @@ void	*print_raycast(t_player *p)
 {
 	double		rel_angle;
 	void		*ray_return;
-	double		dist;
+	double		*dist;
+	int			color;
 	int			i;
 
 	ray_return = new_array();
@@ -180,8 +168,15 @@ void	*print_raycast(t_player *p)
 	i = 0;
 	while (rel_angle > -VIEW_ANGLE / 2)
 	{
+		color = GREEN;
 		dist = get_distance(p->vector, rel_angle);
-		print_column(dist * ft_cos(rel_angle), i, GREEN);
+		if ((char) dist[1] == 'W')
+			color = D_GREEN;
+		if ((char) dist[1] == 'E')
+			color = D_RED;
+		if ((char) dist[1] == 'S')
+			color = RED;
+		print_column(dist[0] * ft_cos(rel_angle), i, color);
 		rel_angle -= (double) VIEW_ANGLE / W_WIDTH;
 		i++;
 	}
