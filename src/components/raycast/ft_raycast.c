@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/07 10:53:29 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 11:11:57 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,23 @@ void	update_ray_hor(t_vector p, double rel_anlge, int max_loop)
 	
 	loop = -1;
 	angle = p.angle + rel_anlge;
-	printf("Angle: %f\n", angle);
 	if (angle < 180) // is looking up
 	{
 		cross.y = ((int) (p.y / GRID_SIZE)) * GRID_SIZE - 0.0001;
 		offset.y = -GRID_SIZE;
 	}
-	if (angle > 180) // is looking down
+	else if (angle > 180) // is looking down
 	{
 		cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		offset.y = GRID_SIZE;
 	}
-	cross.x = (p.y - cross.y) / ft_tan(angle) + p.x;
-	offset.x = -offset.y / ft_tan(angle);
 	if (angle == 180 || angle == 0 || angle == 360)
 	{
 		loop = max_loop;
-		cross.x = p.x;
 		cross.y = p.y;
 	}
-	// printf("Player pos: %f %f\n", p.x, p.y);
+	cross.x = (p.y - cross.y) / ft_tan(angle) + p.x;
+	offset.x = -offset.y / ft_tan(angle);
 	printf("1 Cross pos: %f %f\n", cross.x, cross.y);
 	while(++loop < max_loop)
 	{
@@ -100,11 +97,58 @@ void	update_ray_hor(t_vector p, double rel_anlge, int max_loop)
 		check_pos.y = (int) (cross.y / GRID_SIZE);
 		printf("check pos: %d %d\n", (int) check_pos.x, (int) check_pos.y);
 		if (check_pos.x > 0 && check_pos.x < (int) map()->vector.w / GRID_SIZE 
-			&& check_pos.y > 0 && check_pos.y < (int) map()->vector.h / GRID_SIZE)
-			printf("Map char: %c\n", map()->maps[(int) check_pos.y, (int) check_pos.x]);
+			&& check_pos.y > 0 && check_pos.y < (int) map()->vector.h / GRID_SIZE
+			&& map()->maps[(int) check_pos.y, (int) check_pos.x] == '1') // where is the map?
+			loop = max_loop;
+		else
+		{
+			cross.x += offset.x;
+			cross.y += offset.y;
+		}
+	}
+	// if (check_pos.x > 0 && check_pos.y > 0
+	// 	&& check_pos.x < map()->vector.w && check_pos.y < map()->vector.h)
+	// 	canva()->line(p, cross, 0x00ff0000);
+	printf("2 Cross pos: %f %f\n", cross.x , cross.y);
+}
+
+void	update_ray_ver(t_vector p, double rel_anlge, int max_loop)
+{
+	t_vector	cross;
+	t_vector	offset;
+	t_vector	check_pos;
+	double		angle;
+	int			loop;
+	
+	loop = -1;
+	angle = p.angle + rel_anlge;
+	if (ft_cos(angle) < 0.0001) // is looking left
+	{
+		cross.x = ((int) (p.x / GRID_SIZE)) * GRID_SIZE - 0.0001;
+		offset.x = -GRID_SIZE;
+	}
+	else if (ft_cos(angle) > 0.0001) // is looking right
+	{
+		cross.x = ((int) p.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
+		offset.x = GRID_SIZE;
+	}
+	if (angle == 90 || angle == 270)
+	{
+		loop = max_loop;
+		cross.x = p.x;
+	}
+	cross.y = (p.x - cross.x) * ft_tan(angle) + p.y;
+	offset.y = -offset.x * ft_tan(angle);
+	printf("1 Cross pos: %f %f\n", cross.x, cross.y);
+	// this loop might get into a function that returns new cross vector position
+	while(++loop < max_loop)
+	{
+		check_pos.x = (int) (cross.x / GRID_SIZE);
+		check_pos.y = (int) (cross.y / GRID_SIZE);
+		printf("check pos: %d %d\n", (int) check_pos.x, (int) check_pos.y);
 		if (check_pos.x > 0 && check_pos.x < (int) map()->vector.w / GRID_SIZE 
 			&& check_pos.y > 0 && check_pos.y < (int) map()->vector.h / GRID_SIZE
-			&& map()->maps[(int) check_pos.y, (int) check_pos.x] == '1')
+			&& map()->maps[(int) check_pos.y, (int) check_pos.x] == '1') // where is the map?
 			loop = max_loop;
 		else
 		{
@@ -132,6 +176,6 @@ void	*print_raycast(t_player *p)
 	// 	// if (rel_angle == 0)
 	// 	// 	update_ray_hor(p->vector, rel_angle, 10);
 	// }
-	update_ray_hor(p->vector, 0, (int) map()->vector.h / GRID_SIZE);
+	update_ray_ver(p->vector, 0, (int) map()->vector.h / GRID_SIZE);
 	return (ray_return);
 }
