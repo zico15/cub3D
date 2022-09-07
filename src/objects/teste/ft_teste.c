@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/06 21:01:19 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 10:02:50 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	__reander(t_buffer *b)
 		b->line(start, vector(start.x, map()->vector.h, 0, 0), 0);
 		start.x += GRID_SIZE;
 	}
-	// print_raycast(scene()->player);
+	print_raycast(scene()->player);
 }
 
 t_object	*new_teste(void)

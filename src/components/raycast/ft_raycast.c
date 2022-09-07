@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/06 19:14:51 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 10:53:29 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	update_print_ray(t_vector p, double rel_angle, int max)
 	}
 }
 
-void update_ray_hor(t_vector p, double rel_anlge, int max_loop)
+void	update_ray_hor(t_vector p, double rel_anlge, int max_loop)
 {
 	t_vector	cross;
 	t_vector	offset;
@@ -71,33 +71,40 @@ void update_ray_hor(t_vector p, double rel_anlge, int max_loop)
 	double		angle;
 	int			loop;
 	
-	cross = vector_zero();
-	offset = vector_zero();
 	loop = -1;
 	angle = p.angle + rel_anlge;
 	printf("Angle: %f\n", angle);
-	cross.x = -(p.y - cross.y) / ft_tan(angle) + p.x;
-	if (angle > 180) // is looking down
-	{
-		cross.y = ((int) p.x / GRID_SIZE) * GRID_SIZE - 0.0001;
-		offset.y = +GRID_SIZE;
-	}
 	if (angle < 180) // is looking up
 	{
-		cross.y = ((int) p.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
+		cross.y = ((int) (p.y / GRID_SIZE)) * GRID_SIZE - 0.0001;
 		offset.y = -GRID_SIZE;
 	}
-	offset.x = offset.y / ft_tan(angle);
+	if (angle > 180) // is looking down
+	{
+		cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
+		offset.y = GRID_SIZE;
+	}
+	cross.x = (p.y - cross.y) / ft_tan(angle) + p.x;
+	offset.x = -offset.y / ft_tan(angle);
 	if (angle == 180 || angle == 0 || angle == 360)
+	{
 		loop = max_loop;
-	printf("Player pos: %d %d\n", (int) p.x / GRID_SIZE, (int) p.y / GRID_SIZE);
+		cross.x = p.x;
+		cross.y = p.y;
+	}
+	// printf("Player pos: %f %f\n", p.x, p.y);
+	printf("1 Cross pos: %f %f\n", cross.x, cross.y);
 	while(++loop < max_loop)
 	{
-		check_pos.x = (int) cross.x / GRID_SIZE;
-		check_pos.y = (int) cross.y / GRID_SIZE;
-		if (check_pos.x > 0 && check_pos.y > 0
-			&& map()->maps[(int) check_pos.x, (int) check_pos.y]
-			&& map()->maps[(int) check_pos.x, (int) check_pos.y] == '1')
+		check_pos.x = (int) (cross.x / GRID_SIZE);
+		check_pos.y = (int) (cross.y / GRID_SIZE);
+		printf("check pos: %d %d\n", (int) check_pos.x, (int) check_pos.y);
+		if (check_pos.x > 0 && check_pos.x < (int) map()->vector.w / GRID_SIZE 
+			&& check_pos.y > 0 && check_pos.y < (int) map()->vector.h / GRID_SIZE)
+			printf("Map char: %c\n", map()->maps[(int) check_pos.y, (int) check_pos.x]);
+		if (check_pos.x > 0 && check_pos.x < (int) map()->vector.w / GRID_SIZE 
+			&& check_pos.y > 0 && check_pos.y < (int) map()->vector.h / GRID_SIZE
+			&& map()->maps[(int) check_pos.y, (int) check_pos.x] == '1')
 			loop = max_loop;
 		else
 		{
@@ -105,8 +112,10 @@ void update_ray_hor(t_vector p, double rel_anlge, int max_loop)
 			cross.y += offset.y;
 		}
 	}
-	printf("loop: %d\n", loop);
-	printf("Check pos: %d %d\n", (int) check_pos.x , (int) check_pos.y);
+	// if (check_pos.x > 0 && check_pos.y > 0
+	// 	&& check_pos.x < map()->vector.w && check_pos.y < map()->vector.h)
+	// 	canva()->line(p, cross, 0x00ff0000);
+	printf("2 Cross pos: %f %f\n", cross.x , cross.y);
 }
 
 void	*print_raycast(t_player *p)
@@ -116,12 +125,13 @@ void	*print_raycast(t_player *p)
 
 	ray_return = new_array();
 	rel_angle = (double) + VIEW_ANGLE / 2;
-	while (rel_angle > (double) - VIEW_ANGLE / 2)
-	{
-		update_print_ray(p->vector, rel_angle, 500);
-		rel_angle--;
-		if (rel_angle == 0)
-			update_ray_hor(p->vector, rel_angle, 10);
-	}
+	// while (rel_angle > (double) - VIEW_ANGLE / 2)
+	// {
+	// 	update_print_ray(p->vector, rel_angle, 500);
+	// 	rel_angle--;
+	// 	// if (rel_angle == 0)
+	// 	// 	update_ray_hor(p->vector, rel_angle, 10);
+	// }
+	update_ray_hor(p->vector, 0, (int) map()->vector.h / GRID_SIZE);
 	return (ray_return);
 }
