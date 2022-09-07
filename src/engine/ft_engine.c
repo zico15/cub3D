@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/28 15:00:49 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 16:44:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_scene	*__add_scene(t_scene *scene)
 int	game_loop(t_engine *e)
 {
 	static int	delay;
+	int x, y = -1;
 
 	if (++delay < 7000)
 		return (0);
@@ -42,6 +43,17 @@ int	game_loop(t_engine *e)
 	scene()->render(e->canva);
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
 	, 0, 0);
+	while (++y < (int) (map()->vector.h / GRID_SIZE))
+	{
+		x = -1;
+		while (++x < (int) (map()->vector.w / GRID_SIZE))
+		{
+			mlx_string_put(engine()->mlx, engine()->win,
+				x * GRID_SIZE + GRID_SIZE / 2,
+				y * GRID_SIZE + GRID_SIZE / 2,  0,
+				_str(map()->maps[y][x]));
+		}
+	}
 	return (0);
 }
 

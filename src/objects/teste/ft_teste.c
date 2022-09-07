@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 10:02:50 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 16:43:11 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void render_point(t_buffer *b)
 static void	__reander(t_buffer *b)
 {
 	t_vector start;
+	int	y = -1;
+	int x;
 
 	render_point(b);
 	start = vector_zero();

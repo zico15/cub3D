@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/28 12:51:27 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/07 16:59:09 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_vector	vector(double x, double y, double w, double h);
 t_vector	vector_zero(void);
 t_colison	colison(void);
 t_vector	*copy_vector(t_vector *v);
-double		get_vectors_distance(t_vector a, t_vector b);
+double		get_vectors_distance(t_vector a, t_vector b, double angle);
 double		ft_cos(double angle);
 double		ft_sin(double angle);
 double		ft_tan(double angle);
