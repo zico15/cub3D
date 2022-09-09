@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/07 18:51:26 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/09 20:08:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 t_vector	ray_check_hor(t_vector p, double rel_anlge, int max_loop);
 t_vector	ray_check_ver(t_vector p, double rel_anlge, int max_loop);
 
-void	print_column(double distance_hor, int pos, int color)
+static  void	print_column(double distance_hor, int pos, int color)
 {
 	t_vector	column;
 
@@ -38,7 +38,7 @@ void	print_column(double distance_hor, int pos, int color)
 	canva()->rectangle(column, color);
 }
 
-char	get_wall_facing_dir(double angle, t_vector dist)
+static char	get_wall_facing_dir(double angle, t_vector dist)
 {
 	int		is_v;
 	char	dir;
@@ -47,17 +47,17 @@ char	get_wall_facing_dir(double angle, t_vector dist)
 	if (dist.x == dist.h)
 		is_v = 0;
 	if (ft_cos(angle) > 0.001 && is_v == 1)
-		dir = 'W';
+		dir = W;
 	if (ft_cos(angle) < -0.001 && is_v == 1)
-		dir = 'E';
+		dir = E;
 	if (ft_sin(angle) > 0.001 && is_v == 0)
-		dir = 'S';
+		dir = S;
 	if (ft_sin(angle) < -0.001 && is_v == 0)
-		dir = 'N';
+		dir = N;
 	return (dir);
 }
 
-t_vector	get_distance(t_vector p, double rel_angle)
+static t_vector	get_distance(t_vector p, double rel_angle)
 {
 	t_vector	dist;
 	int			is_v;
@@ -90,11 +90,11 @@ void	render_view(t_player *p)
 	{
 		color = GREEN;
 		dist = get_distance(p->vector, rel_angle);
-		if ((char) dist.y == 'W')
+		if (dist.y == W)
 			color = D_GREEN;
-		if ((char) dist.y == 'E')
+		if (dist.y == E)
 			color = D_RED;
-		if ((char) dist.y == 'S')
+		if (dist.y == S)
 			color = RED;
 		print_column(dist.x * ft_cos(rel_angle), i, color);
 		rel_angle -= (double) VIEW_ANGLE / W_WIDTH;

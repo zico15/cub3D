@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/03 21:38:43 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:58:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,33 @@ t_element	*__base_set_element(int index, void *value)
 
 void	__base_remove_element_index(int index)
 {
+	t_element	*prev;
+	t_element	*atual;
 	int			i;
-	t_element	*e;
 
-	i = 0;
-	if (!fthis()->array)
+	if (!fthis()->array || index < 0 || index >= fthis()->array->size)
 		return ;
-	e = (fthis()->array)->begin;
-	while (e)
+	atual = (fthis()->array)->begin;
+	prev = NULL;
+	i = -1;
+	while (atual)
 	{
-		if (i == index)
+		if (++i == index)
 		{
-			(fthis()->array)->remove(e);
-			return ;
+			printf("saad\n");
+			if ((fthis()->array)->end == atual)
+				(fthis()->array)->end = prev;
+			if (prev)
+				prev->next = atual->next;
+			else
+				(fthis()->array)->begin = atual->next;
+			if (atual->destroy)
+				atual->destroy(atual);
+			(fthis()->array)->size--;
+			break ;
 		}
-		e = e->next;
-		i++;
+		prev = atual;
+		atual = atual->next;
 	}
 }
 

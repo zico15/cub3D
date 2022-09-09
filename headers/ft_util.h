@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/31 20:09:30 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/09 20:01:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@
 # define VIEW_ANGLE 60
 # define N_RAYS	100
 # define COLOR_TRANSPARENT 0xd411aa
+
+enum t_direction
+{
+	W = 1,
+	E = 2,
+	S = 3,
+	N = 4
+};
 
 typedef struct s_this
 {
