@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/17 18:53:14 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/17 20:48:32 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ struct s_ray
 	int			collision;
 	double		distance;
 	int			vertical;
+	char		face;
 };
 
 t_vector	vector(double x, double y, double w, double h);

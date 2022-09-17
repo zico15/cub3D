@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:44:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 16:58:49 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/17 20:38:45 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ double	get_vectors_distance(t_vector a, t_vector b, double angle)
 
 	delta_x = a.x - b.x;
 	delta_y = a.y - b.y;
-	return (ft_cos(angle) * delta_x - ft_sin(angle) * delta_y);
+	// return (ft_cos(angle) * delta_x - ft_sin(angle) * delta_y);
+	return (sqrt(delta_x * delta_x + delta_y * delta_y));
 }
