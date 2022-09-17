@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:39:41 by nprimo            #+#    #+#             */
-/*   Updated: 2022/09/17 20:46:56 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/17 21:19:53 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,16 @@ t_ray	get_ray_return(t_vector p, double rel_angle)
 {
 	t_ray	ray_ver;
 	t_ray	ray_hor;
-	int 	max_loop;
-	
+	int		max_loop;
+
 	ray_ver = init_ray_ver(p, p.angle + rel_angle);
 	ray_ver.cross = get_cross_position(ray_ver.cross, ray_ver.offset, 100);
-	ray_ver.distance = get_vectors_distance(ray_ver.cross, p, p.angle + rel_angle);
+	ray_ver.distance = get_vectors_distance(ray_ver.cross,
+			p, p.angle + rel_angle);
 	ray_hor = init_ray_hor(p, p.angle + rel_angle);
 	ray_hor.cross = get_cross_position(ray_hor.cross, ray_hor.offset, 100);
-	ray_hor.distance = get_vectors_distance(p, ray_hor.cross, p.angle + rel_angle);
+	ray_hor.distance = get_vectors_distance(p, ray_hor.cross,
+			p.angle + rel_angle);
 	if (ray_ver.distance < ray_hor.distance)
 		return (ray_ver);
 	return (ray_hor);
