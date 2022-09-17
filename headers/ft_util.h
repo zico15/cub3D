@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/31 20:09:30 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/17 18:46:02 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define W_WIDTH 1080
 # define W_HEIGHT 860
 # define VIEW_ANGLE 60
-# define N_RAYS	100
+# define N_RAYS	108
 # define COLOR_TRANSPARENT 0xd411aa
 
 typedef struct s_this

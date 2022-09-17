@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/07 18:51:26 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/17 18:46:57 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	print_column(double distance_hor, int pos, int color)
 	column.h = (W_HEIGHT * 20 / distance_hor);
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
-	column.w = 1;
-	column.x = pos;
+	column.w = W_WIDTH / N_RAYS;
+	column.x = pos * column.w;
 	column.y = W_HEIGHT / 2 - column.h / 2;
 	if (column.y < 0)
 		column.y = 0;
@@ -46,13 +46,13 @@ char	get_wall_facing_dir(double angle, t_vector dist)
 	is_v = 1;
 	if (dist.x == dist.h)
 		is_v = 0;
-	if (ft_cos(angle) > 0.001 && is_v == 1)
+	if (ft_cos(angle) >= 0 && is_v == 1)
 		dir = 'W';
-	if (ft_cos(angle) < -0.001 && is_v == 1)
+	if (ft_cos(angle) <= 0 && is_v == 1)
 		dir = 'E';
-	if (ft_sin(angle) > 0.001 && is_v == 0)
+	if (ft_sin(angle) >= 0 && is_v == 0)
 		dir = 'S';
-	if (ft_sin(angle) < -0.001 && is_v == 0)
+	if (ft_sin(angle) <= 0 && is_v == 0)
 		dir = 'N';
 	return (dir);
 }
@@ -85,8 +85,8 @@ void	render_view(t_player *p)
 	int			i;
 
 	rel_angle = VIEW_ANGLE / 2;
-	i = 0;
-	while (rel_angle > -VIEW_ANGLE / 2)
+	i = -1;
+	while (++i <= N_RAYS)
 	{
 		color = GREEN;
 		dist = get_distance(p->vector, rel_angle);
@@ -97,7 +97,6 @@ void	render_view(t_player *p)
 		if ((char) dist.y == 'S')
 			color = RED;
 		print_column(dist.x * ft_cos(rel_angle), i, color);
-		rel_angle -= (double) VIEW_ANGLE / W_WIDTH;
-		i++;
+		rel_angle -= (double) VIEW_ANGLE / N_RAYS;
 	}
 }
