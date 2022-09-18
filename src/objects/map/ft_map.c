@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 20:05:05 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 20:07:17 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	check_map_color(char *map_color)
 	pos = 0;
 	while(rgb_val && rgb_val[pos])
 	{
-		if (!string().isnumber(rgb_val[pos]))
+		if (!string().isnumber(rgb_val[pos])
+			|| string().atoi(rgb_val[pos]) > 255
+			|| string().atoi(rgb_val[pos]) < 0)
 			return (0);
 		pos++;
 	}
