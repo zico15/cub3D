@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 14:29:29 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 19:59:38 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ struct s_map
 	t_vector		vector_mini_map;
 	int				check[100][100];
 	int				is_map_ok;
+	int		c_color;
+	int		f_color;
 };
 
 struct s_player
