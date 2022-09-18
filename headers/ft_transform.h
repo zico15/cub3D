@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 16:59:09 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 12:57:48 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,18 @@
 typedef struct s_nav_node	t_nav_node;
 typedef struct s_vector		t_vector;
 typedef struct s_colison	t_colison;
+typedef struct s_ray		t_ray;
 typedef struct s_object		t_object;
+typedef enum e_face			t_face;
+typedef struct s_texture	t_texture;
+
+enum e_face
+{
+	N,
+	E,
+	S,
+	W
+};
 
 struct s_vector
 {
@@ -35,6 +46,24 @@ struct s_colison
 	int			(*circular)(t_vector a, t_vector b);
 	int			(*rectangular)(t_vector a, t_vector b);
 	t_object	*(*pixel)(t_object *object, double px, double py);
+};
+
+struct s_ray
+{
+	t_vector	cross;
+	t_vector	offset;
+	int			collision;
+	double		distance;
+	int			vertical;
+	t_face		direction;
+	double		angle;
+};
+
+struct s_texture
+{
+	t_vector	pos;
+	double		y_offest;
+	double		y_step;
 };
 
 t_vector	vector(double x, double y, double w, double h);

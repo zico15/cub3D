@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/09 20:01:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:26:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <ft_object.h>
 # include <ft_nav_mesh.h>
 # include <ft_engine.h>
+#include <limits.h>
 
 # define BUFFER_SIZE 999999
 # define PI 3.14159265
@@ -40,8 +41,8 @@
 # define MOVE_LEN 10
 # define W_WIDTH 1080
 # define W_HEIGHT 860
-# define VIEW_ANGLE 60
-# define N_RAYS	100
+# define VIEW_ANGLE 50
+# define N_RAYS	W_WIDTH
 # define COLOR_TRANSPARENT 0xd411aa
 
 enum t_direction
@@ -82,5 +83,6 @@ int			free_list(char **str);
 void		*malloc_ob(size_t __size);
 
 //			remove - testes
+int	__get_color(void *img, int x, int y);
 
 #endif
