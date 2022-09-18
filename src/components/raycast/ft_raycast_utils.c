@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:39:41 by nprimo            #+#    #+#             */
-/*   Updated: 2022/09/17 21:19:53 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 10:57:29 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_ray	init_ray_hor(t_vector p, double angle)
 	ray.vertical = 0;
 	ray.collision = 0;
 	ray.distance = 1e30;
+	ray.angle = angle;
 	if (ft_sin(angle) > 0)
 	{
 		ray.cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE - 0.0001;
@@ -73,6 +74,7 @@ t_ray	init_ray_ver(t_vector p, double angle)
 	ray.vertical = 1;
 	ray.collision = 0;
 	ray.distance = 1e30;
+	ray.angle = angle;
 	if (ft_cos(angle) < 0)
 	{
 		ray.cross.x = ((int) p.x / GRID_SIZE) * GRID_SIZE - 0.0001;

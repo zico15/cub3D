@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/17 21:11:34 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 10:56:41 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ struct s_ray
 	double		distance;
 	int			vertical;
 	t_face		direction;
+	double		angle;
 };
 
 t_vector	vector(double x, double y, double w, double h);
