@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 18:49:55 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 14:25:39 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,8 @@ t_sprite	*__load_sprite(char *file_name)
 	&w, &h);
 	s->v.w = w;
 	s->v.h = h;
+	s->data.img = s->img;
+	s->data.addr = mlx_get_data_addr(s->data.img, &s->data.bits_per_pixel, \
+	&s->data.line_length, &s->data.endian);
 	return (s);
 }

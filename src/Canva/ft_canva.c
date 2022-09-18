@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/02 19:42:01 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 14:31:58 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,22 @@ int	__get_color_imge(t_data	data, int x, int y)
 	char		*dst;
 	int			color;
 
+	dst = data.addr + (y * data.line_length + x \
+	* (data.bits_per_pixel / 8));
+	color = *(unsigned int *)dst;
+	return (color);
+}
+
+int	__get_color(void *img, int x, int y)
+{
+	char		*dst;
+	int			color;
+	t_data	   data;
+
+
+	data.img = img;
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
+	&data.line_length, &data.endian);
 	dst = data.addr + (y * data.line_length + x \
 	* (data.bits_per_pixel / 8));
 	color = *(unsigned int *)dst;

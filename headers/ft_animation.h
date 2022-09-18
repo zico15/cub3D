@@ -3,19 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_animation.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:23:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/03 21:54:05 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/09/18 14:29:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_ANIMATION_H
 # define FT_ANIMATION_H
 
+typedef struct s_data2
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data2;
+
 typedef struct s_sprite
 {
 	void		*img;
+	t_data2		data;
 	t_vector	v;
 }	t_sprite;
 
