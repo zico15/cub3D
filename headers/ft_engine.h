@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 21:15:49 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:45:37 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ struct s_engine
 	int				index_scene;
 	int				width;
 	int				height;
+	double			delta;
 	t_buffer		*canva;
 	t_scene			*(*add_scene)(t_scene *scene);
 	t_scene			*(*set_scene)(int	index_scene);

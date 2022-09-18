@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/18 18:05:00 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 19:08:25 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,27 @@ void	__funct_key(int key, int type_event)
 	v = p->vector;
 	if (key == KEY_W)
 	{
-		v.x += MOVE_LEN * cos(v.angle * M_PI / 180); 
-		v.y -= MOVE_LEN * sin(v.angle * M_PI / 180);
+		v.x += MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180); 
+		v.y -= MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
 	}
 	if (key == KEY_S)
 	{
-		v.x -= MOVE_LEN * cos(v.angle * M_PI / 180); 
-		v.y += MOVE_LEN * sin(v.angle * M_PI / 180);
+		v.x -= MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180); 
+		v.y += MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
 	}
 	if (key == KEY_A)
 	{
-		v.x -= MOVE_LEN * sin(v.angle * M_PI / 180); 
-		v.y -= MOVE_LEN * cos(v.angle * M_PI / 180);
+		v.x -= MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180); 
+		v.y -= MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
 	}
 	if (key == KEY_D)
 	{
-		v.x += MOVE_LEN * sin(v.angle * M_PI / 180); 
-		v.y += MOVE_LEN * cos(v.angle * M_PI / 180);
+		v.x += MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180); 
+		v.y += MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
 	}
  	p->set_position(v);
-	p->vector.angle += (((key == KEY_LEFT) - (key == KEY_RIGHT)) * 5);
+	p->vector.angle += (((key == KEY_LEFT) - (key == KEY_RIGHT)) * 100
+			* engine()->delta);
 	if (p->vector.angle > 360)
 		p->vector.angle -= 360;
 	if (p->vector.angle < 0)
@@ -59,7 +60,7 @@ void	__funct_mouse(int x, int y, int type_event)
 
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))
-		this()->vector.angle += delta * 0.01;
+		this()->vector.angle += delta * ROTATION_LEN * engine()->delta;
 }
 
 void	__set_position(t_vector v)

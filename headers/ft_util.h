@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 14:32:17 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 19:05:51 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 # define KEY_SPACE 32
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
-# define MOVE_LEN 10
+# define MOVE_LEN 150
+# define ROTATION_LEN 0.1
 # define W_WIDTH 1080
 # define W_HEIGHT 860
 # define VIEW_ANGLE 50
@@ -75,6 +76,9 @@ int			free_list(char **str);
 void		*malloc_ob(size_t __size);
 
 //			remove - testes
-int	__get_color(void *img, int x, int y);
+int			__get_color(void *img, int x, int y);
+
+//			time
+double	now(void);
 
 #endif
