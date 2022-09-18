@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/27 18:45:57 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 18:05:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,12 @@ void	__funct_key(int key, int type_event)
 
 void	__funct_mouse(int x, int y, int type_event)
 {
-	t_player	*p;
-	t_object	*o;
-	t_vector	v;
+	int	delta;
 
-	if (type_event != 1)
-		return ;
-	p = (t_player *) this();
-	x /= GRID_SIZE;
-	y /= GRID_SIZE;
-	(p->agent)->set_destination(this()->vector, \
-	vector(x * GRID_SIZE, y * GRID_SIZE, 0, 0));
+
+	delta = W_WIDTH / 2.0 - x;
+	if (abs(delta) > (W_WIDTH / 5))
+		this()->vector.angle += delta * 0.01;
 }
 
 void	__set_position(t_vector v)

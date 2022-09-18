@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 18:52:47 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 17:43:23 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	game_loop(t_engine *e)
 	delay = 0;
 	if (!scene())
 		return (0);
+	__funct_mousse_engine(0,0);
 	scene()->update();
 	e->canva->rectangle(vector(0, 0, e->width, e->height), 0xc4994a);
 	scene()->render(e->canva);
