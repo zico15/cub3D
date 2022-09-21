@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/18 15:22:52 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/21 19:21:14 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,11 @@ void	print_column(t_ray ray, t_vector column)
 	t_texture		t;
 	static t_sprite	*sprite;
 
+	if (ray.ob == NULL)
+		return;
 	if (!sprite)
 		sprite = engine()->load_sprite("imgs/wall.xpm");
+		// sprite = map()->map_ob->
 	t = init_t(ray, column);
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;

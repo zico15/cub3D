@@ -6,14 +6,14 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:39:41 by nprimo            #+#    #+#             */
-/*   Updated: 2022/09/18 10:57:29 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/21 19:15:28 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_check.h>
 
-t_vector	get_cross_position(t_vector cross, t_vector offset, int max_loop)
+t_vector	get_cross_position(t_vector cross, t_vector offset, int max_loop, t_ray	*ray_ver)
 {
 	int			loop;
 	t_vector	check_pos;
@@ -28,8 +28,13 @@ t_vector	get_cross_position(t_vector cross, t_vector offset, int max_loop)
 		check_pos.y = (int)(cross.y / GRID_SIZE);
 		if (check_pos.x >= 0 && check_pos.x < map_dim.x
 			&& check_pos.y >= 0 && check_pos.y < map_dim.y
-			&& map()->maps[(int) check_pos.y][(int) check_pos.x] == '1')
-			loop = max_loop;
+			&& (map()->maps[(int) check_pos.y][(int) check_pos.x] == '1' || map()->maps[(int) check_pos.y][(int) check_pos.x] == 'D')
+			// && map()->maps[(int) check_pos.y][(int) check_pos.x] != '0'
+			)
+			{
+				ray_ver->ob = colison().rectangula_ob(scene()->player, (int)cross.x , (int)cross.y);
+				loop = max_loop;
+			}
 		else
 		{
 			cross.x += offset.x;
@@ -102,11 +107,11 @@ t_ray	get_ray_return(t_vector p, double rel_angle)
 	int		max_loop;
 
 	ray_ver = init_ray_ver(p, p.angle + rel_angle);
-	ray_ver.cross = get_cross_position(ray_ver.cross, ray_ver.offset, 100);
+	ray_ver.cross = get_cross_position(ray_ver.cross, ray_ver.offset, 100, &ray_ver);
 	ray_ver.distance = get_vectors_distance(ray_ver.cross,
 			p, p.angle + rel_angle);
 	ray_hor = init_ray_hor(p, p.angle + rel_angle);
-	ray_hor.cross = get_cross_position(ray_hor.cross, ray_hor.offset, 100);
+	ray_hor.cross = get_cross_position(ray_hor.cross, ray_hor.offset, 100, &ray_ver);
 	ray_hor.distance = get_vectors_distance(p, ray_hor.cross,
 			p.angle + rel_angle);
 	if (ray_ver.distance < ray_hor.distance)
