@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/21 19:21:14 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/21 19:38:01 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #define WHITE 0x00000000
 #define BLACK 0xffffffff
 
-t_ray		get_ray_return(t_vector p, double rel_angle);	
+t_ray		get_ray_return(t_vector p, double rel_angle);
+void	render_object(t_vector p);
 
 // int checkboard[] = {
 // 0,0,0,0,0,0,0,0, 1,1,1,1,1,1,1,1, 0,0,0,0,0,0,0,0, 1,1,1,1,1,1,1,1,
@@ -158,4 +159,5 @@ void	render_view(t_player *p)
 		render_ray(ray, i, rel_angle);
 		rel_angle -= (double) VIEW_ANGLE / N_RAYS;
 	}
+	render_object(p->vector);
 }
