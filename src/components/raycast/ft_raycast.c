@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/22 23:25:12 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/23 00:01:59 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
 void	render_object(t_vector p);
 
-t_texture	init_t(t_ray ray, t_vector column)
+t_texture	init_t(t_ray *ray, t_vector column)
 {
 	t_texture	t;
 
-	t.pos.x = (int) ray.cross.x % 32;
-	if (ft_sin(ray.angle) < 0)
+	t.pos.x = (int) ray->cross.x % 32;
+	if (ft_sin(ray->angle) < 0)
 		t.pos.x = (int)(31.0 - t.pos.x);
-	if (ray.vertical)
+	if (ray->vertical)
 	{
-		t.pos.x = (int) ray.cross.y % 32;
-		if (ft_cos(ray.angle) < 0)
+		t.pos.x = (int) ray->cross.y % 32;
+		if (ft_cos(ray->angle) < 0)
 			t.pos.x = (int)(31.0 - t.pos.x);
 	}
 	t.y_offest = 0;
@@ -48,7 +48,7 @@ t_texture	init_t(t_ray ray, t_vector column)
 	return (t);
 }
 
-void	print_column(t_ray ray, t_vector column)
+void	print_column(t_ray *ray, t_vector column)
 {
 	int				color;
 	double			y;
@@ -56,14 +56,14 @@ void	print_column(t_ray ray, t_vector column)
 	t_sprite		*sprite;
 
 
-	if (ray.ob == NULL ||  ray.ob->get_sprite == NULL)
+	if (ray->ob == NULL ||  ray->ob->get_sprite == NULL)
 			return;
-	sprite = ray.ob->get_sprite(ray);
+	sprite = ray->ob->get_sprite(*ray);
 	t = init_t(ray, column);
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
 	column.y = W_HEIGHT / 2 - column.h / 2;
-	if (ray.ob->type ==  DOOR)
+	if (ray->ob->type ==  DOOR)
 	{
 		column.y = column.y + 10;
 	}
@@ -71,7 +71,7 @@ void	print_column(t_ray ray, t_vector column)
 	while (++y < column.h)
 	{
 		color = __get_color(sprite->img, (int) t.pos.x, (int) t.pos.y);
-		if (ray.vertical)
+		if (ray->vertical)
 			color = color | 0x00555555; // shading ?
 		(canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
 				color);
@@ -79,25 +79,24 @@ void	print_column(t_ray ray, t_vector column)
 	}
 }
 
-void	render_ray(t_ray ray)
+void	render_ray(t_ray *ray)
 {
 	double		dist_perp;
 	t_vector	column;
 	static int	colors[] = {GREEN, D_GREEN, RED, D_RED};
 
-	if (!ray.ob)
+	if (!ray->ob)
 		return ;
-	dist_perp = ray.distance * ft_cos(ray.rel_angle);
+	dist_perp = ray->distance * ft_cos(ray->rel_angle);
 	column.h = (W_HEIGHT * 20 / dist_perp);
 	column.w = W_WIDTH / N_RAYS;
-	column.x = ray.pos * column.w;
+	column.x = ray->pos * column.w;
 	print_column(ray, column);
 }
 
 void	render_view(t_player *p)
 {
 	double		rel_angle;
-	t_ray		ray;
 	int			color;
 	int			i;
 
@@ -106,8 +105,7 @@ void	render_view(t_player *p)
 	while (++i <= N_RAYS)
 	{
 		color = GREEN;
-		ray = get_ray_return(p->vector, rel_angle, i);	
+		get_ray_return(p->vector, rel_angle, i);	
 		rel_angle -= (double) VIEW_ANGLE / N_RAYS;
 	}
-	// render_object(p->vector);
 }

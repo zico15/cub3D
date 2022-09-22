@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:21:02 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/21 18:53:01 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 23:43:47 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ static t_object	*__rectangula_ob(t_object *object, double px, double py)
 		return (0);
 	e = array(scene()->colliders_list)->begin;
 	v = vector(px, py, GRID_SIZE, GRID_SIZE);
-	v.radius = 1;
 	while (e)
 	{
 		o = e->value;
