@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/21 19:38:01 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 21:58:25 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,20 @@ void	print_column(t_ray ray, t_vector column)
 	int				color;
 	double			y;
 	t_texture		t;
-	static t_sprite	*sprite;
+	t_sprite		*sprite;
 
-	if (ray.ob == NULL)
-		return;
-	if (!sprite)
-		sprite = engine()->load_sprite("imgs/wall.xpm");
-		// sprite = map()->map_ob->
+
+	if (ray.ob == NULL ||  ray.ob->get_sprite == NULL)
+			return;
+	sprite = ray.ob->get_sprite(ray);
 	t = init_t(ray, column);
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
 	column.y = W_HEIGHT / 2 - column.h / 2;
+	if (ray.ob->type ==  DOOR)
+	{
+		column.y = column.y + 10;
+	}
 	y = -1;
 	while (++y < column.h)
 	{
@@ -159,5 +162,5 @@ void	render_view(t_player *p)
 		render_ray(ray, i, rel_angle);
 		rel_angle -= (double) VIEW_ANGLE / N_RAYS;
 	}
-	render_object(p->vector);
+	// render_object(p->vector);
 }

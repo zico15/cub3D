@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/21 18:53:48 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 21:18:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ double		get_vectors_distance(t_vector a, t_vector b, double angle);
 double		ft_cos(double angle);
 double		ft_sin(double angle);
 double		ft_tan(double angle);
+double		ft_atan2(double y, double x);
 
 #endif
