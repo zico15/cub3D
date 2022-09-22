@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/22 21:18:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 23:11:01 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ struct s_ray
 	int			vertical;
 	t_face		direction;
 	double		angle;
+	double		rel_angle;
 	t_object    *ob;
+	int			pos;
 };
 
 struct s_texture
