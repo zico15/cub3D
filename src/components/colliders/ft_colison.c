@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_colison.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:21:02 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/15 13:54:36 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/09/22 23:43:47 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,30 @@ static t_object	*__pixel_collision(t_object *object, double px, double py)
 	return (NULL);
 }
 
+static t_object	*__rectangula_ob(t_object *object, double px, double py)
+{
+	t_element	*e;
+	t_object	*o;
+	t_vector	v;
+
+	if (!array(scene()->colliders_list)->size)
+		return (0);
+	e = array(scene()->colliders_list)->begin;
+	v = vector(px, py, GRID_SIZE, GRID_SIZE);
+	while (e)
+	{
+		o = e->value;
+		if (object != o && colison().rectangular(o->vector, v))
+			return (o);
+		e = e->next;
+	}
+	return (NULL);
+}
+
 t_colison	colison(void)
 {
 	static t_colison	c = {__colison_ob, __circular_collision, \
-	__rectangular_collision, __pixel_collision
+	__rectangular_collision, __pixel_collision, __rectangula_ob
 	};
 
 	return (c);

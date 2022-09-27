@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 19:04:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 21:38:38 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,24 @@ static void	__colison(t_object *collided)
 // 	b->rectangle(this()->vector, 0x0000FF00);
 // }
 
+static t_sprite	*get_sprite(t_ray ray){
+	static t_sprite	*sprite;
+
+	(void) ray;
+	if (sprite == NULL)
+		sprite = engine()->load_sprite("imgs/wall.xpm");
+	return sprite;
+}
+
 t_object	*new_wall(void)
 {
 	t_object		*wall;
-	static t_sprite	*sprite;
+	
 
 	wall = new_object_instance(sizeof(t_object));
 	wall->type = WALL;
-	if (!sprite)
-		sprite = engine()->load_sprite("imgs/wall.xpm");
-	wall->sprite = sprite;
 	wall->colison = __colison;
+	wall->get_sprite = get_sprite;
 	// wall->render = __reander;
 	return (wall);
 }

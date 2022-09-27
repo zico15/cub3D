@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/01 17:59:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:51:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	add_object_scene(double x, double y, char c)
 	}
 	else
 		return ;
-	if (c == 'S')
-		angle = 180;
-	if (c == 'E')
-		angle = 90;
 	if (c == 'W')
+		angle = 180;
+	if (c == 'N')
+		angle = 90;
+	if (c == 'S')
 		angle = -90;
 	obj->vector = vector(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
 	obj->vector.angle = angle;

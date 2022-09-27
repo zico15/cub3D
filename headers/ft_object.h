@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 14:29:29 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 21:49:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum e_type_ob
 	SCENE,
 	MAP,
 	PLAYER,
-	WALL
+	WALL,
+	DOOR
 }	t_type;
 
 
@@ -80,6 +81,7 @@ struct s_object
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
 };
 
 struct s_map
@@ -95,6 +97,7 @@ struct s_map
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*load)(char *path);
 	char			*f;
 	char			*c;
@@ -105,6 +108,8 @@ struct s_map
 	t_vector		vector_mini_map;
 	int				check[100][100];
 	int				is_map_ok;
+	int		c_color;
+	int		f_color;
 };
 
 struct s_player
@@ -120,6 +125,7 @@ struct s_player
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*atacar)(void);
 	t_nav_mesh		*agent;
 };
@@ -137,6 +143,7 @@ struct s_camera
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*render_view)(t_element *e, void *o);
 };
 
@@ -153,6 +160,7 @@ struct s_door
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
 	int				is_open;
 	int				count;
 };

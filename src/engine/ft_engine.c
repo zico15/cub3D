@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 18:52:47 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/18 19:48:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,23 @@ static t_scene	*__add_scene(t_scene *scene)
 
 int	game_loop(t_engine *e)
 {
-	static int	delay;
+	double			time1;
+	double			time2;
 
-	if (++delay < 7000)
-		return (0);
-	delay = 0;
+	time1 = now();
+	// if (++delay < 7000)
+	// 	return (0);
 	if (!scene())
 		return (0);
+	__funct_mousse_engine(0,0);
 	scene()->update();
-	e->canva->rectangle(vector(0, 0, e->width, e->height), 0xc4994a);
+	e->canva->rectangle(vector(0, 0, e->width, e->height / 2), map()->c_color);
+	e->canva->rectangle(vector(0, e->height / 2, e->width, e->height / 2), map()->f_color);
 	scene()->render(e->canva);
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
 	, 0, 0);
+	time2 = now();
+	e->delta = (time2 - time1) / 1000.0;
 	return (0);
 }
 

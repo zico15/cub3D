@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 12:57:48 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 23:11:01 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ struct s_colison
 	int			(*circular)(t_vector a, t_vector b);
 	int			(*rectangular)(t_vector a, t_vector b);
 	t_object	*(*pixel)(t_object *object, double px, double py);
+	t_object	*(*rectangula_ob)(t_object *object, double px, double py);
 };
 
 struct s_ray
@@ -57,6 +58,9 @@ struct s_ray
 	int			vertical;
 	t_face		direction;
 	double		angle;
+	double		rel_angle;
+	t_object    *ob;
+	int			pos;
 };
 
 struct s_texture
@@ -74,5 +78,6 @@ double		get_vectors_distance(t_vector a, t_vector b, double angle);
 double		ft_cos(double angle);
 double		ft_sin(double angle);
 double		ft_tan(double angle);
+double		ft_atan2(double y, double x);
 
 #endif

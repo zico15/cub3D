@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/08/22 19:51:35 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/09/22 21:49:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,27 @@ static void	__updade(void)
 // 		3, 0xee00ff);
 // }
 
+static t_sprite	*get_sprite(t_ray ray){
+	static t_sprite	*sprite;
+
+	(void) ray;
+	if (sprite == NULL)
+		sprite = engine()->load_sprite("imgs/tester.xpm");
+	return sprite;
+}
+
 t_object	*new_door(void)
 {
 	t_door	*door;
 
 	door = new_object_instance(sizeof(t_door));
+	door->type = DOOR;
 	// door->render = __render;
 	door->update = __updade;
 	door->colison = __colison_base;
 	door->funct_key = __funct_key;
 	door->vector = vector(0, 0, W_WIDTH, W_HEIGHT);
+	door->get_sprite = get_sprite;
 	return ((t_object *) door);
 }
 
