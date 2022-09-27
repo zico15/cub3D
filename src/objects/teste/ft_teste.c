@@ -55,7 +55,6 @@ static void	__reander(t_buffer *b)
 		b->line(start, vector(start.x, map()->vector.h, 0, 0), 0);
 		start.x += GRID_SIZE;
 	}
-	render_view(scene()->player);
 }
 
 t_object	*new_teste(void)

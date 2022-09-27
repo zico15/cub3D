@@ -108,8 +108,10 @@ struct s_map
 	t_vector		vector_mini_map;
 	int				check[100][100];
 	int				is_map_ok;
-	int		c_color;
-	int		f_color;
+	int				c_color;
+	int				f_color;
+	int				size_width;
+	int				size_height;
 };
 
 struct s_player

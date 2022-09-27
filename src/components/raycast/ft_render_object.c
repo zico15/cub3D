@@ -47,7 +47,7 @@ void	render_object(t_vector p)
 		pos_screen.x = ((angle_rel - p.angle) * W_WIDTH / 60) / VIEW_ANGLE + W_WIDTH / 2;
 		pos_screen.y = W_HEIGHT / 2;
 		if (pos_screen.x > 0 && pos_screen.x < W_WIDTH)
-			canva()->rectangle(vector(pos_screen.x, pos_screen.y, 10, 10), 0xffffffffff);
+			canva()->rectangle(vector(pos_screen.x, pos_screen.y, 10, 10), 0xfffff);
 		// pos_screen.x = (rel_pos.y * ft_tan((double) VIEW_ANGLE / 2.0)) + rel_pos.x + W_WIDTH / 2;
 		// pos_screen.y = W_HEIGHT / 2;
 		// if (pos_screen.x > 0 && pos_screen.x < W_WIDTH)

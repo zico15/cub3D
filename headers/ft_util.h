@@ -25,7 +25,8 @@
 # include <ft_object.h>
 # include <ft_nav_mesh.h>
 # include <ft_engine.h>
-#include <limits.h>
+# include <limits.h>
+# include <sys/time.h>
 
 # define BUFFER_SIZE 999999
 # define PI 3.14159265
@@ -46,13 +47,6 @@
 # define N_RAYS	W_WIDTH
 # define COLOR_TRANSPARENT 0xd411aa
 
-enum t_direction
-{
-	W = 1,
-	E = 2,
-	S = 3,
-	N = 4
-};
 
 typedef struct s_this
 {
