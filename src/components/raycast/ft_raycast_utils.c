@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:39:41 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/05 18:32:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:43:54 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static t_ray *check_position(t_ray *ray, t_vector p)
 	if (x >= 0 && x < map()->size_width  \
 	&& y >= 0 && y < map()->size_height && map()->maps[y][x] != '0')
 		ob = colison().pixel((t_object *) scene()->player, (int)ray->cross.x , (int)ray->cross.y);
+		// ob = NULL;
 	if (ob)
 	{
 		ray->distance = get_vectors_distance(ray->cross,
