@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/07 18:51:26 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 20:08:33 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,6 @@
 #include <ft_check.h>
 #include <ft_object_base.h>
 
-static void render_point(t_buffer *b)
-{
-	t_vector	p;
-	int			x;
-	int			y;
-
-	p = scene()->player->vector;
-	x = ((int) p.x /  GRID_SIZE) * GRID_SIZE;
-	y = ((int) p.y /  GRID_SIZE) * GRID_SIZE;
-	// b->rectangle_border(vector(x, y, GRID_SIZE, GRID_SIZE), COLOR_TRANSPARENT, 2, 0xdd0000ff);
-	// b->pixel(x, y, 0x1979e6);
-	// x = ((int) p.x /  GRID_SIZE) * GRID_SIZE + GRID_SIZE;
-	// y = ((int) p.y /  GRID_SIZE) * GRID_SIZE;
-	// b->pixel(x, y, 0x1979e6);
-	// x = ((int) p.x /  GRID_SIZE) * GRID_SIZE;
-	// y = ((int) p.y /  GRID_SIZE) * GRID_SIZE + GRID_SIZE;
-	// b->pixel(x, y, 0x1979e6);
-	// x = ((int) p.x /  GRID_SIZE) * GRID_SIZE + GRID_SIZE;
-	// y = ((int) p.y /  GRID_SIZE) * GRID_SIZE + GRID_SIZE;
-	// b->pixel(x, y, 0x1979e6);
-}
 
 static void	__reander(t_buffer *b)
 {
@@ -42,19 +21,19 @@ static void	__reander(t_buffer *b)
 	int	y = -1;
 	int x;
 
-	render_point(b);
-	start = vector_zero();
-	while (start.y < map()->vector.h)
-	{
-		b->line(vector(map()->vector.w - GRID_SIZE, start.y, 0, 0), start, 0);
-		start.y += GRID_SIZE;
-	}
-	start = vector_zero();
-	while (start.x < map()->vector.w)
-	{
-		b->line(start, vector(start.x, map()->vector.h, 0, 0), 0);
-		start.x += GRID_SIZE;
-	}
+//	render_point(b);
+	// start = vector_zero();
+	// while (start.y < map()->vector.h)
+	// {
+	// 	b->line(vector(map()->vector.w - GRID_SIZE, start.y, 0, 0), start, 0);
+	// 	start.y += GRID_SIZE;
+	// }
+	// start = vector_zero();
+	// while (start.x < map()->vector.w)
+	// {
+	// 	b->line(start, vector(start.x, map()->vector.h, 0, 0), 0);
+	// 	start.x += GRID_SIZE;
+	// }
 }
 
 t_object	*new_teste(void)
