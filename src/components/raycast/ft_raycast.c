@@ -56,25 +56,26 @@ void	print_column(t_ray *ray, t_vector column)
 	t_sprite		*sprite;
 
 
-	if (ray->ob == NULL ||  ray->ob->get_sprite == NULL)
+	if (ray->ob == NULL)
 			return;
-	sprite = ray->ob->get_sprite(*ray);
+	sprite = map()->wall->get_sprite(*ray);
+	if (sprite == NULL || sprite->img == NULL)
+		return;
+	//sprite = ray->ob->get_sprite(*ray);	
 	t = init_t(ray, column);
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
 	column.y = W_HEIGHT / 2 - column.h / 2;
-	if (ray->ob->type ==  DOOR)
-	{
-		column.y = column.y + 10;
-	}
 	y = -1;
 	while (++y < column.h)
 	{
+		if ((int) t.pos.x >= sprite->v.w || (int) t.pos.y >= sprite->v.h)
+			break;
 		color = __get_color(sprite->img, (int) t.pos.x, (int) t.pos.y);
-		if (ray->vertical)
+		/*if (ray->vertical)
 			color = color | 0x00555555; // shading ?
 		(canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
-				color);
+				color);*/
 		t.pos.y += t.y_step;
 	}
 }

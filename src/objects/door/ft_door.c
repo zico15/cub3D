@@ -57,24 +57,12 @@ static void	__updade(void)
 	}
 }
 
-// static void	__render(t_buffer *b)
-// {
-// 	t_door	*door;
-
-// 	door = (t_door *) this();
-// 	if (!door->is_open)
-// 		b->rectangle(this()->vector, 0xee00ff);
-// 	else
-// 		b->rectangle_border(this()->vector, COLOR_TRANSPARENT, \
-// 		3, 0xee00ff);
-// }
-
 static t_sprite	*get_sprite(t_ray ray){
 	static t_sprite	*sprite;
 
 	(void) ray;
 	if (sprite == NULL)
-		sprite = engine()->load_sprite("imgs/tester.xpm");
+		sprite = engine()->load_sprite("imgs/door.xpm");
 	return sprite;
 }
 
@@ -84,7 +72,6 @@ t_object	*new_door(void)
 
 	door = new_object_instance(sizeof(t_door));
 	door->type = DOOR;
-	// door->render = __render;
 	door->update = __updade;
 	door->colison = __colison_base;
 	door->funct_key = __funct_key;

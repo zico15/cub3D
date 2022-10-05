@@ -93,8 +93,6 @@ static void	__load_map(char *path)
 		printf("load map: %s (ERROR)\n", path);
 	else
 		printf("load map: %s\n", path);
-	map->size_width = (int) map->vector.w / GRID_SIZE;
-	map->size_height = (int) map->vector.h / GRID_SIZE;
 	map->c_color = upload_map_color(map->c);
 	map->f_color = upload_map_color(map->f);
 	cread_map(map);

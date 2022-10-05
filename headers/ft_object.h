@@ -112,6 +112,7 @@ struct s_map
 	int				f_color;
 	int				size_width;
 	int				size_height;
+	t_object		*wall;
 };
 
 struct s_player

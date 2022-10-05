@@ -17,20 +17,21 @@ void	render_ray(t_ray *ray);
 
 static t_ray *check_position(t_ray *ray, t_vector p)
 {
-	t_vector	check_pos;
+	int 		x;
+	int			y;
 	t_object	*ob;
 	
-	check_pos.x = (int)(ray->cross.x / GRID_SIZE);
-	check_pos.y = (int)(ray->cross.y / GRID_SIZE);
-	ob = colison().pixel((t_object *) scene()->player, (int)ray->cross.x , (int)ray->cross.y);
-	if (check_pos.x >= 0 && check_pos.x < map()->size_width
-		&& check_pos.y >= 0 && check_pos.y < map()->size_height
-		&& ob
-		)
+	x = (int)(ray->cross.x / GRID_SIZE);
+	y = (int)(ray->cross.y / GRID_SIZE);
+	ob = NULL;
+	if (x >= 0 && x < map()->size_width  \
+	&& y >= 0 && y < map()->size_height && map()->maps[y][x] == '1')
+		ob = map()->wall;
+	//ob = colison().pixel((t_object *) scene()->player, (int)ray->cross.x , (int)ray->cross.y);	
+	if (ob)
 	{
-
 		ray->distance = get_vectors_distance(ray->cross,
-		p, p.angle + ray->rel_angle);		
+		p, p.angle + ray->rel_angle);
 	}
 	else
 	{
@@ -42,42 +43,33 @@ static t_ray *check_position(t_ray *ray, t_vector p)
 }
 
 
-static int	render_object(t_ray *ray_ver, t_ray *ray_hor, t_ray	*rays)
+static int	render_object(t_ray *ray_ver, t_ray *ray_hor)
 {
 	t_ray		*ray;
-	int			i;
 
-	i = 0;
 	if (ray_ver->distance < ray_hor->distance)
 			ray = ray_ver;
 		else
 			ray = ray_hor;
-	if (ray->ob && ray->ob->type == WALL)
+	if (ray->ob)
 		render_ray(ray);
-	else
-	{	
-		rays[i] = *ray;
-		ray->ob = NULL;
-	}
 	return (ray_hor->ob && ray_ver->ob);
 }
 
 void 	update_rays(int max_loop, t_ray	*ray_ver, t_ray *ray_hor, t_vector p)
 {
-	int			loop;
-	t_ray		rays[9999];
-	int			i;
+	int				loop;
+	int				i;
 
 	loop = -1;
-	i = 0;
 	while (++loop < max_loop)
 	{
-		if (!ray_ver->ob || ray_ver->ob->type != WALL)
+		if (!ray_ver->ob)
 			ray_ver = check_position(ray_ver, p);
-		if (!ray_hor->ob || ray_hor->ob->type != WALL)
-			ray_hor = check_position(ray_hor, p);	
-		if (ray_hor->ob || ray_ver->ob)
-			if (render_object(ray_ver, ray_hor, &rays))
+		if (!ray_hor->ob)
+			ray_hor = check_position(ray_hor, p);
+		if (ray_hor->ob || ray_ver->ob)		
+			if (render_object(ray_ver, ray_hor))
 				break;
 	}
 }

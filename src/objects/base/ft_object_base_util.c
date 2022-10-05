@@ -32,6 +32,7 @@ void	*new_object_instance(size_t size)
 	object = (t_object *) o;
 	object->destroy = __destroy_ob;
 	object->funct_key = NULL;
+	object->type = OBJECT;
 	fthis()->object = o;
 	return (o);
 }

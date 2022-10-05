@@ -18,7 +18,7 @@ void	destroy_node(t_node	*n)
 	free_ob(n);
 }
 
-void	add_object_scene(double x, double y, char c)
+static t_object	*add_object_scene(double x, double y, char c)
 {
 	double		angle;
 	t_object	*obj;
@@ -36,7 +36,7 @@ void	add_object_scene(double x, double y, char c)
 		map()->player = vector(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
 	}
 	else
-		return ;
+		return NULL;
 	if (c == 'W')
 		angle = 180;
 	if (c == 'N')
@@ -52,22 +52,24 @@ void	add_object_scene(double x, double y, char c)
 		obj->vector.h = 10;
 		obj->vector.radius = 15;
 	}
+	if (obj->type == WALL)
+		return (obj);
+	return (NULL);
 }
 
 void	add_object_all_map(t_map *map)
 {
-	t_vector	v;
 	int			x;
 	int			y;
 
-	v = map->vector;
-	v.w = v.w / GRID_SIZE;
-	v.h = v.h / GRID_SIZE;
+	map->size_width = map->vector.w / GRID_SIZE;
+	map->size_height = map->vector.h / GRID_SIZE;
 	y = 0;
-	while (y < v.h)
+	map->wall = new_wall();
+	while (y < map->size_height)
 	{
 		x = 0;
-		while (x < v.w)
+		while (x < map->size_width)
 		{
 			add_object_scene(x, y, map->maps[y][x]);
 			if (string().contains("NSWE", _str(map->maps[y][x])))
@@ -76,6 +78,7 @@ void	add_object_all_map(t_map *map)
 		}
 		y++;
 	}
+	printf("add_object_all_map: %i\n", map->maps[0][0] != NULL);
 }
 
 void	destroy_element_node(t_element	*e)

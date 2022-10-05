@@ -51,6 +51,8 @@ void	__funct_key(int key, int type_event)
 		p->vector.angle -= 360;
 	if (p->vector.angle < 0)
 		p->vector.angle += 360;
+	if (key == 65421)
+		p->animation.is_run = 1;
 }
 
 void	__funct_mouse(int x, int y, int type_event)

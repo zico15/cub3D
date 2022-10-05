@@ -43,7 +43,6 @@ int	__get_color(void *img, int x, int y)
 	int			color;
 	t_data	   data;
 
-
 	data.img = img;
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
