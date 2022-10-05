@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_door.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/09/22 21:49:12 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 18:24:21 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ static int	check_colison(t_vector v)
 	return (colison().rectangular(p, v));
 }
 
-static void	__funct_key(int key, int type_event)
+static void	__funct_key(int *key, int type_event)
 {
 	t_vector	v;
 	t_door		*door;
 
 	(void) type_event;
 	door = (t_door *) this();
-	if (key == KEY_SPACE && !door->is_open)
+	if (key[KEY_SPACE] && !door->is_open)
 	{
 		if (check_colison(door->vector))
 		{

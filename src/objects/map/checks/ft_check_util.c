@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/21 17:51:00 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 18:26:38 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	add_object_all_map(t_map *map)
 		}
 		y++;
 	}
-	printf("add_object_all_map: %i\n", map->maps[0][0] != NULL);
 }
 
 void	destroy_element_node(t_element	*e)

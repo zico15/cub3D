@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:39:41 by nprimo            #+#    #+#             */
-/*   Updated: 2022/09/23 00:09:59 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 18:32:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ static t_ray *check_position(t_ray *ray, t_vector p)
 	y = (int)(ray->cross.y / GRID_SIZE);
 	ob = NULL;
 	if (x >= 0 && x < map()->size_width  \
-	&& y >= 0 && y < map()->size_height && map()->maps[y][x] == '1')
-		ob = map()->wall;
-	//ob = colison().pixel((t_object *) scene()->player, (int)ray->cross.x , (int)ray->cross.y);	
+	&& y >= 0 && y < map()->size_height && map()->maps[y][x] != '0')
+		ob = colison().pixel((t_object *) scene()->player, (int)ray->cross.x , (int)ray->cross.y);
 	if (ob)
 	{
 		ray->distance = get_vectors_distance(ray->cross,

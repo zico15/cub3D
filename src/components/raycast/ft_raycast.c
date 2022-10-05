@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/23 00:01:59 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 18:30:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ void	print_column(t_ray *ray, t_vector column)
 
 	if (ray->ob == NULL)
 			return;
-	sprite = map()->wall->get_sprite(*ray);
-	if (sprite == NULL || sprite->img == NULL)
-		return;
-	//sprite = ray->ob->get_sprite(*ray);	
+	sprite = ray->ob->get_sprite(*ray);
 	t = init_t(ray, column);
 	if (column.h >= W_HEIGHT)
 		column.h = W_HEIGHT;
@@ -72,10 +69,10 @@ void	print_column(t_ray *ray, t_vector column)
 		if ((int) t.pos.x >= sprite->v.w || (int) t.pos.y >= sprite->v.h)
 			break;
 		color = __get_color(sprite->img, (int) t.pos.x, (int) t.pos.y);
-		/*if (ray->vertical)
+		if (ray->vertical)
 			color = color | 0x00555555; // shading ?
 		(canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
-				color);*/
+				color);
 		t.pos.y += t.y_step;
 	}
 }

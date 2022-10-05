@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/09 13:15:53 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:23:23 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	__funct_mouse_scene(int x, int y, int type_event)
 	}
 }
 
-void	__funct_key_scene(int key, int type_event)
+void	__funct_key_scene(int *key, int type_event)
 {
 	t_element	*e;
 	t_object	*ob;

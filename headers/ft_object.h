@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/22 21:49:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 18:21:28 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ struct s_object
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
-	void			(*funct_key)(int key, int type_event);
+	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
@@ -93,7 +93,7 @@ struct s_map
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
-	void			(*funct_key)(int key, int type_event);
+	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
@@ -124,7 +124,7 @@ struct s_player
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
-	void			(*funct_key)(int key, int type_event);
+	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
@@ -142,7 +142,7 @@ struct s_camera
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
 	void			(*destroy)(void *o);
-	void			(*funct_key)(int key, int type_event);
+	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);
@@ -159,7 +159,7 @@ struct s_door
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
 	void			(*destroy)(void *o);
-	void			(*funct_key)(int key, int type_event);
+	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*colison)(t_object *collided);
 	void			(*set_position)(t_vector v);

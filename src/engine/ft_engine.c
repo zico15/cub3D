@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 19:48:12 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 18:27:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	game_loop(t_engine *e)
 	if (!scene())
 		return (0);
 	__funct_mousse_engine(0,0);
+	if (e->is_key_press)
+		funct_key_engine(e->keys, 0);
 	scene()->update();
 	e->canva->rectangle(vector(0, 0, e->width, e->height / 2), map()->c_color);
 	e->canva->rectangle(vector(0, e->height / 2, e->width, e->height / 2), map()->f_color);
@@ -89,7 +91,7 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.load_sprite = __load_sprite;
 	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_Press, NULL);
-	//mlx_hook(e.win, 3, (1L << 1), __funct_key_Release, NULL);
+	mlx_hook(e.win, 3, (1L << 1), __funct_key_Release, NULL);
 	mlx_mouse_hook(e.win, __funct_mousse_engine, &e);
 	mlx_loop_hook(e.mlx, game_loop, &e);
 	return (&e);

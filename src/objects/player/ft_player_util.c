@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/18 19:08:25 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/05 18:26:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <ft_component.h>
 #include <ft_player.h>
 
-void	__funct_key(int key, int type_event)
+void	__funct_key(int *key, int type_event)
 {
 	t_player	*p;
 	t_vector	v;
@@ -24,34 +24,34 @@ void	__funct_key(int key, int type_event)
 	(void) type_event;
 	p = (t_player *) this();
 	v = p->vector;
-	if (key == KEY_W)
+	if (key[KEY_W])
 	{
 		v.x += MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180); 
 		v.y -= MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
 	}
-	if (key == KEY_S)
+	if (key[KEY_S])
 	{
 		v.x -= MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180); 
 		v.y += MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
 	}
-	if (key == KEY_A)
+	if (key[KEY_A])
 	{
 		v.x -= MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180); 
 		v.y -= MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
 	}
-	if (key == KEY_D)
+	if (key[KEY_D])
 	{
 		v.x += MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180); 
 		v.y += MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
 	}
  	p->set_position(v);
-	p->vector.angle += (((key == KEY_LEFT) - (key == KEY_RIGHT)) * 100
+	p->vector.angle += (((key[KEY_LEFT]) - (key[KEY_RIGHT])) * 100
 			* engine()->delta);
 	if (p->vector.angle > 360)
 		p->vector.angle -= 360;
 	if (p->vector.angle < 0)
 		p->vector.angle += 360;
-	if (key == 65421)
+	if (key[65421])
 		p->animation.is_run = 1;
 }
 
