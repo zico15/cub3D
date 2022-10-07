@@ -17,13 +17,10 @@
 void	__render(t_buffer *b)
 {
 	t_player	*p;
-	void		*ray_return;
 
 	p = scene()->player;
 	if (!p)
 		return ;
-	// canva()->rectangle(vector(0, 0, W_WIDTH, W_HEIGHT), 0xc4994a);
-	// p->animation.is_run = 1;
 	render_view(p);
 }
 

@@ -19,10 +19,10 @@ static void	__colison(t_object *collided)
 	(void) collided;
 }
 
-// static void	__reander(t_buffer *b)
-// {
-// 	b->rectangle(this()->vector, 0x0000FF00);
-// }
+static void	__reander(t_buffer *b)
+{
+	b->rectangle(this()->vector, 0x0000FF00);
+}
 
 static t_sprite	*get_sprite(t_ray ray){
 	static t_sprite	*sprite;
@@ -42,6 +42,6 @@ t_object	*new_wall(void)
 	wall->type = WALL;
 	wall->colison = __colison;
 	wall->get_sprite = get_sprite;
-	// wall->render = __reander;
+	wall->render = __reander;
 	return (wall);
 }

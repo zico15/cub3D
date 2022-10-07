@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 18:26:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:51:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static t_object	*add_object_scene(double x, double y, char c)
 
 	angle = 0;
 	if (c == 'T')
-		obj = scene()->add(new_teste());
+		obj = new_teste();
 	if (c == 'D')
-		obj = scene()->add(new_door());
+		obj = new_door();
 	else if (c == '1')
-		obj = scene()->add(new_wall());
+		obj = new_wall();
 	else if (string().contains("NSWE", _str(c)))
 	{
 		obj = scene()->add(new_player());
@@ -52,9 +52,10 @@ static t_object	*add_object_scene(double x, double y, char c)
 		obj->vector.h = 10;
 		obj->vector.radius = 15;
 	}
-	if (obj->type == WALL)
-		return (obj);
-	return (NULL);
+	scene()->add(obj);
+	if (obj->type == PLAYER)
+		return (NULL);
+	return (obj);
 }
 
 void	add_object_all_map(t_map *map)
@@ -66,12 +67,14 @@ void	add_object_all_map(t_map *map)
 	map->size_height = map->vector.h / GRID_SIZE;
 	y = 0;
 	map->wall = new_wall();
+	map->maps_ob = malloc_ob(sizeof(t_object ***) * (map->size_height + 1));
 	while (y < map->size_height)
 	{
 		x = 0;
+		map->maps_ob[y] = malloc_ob(sizeof(t_object **) * (map->size_width + 1));
 		while (x < map->size_width)
 		{
-			add_object_scene(x, y, map->maps[y][x]);
+			map->maps_ob[y][x] = add_object_scene(x, y, map->maps[y][x]);
 			if (string().contains("NSWE", _str(map->maps[y][x])))
 				map->maps[y][x] = '0';
 			x++;

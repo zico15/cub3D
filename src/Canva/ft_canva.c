@@ -52,6 +52,20 @@ int	__get_color(void *img, int x, int y)
 	return (color);
 }
 
+int	__get_color_sprite(t_sprite *sprite, int x, int y)
+{
+	char		*dst;
+	int			color;
+	
+
+	if (x >= sprite->v.w || y >= sprite->v.h || x < 0 || y < 0)
+		return (COLOR_TRANSPARENT);
+	dst = sprite->data.addr + (y * sprite->data.line_length + x \
+	* (sprite->data.bits_per_pixel / 8));
+	color = *(unsigned int *)dst;
+	return (color);
+}
+
 void	__rectangle(t_vector v, int color)
 {
 	int			x;

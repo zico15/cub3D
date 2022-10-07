@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/05 18:24:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/05 19:03:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static int	check_colison(t_vector v)
 	t_vector	p;
 
 	p = fthis()->player->vector;
-	v.x -= 7;
-	v.x -= 7;
-	v.w += 7;
-	v.h += 7;
-	return (colison().rectangular(p, v));
+	//if (p.x >= v.x && p.x <= (v.x + v.w))
+		
+	//if (p.y >= v.y && p.y <= (v.y + v.h))
+	//printf("dor--> player open: %f\n", get_vectors_distance(v, p, 0));
+	return (colison().rectangular(v, p));
 }
 
 static void	__funct_key(int *key, int type_event)
@@ -34,6 +34,7 @@ static void	__funct_key(int *key, int type_event)
 	door = (t_door *) this();
 	if (key[KEY_SPACE] && !door->is_open)
 	{
+	
 		if (check_colison(door->vector))
 		{
 			door->is_open = 1;
@@ -62,7 +63,7 @@ static t_sprite	*get_sprite(t_ray ray){
 
 	(void) ray;
 	if (sprite == NULL)
-		sprite = engine()->load_sprite("imgs/door.xpm");
+		sprite = engine()->load_sprite("imgs/tester.xpm");
 	return sprite;
 }
 
