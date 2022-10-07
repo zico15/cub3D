@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/06 20:25:15 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/07 20:02:22 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	__print_line(t_vector begin, t_vector end, int color)
 	{
 		point.x += offset.x;
 		point.y = point.x * m + c;
+		if (point.x < 0 || point.x > W_WIDTH || point.y < 0 || point.y > W_HEIGHT)
+			break ;
 		canva()->pixel(point.x, point.y, color);
 	}
 	point.x = begin.x;
@@ -109,6 +111,8 @@ void	__print_line(t_vector begin, t_vector end, int color)
 		point.y += offset.y;
 		if (m != 1e30)
 			point.x = (point.y - c) / m;
+		if (point.x < 0 || point.x > W_WIDTH || point.y < 0 || point.y > W_HEIGHT)
+			break ;
 		canva()->pixel(point.x, point.y, color);
 	}
 }

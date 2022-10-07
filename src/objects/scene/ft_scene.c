@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 15:45:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/07 19:57:36 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	__render(t_buffer *b)
 	while (e)
 	{
 		o = e->value;
-		if (o && o->type != WALL)
+		if (o)
 		{
 			fthis()->object = o;
 			o->render(b);

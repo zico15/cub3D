@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:39:41 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/07 18:42:09 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/07 20:14:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static void check_position(t_ray *ray, t_vector p)
 	int			y;
 	t_object	*ob;
 	
-	x = (int)(ray->cross.x / GRID_SIZE);
-	y = (int)(ray->cross.y / GRID_SIZE);
+	x = (int)(ray->cross.x)>>5;
+	y = (int)(ray->cross.y)>>5;
 	ob = NULL;
 	if (x >= 0 && x < map()->size_width  \
-	&& y >= 0 && y < map()->size_height && \
-	map()->maps_ob[y][x])	 
+			&& y >= 0 && y < map()->size_height && \
+			map()->maps_ob[y][x])	 
 		ob = map()->maps_ob[y][x];
 	if (ob)
 	{
@@ -41,7 +41,6 @@ static void check_position(t_ray *ray, t_vector p)
 	ray->ob = ob;
 }
 
-
 static int	render_object(t_ray *ray_ver, t_ray *ray_hor)
 {
 	static t_ray		*ray;
@@ -52,7 +51,7 @@ static int	render_object(t_ray *ray_ver, t_ray *ray_hor)
 			ray = ray_hor;
 	if (ray->ob)
 		render_ray(ray);
-	return (ray_hor->ob && ray_ver->ob);
+	return (ray_hor->ob || ray_ver->ob);
 }
 
 void 	update_rays(int max_loop, t_ray	*ray_ver, t_ray *ray_hor, t_vector p)
@@ -87,7 +86,6 @@ void	get_ray_direction(t_ray *ray, double angle)
 
 void	init_ray_hor(t_vector p, double angle)
 {
-
 	ray_hor()->vertical = 0;
 	ray_hor()->collision = 0;
 	ray_hor()->distance = 1e30;
@@ -96,7 +94,7 @@ void	init_ray_hor(t_vector p, double angle)
 	get_ray_direction(ray_hor(), angle);
 	if (ft_sin(angle) > 0)
 	{
-		ray_hor()->cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE - 0.0001;
+		ray_hor()->cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE - 1;
 		ray_hor()->offset.y = -GRID_SIZE;
 	}
 	else if (ft_sin(angle) < 0)
@@ -115,7 +113,6 @@ void	init_ray_hor(t_vector p, double angle)
 
 void	init_ray_ver(t_vector p, double angle)
 {
-	
 	ray_ver()->vertical = 1;
 	ray_ver()->collision = 0;
 	ray_ver()->distance = 1e30;
@@ -124,7 +121,7 @@ void	init_ray_ver(t_vector p, double angle)
 	get_ray_direction(ray_ver(), angle);
 	if (ft_cos(angle) < 0)
 	{
-		ray_ver()->cross.x = ((int) p.x / GRID_SIZE) * GRID_SIZE - 0.0001;
+		ray_ver()->cross.x = ((int) p.x / GRID_SIZE) * GRID_SIZE - 1;
 		ray_ver()->offset.x = -GRID_SIZE;
 	}
 	else if (ft_cos(angle) > 0)

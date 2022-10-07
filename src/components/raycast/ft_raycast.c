@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/05 18:30:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:06:02 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	print_column(t_ray *ray, t_vector column)
 	while (++y < column.h)
 	{
 		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
-		(canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
-				color);
+		// (canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
+		// 		color);
 		t.pos.y += t.y_step;
 	}
 }
@@ -85,6 +85,7 @@ void	render_ray(t_ray *ray)
 	column.w = W_WIDTH / N_RAYS;
 	column.x = ray->pos * column.w;
 	print_column(ray, column);
+	canva()->line(scene()->player->vector, ray->cross, 0x000000ff);
 }
 
 void	render_view(t_player *p)
@@ -95,10 +96,15 @@ void	render_view(t_player *p)
 
 	rel_angle = VIEW_ANGLE / 2;
 	i = -1;
-	while (++i <= N_RAYS)
-	{
-		color = GREEN;
-		get_ray_return(p->vector, rel_angle, i);	
-		rel_angle -= (double) VIEW_ANGLE / N_RAYS;
-	}
+	// while (++i <= N_RAYS)
+	// {
+	// 	color = GREEN;
+	// 	get_ray_return(p->vector, rel_angle, i);	
+	// 	rel_angle -= (double) VIEW_ANGLE / N_RAYS;
+	// }
+	get_ray_return(p->vector, 20, 0);
+	get_ray_return(p->vector, 10, 0);
+	get_ray_return(p->vector, 0, 0);
+	get_ray_return(p->vector, -10, 0);
+	get_ray_return(p->vector, -20, 0);
 }
