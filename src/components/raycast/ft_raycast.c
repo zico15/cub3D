@@ -21,7 +21,6 @@
 #define WHITE 0x00000000
 #define BLACK 0xffffffff
 
-t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
 void	render_object(t_vector p);
 
 t_texture	init_t(t_ray *ray, t_vector column)
@@ -66,11 +65,7 @@ void	print_column(t_ray *ray, t_vector column)
 	y = -1;
 	while (++y < column.h)
 	{
-		if ((int) t.pos.x >= sprite->v.w || (int) t.pos.y >= sprite->v.h)
-			break;
-		color = __get_color(sprite->img, (int) t.pos.x, (int) t.pos.y);
-		if (ray->vertical)
-			color = color | 0x00555555; // shading ?
+		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
 		(canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
 				color);
 		t.pos.y += t.y_step;

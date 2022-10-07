@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 18:21:28 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:35:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ struct s_map
 	int				f_color;
 	int				size_width;
 	int				size_height;
+	t_object		***maps_ob;
 	t_object		*wall;
 };
 

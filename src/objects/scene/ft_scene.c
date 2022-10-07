@@ -44,13 +44,13 @@ static void	__render(t_buffer *b)
 	while (e)
 	{
 		o = e->value;
-		if (o)
+		if (o && o->type != WALL)
 		{
 			fthis()->object = o;
 			o->render(b);
 		}
 		e = e->next;
-	}	
+	}
 }
 
 static void	__destroy(void *object)

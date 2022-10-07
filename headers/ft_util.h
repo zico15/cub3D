@@ -79,9 +79,12 @@ void		*malloc_ob(size_t __size);
 
 //			remove - testes
 int			__get_color(void *img, int x, int y);
+int			__get_color_sprite(t_sprite *sprite, int x, int y);
 int			funct_key_engine(int *key, int type_event);
 
 //			time
-double	now(void);
+double		now(void);t_ray		*ray_ver();
+t_ray		*ray_hor();
+void		get_ray_return(t_vector p, double rel_angle, int pos);
 
 #endif

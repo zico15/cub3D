@@ -35,3 +35,17 @@ double	now(void)
 		now_msec = 0;
 	return (now_msec);
 }
+
+t_ray	*ray_ver()
+{
+	static t_ray	ray;
+
+	return (&ray);
+}
+
+t_ray	*ray_hor()
+{
+	static t_ray	ray;
+
+	return (&ray);
+}
