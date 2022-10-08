@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/08 09:19:08 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/08 10:09:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,18 @@ void	render_ray(t_ray *ray)
 	column.w = W_WIDTH / N_RAYS;
 	column.x = ray->pos * column.w;
 	print_column(ray, column);
+}
+
+void	print_ray_2d(t_ray ray)
+{
 	int color = 0x000000ff;
-	if (ray->vertical)
+
+	if (ray.vertical)
 		color = 0x00ffffff;
-	canva()->line(scene()->player->vector, ray->cross, color);
+	canva()->line(scene()->player->vector, ray.cross, color);
+	printf("Angle: %f vertical: %d\n", ray.angle, ray.vertical);
+	if (ray.rel_angle == -VIEW_ANGLE / 2)
+		printf("------------\n");
 }
 
 void	render_view(t_player *p)
@@ -105,9 +113,9 @@ void	render_view(t_player *p)
 	// 	get_ray_return(p->vector, rel_angle, i);	
 	// 	rel_angle -= (double) VIEW_ANGLE / N_RAYS;
 	// }
-	get_ray_return(p->vector, 20, 0);
-	get_ray_return(p->vector, 10, 0);
-	get_ray_return(p->vector, 0, 0);
-	get_ray_return(p->vector, -10, 0);
-	get_ray_return(p->vector, -20, 0);
+	print_ray_2d(get_ray_return(p->vector, VIEW_ANGLE / 2, 0));
+	print_ray_2d(get_ray_return(p->vector, 10, 0));
+	print_ray_2d(get_ray_return(p->vector, 0, 0));
+	print_ray_2d(get_ray_return(p->vector, -10, 0));
+	print_ray_2d(get_ray_return(p->vector, -VIEW_ANGLE / 2, 0));
 }

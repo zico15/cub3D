@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 18:20:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/08 09:59:08 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int			funct_key_engine(int *key, int type_event);
 //			time
 double		now(void);t_ray		*ray_ver();
 t_ray		*ray_hor();
-void		get_ray_return(t_vector p, double rel_angle, int pos);
+t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
 
 #endif
