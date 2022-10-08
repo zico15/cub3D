@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/07 20:06:02 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/08 09:19:08 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ void	render_ray(t_ray *ray)
 	column.w = W_WIDTH / N_RAYS;
 	column.x = ray->pos * column.w;
 	print_column(ray, column);
-	canva()->line(scene()->player->vector, ray->cross, 0x000000ff);
+	int color = 0x000000ff;
+	if (ray->vertical)
+		color = 0x00ffffff;
+	canva()->line(scene()->player->vector, ray->cross, color);
 }
 
 void	render_view(t_player *p)
