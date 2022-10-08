@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/05 19:43:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/08 09:53:37 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,30 @@ void	__funct_key(int *key, int type_event)
 	v = p->vector;
 	if (key[KEY_W])
 	{
-		if (!ft_is_collision_x(this(), v.x, v.y, ((double) MOVE_LEN) * engine()->delta * cos(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_x(this(), v.x, v.y, ((double) MOVE_LEN) * engine()->delta * cos(v.angle * M_PI / 180)))
 			v.x += MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
-		if (!ft_is_collision_y(this(), v.x, v.y, -((double) MOVE_LEN) * engine()->delta * sin(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_y(this(), v.x, v.y, -((double) MOVE_LEN) * engine()->delta * sin(v.angle * M_PI / 180)))
 			v.y -= MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
 	}
 	if (key[KEY_S])
 	{
-		if (!ft_is_collision_x(this(), v.x, v.y, -MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_x(this(), v.x, v.y, -MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180)))
 			v.x -= MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
-		if (!ft_is_collision_y(this(), v.x, v.y, MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_y(this(), v.x, v.y, MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180)))
 			v.y += MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
 	}
 	if (key[KEY_A])
 	{
-		if (!ft_is_collision_x(this(), v.x, v.y, -((double) MOVE_LEN) * engine()->delta * sin(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_x(this(), v.x, v.y, -((double) MOVE_LEN) * engine()->delta * sin(v.angle * M_PI / 180)))
 			v.x -= MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
-		if (!ft_is_collision_y(this(), v.x, v.y, -((double) MOVE_LEN) * engine()->delta * cos(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_y(this(), v.x, v.y, -((double) MOVE_LEN) * engine()->delta * cos(v.angle * M_PI / 180)))
 			v.y -= MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
 	}
 	if (key[KEY_D])
 	{
-		if (!ft_is_collision_x(this(), v.x, v.y, MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_x(this(), v.x, v.y, MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180)))
 			v.x += MOVE_LEN * engine()->delta * sin(v.angle * M_PI / 180);
-		if (!ft_is_collision_y(this(), v.x, v.y, MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180)))
+		// if (!ft_is_collision_y(this(), v.x, v.y, MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180)))
 			v.y += MOVE_LEN * engine()->delta * cos(v.angle * M_PI / 180);
 	}
  	p->set_position(v);
