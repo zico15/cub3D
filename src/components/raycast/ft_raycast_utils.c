@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:39:41 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/08 10:05:35 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:36:16 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,24 @@ static t_ray check_position(t_ray ray, t_vector p)
 		// ray.ob = map()->maps_ob[y][x];
 		ray.distance = get_vectors_distance(ray.cross,
 			p, ray.rel_angle);
-		ray.collision = 1;
+		/* collision might be useless if using obj
+		// obj == NULL no collision // obj.type == 'something' collision happened
+		*/
+		ray.collision = 1; 
+		ray.loop = 0;
 	}
 	else
 	{
 		ray.cross.x += ray.offset.x;
 		ray.cross.y += ray.offset.y;
+		ray.loop--;
 	}
 	return (ray);
 }
 
+/*
+	not used now - to refactor 
+*/
 static int	render_object(t_ray *ray_ver, t_ray *ray_hor)
 {
 	static t_ray		*ray;
@@ -58,17 +66,15 @@ static int	render_object(t_ray *ray_ver, t_ray *ray_hor)
 	return (ray_hor->ob || ray_ver->ob);
 }
 
-t_ray 	update_rays(int max_loop, t_ray ray_ver, t_ray ray_hor, t_vector p)
+t_ray 	update_rays(t_ray ray_ver, t_ray ray_hor, t_vector p)
 {
-	int				loop;
 	int				i;
 
-	loop = -1;
-	while (++loop < max_loop)
+	while (ray_ver.loop || ray_hor.loop)
 	{
-		if (!ray_ver.collision)
+		if (ray_ver.loop && !ray_ver.collision)
 			ray_ver = check_position(ray_ver, p);
-		if (!ray_hor.collision)
+		if (ray_hor.loop && !ray_hor.collision)
 			ray_hor = check_position(ray_hor, p);
 		// if (ray_hor.ob || ray_ver.ob)	
 	// 		if (render_object(ray_ver, ray_hor))
@@ -88,17 +94,17 @@ t_ray 	update_rays(int max_loop, t_ray ray_ver, t_ray ray_hor, t_vector p)
 
 t_face	get_ray_direction(t_ray *ray, double angle)
 {
-	t_face	ray_direction;
+	t_face	direction;
  
 	if (ft_cos(angle) >= 0 && ray->vertical == 1)
-		ray_direction = W;
+		direction = W;
 	if (ft_cos(angle) <= 0 && ray->vertical == 1)
-		ray_direction = E;
+		direction = E;
 	if (ft_sin(angle) >= 0 && ray->vertical == 0)
-		ray_direction = S;
+		direction = S;
 	if (ft_sin(angle) <= 0 && ray->vertical == 0)
-		ray_direction = N;
-	return (ray_direction);
+		direction = N;
+	return (direction);
 }
 
 t_ray	init_ray_hor(t_vector p, double angle)
@@ -107,25 +113,23 @@ t_ray	init_ray_hor(t_vector p, double angle)
 
 	ray_hor.vertical = 0;
 	ray_hor.collision = 0;
+	ray_hor.loop = map()->size_height;
 	ray_hor.distance = 1e30;
 	ray_hor.ob = NULL;
 	ray_hor.angle = angle;
-	// ray_hor.direction = get_ray_direction(&ray_hor, angle);
+	ray_hor.direction = get_ray_direction(&ray_hor, angle);
 	if (ft_sin(angle) > 0)
 	{
-		ray_hor.cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE - 0.0001;
+		ray_hor.cross.y = ((int)((int) p.y>>5)<<5) - 0.001;
 		ray_hor.offset.y = -GRID_SIZE;
 	}
 	else if (ft_sin(angle) < 0)
 	{
-		ray_hor.cross.y = ((int) p.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
+		ray_hor.cross.y = ((int) p.y>>5) * GRID_SIZE + GRID_SIZE;
 		ray_hor.offset.y = GRID_SIZE;
 	}
 	if (angle == 180 || angle == 0 || angle == 360)
-	{
-		ray_hor.collision = 1;
-		ray_hor.cross.y = INT_MIN;
-	}
+		ray_hor.loop = 0;
 	ray_hor.cross.x = (p.y - ray_hor.cross.y) / ft_tan(angle) + p.x;
 	ray_hor.offset.x = -ray_hor.offset.y / ft_tan(angle);
 	return (ray_hor);
@@ -137,10 +141,11 @@ t_ray	init_ray_ver(t_vector p, double angle)
 
 	ray_ver.vertical = 1;
 	ray_ver.collision = 0;
+	ray_ver.loop = map()->size_width;
 	ray_ver.distance = 1e30;
 	ray_ver.ob = NULL;
 	ray_ver.angle = angle;
-	// ray_ver.direction = get_ray_direction(&ray_ver, angle);
+	ray_ver.direction = get_ray_direction(&ray_ver, angle);
 	if (ft_cos(angle) < 0)
 	{
 		ray_ver.cross.x = ((int) p.x / GRID_SIZE) * GRID_SIZE - 0.0001;
@@ -152,10 +157,7 @@ t_ray	init_ray_ver(t_vector p, double angle)
 		ray_ver.offset.x = GRID_SIZE;
 	}
 	if (angle == 90 || angle == 270)
-	{
-		ray_ver.collision = 1;
-		ray_ver.cross.x = INT_MIN;
-	}
+		ray_ver.loop = 0;
 	ray_ver.cross.y = (p.x - ray_ver.cross.x) * ft_tan(angle) + p.y;
 	ray_ver.offset.y = -ray_ver.offset.x * ft_tan(angle);
 	return (ray_ver);
@@ -163,7 +165,6 @@ t_ray	init_ray_ver(t_vector p, double angle)
 
 t_ray	get_ray_return(t_vector p, double rel_angle, int pos)
 {
-	int		max_loop;
 	t_ray	ray_ver;
 	t_ray	ray_hor;
 
@@ -173,5 +174,5 @@ t_ray	get_ray_return(t_vector p, double rel_angle, int pos)
 	ray_ver.rel_angle = rel_angle;
 	ray_hor.pos = pos;
 	ray_hor.rel_angle = rel_angle;
-	return (update_rays(20, ray_ver, ray_hor, p));
+	return (update_rays(ray_ver, ray_hor, p));
 }

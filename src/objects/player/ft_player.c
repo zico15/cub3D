@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/09/07 19:04:16 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/09 15:16:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ t_player	*new_player(void)
 
 	p = new_object_instance(sizeof(t_player));
 	p->type = PLAYER;
-	p->funct_key = __funct_key;
+	// p->funct_key = __funct_key;
 	p->update = __update;
 	// p->render = __reander;
 	p->agent = new_nav_mesh();
 	p->sprite = engine()->load_sprite("imgs/IMG/Arma01.xpm");
-	p->funct_mouse = __funct_mouse;
+	// p->funct_mouse = __funct_mouse;
 	p->colison = __colison;
 	p->vector.angle = 90;
 	p->vector.w = 10;

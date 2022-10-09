@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/22 23:11:01 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:07:09 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct s_ray
 	t_vector	cross;
 	t_vector	offset;
 	int			collision;
+	int			loop;
 	double		distance;
 	int			vertical;
 	t_face		direction;
