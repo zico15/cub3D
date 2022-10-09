@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/08 09:53:37 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:30:06 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,13 @@ void	__funct_mouse(int x, int y, int type_event)
 
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))
+	{
 		this()->vector.angle += delta * ROTATION_LEN * engine()->delta;
+		if (this()->vector.angle > 360)
+			this()->vector.angle -= 360;
+		if (this()->vector.angle < 0)
+			this()->vector.angle += 360;
+	}
 }
 
 void	__set_position(t_vector v)
