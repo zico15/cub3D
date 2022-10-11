@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 18:37:12 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 18:52:09 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ struct s_ray
 	t_vector	cross;
 	t_pos		step;
 	t_pos		map_cell;
+	double		perp_distance;
 	int			hit;
 	t_object	*obj;
 	int			side;
