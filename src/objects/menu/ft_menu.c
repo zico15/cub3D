@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 21:05:01 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:41:42 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ static void	__reander(t_buffer *b)
 {
 	t_vector	p;
 
-	p = fthis()->player->vector;
+	p = fthis()->player->pos;
 	p.x = ((p.x - (p.w / 2) - GRID_SIZE) / GRID_SIZE) - 1;
 	p.y = ((p.y - (p.h / 2) - GRID_SIZE) / GRID_SIZE);
 	mini_map(b, p, this()->vector);
 	if (0 && fthis()->player->sprite)
 		b->image(fthis()->player->sprite);
-	render_point(b);
+	// render_point(b);
 }
 
 t_object	*new_menu(void)

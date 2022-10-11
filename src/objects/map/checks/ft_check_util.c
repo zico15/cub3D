@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 15:58:55 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:58:22 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,36 @@ void	destroy_node(t_node	*n)
 {
 	array(n->nodes)->destroy();
 	free_ob(n);
+}
+
+static t_player *init_player(int x, int y, char c)
+{
+	t_player *p;
+
+	p = new_player();
+	p->pos.x = x;
+	p->pos.y = y;
+	if (c == 'N')
+	{
+		p->dir.y = -1;
+		p->plane.x = +0.66;
+	}
+	if (c == 'E')
+	{
+		p->dir.x = 1;
+		p->plane.y = +0.66;
+	}
+	if (c == 'S')
+	{
+		p->dir.y = 1;
+		p->plane.x = -0.66;
+	}
+	if (c == 'W')
+	{
+		p->dir.x = -1;
+		p->plane.y = -0.66;
+	}
+	return (p);
 }
 
 static t_object	*add_object_scene(double x, double y, char c)
@@ -32,7 +62,7 @@ static t_object	*add_object_scene(double x, double y, char c)
 		obj = new_wall();
 	else if (string().contains("NSWE", _str(c)))
 	{
-		obj = scene()->add(new_player());
+		obj = scene()->add(init_player(x, y, c));
 		map()->player = vector(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
 	}
 	else

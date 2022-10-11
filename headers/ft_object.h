@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 14:55:41 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:40:55 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,9 @@ struct s_player
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*atacar)(void);
 	t_nav_mesh		*agent;
-	t_v				pos;
-	t_v				dir;
-	t_v				plane;
+	t_vector		pos;
+	t_vector		dir;
+	t_vector		plane;
 };
 
 struct s_camera

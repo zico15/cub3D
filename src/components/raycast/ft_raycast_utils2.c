@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/11 16:12:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:45:36 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,17 @@ typedef struct s_pos
 	int y;
 }	t_pos;
 
-void	print_map()
-{
-	int x;
-	int y;
-
-	y = 0;
-	// while(y < mapHeight)
-	while (y < map()->size_height)
-	{
-		x = 0;
-		// while (x < mapWidth)
-		while (x < map()->size_width)
-		{
-			// printf("%d ", worldMap[y][x]);
-			printf("%c ", map()->maps[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf("=========================\n\n");
-}
-
 typedef struct s_ray2
 {
-	t_v		camera;
-	t_v		dir;
-	t_v		side_dist;
-	t_v		delta_dist;
-	t_pos	step;
-	t_pos	map_cell;
-	int		hit;
-	int		side;
+	t_v			camera;
+	t_v			dir;
+	t_v			side_dist;
+	t_v			delta_dist;
+	t_pos		step;
+	t_pos		map_cell;
+	int			hit;
+	t_object	*obj;
+	int			side;
 } t_ray2;
 
 static t_ray2	init_ray(t_player p, int x)
@@ -119,9 +97,10 @@ static t_ray2	update_ray(t_ray2 ray)
 			ray.map_cell.y += ray.step.y;
 			ray.side = 1;
 		}
-		// if (worldMap[ray.map_cell.y][ray.map_cell.x] > 0)
 		if (map()->maps[ray.map_cell.y][ray.map_cell.x] != '0')
 			ray.hit = 1;
+		// if ((map()->maps_ob[ray.map_cell.y][ray.map_cell.x])->type ==)
+
 	}
 	return (ray);
 }
@@ -130,7 +109,6 @@ static void		draw_line(t_ray2 ray, int x)
 {
 	double	perp_distance;
 	int 	color;
-	int		map_value; // can be substitute by ray.object
 	int 	line_h;
 	t_pos	draw_h;
 
@@ -159,14 +137,14 @@ void 			render_view2(t_player p) // receive player
 
 	/* coming in with the player input */
 	// position of the player
-	p.pos.x = p.vector.x / GRID_SIZE;
-	p.pos.y = p.vector.y / GRID_SIZE;
+	// p.pos.x = p.vector.x / GRID_SIZE;
+	// p.pos.y = p.vector.y / GRID_SIZE;
 	// direction of the player - need to substitute the player angle
-	p.dir.x = -1;
-	p.dir.y = 0;
-	// view plane - need to be stored in the player as well
-	p.plane.x = 0;
-	p.plane.y = 0.66; // value with 66 FOV
+	// p.dir.x = -1;
+	// p.dir.y = 0;
+	// // view plane - need to be stored in the player as well
+	// p.plane.x = 0;
+	// p.plane.y = 0.66; // value with 66 FOV
 	x = -1;
 	while (++x < W_WIDTH)
 	{
