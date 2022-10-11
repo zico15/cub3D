@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 18:03:23 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 18:37:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,39 @@ struct s_colison
 	t_object	*(*rectangula_ob)(t_object *object, double px, double py);
 };
 
+// struct s_ray
+// {
+// 	t_vector	cross;
+// 	t_vector	offset;
+// 	int			collision;
+// 	int			loop;
+// 	double		distance;
+// 	int			vertical;
+// 	t_face		direction;
+// 	double		angle;
+// 	double		rel_angle;
+// 	t_object    *ob;
+// 	int			pos;
+// };
+
+typedef struct s_pos
+{
+	int x;
+	int y;
+}	t_pos;
+
 struct s_ray
 {
+	t_vector	camera;
+	t_vector	dir;
+	t_vector	side_dist;
+	t_vector	delta_dist;
 	t_vector	cross;
-	t_vector	offset;
-	int			collision;
-	int			loop;
-	double		distance;
-	int			vertical;
-	t_face		direction;
-	double		angle;
-	double		rel_angle;
-	t_object    *ob;
-	int			pos;
+	t_pos		step;
+	t_pos		map_cell;
+	int			hit;
+	t_object	*obj;
+	int			side;
 };
 
 struct s_texture

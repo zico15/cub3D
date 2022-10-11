@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/11 18:09:28 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 18:41:05 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,23 @@
 #define BLUE 0x0000ff00
 #define WHITE 0xffffffff
 
-typedef struct s_pos
-{
-	int x;
-	int y;
-}	t_pos;
+// typedef struct s_ray2
+// {
+// 	t_vector	camera;
+// 	t_vector	dir;
+// 	t_vector	side_dist;
+// 	t_vector	delta_dist;
+// 	t_vector	cross;
+// 	t_pos		step;
+// 	t_pos		map_cell;
+// 	int			hit;
+// 	t_object	*obj;
+// 	int			side;
+// } t_ray2;
 
-typedef struct s_ray2
+static t_ray	init_ray(t_player p, int x)
 {
-	t_v			camera;
-	t_v			dir;
-	t_v			side_dist;
-	t_v			delta_dist;
-	t_pos		step;
-	t_pos		map_cell;
-	int			hit;
-	t_object	*obj;
-	int			side;
-} t_ray2;
-
-static t_ray2	init_ray(t_player p, int x)
-{
-	t_ray2	ray;
+	t_ray	ray;
 
 	ray.hit = 0;
 	ray.camera.x = 2 * x / (double) W_WIDTH - 1; 
@@ -81,7 +76,24 @@ static t_ray2	init_ray(t_player p, int x)
 	return (ray);
 }
 
-static t_ray2	update_ray(t_ray2 ray)
+static t_vector	get_ray_cross(t_ray ray)
+{
+	t_player	*p;
+	t_vector	cross;
+	double		vect_len;
+	double		cross_len;
+
+	p = scene()->player;
+	vect_len = p->dir.x * p->dir.x + p->dir.y * p->dir.y;
+	cross_len = ray.side_dist.x * ray.side_dist.x;
+	if (ray.side_dist.y < ray.side_dist.x)
+		cross_len = ray.side_dist.y * ray.side_dist.y;
+	cross.x = cross_len * ray.dir.x / vect_len;
+	cross.y = cross_len * ray.dir.y / vect_len;
+	return (cross);
+}
+
+static t_ray	update_ray(t_ray ray)
 {
 	while (ray.hit == 0)
 	{
@@ -97,15 +109,17 @@ static t_ray2	update_ray(t_ray2 ray)
 			ray.map_cell.y += ray.step.y;
 			ray.side = 1;
 		}
-		if (map()->maps[ray.map_cell.y][ray.map_cell.x] != '0')
+		if (map()->maps_ob[ray.map_cell.y][ray.map_cell.x])
+		{
 			ray.hit = 1;
-		// if ((map()->maps_ob[ray.map_cell.y][ray.map_cell.x])->type ==)
-
+			ray.cross = get_ray_cross(ray);
+			ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
+		}
 	}
 	return (ray);
 }
 
-static void		draw_line(t_ray2 ray, int x)
+static void	draw_line(t_ray ray, int x)
 {
 	double	perp_distance;
 	int 	color;
@@ -129,72 +143,64 @@ static void		draw_line(t_ray2 ray, int x)
 	(canva())->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
 }
 
-t_texture	init_t(t_ray *ray, t_vector column)
-{
-	t_texture	t;
+// static t_texture	init_t(t_ray *ray, t_vector column)
+// {
+// 	t_texture	t;
 	
-	t.pos.x = (int) ray->cross.x % 32;
-	if (ft_sin(ray->angle) < 0)
-		t.pos.x = (int)(31.0 - t.pos.x);
-	if (ray->vertical)
-	{
-		t.pos.x = (int) ray->cross.y % 32;
-		if (ft_cos(ray->angle) < 0)
-			t.pos.x = (int)(31.0 - t.pos.x);
-	}
-	t.y_offset = 0;
-	t.y_step = 32.0 / (double) column.h;
-	if (column.h >= W_HEIGHT)
-	{
-		t.y_offset = (column.h - W_HEIGHT) / 2.0;
-		column.h = W_HEIGHT;
-	}
-	t.pos.y = t.y_offset * t.y_step;
-	return (t);
-}
+// 	t.pos.x = (int) ray->cross.x % 32;
+// 	if (ft_sin(ray->angle) < 0)
+// 		t.pos.x = (int)(31.0 - t.pos.x);
+// 	if (ray->vertical)
+// 	{
+// 		t.pos.x = (int) ray->cross.y % 32;
+// 		if (ft_cos(ray->angle) < 0)
+// 			t.pos.x = (int)(31.0 - t.pos.x);
+// 	}
+// 	t.y_offset = 0;
+// 	t.y_step = 32.0 / (double) column.h;
+// 	if (column.h >= W_HEIGHT)
+// 	{
+// 		t.y_offset = (column.h - W_HEIGHT) / 2.0;
+// 		column.h = W_HEIGHT;
+// 	}
+// 	t.pos.y = t.y_offset * t.y_step;
+// 	return (t);
+// }
 
+// static void	print_column(t_ray *ray, t_vector column, int x)
+// {
+// 	int				color;
+// 	double			y;
+// 	t_texture		t;
+// 	t_sprite		*sprite;
+// 	t_vector		column;
 
-void	print_column(t_ray *ray, t_vector column)
+// 	if (!ray->obj)
+// 		return ;
+// 	column.w = 1;
+// 	column.x = x;
+// 	if (ray->obj == NULL)
+// 		return;
+// 	sprite = ray->obj->get_sprite(*ray);
+// 	t = init_t(ray, column);
+// 	if (column.h >= W_HEIGHT)
+// 		column.h = W_HEIGHT;
+// 	column.y = W_HEIGHT / 2 - column.h / 2;
+// 	y = -1;
+// 	while (++y < column.h)
+// 	{
+// 		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
+// 		(canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
+// 				color);
+// 		t.pos.y += t.y_step;
+// 	}
+// }
+
+void	render_view2(t_player p) // receive player
 {
-	int				color;
-	double			y;
-	t_texture		t;
-	t_sprite		*sprite;
+	t_ray	ray;
+	int		x;
 
-
-	if (ray->ob == NULL)
-		return;
-	sprite = ray->ob->get_sprite(*ray);
-	t = init_t(ray, column);
-	if (column.h >= W_HEIGHT)
-		column.h = W_HEIGHT;
-	column.y = W_HEIGHT / 2 - column.h / 2;
-	y = -1;
-	while (++y < column.h)
-	{
-		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
-		// (canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
-		// 		color);
-		t.pos.y += t.y_step;
-	}
-}
-
-void 			render_view2(t_player p) // receive player
-{
-	t_ray2		ray;
-	double		perp_distance;
-	int x;
-
-	/* coming in with the player input */
-	// position of the player
-	// p.pos.x = p.vector.x / GRID_SIZE;
-	// p.pos.y = p.vector.y / GRID_SIZE;
-	// direction of the player - need to substitute the player angle
-	// p.dir.x = -1;
-	// p.dir.y = 0;
-	// // view plane - need to be stored in the player as well
-	// p.plane.x = 0;
-	// p.plane.y = 0.66; // value with 66 FOV
 	x = -1;
 	while (++x < W_WIDTH)
 	{
