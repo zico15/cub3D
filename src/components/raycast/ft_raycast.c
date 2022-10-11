@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/11 12:22:09 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 14:47:37 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #define BLACK 0xffffffff
 
 void	render_object(t_vector p);
-void 	main_render();
+void 	render_view2();
 
 t_texture	init_t(t_ray *ray, t_vector column)
 {
@@ -121,5 +121,5 @@ void	render_view(t_player *p)
 	// print_ray_2d(get_ray_return(p->vector, 0, 0));
 	// print_ray_2d(get_ray_return(p->vector, -10, 0));
 	// print_ray_2d(get_ray_return(p->vector, -VIEW_ANGLE / 2, 0));
-	main_render();
+	render_view2(*p);
 }

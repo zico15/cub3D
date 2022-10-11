@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/11 13:01:47 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 14:47:47 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,34 @@ int worldMap[mapWidth][mapHeight] =
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-// void	print_map()
-// {
-// 	int x;
-// 	int y;
+void	print_map()
+{
+	int x;
+	int y;
 
-// 	y = 0;
-// 	while(y < mapHeight)
-// 	{
-// 		x = 0;
-// 		while (x < mapWidth)
-// 		{
-// 			printf("%d ", worldMap[y][x]);
-// 			x++;
-// 		}
-// 		printf("\n");
-// 		y++;
-// 	}
-// 	printf("=========================\n\n");
-// }
+	y = 0;
+	// while(y < mapHeight)
+	while (y < map()->size_height)
+	{
+		x = 0;
+		// while (x < mapWidth)
+		while (x < map()->size_width)
+		{
+			// printf("%d ", worldMap[y][x]);
+			printf("%c ", map()->maps[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	printf("=========================\n\n");
+}
 
 typedef struct s_player2
 {
 	t_v	pos;
 	t_v	dir;
 	t_v	plane;
-
 } t_player2;
 
 typedef struct s_ray2
@@ -158,7 +160,8 @@ static t_ray2	update_ray(t_ray2 ray)
 			ray.map_cell.y += ray.step.y;
 			ray.side = 1;
 		}
-		if (worldMap[ray.map_cell.y][ray.map_cell.x] > 0)
+		// if (worldMap[ray.map_cell.y][ray.map_cell.x] > 0)
+		if (map()->maps[ray.map_cell.y][ray.map_cell.x] != '0')
 			ray.hit = 1;
 	}
 	return (ray);
@@ -188,36 +191,29 @@ static void		draw_line(t_ray2 ray, int x)
 		color = color / 2;
 	(canva())->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
 }
-	
 
-static void	render_ray2(t_player2 p, int x)
+void 	render_view2(t_player p) // receive player
 {
-	t_ray2	ray;
-	double	perp_distance;
-
-	ray = init_ray(p, x);
-	ray = update_ray(ray);
-	draw_line(ray, x);
-}
-
-void main_render() // receive player
-{
-	t_player2 p;
-	t_v pos;
-	t_v plane;
-	t_v	dir;
+	t_player2	p2; // will be an input of the function
+	t_ray2		ray;
+	double		perp_distance;
 	int x;
 
+	/* coming in with the player input */
 	// position of the player
-	p.pos.x = 22;
-	p.pos.y = 12;
+	p2.pos.x = p.vector.x / GRID_SIZE;
+	p2.pos.y = p.vector.y / GRID_SIZE;
 	// direction of the player - need to substitute the player angle
-	p.dir.x = -1;
-	p.dir.y = 0;
+	p2.dir.x = -1;
+	p2.dir.y = 0;
 	// view plane - need to be stored in the player as well
-	p.plane.x = 0;
-	p.plane.y = 0.66; // value with 66 FOV
+	p2.plane.x = 0;
+	p2.plane.y = 0.66; // value with 66 FOV
 	x = -1;
 	while (++x < W_WIDTH)
-		render_ray2(p, x);
+	{
+		ray = init_ray(p2, x);
+		ray = update_ray(ray);
+		draw_line(ray, x);
+	}
 }
