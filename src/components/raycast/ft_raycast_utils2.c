@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/11 14:47:47 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:12:18 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,45 +21,11 @@
 #define BLUE 0x0000ff00
 #define WHITE 0xffffffff
 
-typedef struct	s_v
-{
-	double x;
-	double y;
-}	t_v;
-
 typedef struct s_pos
 {
 	int x;
 	int y;
 }	t_pos;
-
-int worldMap[mapWidth][mapHeight] =
-{
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
 
 void	print_map()
 {
@@ -84,13 +50,6 @@ void	print_map()
 	printf("=========================\n\n");
 }
 
-typedef struct s_player2
-{
-	t_v	pos;
-	t_v	dir;
-	t_v	plane;
-} t_player2;
-
 typedef struct s_ray2
 {
 	t_v		camera;
@@ -103,7 +62,7 @@ typedef struct s_ray2
 	int		side;
 } t_ray2;
 
-static t_ray2	init_ray(t_player2 p, int x)
+static t_ray2	init_ray(t_player p, int x)
 {
 	t_ray2	ray;
 
@@ -192,27 +151,26 @@ static void		draw_line(t_ray2 ray, int x)
 	(canva())->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
 }
 
-void 	render_view2(t_player p) // receive player
+void 			render_view2(t_player p) // receive player
 {
-	t_player2	p2; // will be an input of the function
 	t_ray2		ray;
 	double		perp_distance;
 	int x;
 
 	/* coming in with the player input */
 	// position of the player
-	p2.pos.x = p.vector.x / GRID_SIZE;
-	p2.pos.y = p.vector.y / GRID_SIZE;
+	p.pos.x = p.vector.x / GRID_SIZE;
+	p.pos.y = p.vector.y / GRID_SIZE;
 	// direction of the player - need to substitute the player angle
-	p2.dir.x = -1;
-	p2.dir.y = 0;
+	p.dir.x = -1;
+	p.dir.y = 0;
 	// view plane - need to be stored in the player as well
-	p2.plane.x = 0;
-	p2.plane.y = 0.66; // value with 66 FOV
+	p.plane.x = 0;
+	p.plane.y = 0.66; // value with 66 FOV
 	x = -1;
 	while (++x < W_WIDTH)
 	{
-		ray = init_ray(p2, x);
+		ray = init_ray(p, x);
 		ray = update_ray(ray);
 		draw_line(ray, x);
 	}

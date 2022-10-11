@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/09 15:51:32 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:04:07 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	game_loop(t_engine *e)
 	if (e->is_key_press)
 		funct_key_engine(e->keys, 0);
 	scene()->update();
-	// e->canva->rectangle(vector(0, 0, e->width, e->height / 2), map()->c_color);
-	// e->canva->rectangle(vector(0, e->height / 2, e->width, e->height / 2), map()->f_color);
+	e->canva->rectangle(vector(0, 0, e->width, e->height / 2), map()->c_color);
+	e->canva->rectangle(vector(0, e->height / 2, e->width, e->height / 2), map()->f_color);
 	scene()->render(e->canva);
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
 	, 0, 0);

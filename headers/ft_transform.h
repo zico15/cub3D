@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/09 14:07:09 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 14:53:40 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct s_ray		t_ray;
 typedef struct s_object		t_object;
 typedef enum e_face			t_face;
 typedef struct s_texture	t_texture;
+typedef struct s_v			t_v;
+
 
 enum e_face
 {
@@ -27,6 +29,12 @@ enum e_face
 	E,
 	S,
 	W
+};
+
+struct	s_v
+{
+	double x;
+	double y;
 };
 
 struct s_vector

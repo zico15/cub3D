@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 20:35:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:55:41 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ typedef enum e_type_ob
 	WALL,
 	DOOR
 }	t_type;
-
-
 
 typedef struct f_image
 {
@@ -132,6 +130,9 @@ struct s_player
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*atacar)(void);
 	t_nav_mesh		*agent;
+	t_v				pos;
+	t_v				dir;
+	t_v				plane;
 };
 
 struct s_camera
@@ -149,6 +150,9 @@ struct s_camera
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*render_view)(t_element *e, void *o);
+	t_v				pos;
+	t_v				dir;
+	t_v				plane;
 };
 
 struct s_door

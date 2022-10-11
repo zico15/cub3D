@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/09 14:30:06 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:03:15 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 int	ft_is_collision_x(t_object *ob, double x, double y, double delta)
 {
 	if (colison().rectangula_ob(this(), x + delta, y))
-	{
 		return (1);
-	}
 	return (0);
 }	
 
@@ -80,6 +78,41 @@ void	__funct_key(int *key, int type_event)
 	if (key[65421])
 		p->animation.is_run = 1;
 }
+
+// void	__funct_key(int *key, int type_event)
+// {
+// 	t_player *p;
+
+// 	p = (t_player *) this();
+// 	if (key[KEY_W])
+// 	{
+// 		if (map()->maps[(int) p->pos.y][(int)(p->pos.x + p->dir.x)] == '0')
+// 			p->pos.x += p->dir.x;
+// 		if (map()->maps[(int)(p->pos.y + p->dir.y)][(int)p->pos.x] == '0')
+// 			p->pos.y += p->dir.y;
+// 	}
+// 	if (key[KEY_S])
+// 	{
+// 		if (map()->maps[(int) p->pos.y][(int)(p->pos.x - p->dir.x)] == '0')
+// 			p->pos.x -= p->dir.x;
+// 		if (map()->maps[(int)(p->pos.y - p->dir.y)][(int)p->pos.x] == '0')
+// 			p->pos.y -= p->dir.y;
+// 	}
+// 	if (key[KEY_D])
+// 	{
+// 		if (map()->maps[(int) p->pos.y][(int)(p->pos.x + p->plane.x)] == '0')
+// 			p->pos.x += p->plane.x;
+// 		if (map()->maps[(int)(p->pos.y + p->plane.y)][(int)p->pos.x] == '0')
+// 			p->pos.y += p->plane.y;
+// 	}
+// 	if (key[KEY_A])
+// 	{
+// 		if (map()->maps[(int) p->pos.y][(int)(p->pos.x - p->plane.x)] == '0')
+// 			p->pos.x -= p->plane.x;
+// 		if (map()->maps[(int)(p->pos.y - p->plane.y)][(int)p->pos.x] == '0')
+// 			p->pos.y -= p->plane.y;
+// 	}
+// }
 
 void	__funct_mouse(int x, int y, int type_event)
 {
