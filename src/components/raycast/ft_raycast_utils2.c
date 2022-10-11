@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/09 19:13:39 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 13:01:47 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,100 +61,121 @@ int worldMap[mapWidth][mapHeight] =
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void	print_map()
-{
-	int x;
-	int y;
+// void	print_map()
+// {
+// 	int x;
+// 	int y;
 
-	y = 0;
-	while(y < mapHeight)
+// 	y = 0;
+// 	while(y < mapHeight)
+// 	{
+// 		x = 0;
+// 		while (x < mapWidth)
+// 		{
+// 			printf("%d ", worldMap[y][x]);
+// 			x++;
+// 		}
+// 		printf("\n");
+// 		y++;
+// 	}
+// 	printf("=========================\n\n");
+// }
+
+typedef struct s_player2
+{
+	t_v	pos;
+	t_v	dir;
+	t_v	plane;
+
+} t_player2;
+
+typedef struct s_ray2
+{
+	t_v		camera;
+	t_v		dir;
+	t_v		side_dist;
+	t_v		delta_dist;
+	t_pos	step;
+	t_pos	map_cell;
+	int		hit;
+	int		side;
+} t_ray2;
+
+static t_ray2	init_ray(t_player2 p, int x)
+{
+	t_ray2	ray;
+
+	ray.hit = 0;
+	ray.camera.x = 2 * x / (double) W_WIDTH - 1; 
+	ray.dir.x = p.dir.x + p.plane.x * ray.camera.x;
+	ray.dir.y = p.dir.y + p.plane.y * ray.camera.x;
+	ray.map_cell.x = (int) p.pos.x;
+	ray.map_cell.y = (int) p.pos.y;
+	if (ray.dir.x == 0)
+		ray.delta_dist.x = 1e30;
+	else
+		ray.delta_dist.x = fabs(1 / ray.dir.x);
+	if (ray.dir.y == 0)
+		ray.delta_dist.y = 1e30;
+	else
+		ray.delta_dist.y = fabs(1 / ray.dir.y);
+	if (ray.dir.x < 0)
 	{
-		x = 0;
-		while (x < mapWidth)
-		{
-			printf("%d ", worldMap[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
+		ray.step.x = -1;
+		ray.side_dist.x = (p.pos.x - ray.map_cell.x) * ray.delta_dist.x;
 	}
-	printf("=========================\n\n");
+	else
+	{
+		ray.step.x = 1;
+		ray.side_dist.x = (ray.map_cell.x + 1 - p.pos.x) * ray.delta_dist.x;
+	}
+	if (ray.dir.y < 0)
+	{
+		ray.step.y = -1;
+		ray.side_dist.y = (p.pos.y - ray.map_cell.y) * ray.delta_dist.y;
+	}
+	else
+	{
+		ray.step.y = 1;
+		ray.side_dist.y = (ray.map_cell.y + 1 - p.pos.y) * ray.delta_dist.y;
+	}
+	return (ray);
 }
 
-static void	render_ray2(t_v pos, t_v dir, t_v plane, int x)
+static t_ray2	update_ray(t_ray2 ray)
 {
-	t_v	camera;
-	t_v ray_dir;
-	t_v	side_dist;
-	t_v	delta_dist;
-	t_pos	map_cell;
-	t_pos step;
-	int	side = 0;
-
-	// print_map();
-
-	camera.x = 2 * x / (double) W_WIDTH - 1; 
-	ray_dir.x = dir.x + plane.x * camera.x;
-	ray_dir.y = dir.y + plane.y * camera.x;
-	map_cell.x = (int) pos.x;
-	map_cell.y = (int) pos.y;
-	if (ray_dir.x == 0)
-		delta_dist.x = 1e30;
-	else
-		delta_dist.x = abs(1 / ray_dir.x);
-	if (ray_dir.y == 0)
-		delta_dist.y = 1e30;
-	else
-		delta_dist.y = abs(1 / ray_dir.y);
-	if (ray_dir.x < 0)
+	while (ray.hit == 0)
 	{
-		step.x = -1;
-		side_dist.x = (pos.x - map_cell.x) * delta_dist.x;
-	}
-	else
-	{
-		step.x = 1;
-		side_dist.x = (map_cell.x + 1 - pos.x) * delta_dist.x;
-	}
-	if (ray_dir.y < 0)
-	{
-		step.y = -1;
-		side_dist.y = (pos.y - map_cell.y) * delta_dist.y;
-	}
-	else
-	{
-		step.y = 1;
-		side_dist.y = (map_cell.y + 1 - pos.y) * delta_dist.y;
-	}
-
-	int hit = 0;
-	while (hit == 0)
-	{
-		if (side_dist.x < side_dist.y)
+		if (ray.side_dist.x < ray.side_dist.y)
 		{
-			side_dist.x += delta_dist.x;
-			map_cell.x += step.x;
-			side = 0;
+			ray.side_dist.x += ray.delta_dist.x;
+			ray.map_cell.x += ray.step.x;
+			ray.side = 0;
 		}
 		else
 		{
-			side_dist.y += delta_dist.y;
-			map_cell.y += step.y;
-			side = 1;
+			ray.side_dist.y += ray.delta_dist.y;
+			ray.map_cell.y += ray.step.y;
+			ray.side = 1;
 		}
-		if (worldMap[map_cell.y][map_cell.x] > 0)
-			hit = 1;
+		if (worldMap[ray.map_cell.y][ray.map_cell.x] > 0)
+			ray.hit = 1;
 	}
-	// =====================
-	double perp_distance;
-	if (side == 0)
-		perp_distance = side_dist.x - delta_dist.x;
-	else
-		perp_distance = side_dist.y - delta_dist.y;
-	// ====================
-	int line_h;
+	return (ray);
+}
+
+static void		draw_line(t_ray2 ray, int x)
+{
+	double	perp_distance;
+	int 	color;
+	int		map_value; // can be substitute by ray.object
+	int 	line_h;
 	t_pos	draw_h;
-	
+
+	if (ray.side == 0)
+		perp_distance = ray.side_dist.x - ray.delta_dist.x;
+	else
+		perp_distance = ray.side_dist.y - ray.delta_dist.y;
 	line_h = (int) (W_HEIGHT / perp_distance);
 	draw_h.x = - line_h / 2 + W_HEIGHT / 2;
 	if (draw_h.x < 0)
@@ -162,38 +183,41 @@ static void	render_ray2(t_v pos, t_v dir, t_v plane, int x)
 	draw_h.y = line_h / 2 + W_HEIGHT / 2;
 	if (draw_h.y >+ W_HEIGHT)
 		draw_h.y = W_HEIGHT - 1;
-
-	// ==================
-	int color;
-	int	map_value;
-
-	map_value = worldMap[map_cell.y][map_cell.x];
 	color = YELLOW;
-	if (map_value == 1)
-		color = RED;
-	if (map_value == 2)
-		color = GREEN;
-	if (map_value == 3)
-		color = BLUE;
-	if (map_value == 4)
-		color = WHITE;
-	canva()->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
+	if (ray.side == 1)
+		color = color / 2;
+	(canva())->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
+}
+	
+
+static void	render_ray2(t_player2 p, int x)
+{
+	t_ray2	ray;
+	double	perp_distance;
+
+	ray = init_ray(p, x);
+	ray = update_ray(ray);
+	draw_line(ray, x);
 }
 
-void main_render()
+void main_render() // receive player
 {
+	t_player2 p;
 	t_v pos;
 	t_v plane;
 	t_v	dir;
 	int x;
 
-	pos.x = 22;
-	pos.y = 12;
-	dir.x = -1;
-	dir.y = 0;
-	plane.x = 0;
-	plane.y = 0.66;
+	// position of the player
+	p.pos.x = 22;
+	p.pos.y = 12;
+	// direction of the player - need to substitute the player angle
+	p.dir.x = -1;
+	p.dir.y = 0;
+	// view plane - need to be stored in the player as well
+	p.plane.x = 0;
+	p.plane.y = 0.66; // value with 66 FOV
 	x = -1;
 	while (++x < W_WIDTH)
-		render_ray2(pos, dir, plane, x);
+		render_ray2(p, x);
 }

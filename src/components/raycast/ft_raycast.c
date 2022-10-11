@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/09 15:53:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 12:22:09 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void 	main_render();
 t_texture	init_t(t_ray *ray, t_vector column)
 {
 	t_texture	t;
-
+	
 	t.pos.x = (int) ray->cross.x % 32;
 	if (ft_sin(ray->angle) < 0)
 		t.pos.x = (int)(31.0 - t.pos.x);
@@ -94,6 +94,8 @@ void	print_ray_2d(t_ray ray)
 
 	if (ray.vertical)
 		color = 0x00ffffff;
+	ray.cross.x *= GRID_SIZE;
+	ray.cross.y *= GRID_SIZE;
 	canva()->line(scene()->player->vector, ray.cross, color);
 	printf("Angle: %f vertical: %d\n", ray.angle, ray.vertical);
 	if (ray.rel_angle == -VIEW_ANGLE / 2)

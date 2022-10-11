@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 20:08:33 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 12:08:51 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ t_object	*new_teste(void)
 	t_object	*ob;
 
 	ob = new_object_instance(sizeof(t_object));
-	ob->render = __reander;
+	// ob->render = __reander;
 	return (ob);
 }
