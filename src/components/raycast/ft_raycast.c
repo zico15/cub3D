@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/11 14:47:37 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 18:07:46 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ t_texture	init_t(t_ray *ray, t_vector column)
 		if (ft_cos(ray->angle) < 0)
 			t.pos.x = (int)(31.0 - t.pos.x);
 	}
-	t.y_offest = 0;
+	t.y_offset = 0;
 	t.y_step = 32.0 / (double) column.h;
 	if (column.h >= W_HEIGHT)
 	{
-		t.y_offest = (column.h - W_HEIGHT) / 2.0;
+		t.y_offset = (column.h - W_HEIGHT) / 2.0;
 		column.h = W_HEIGHT;
 	}
-	t.pos.y = t.y_offest * t.y_step;
+	t.pos.y = t.y_offset * t.y_step;
 	return (t);
 }
 
@@ -57,7 +57,7 @@ void	print_column(t_ray *ray, t_vector column)
 
 
 	if (ray->ob == NULL)
-			return;
+		return;
 	sprite = ray->ob->get_sprite(*ray);
 	t = init_t(ray, column);
 	if (column.h >= W_HEIGHT)

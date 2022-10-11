@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 14:53:40 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 18:03:23 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ struct s_ray
 struct s_texture
 {
 	t_vector	pos;
-	double		y_offest;
+	double		y_offset;
 	double		y_step;
 };
 

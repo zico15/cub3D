@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/11 16:45:36 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 18:09:28 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,56 @@ static void		draw_line(t_ray2 ray, int x)
 	if (ray.side == 1)
 		color = color / 2;
 	(canva())->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
+}
+
+t_texture	init_t(t_ray *ray, t_vector column)
+{
+	t_texture	t;
+	
+	t.pos.x = (int) ray->cross.x % 32;
+	if (ft_sin(ray->angle) < 0)
+		t.pos.x = (int)(31.0 - t.pos.x);
+	if (ray->vertical)
+	{
+		t.pos.x = (int) ray->cross.y % 32;
+		if (ft_cos(ray->angle) < 0)
+			t.pos.x = (int)(31.0 - t.pos.x);
+	}
+	t.y_offset = 0;
+	t.y_step = 32.0 / (double) column.h;
+	if (column.h >= W_HEIGHT)
+	{
+		t.y_offset = (column.h - W_HEIGHT) / 2.0;
+		column.h = W_HEIGHT;
+	}
+	t.pos.y = t.y_offset * t.y_step;
+	return (t);
+}
+
+
+void	print_column(t_ray *ray, t_vector column)
+{
+	int				color;
+	double			y;
+	t_texture		t;
+	t_sprite		*sprite;
+
+
+	if (ray->ob == NULL)
+		return;
+	sprite = ray->ob->get_sprite(*ray);
+	t = init_t(ray, column);
+	if (column.h >= W_HEIGHT)
+		column.h = W_HEIGHT;
+	column.y = W_HEIGHT / 2 - column.h / 2;
+	y = -1;
+	while (++y < column.h)
+	{
+		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
+		// (canva())->rectangle(vector(column.x, column.y + y, column.w, 1),
+		// 		color);
+		t.pos.y += t.y_step;
+	}
 }
 
 void 			render_view2(t_player p) // receive player
