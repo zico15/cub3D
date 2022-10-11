@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/11 19:37:03 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/11 20:02:12 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ static t_ray	init_ray(t_player p, int x)
 	return (ray);
 }
 
-static t_vector	get_ray_cross(t_ray ray)
+static double	get_ray_cross(t_ray ray)
 {
 	t_player	*p;
-	t_vector	cross;
+	double	cross;
 
 	p = scene()->player;
-	cross.x = p->pos.y + ray.perp_distance * ray.dir.x;
+	cross = p->pos.y + ray.perp_distance * ray.dir.x;
 	if (ray.side == 1)
-		cross.x = p->pos.x + ray.perp_distance * ray.dir.y;
-	cross.x -= floor(cross.x);
+		cross = p->pos.x + ray.perp_distance * ray.dir.y;
+	cross -= floor(cross);
 	return (cross);
 }
 
@@ -136,7 +136,10 @@ static void	draw_texture(t_ray *ray, int x)
 	column.h = (int) (W_HEIGHT / ray->perp_distance);
 	column.x = x;
 	p = scene()->player;
-	t.pos.x = (int)(ray->cross.x * 32.0);
+	t.pos.x = (int)(ray->cross * 32.0);
+	if ((ray->side == 0 && ray->dir.x > 0)
+		|| (ray->side == 1 && ray->dir.y < 0))
+		t.pos.x = 32.0 - 1 - t.pos.x;
 	t.y_offset = 0;
 	t.y_step = 32.0 / (double) column.h;
 	if (column.h >= W_HEIGHT)
@@ -151,8 +154,7 @@ static void	draw_texture(t_ray *ray, int x)
 	while (++y < column.h)
 	{
 		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
-		(canva())->rectangle(vector(column.x, column.y + y, 1, 1),
-				color);
+		(canva())->pixel(x, column.y + y, color);
 		t.pos.y += t.y_step;
 	}
 }
