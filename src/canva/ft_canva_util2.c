@@ -50,3 +50,20 @@ void	__rectangle_border(t_vector v, int color, int border, int color_border)
 		v.y++;
 	}
 }
+
+void	__image_pos(t_sprite *sprite, int x1, int y1)
+{
+	int		x;
+	int		y;
+
+	y = -1;
+	while (++y < sprite->v.h)
+	{
+		x = -1;
+		while (++x < sprite->v.w)
+		{
+			__pixel(x1 + x, y1 + y, \
+			__get_color_img(sprite->data, x, y));
+		}
+	}
+}

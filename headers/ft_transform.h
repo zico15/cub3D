@@ -47,6 +47,15 @@ struct s_vector
 	double			radius;
 };
 
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
 struct s_collision
 {
 	t_object	*(*collision_ob)(t_object *object, double x, double y);
@@ -86,6 +95,14 @@ struct s_texture
 	int			line_h;
 	int			draw_start_y;
 };
+
+typedef struct f_image
+{
+	void	(*rectangle)(void *img, t_vector vector, int color);
+	void	(*pixel)(void *img, int x, int y, int color);
+	void	(*txt)(char *str, t_vector v, int color);
+	void	*(*new)(int w, int h);
+}	t_image;
 
 t_vector	vector(double x, double y, double w, double h);
 t_vector	vector_zero(void);

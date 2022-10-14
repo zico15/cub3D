@@ -34,23 +34,6 @@ typedef enum e_type_ob
 	DOOR
 }	t_type;
 
-typedef struct f_image
-{
-	void	(*rectangle)(void *img, t_vector vector, int color);
-	void	(*pixel)(void *img, int x, int y, int color);
-	void	(*txt)(char *str, t_vector v, int color);
-	void	*(*new)(int w, int h);
-}	t_image;
-
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
 struct s_buffer
 {
 	void	*buffer;
@@ -61,6 +44,7 @@ struct s_buffer
 	void	(*pixel)(int x, int y, int color);
 	int		(*get_color_img)(t_data	data, int x, int y);
 	void	(*image)(t_sprite *sprite);
+	void	(*image_pos)(t_sprite *sprite, int x1, int y1);
 	void	(*image_sub)(t_sprite *sprite, t_vector sub);
 	void	(*object)(t_object *ob);
 	void	(*line)(t_vector begin, t_vector end, int color);
@@ -170,7 +154,10 @@ struct s_door
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	int				is_open;
+	int				is_run;
 	int				count;
+	int				count_max;
+	t_sprite		*sprite_animation;
 };
 
 struct s_nav_node

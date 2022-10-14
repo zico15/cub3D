@@ -17,9 +17,11 @@ void	__funct_mouse_scene(int x, int y, int type_event)
 {
 	t_element	*e;
 	t_object	*ob;
+	t_object	*this_ob;
 
 	if (array(scene()->mouse_list) <= 0)
 		return ;
+	this_ob = fthis()->object;
 	e = array(scene()->mouse_list)->begin;
 	while (e)
 	{
@@ -28,15 +30,18 @@ void	__funct_mouse_scene(int x, int y, int type_event)
 		ob->funct_mouse(x, y, type_event);
 		e = e->next;
 	}
+	fthis()->object = this_ob;
 }
 
 void	__funct_key_scene(int *key, int type_event)
 {
 	t_element	*e;
 	t_object	*ob;
+	t_object	*this_ob;
 
 	if (array(scene()->key_list) <= 0)
 		return ;
+	this_ob = fthis()->object;
 	e = array(scene()->key_list)->begin;
 	while (e)
 	{
@@ -45,4 +50,5 @@ void	__funct_key_scene(int *key, int type_event)
 		ob->funct_key(key, type_event);
 		e = e->next;
 	}
+	fthis()->object = this_ob;
 }

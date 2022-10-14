@@ -14,13 +14,9 @@
 
 void	__image(t_sprite *sprite)
 {
-	t_data	data;
 	int		x;
 	int		y;
 
-	data.img = sprite->img;
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
-	&data.line_length, &data.endian);
 	y = -1;
 	while (++y < sprite->v.h)
 	{
@@ -28,7 +24,7 @@ void	__image(t_sprite *sprite)
 		while (++x < sprite->v.w)
 		{
 			__pixel(sprite->v.x + x, sprite->v.y + y, \
-			__get_color_img(data, x, y));
+			__get_color_img(sprite->data, x, y));
 		}
 	}
 }

@@ -70,6 +70,9 @@ t_map		*map(void);
 char		*get_next_line(int fd);
 void		__destroy_element_object(t_element	*e);
 void		cread_map(t_map *m);
+t_image		image(void);
+void		pixel_put_sprite(t_sprite *sprite, int x, int y, int color);
+t_sprite	*copy_sprite(t_sprite	*sprite);
 
 //			memory
 int			free_ob(void *v);

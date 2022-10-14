@@ -13,19 +13,12 @@
 #ifndef FT_ANIMATION_H
 # define FT_ANIMATION_H
 
-typedef struct s_data2
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data2;
+# include <ft_util.h>
 
 typedef struct s_sprite
 {
 	void		*img;
-	t_data2		data;
+	t_data		data;
 	t_vector	v;
 }	t_sprite;
 

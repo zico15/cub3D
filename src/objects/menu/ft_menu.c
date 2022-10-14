@@ -48,8 +48,8 @@ static void	__reander(t_buffer *b)
 	p.x = ((p.x - (p.w / 2) - GRID_SIZE) / GRID_SIZE) - 1;
 	p.y = ((p.y - (p.h / 2) - GRID_SIZE) / GRID_SIZE);
 	mini_map(b, p, this()->vector);
-	if (0 && fthis()->player->sprite)
-		b->image(fthis()->player->sprite);
+	if (fthis()->player->sprite)
+		b->image_pos(fthis()->player->sprite, 0, 100);
 }
 
 t_object	*new_menu(void)

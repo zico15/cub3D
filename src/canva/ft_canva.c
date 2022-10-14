@@ -13,6 +13,8 @@
 #include <ft_canva_util.h>
 #include <ft_util.h>
 
+void	__image_pos(t_sprite *sprite, int x, int y);
+
 t_buffer	*__canva(void)
 {
 	static t_buffer	b;
@@ -28,6 +30,7 @@ t_buffer	*__canva(void)
 	b.image_sub = __image_sub;
 	b.object = __object;
 	b.rectangle_border = __rectangle_border;
+	b.image_pos = __image_pos;
 	return (&b);
 }
 

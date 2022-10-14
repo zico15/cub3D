@@ -57,13 +57,18 @@ static t_ray	update_ray(t_ray ray)
 
 static void	render_ray(t_ray ray, int x)
 {
+	t_object	*ob;
+
 	ray.obj = NULL;
+	ob = fthis()->object;
 	while (ray.obj == NULL)
 	{
 		ray = update_ray(ray);
-		if (map()->maps_ob[ray.map_cell.y][ray.map_cell.x])
+		ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
+		if (ray.obj)
 		{
-			ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
+			
+			fthis()->object = ray.obj;
 			ray.face_dir = get_face_dir(ray);
 			if (ray.side == 0)
 				ray.perp_distance = ray.side_dist.x - ray.delta_dist.x;
@@ -75,6 +80,7 @@ static void	render_ray(t_ray ray, int x)
 			draw_texture(&ray, x, ray.obj->get_sprite(ray));
 		}
 	}
+	fthis()->object = ob;
 }
 
 static t_ray	init_ray2(t_ray ray, t_player p)

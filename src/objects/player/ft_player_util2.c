@@ -29,12 +29,20 @@ void	rotate(t_player *p, double angle)
 
 void	move_dir(t_player *p, double x, double y)
 {
-	if (map()->maps[(int) p->pos.y][(int)(p->pos.x + x * MOVE_LEN * \
-	p->dir.x)] == '0')
+	t_object *ob;
+
+	ob = map()->maps_ob[(int) p->pos.y][(int)(p->pos.x + x * MOVE_LEN * \
+	p->dir.x)];
+	if (!ob || !ob->collision)
 		p->pos.x += x * MOVE_LEN * p->dir.x;
-	if (map()->maps[(int)(p->pos.y + y * MOVE_LEN * \
-	p->dir.y)][(int)p->pos.x] == '0')
+	else if (ob)
+		ob->collision((t_object *) p);
+	ob = map()->maps_ob[(int)(p->pos.y + y * MOVE_LEN * \
+	p->dir.y)][(int)p->pos.x];
+	if (!ob || !ob->collision)
 		p->pos.y += y * MOVE_LEN * p->dir.y;
+	else if (ob)
+		ob->collision((t_object *) p);
 }
 
 void	move_perp_dir(t_player *p, double x, double y)

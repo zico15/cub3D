@@ -118,6 +118,7 @@ t_scene	*new_scene(void)
 	s->updade_list = new_array();
 	s->render_list = new_array();
 	s->colliders_list = new_array();
+	array(s->colliders_list)->is_value_destroy = 0;
 	array(s->objects)->destroy_element = __destroy_element_object;
 	fthis()->scene = s;
 	array(this);
