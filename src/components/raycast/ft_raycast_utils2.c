@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/11 20:02:12 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 17:24:37 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ static double	get_ray_cross(t_ray ray)
 	double	cross;
 
 	p = scene()->player;
-	cross = p->pos.y + ray.perp_distance * ray.dir.x;
+	cross = p->pos.y + ray.perp_distance * ray.dir.y;
 	if (ray.side == 1)
-		cross = p->pos.x + ray.perp_distance * ray.dir.y;
+		cross = p->pos.x + ray.perp_distance * ray.dir.x;
 	cross -= floor(cross);
 	return (cross);
 }
@@ -94,12 +94,12 @@ static t_ray	update_ray(t_ray ray)
 		if (map()->maps_ob[ray.map_cell.y][ray.map_cell.x])
 		{
 			ray.hit = 1;
-			ray.cross = get_ray_cross(ray);
 			ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
 			if (ray.side == 0)
 				ray.perp_distance = ray.side_dist.x - ray.delta_dist.x;
 			else
 				ray.perp_distance = ray.side_dist.y - ray.delta_dist.y;
+			ray.cross = get_ray_cross(ray);
 		}
 	}
 	return (ray);
@@ -127,37 +127,57 @@ static void	draw_line(t_ray ray, int x)
 static void	draw_texture(t_ray *ray, int x)
 {
 	t_texture	t;
-	t_vector	column;
+	int			draw_start_y;
+	int			line_h;
 	t_player	*p;
 	t_sprite	*sprite;
 	int			y;
 	int			color;
 
-	column.h = (int) (W_HEIGHT / ray->perp_distance);
-	column.x = x;
+	line_h = (int) (W_HEIGHT / ray->perp_distance);
 	p = scene()->player;
 	t.pos.x = (int)(ray->cross * 32.0);
 	if ((ray->side == 0 && ray->dir.x > 0)
 		|| (ray->side == 1 && ray->dir.y < 0))
 		t.pos.x = 32.0 - 1 - t.pos.x;
 	t.y_offset = 0;
-	t.y_step = 32.0 / (double) column.h;
-	if (column.h >= W_HEIGHT)
+	t.y_step = 32.0 / (double) line_h;
+	if (line_h >= W_HEIGHT)
 	{
-		t.y_offset = (int) (column.h - W_HEIGHT) / 2.0;
-		column.h = W_HEIGHT;
+		t.y_offset = (int) (line_h - W_HEIGHT) / 2.0;
+		line_h = W_HEIGHT;
 	}
-	column.y = W_HEIGHT / 2 - column.h / 2;
+	draw_start_y = W_HEIGHT / 2 - line_h / 2;
 	t.pos.y = t.y_offset * t.y_step;
 	sprite = ray->obj->get_sprite(*ray);
 	y = -1;
-	while (++y < column.h)
+	while (++y < line_h)
 	{
 		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
-		(canva())->pixel(x, column.y + y, color);
+		(canva())->pixel(x, draw_start_y + y, color);
 		t.pos.y += t.y_step;
 	}
 }
+
+// static void render_texture(t_ray *ray)
+// {
+// 	int 		x;
+// 	int 		y;
+// 	int			color;
+// 	t_sprite	*sprite;
+
+// 	sprite = ray->obj->get_sprite(*ray);
+// 	y = -1;
+// 	while (++y < 32)
+// 	{
+// 		x = -1;
+// 		while (++x < 32)
+// 		{
+// 			color = __get_color_sprite(sprite, (int) x, (int) y);
+// 			(canva())->pixel(x, y, color);
+// 		}
+// 	}
+// }
 
 void	render_view2(t_player p) // receive player
 {
