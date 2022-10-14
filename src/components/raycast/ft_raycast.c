@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/14 18:09:42 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 19:16:23 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 double			get_ray_cross(t_ray ray);
 void			draw_texture(t_ray *ray, int x, t_sprite *sprite);
+t_face			get_face_dir(t_ray ray);
 
 static void		render_ray(t_ray ray, int x);
 static t_ray	init_ray(t_player p, int x);
@@ -63,6 +64,7 @@ static void	render_ray(t_ray ray, int x)
 		if (map()->maps_ob[ray.map_cell.y][ray.map_cell.x])
 		{
 			ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
+			ray.face_dir = get_face_dir(ray);
 			if (ray.side == 0)
 				ray.perp_distance = ray.side_dist.x - ray.delta_dist.x;
 			else
