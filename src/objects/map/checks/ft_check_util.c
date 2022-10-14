@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 16:58:22 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:50:40 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	destroy_node(t_node	*n)
 	free_ob(n);
 }
 
-static t_player *init_player(int x, int y, char c)
+static t_player	*init_player(int x, int y, char c)
 {
-	t_player *p;
+	t_player	*p;
 
 	p = new_player();
 	p->pos.x = x;
@@ -62,11 +62,12 @@ static t_object	*add_object_scene(double x, double y, char c)
 		obj = new_wall();
 	else if (string().contains("NSWE", _str(c)))
 	{
-		obj = scene()->add(init_player(x, y, c));
-		map()->player = vector(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+		obj = (scene())->add(init_player(x, y, c));
+		(map())->player = vector(x * GRID_SIZE, y * GRID_SIZE, \
+		GRID_SIZE, GRID_SIZE);
 	}
 	else
-		return NULL;
+		return (NULL);
 	if (c == 'W')
 		angle = 180;
 	if (c == 'N')
@@ -101,7 +102,8 @@ void	add_object_all_map(t_map *map)
 	while (y < map->size_height)
 	{
 		x = 0;
-		map->maps_ob[y] = malloc_ob(sizeof(t_object **) * (map->size_width + 1));
+		map->maps_ob[y] = malloc_ob(sizeof(t_object **)
+				* (map->size_width + 1));
 		while (x < map->size_width)
 		{
 			map->maps_ob[y][x] = add_object_scene(x, y, map->maps[y][x]);

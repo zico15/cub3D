@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:23:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 14:29:04 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:21:42 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_sprite
 
 typedef struct s_sprites
 {
-	t_sprite 	**list;
+	t_sprite	**list;
 	int			index;
 	int			size;
 	int			is_repeat;
@@ -45,7 +45,7 @@ typedef struct s_animation
 	t_sprites	*animations;
 }	t_animation;
 
-t_sprite 	*new_sprite (int w, int h);
-void 		set_animation(t_object *obj, int i);
+t_sprite	*new_sprite(int w, int h);
+void		set_animation(t_object *obj, int i);
 
 #endif

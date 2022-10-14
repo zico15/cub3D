@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 19:05:51 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 19:10:18 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,11 @@ void	__destroy_element_object(t_element	*e)
 double	now(void)
 {
 	struct timeval	now;
-	double 		now_msec;
+	double			now_msec;
 
 	if (gettimeofday(&now, NULL) == 0)
 		now_msec = now.tv_sec * 1000 + now.tv_usec / 1000;
 	else
 		now_msec = 0;
 	return (now_msec);
-}
-
-t_ray	*ray_ver()
-{
-	static t_ray	ray;
-
-	return (&ray);
-}
-
-t_ray	*ray_hor()
-{
-	static t_ray	ray;
-
-	return (&ray);
 }

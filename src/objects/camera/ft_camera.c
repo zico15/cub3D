@@ -6,13 +6,12 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/08 09:44:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:25:40 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
-#include <ft_component.h>
 
 void	__render(t_buffer *b)
 {

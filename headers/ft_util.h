@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 17:49:02 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 19:07:20 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@
 # define N_RAYS	W_WIDTH
 # define COLOR_TRANSPARENT 0xd411aa
 
-
 typedef struct s_this
 {
 	t_array			*array;
@@ -83,8 +82,7 @@ int			__get_color_sprite(t_sprite *sprite, int x, int y);
 int			funct_key_engine(int *key, int type_event);
 
 //			time
-double		now(void);t_ray		*ray_ver();
-t_ray		*ray_hor();
+double		now(void);
 t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
 
 #endif

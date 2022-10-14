@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 16:40:55 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct s_buffer
 	void	(*rectangle_border)(t_vector v, int color, int \
 	border, int color_border);
 	void	(*pixel)(int x, int y, int color);
-	int		(*get_color_imge)(t_data	data, int x, int y);
+	int		(*get_color_img)(t_data	data, int x, int y);
 	void	(*image)(t_sprite *sprite);
 	void	(*image_sub)(t_sprite *sprite, t_vector sub);
 	void	(*object)(t_object *ob);
@@ -77,7 +77,7 @@ struct s_object
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
-	void			(*colison)(t_object *collided);
+	void			(*collision)(t_object *collided);
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 };
@@ -93,7 +93,7 @@ struct s_map
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
-	void			(*colison)(t_object *collided);
+	void			(*collision)(t_object *collided);
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*load)(char *path);
@@ -125,7 +125,7 @@ struct s_player
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
-	void			(*colison)(t_object *collided);
+	void			(*collision)(t_object *collided);
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*atacar)(void);
@@ -146,7 +146,7 @@ struct s_camera
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
-	void			(*colison)(t_object *collided);
+	void			(*collision)(t_object *collided);
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*render_view)(t_element *e, void *o);
@@ -166,13 +166,12 @@ struct s_door
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
-	void			(*colison)(t_object *collided);
+	void			(*collision)(t_object *collided);
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	int				is_open;
 	int				count;
 };
-
 
 struct s_nav_node
 {

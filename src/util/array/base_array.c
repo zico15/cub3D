@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   base_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/29 23:15:24 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/09 19:58:16 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/14 19:10:47 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	__base_remove_element_index(int index)
 	{
 		if (++i == index)
 		{
-			printf("saad\n");
 			if ((fthis()->array)->end == atual)
 				(fthis()->array)->end = prev;
 			if (prev)

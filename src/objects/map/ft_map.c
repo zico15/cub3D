@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 20:07:17 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:46:30 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_map_color(char *map_color)
 	free(tmp);
 	rgb_val = string().split(clean_str, ",");
 	pos = 0;
-	while(rgb_val && rgb_val[pos])
+	while (rgb_val && rgb_val[pos])
 	{
 		if (!string().isnumber(rgb_val[pos])
 			|| string().atoi(rgb_val[pos]) > 255
@@ -45,12 +45,12 @@ int	check_map_color(char *map_color)
 	return (1);
 }
 
-int upload_map_color(char *map_color)
+int	upload_map_color(char *map_color)
 {
-	char			*clean_str;
-	char			**rgb_val;
-	char			*tmp;
-	int	color;
+	char	*clean_str;
+	char	**rgb_val;
+	char	*tmp;
+	int		color;
 
 	if (!map_color)
 		return (0);
@@ -63,8 +63,8 @@ int upload_map_color(char *map_color)
 	free(tmp);
 	rgb_val = string().split(clean_str, ",");
 	color = (string().atoi(rgb_val[0]) << 16)
-			+ (string().atoi(rgb_val[1]) << 8)
-			+ string().atoi(rgb_val[2]);
+		+ (string().atoi(rgb_val[1]) << 8)
+		+ string().atoi(rgb_val[2]);
 	free(clean_str);
 	free_list(rgb_val);
 	return (color);

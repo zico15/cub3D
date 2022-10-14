@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine_util.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 15:53:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:42:33 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <ft_util.h>
 
-int			__funct_key_Press(int key, void *o);
-int			__funct_key_Release(int key, void *o);
+int			__funct_key_press(int key, void *o);
+int			__funct_key_release(int key, void *o);
 int			__funct_mousse_engine(int keycode, void *vars);
 t_scene		*__set_scene(int index_scene);
 t_scene		*__load_maps(char **args, int size);

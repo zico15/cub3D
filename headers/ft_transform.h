@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 17:36:43 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 typedef struct s_nav_node	t_nav_node;
 typedef struct s_vector		t_vector;
-typedef struct s_colison	t_colison;
+typedef struct s_collision	t_collision;
 typedef struct s_ray		t_ray;
 typedef struct s_object		t_object;
 typedef enum e_face			t_face;
 typedef struct s_texture	t_texture;
 typedef struct s_v			t_v;
-
 
 enum e_face
 {
@@ -33,8 +32,8 @@ enum e_face
 
 struct	s_v
 {
-	double x;
-	double y;
+	double	x;
+	double	y;
 };
 
 struct s_vector
@@ -48,34 +47,19 @@ struct s_vector
 	double			radius;
 };
 
-struct s_colison
+struct s_collision
 {
-	t_object	*(*colison_ob)(t_object *object, double x, double y);
+	t_object	*(*collision_ob)(t_object *object, double x, double y);
 	int			(*circular)(t_vector a, t_vector b);
 	int			(*rectangular)(t_vector a, t_vector b);
 	t_object	*(*pixel)(t_object *object, double px, double py);
 	t_object	*(*rectangula_ob)(t_object *object, double px, double py);
 };
 
-// struct s_ray
-// {
-// 	t_vector	cross;
-// 	t_vector	offset;
-// 	int			collision;
-// 	int			loop;
-// 	double		distance;
-// 	int			vertical;
-// 	t_face		direction;
-// 	double		angle;
-// 	double		rel_angle;
-// 	t_object    *ob;
-// 	int			pos;
-// };
-
 typedef struct s_pos
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_pos;
 
 struct s_ray
@@ -98,11 +82,13 @@ struct s_texture
 	t_vector	pos;
 	double		y_offset;
 	double		y_step;
+	int			line_h;
+	int			draw_start_y;
 };
 
 t_vector	vector(double x, double y, double w, double h);
 t_vector	vector_zero(void);
-t_colison	colison(void);
+t_collision	collision(void);
 t_vector	*copy_vector(t_vector *v);
 double		get_vectors_distance(t_vector a, t_vector b, double angle);
 double		ft_cos(double angle);

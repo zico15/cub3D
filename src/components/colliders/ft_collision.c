@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_colison.c                                       :+:      :+:    :+:   */
+/*   ft_collision.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 14:21:02 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/05 18:53:22 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:39:15 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-static t_object	*__colison_ob(t_object *object, double x, double y)
+t_object		*__rectangula_ob(t_object *object, double px, double py);
+
+static t_object	*__collision_ob(t_object *object, double x, double y);
+static int		__circular_collision(t_vector a, t_vector b);
+static int		__rectangular_collision(t_vector a, t_vector b);
+static t_object	*__pixel_collision(t_object *object, double px, double py);
+
+t_collision	collision(void)
+{
+	static t_collision	c = {__collision_ob, __circular_collision, \
+	__rectangular_collision, __pixel_collision, __rectangula_ob
+	};
+
+	return (c);
+}
+
+static t_object	*__collision_ob(t_object *object, double x, double y)
 {
 	t_element	*e;
 	t_object	*o;
@@ -27,10 +43,10 @@ static t_object	*__colison_ob(t_object *object, double x, double y)
 	while (e)
 	{
 		o = e->value;
-		if (o != object && (colison().rectangular(o->vector, v)))
+		if (o != object && (collision().rectangular(o->vector, v)))
 		{
-			object->colison(o);
-			o->colison(object);
+			object->collision(o);
+			o->collision(object);
 			return (o);
 		}
 		e = e->next;
@@ -74,38 +90,9 @@ static t_object	*__pixel_collision(t_object *object, double px, double py)
 	while (e)
 	{
 		o = e->value;
-		if (object != o && colison().rectangular(o->vector, v))
+		if (object != o && collision().rectangular(o->vector, v))
 			return (o);
 		e = e->next;
 	}
 	return (NULL);
-}
-
-static t_object	*__rectangula_ob(t_object *object, double px, double py)
-{
-	t_element	*e;
-	t_object	*o;
-	t_vector	v;
-
-	if (!array(scene()->colliders_list)->size)
-		return (0);
-	e = array(scene()->colliders_list)->begin;
-	v = vector(px, py, GRID_SIZE, GRID_SIZE);
-	while (e)
-	{
-		o = e->value;
-		if (object != o && colison().rectangular(o->vector, v))
-			return (o);
-		e = e->next;
-	}
-	return (NULL);
-}
-
-t_colison	colison(void)
-{
-	static t_colison	c = {__colison_ob, __circular_collision, \
-	__rectangular_collision, __pixel_collision, __rectangula_ob
-	};
-
-	return (c);
 }

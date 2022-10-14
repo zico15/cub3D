@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/07 19:57:36 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static t_object	*__add(void *o)
 		array(scene()->updade_list)->add(ob);
 	if (ob->render)
 		array(scene()->render_list)->add(ob);
-	if (ob->colison)
+	if (ob->collision)
 		array(scene()->colliders_list)->add(ob);
 	array((fthis()->scene)->objects)->add(o);
 	return (ob);

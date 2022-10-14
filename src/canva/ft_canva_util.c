@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/07 20:02:22 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:35:07 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	__image(t_sprite *sprite)
 		while (++x < sprite->v.w)
 		{
 			__pixel(sprite->v.x + x, sprite->v.y + y, \
-			__get_color_imge(data, x, y));
+			__get_color_img(data, x, y));
 		}
 	}
 }
@@ -67,7 +67,7 @@ void	__image_sub(t_sprite *sprite, t_vector sub)
 			y = temp.y + sub.y;
 			if (x >= 0 && y >= 0)
 				__pixel(sprite->v.x + temp.x, sprite->v.y + \
-				temp.y, __get_color_imge(data, x, y));
+				temp.y, __get_color_img(data, x, y));
 		}
 	}
 }
@@ -76,43 +76,4 @@ void	__object(t_object *ob)
 {
 	if (ob->sprite)
 		__image(ob->sprite);
-}
-
-void	__print_line(t_vector begin, t_vector end, int color)
-{
-	t_vector	offset;
-	double		m;
-	double		c;
-	t_vector	point;
-
-	offset.x = (begin.x < end.x) - (begin.x >= end.x);
-	offset.y = (begin.y < end.y) - (begin.y >= end.y);
-	if ((begin.x - end.x) == 0)
-		m = 1e30;
-	else
-		m = (begin.y - end.y) / (begin.x - end.x);
-	c = begin.y - (m * begin.x);
-	point.x = begin.x;
-	point.y = begin.y;
-	while ((point.x <= end.x && point.x >= begin.x)
-		|| (point.x >= end.x && point.x <= begin.x))
-	{
-		point.x += offset.x;
-		point.y = point.x * m + c;
-		if (point.x < 0 || point.x > W_WIDTH || point.y < 0 || point.y > W_HEIGHT)
-			break ;
-		canva()->pixel(point.x, point.y, color);
-	}
-	point.x = begin.x;
-	point.y = begin.y;
-	while ((point.y <= end.y && point.y >= begin.y)
-		|| (point.y >= end.y && point.y <= begin.y))
-	{
-		point.y += offset.y;
-		if (m != 1e30)
-			point.x = (point.y - c) / m;
-		if (point.x < 0 || point.x > W_WIDTH || point.y < 0 || point.y > W_HEIGHT)
-			break ;
-		canva()->pixel(point.x, point.y, color);
-	}
 }

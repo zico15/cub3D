@@ -3,26 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_door.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/05 19:03:51 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:44:32 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
 
-static int	check_colison(t_vector v)
+static int	check_collision(t_vector v)
 {
 	t_vector	p;
 
 	p = fthis()->player->vector;
-	//if (p.x >= v.x && p.x <= (v.x + v.w))
-		
-	//if (p.y >= v.y && p.y <= (v.y + v.h))
-	//printf("dor--> player open: %f\n", get_vectors_distance(v, p, 0));
-	return (colison().rectangular(v, p));
+	return (collision().rectangular(v, p));
 }
 
 static void	__funct_key(int *key, int type_event)
@@ -34,8 +30,7 @@ static void	__funct_key(int *key, int type_event)
 	door = (t_door *) this();
 	if (key[KEY_SPACE] && !door->is_open)
 	{
-	
-		if (check_colison(door->vector))
+		if (check_collision(door->vector))
 		{
 			door->is_open = 1;
 			array(scene()->colliders_list)->remove_value(this());
@@ -49,7 +44,7 @@ static void	__updade(void)
 	t_door	*door;
 
 	door = (t_door *) this();
-	if (door->is_open && !check_colison(door->vector) \
+	if (door->is_open && !check_collision(door->vector) \
 	&& ++door->count > 50)
 	{
 		array(scene()->colliders_list)->add(door);
@@ -58,13 +53,14 @@ static void	__updade(void)
 	}
 }
 
-static t_sprite	*get_sprite(t_ray ray){
+static t_sprite	*get_sprite(t_ray ray)
+{
 	static t_sprite	*sprite;
 
 	(void) ray;
 	if (sprite == NULL)
 		sprite = engine()->load_sprite("imgs/tester.xpm");
-	return sprite;
+	return (sprite);
 }
 
 t_object	*new_door(void)
@@ -74,10 +70,9 @@ t_object	*new_door(void)
 	door = new_object_instance(sizeof(t_door));
 	door->type = DOOR;
 	door->update = __updade;
-	door->colison = __colison_base;
+	door->collision = __collision_base;
 	door->funct_key = __funct_key;
 	door->vector = vector(0, 0, W_WIDTH, W_HEIGHT);
 	door->get_sprite = get_sprite;
 	return ((t_object *) door);
 }
-

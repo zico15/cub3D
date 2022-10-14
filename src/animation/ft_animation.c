@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_animation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:39:12 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/04 18:11:55 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:19:37 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
-#include <ft_animation_util.h>
 
 void	set_animation(t_object *obj, int i)
 {

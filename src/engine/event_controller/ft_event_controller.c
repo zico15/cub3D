@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:08:19 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/07 18:42:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:42:33 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	__funct_mousse_engine(int keycode, void *vars)
 	return (0);
 }
 
-int	__funct_key_Press(int key, void *o)
+int	__funct_key_press(int key, void *o)
 {
 	(void) o;
 	engine()->keys[key] = 1;
@@ -50,7 +50,7 @@ int	__funct_key_Press(int key, void *o)
 	return (0);
 }
 
-int	__funct_key_Release(int key, void *o)
+int	__funct_key_release(int key, void *o)
 {
 	(void) o;
 	engine()->is_key_press--;

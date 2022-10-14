@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_canva_util2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/14 18:34:45 by nprimo            #+#    #+#             */
+/*   Updated: 2022/10/14 18:35:10 by nprimo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <ft_canva_util.h>
+
+void	__rectangle(t_vector v, int color)
+{
+	int			x;
+
+	v.w += v.x;
+	v.h += v.y;
+	while (v.y < v.h)
+	{
+		x = v.x;
+		while (x < v.w)
+		{
+			__pixel(x++, v.y, color);
+		}
+		v.y++;
+	}
+}
+
+void	__rectangle_border(t_vector v, int color, int border, int color_border)
+{
+	int			x;
+	t_vector	v_b;
+
+	v.w += v.x;
+	v.h += v.y;
+	v_b = vector(v.x + border, v.y + border, v.w - border, v.h - border);
+	while (v.y < v.h)
+	{
+		x = v.x;
+		while (x < v.w)
+		{
+			if (x <= v_b.x || x >= v_b.w || (v.y <= v_b.y || v.y >= v_b.h))
+				__pixel(x++, v.y, color_border);
+			else
+				__pixel(x++, v.y, color);
+		}
+		v.y++;
+	}
+}

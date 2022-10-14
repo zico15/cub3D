@@ -6,36 +6,13 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 16:41:42 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:51:34 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_check.h>
 #include <ft_object_base.h>
-
-
-static void render_point(t_buffer *buff)
-{
-	t_vector	p = scene()->player->vector;
-	t_vector	obj_pos;
-	t_vector	view_pos;
-	double		distance;
-
-	obj_pos.x = 2 * GRID_SIZE;
-	obj_pos.y = 2 * GRID_SIZE;
-	distance = get_vectors_distance(p, obj_pos, 0);
-	obj_pos.angle = 180 - ft_atan2((p.y - obj_pos.y), (p.x - obj_pos.y));
-	view_pos.angle = p.angle - obj_pos.angle;
-	view_pos.y = W_HEIGHT / 2;
-	if (abs(view_pos.angle) < (VIEW_ANGLE / 2))
-	{
-		view_pos.x = (view_pos.angle + VIEW_ANGLE / 2) * W_WIDTH / VIEW_ANGLE;
-		view_pos.h = 10;
-		view_pos.w = 10;
-		buff->rectangle(view_pos, 0);
-	}
-}
 
 static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 {
@@ -59,7 +36,8 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	direction.x = p_rel.x + (20 * cos(p.angle * val));
 	b->image_sub(map()->sprite, v);
 	b->rectangle(vector(p_rel.x, p_rel.y, 10, 10), 0xd36a0d);
-	b->rectangle(vector(direction.x + 5 - 1, direction.y + 5 - 1, 2, 2), 0x00990099);
+	b->rectangle(vector(direction.x + 5 - 1, direction.y + 5 - 1, 2, 2),
+		0x00990099);
 }
 
 static void	__reander(t_buffer *b)
@@ -72,7 +50,6 @@ static void	__reander(t_buffer *b)
 	mini_map(b, p, this()->vector);
 	if (0 && fthis()->player->sprite)
 		b->image(fthis()->player->sprite);
-	// render_point(b);
 }
 
 t_object	*new_menu(void)

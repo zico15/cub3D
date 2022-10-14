@@ -1,15 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comonets.c                                      :+:      :+:    :+:   */
+/*   ft_sprites.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 19:52:48 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/03 20:29:08 by ezequeil         ###   ########.fr       */
+/*   Created: 2022/10/14 18:22:21 by nprimo            #+#    #+#             */
+/*   Updated: 2022/10/14 18:22:23 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_nav_mesh.h>
+#include <ft_util.h>
 
+t_sprite	*new_sprite(int w, int h)
+{
+	t_sprite	*s;
 
+	s = malloc_ob(sizeof(t_sprite));
+	s->v.w = w;
+	s->v.h = h;
+	s->img = image().new(w, h);
+	return (s);
+}

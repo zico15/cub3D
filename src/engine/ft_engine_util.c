@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/18 14:25:39 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:41:29 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ t_scene	*__load_maps(char **args, int size)
 		scene->map = map;
 		map->load(args[i]);
 		scene->player = fthis()->player;
-		scene->add(new_camera());		
-		// scene->add(new_teste());
+		scene->add(new_camera());
 		scene->add(new_menu());
 	}
 	scene = __set_scene(0);
@@ -66,9 +65,9 @@ void	*__load_img(t_vector *v, char *file_name)
 
 t_sprite	*__load_sprite(char *file_name)
 {
-	t_sprite *s;
-	int		  w;
-	int		  h;
+	t_sprite	*s;
+	int			w;
+	int			h;
 
 	s = malloc_ob(sizeof(*s));
 	s->img = mlx_xpm_file_to_image(engine()->mlx, file_name, \

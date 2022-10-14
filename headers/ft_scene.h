@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 18:21:36 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ struct s_scene
 	void			(*destroy)(void *o);
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
-	void			(*colison)(t_object *collided);
+	void			(*collision)(t_object *collided);
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			*objects;

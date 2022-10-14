@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object_base_util.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/08/04 18:27:57 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_object	*this(void)
 	return (fthis()->object);
 }
 
-void	__colison_base(t_object *collided)
+void	__collision_base(t_object *collided)
 {
 	(void) collided;
 }
