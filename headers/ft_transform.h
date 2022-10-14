@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 19:13:36 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ struct s_ray
 	int			hit;
 	t_object	*obj;
 	int			side;
+	t_face		face_dir;
 };
 
 struct s_texture
