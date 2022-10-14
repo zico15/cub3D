@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/11 16:34:47 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 17:49:02 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 # define KEY_SPACE 32
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
-# define MOVE_LEN 0.05
-# define ROTATION_LEN 0.05
+# define MOVE_LEN 0.02
+# define ROTATION_LEN 0.005	
 # define W_WIDTH 1080
 # define W_HEIGHT 860
 # define VIEW_ANGLE 50

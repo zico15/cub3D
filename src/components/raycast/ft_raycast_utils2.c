@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/14 17:24:37 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 17:42:17 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,68 +62,6 @@ static t_ray	init_ray(t_player p, int x)
 	return (ray);
 }
 
-static double	get_ray_cross(t_ray ray)
-{
-	t_player	*p;
-	double	cross;
-
-	p = scene()->player;
-	cross = p->pos.y + ray.perp_distance * ray.dir.y;
-	if (ray.side == 1)
-		cross = p->pos.x + ray.perp_distance * ray.dir.x;
-	cross -= floor(cross);
-	return (cross);
-}
-
-static t_ray	update_ray(t_ray ray)
-{
-	while (ray.hit == 0)
-	{
-		if (ray.side_dist.x < ray.side_dist.y)
-		{
-			ray.side_dist.x += ray.delta_dist.x;
-			ray.map_cell.x += ray.step.x;
-			ray.side = 0;
-		}
-		else
-		{
-			ray.side_dist.y += ray.delta_dist.y;
-			ray.map_cell.y += ray.step.y;
-			ray.side = 1;
-		}
-		if (map()->maps_ob[ray.map_cell.y][ray.map_cell.x])
-		{
-			ray.hit = 1;
-			ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
-			if (ray.side == 0)
-				ray.perp_distance = ray.side_dist.x - ray.delta_dist.x;
-			else
-				ray.perp_distance = ray.side_dist.y - ray.delta_dist.y;
-			ray.cross = get_ray_cross(ray);
-		}
-	}
-	return (ray);
-}
-
-static void	draw_line(t_ray ray, int x)
-{
-	int 	color;
-	int 	line_h;
-	t_pos	draw_h;
-
-	line_h = (int) (W_HEIGHT / ray.perp_distance);
-	draw_h.x = - line_h / 2 + W_HEIGHT / 2;
-	if (draw_h.x < 0)
-		draw_h.x = 0;
-	draw_h.y = line_h / 2 + W_HEIGHT / 2;
-	if (draw_h.y >+ W_HEIGHT)
-		draw_h.y = W_HEIGHT - 1;
-	color = YELLOW;
-	if (ray.side == 1)
-		color = color / 2;
-	(canva())->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
-}
-
 static void	draw_texture(t_ray *ray, int x)
 {
 	t_texture	t;
@@ -158,6 +96,72 @@ static void	draw_texture(t_ray *ray, int x)
 		t.pos.y += t.y_step;
 	}
 }
+	
+static double	get_ray_cross(t_ray ray)
+{
+	t_player	*p;
+	double	cross;
+
+	p = scene()->player;
+	cross = p->pos.y + ray.perp_distance * ray.dir.y;
+	if (ray.side == 1)
+		cross = p->pos.x + ray.perp_distance * ray.dir.x;
+	cross -= floor(cross);
+	return (cross);
+}
+
+// static t_ray	update_ray(t_ray ray, int x)
+static void render_ray(t_ray ray, int x)
+{
+	ray.obj = NULL;
+	while (ray.obj == NULL)
+	{
+		if (ray.side_dist.x < ray.side_dist.y)
+		{
+			ray.side_dist.x += ray.delta_dist.x;
+			ray.map_cell.x += ray.step.x;
+			ray.side = 0;
+		}
+		else
+		{
+			ray.side_dist.y += ray.delta_dist.y;
+			ray.map_cell.y += ray.step.y;
+			ray.side = 1;
+		}
+		if (map()->maps_ob[ray.map_cell.y][ray.map_cell.x])
+		{
+			ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
+			if (ray.side == 0)
+				ray.perp_distance = ray.side_dist.x - ray.delta_dist.x;
+			else
+				ray.perp_distance = ray.side_dist.y - ray.delta_dist.y;
+			ray.cross = get_ray_cross(ray);
+			if (ray.obj->type != WALL)
+				render_ray(ray, x);
+			draw_texture(&ray, x);
+
+		}
+	}
+}
+
+static void	draw_line(t_ray ray, int x)
+{
+	int 	color;
+	int 	line_h;
+	t_pos	draw_h;
+
+	line_h = (int) (W_HEIGHT / ray.perp_distance);
+	draw_h.x = - line_h / 2 + W_HEIGHT / 2;
+	if (draw_h.x < 0)
+		draw_h.x = 0;
+	draw_h.y = line_h / 2 + W_HEIGHT / 2;
+	if (draw_h.y >+ W_HEIGHT)
+		draw_h.y = W_HEIGHT - 1;
+	color = YELLOW;
+	if (ray.side == 1)
+		color = color / 2;
+	(canva())->line(vector(x, draw_h.x, 0, 0), vector(x, draw_h.y, 0, 0), color);
+}
 
 // static void render_texture(t_ray *ray)
 // {
@@ -181,16 +185,10 @@ static void	draw_texture(t_ray *ray, int x)
 
 void	render_view2(t_player p) // receive player
 {
-	t_ray		ray;
 	int			x;
 	t_texture	t;
 
 	x = -1;
 	while (++x < W_WIDTH)
-	{
-		ray = init_ray(p, x);
-		ray = update_ray(ray);
-		draw_texture(&ray, x);
-		// draw_line(ray, x);
-	}
+		render_ray(init_ray(p, x), x);
 }
