@@ -35,3 +35,10 @@ double	now(void)
 		now_msec = 0;
 	return (now_msec);
 }
+
+int** baffer_int()
+{
+	static int i[1000][1000];
+
+	return ((int **) i);
+}

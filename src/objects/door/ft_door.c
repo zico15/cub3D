@@ -18,6 +18,8 @@ static int	check_collision(t_vector v)
 	t_vector	p;
 
 	p = fthis()->player->vector;
+	
+
 	return (collision().rectangular(v, p));
 }
 
@@ -32,7 +34,7 @@ static void	__funct_key(int *key, int type_event)
 	{
 		door->is_open = !door->is_open;
 		door->is_run = 1;
-		printf("door[KEY_SPACE]\n");
+		//printf("door[KEY_SPACE]\n");
 		if (check_collision(door->vector))
 		{
 			door->is_open = 1;
@@ -68,7 +70,7 @@ static void	__updade(void)
 				v.y, color);
 			}
 		}
-		printf("animation: %i [%i]\n", door->count_max, door->is_open);
+		//printf("animation: %i [%i]\n", door->count_max, door->is_open);
 		if (door->is_open && door->count_max < 31)
 			door->count_max++;
 		else if (!door->is_open && door->count_max > -1)
@@ -93,6 +95,15 @@ static t_sprite	*get_sprite(t_ray ray)
 	return (door->sprite_animation);
 }
 
+static void	__render(t_buffer *b)
+{
+	t_door	*door;
+
+	door = (t_door *) this();
+	if (door->collision)
+		b->rectangle(vector_grid(door->vector), 0xee82ee);
+}
+
 t_object	*new_door(void)
 {
 	t_door			*door;
@@ -105,8 +116,8 @@ t_object	*new_door(void)
 	door->update = __updade;
 	door->collision = __collision_base;
 	door->funct_key = __funct_key;
-	door->vector = vector(0, 0, W_WIDTH, W_HEIGHT);
 	door->get_sprite = get_sprite;
+	door->render = __render;
 	door->sprite = sprite;
 	door->sprite_animation = copy_sprite(sprite);
 	door->count_max = 1;

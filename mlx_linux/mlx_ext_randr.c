@@ -75,7 +75,7 @@ int			mlx_ext_fullscreen(t_xvar *xvar, t_win_list *win, int fullscreen)
   saved_mode = crtc->mode;
 
   i = XRRSetCrtcConfig(xvar->display, res, o_info->crtc, CurrentTime, 0, 0, mode_candidate,
-		       crtc->rotation, &res->outputs[idx_output], 1);
+		       crtc->pathtion, &res->outputs[idx_output], 1);
   if (fullscreen)
     printf("found mode : %d x %d\n Status %d\n", res->modes[idx_candidate].width, res->modes[idx_candidate].height, i);
   else

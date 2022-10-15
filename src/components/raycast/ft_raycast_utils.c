@@ -56,9 +56,9 @@ double	get_ray_cross(t_ray ray)
 	double		cross;
 
 	p = scene()->player;
-	cross = p->pos.y + ray.perp_distance * ray.dir.y;
+	cross = p->vector.y + ray.perp_distance * ray.dir.y;
 	if (ray.side == 1)
-		cross = p->pos.x + ray.perp_distance * ray.dir.x;
+		cross = p->vector.x + ray.perp_distance * ray.dir.x;
 	cross -= floor(cross);
 	return (cross);
 }

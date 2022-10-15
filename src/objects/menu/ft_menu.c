@@ -44,10 +44,10 @@ static void	__reander(t_buffer *b)
 {
 	t_vector	p;
 
-	p = fthis()->player->pos;
+	p = fthis()->player->vector;
 	p.x = ((p.x - (p.w / 2) - GRID_SIZE) / GRID_SIZE) - 1;
 	p.y = ((p.y - (p.h / 2) - GRID_SIZE) / GRID_SIZE);
-	mini_map(b, p, this()->vector);
+	//mini_map(b, p, this()->vector);
 	if (fthis()->player->sprite)
 		b->image_pos(fthis()->player->sprite, 0, 100);
 }

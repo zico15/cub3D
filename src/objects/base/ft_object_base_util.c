@@ -23,6 +23,19 @@ void	__collision_base(t_object *collided)
 	(void) collided;
 }
 
+static void	__set_position(t_vector v)
+{
+	t_vector	temp;
+	t_object	*ob;
+
+	temp = this()->vector;
+	ob = map()->maps_ob[(int) temp.y][(int) temp.x];
+	map()->maps_ob[(int) temp.y][(int) temp.x] = NULL;
+	this()->vector.x = v.x;
+	this()->vector.y = v.y;
+	map()->maps_ob[(int) v.y][(int) v.x] = ob;
+}
+
 void	*new_object_instance(size_t size)
 {
 	void		*o;
@@ -33,6 +46,7 @@ void	*new_object_instance(size_t size)
 	object->destroy = __destroy_ob;
 	object->funct_key = NULL;
 	object->type = OBJECT;
+	object->set_position = __set_position;
 	fthis()->object = o;
 	return (o);
 }

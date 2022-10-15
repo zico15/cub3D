@@ -23,6 +23,7 @@ typedef struct s_nav_node	t_nav_node;
 typedef struct s_buffer		t_buffer;
 typedef struct s_camera		t_camera;
 typedef struct s_door		t_door;
+typedef	struct s_enemy		t_enemy;
 
 typedef enum e_type_ob
 {
@@ -31,7 +32,8 @@ typedef enum e_type_ob
 	MAP,
 	PLAYER,
 	WALL,
-	DOOR
+	DOOR,
+	ENEMY
 }	t_type;
 
 struct s_buffer
@@ -113,10 +115,26 @@ struct s_player
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*atacar)(void);
-	t_nav_mesh		*agent;
-	t_vector		pos;
 	t_vector		dir;
 	t_vector		plane;
+};
+
+struct s_enemy
+{
+	t_type			type;
+	t_sprite		*sprite;
+	t_animation		animation;
+	t_vector		vector;
+	void			(*update)(void);
+	void			(*render)(t_buffer *b);
+	void			(*destroy)(void *o);
+	void			(*funct_key)(int *key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*collision)(t_object *collided);
+	void			(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
+	void			(*atacar)(void);
+	t_nav_mesh		*agent;
 };
 
 struct s_camera
@@ -176,18 +194,20 @@ struct s_nav_mesh
 {
 	void		*open;
 	void		*close;
-	void		*rota;
+	void		*path;
 	t_nav_node	*begin;
 	t_vector	start;
 	t_vector	dest;
-	t_object	*o;
+	t_object	*ob;
+	void		(*clear)();
+	void		(*destroy)();
 	void		*(*set_destination)(t_vector start, t_vector dest);
 };
 
 t_object	*new_object(void);
 void		*new_object_instance(size_t size);
 t_map		*new_map(void);
-t_object	*new_teste(void);
+t_object	*new_enemy(void);
 t_player	*new_player(void);
 t_object	*new_wall(void);
 t_object	*new_menu(void);

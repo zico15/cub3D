@@ -24,6 +24,15 @@ t_vector	vector(double x, double y, double w, double h)
 	return (v);
 }
 
+t_vector	vector_grid(t_vector v)
+{
+	v.x = v.x * GRID_SIZE;
+	v.y = v.y * GRID_SIZE;
+	v.w = v.w * GRID_SIZE;
+	v.h = v.h * GRID_SIZE;
+	return (v);
+}
+
 t_vector	vector_zero(void)
 {
 	t_vector	v;

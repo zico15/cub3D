@@ -14,7 +14,7 @@
 #include <ft_object_base.h>
 #include <ft_player.h>
 
-void	rotate(t_player *p, double angle);
+void	pathte(t_player *p, double angle);
 void	move_dir(t_player *p, double x, double y);
 void	move_perp_dir(t_player *p, double x, double y);
 
@@ -32,12 +32,12 @@ void	__funct_key(int *key, int type_event)
 	if (key[KEY_A])
 		move_perp_dir(p, -1, -1);
 	if (key[KEY_LEFT])
-		rotate(p, -ROTATION_LEN);
+		pathte(p, -pathTION_LEN);
 	if (key[KEY_RIGHT])
-		rotate(p, ROTATION_LEN);
+		pathte(p, pathTION_LEN);
 }
 
-void	__funct_mouse(int x, int y, int type_event)
+void	__funct_mouse(int x, int y, int keycode)
 {
 	int			delta;
 	t_player	*p;
@@ -47,7 +47,12 @@ void	__funct_mouse(int x, int y, int type_event)
 	p = scene()->player;
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))
-		rotate(p, (double)(-delta / 100000.0));
+		pathte(p, (double)(-delta / 100000.0));
+	if (keycode == 1 && !p->animation.is_run)
+	{	
+		p->animation.is_run = 1;
+		printf("p->animation.is_run \n");
+	}
 }
 
 void	__set_position(t_vector v)

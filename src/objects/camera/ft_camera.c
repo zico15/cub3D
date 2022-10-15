@@ -13,14 +13,11 @@
 #include <ft_util.h>
 #include <ft_object_base.h>
 
-void	__render(t_buffer *b)
-{
-	t_player	*p;
+void	render_view(t_player *p);
 
-	p = scene()->player;
-	if (!p)
-		return ;
-	render_view(p);
+static void	__render(t_buffer *b)
+{
+	render_view(scene()->player);
 }
 
 t_object	*new_camera(void)

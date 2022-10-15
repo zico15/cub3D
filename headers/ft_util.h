@@ -40,7 +40,7 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define MOVE_LEN 0.02
-# define ROTATION_LEN 0.005	
+# define pathTION_LEN 0.005	
 # define W_WIDTH 1080
 # define W_HEIGHT 860
 # define VIEW_ANGLE 50
@@ -73,6 +73,7 @@ void		cread_map(t_map *m);
 t_image		image(void);
 void		pixel_put_sprite(t_sprite *sprite, int x, int y, int color);
 t_sprite	*copy_sprite(t_sprite	*sprite);
+int** 		baffer_int();
 
 //			memory
 int			free_ob(void *v);

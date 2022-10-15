@@ -19,8 +19,8 @@ int	__expand(t_nav_mesh *agent, t_nav_node *n)
 	int	size_w;
 	int	size_h;
 
-	size_w = map()->vector.w / GRID_SIZE;
-	size_h = map()->vector.h / GRID_SIZE;
+	size_w = map()->size_width;
+	size_h = map()->size_height;
 	if (!agent)
 		return (0);
 	if (check_case_node(agent, vector(n->x, n->y + 1, size_w, size_h), 10))
@@ -31,10 +31,10 @@ int	__expand(t_nav_mesh *agent, t_nav_node *n)
 		create_nav_node(agent, n, vector(n->x, n->y - 1, 10, 0));
 	if (check_case_node(agent, vector(n->x - 1, n->y, size_w, size_h), 10))
 		create_nav_node(agent, n, vector(n->x - 1, n->y, 10, 0));
-	return ((n->x == (agent->dest).x && n->y == (agent->dest).y));
+	return ((n->x == (int)(agent->dest).x && n->y == (int)(agent->dest).y));
 }
 
-static void	create_rota(t_nav_mesh	*agent, t_nav_node *node)
+static void	create_path(t_nav_mesh	*agent, t_nav_node *node)
 {
 	t_nav_node	*start;
 	t_nav_node	*next;
@@ -43,7 +43,7 @@ static void	create_rota(t_nav_mesh	*agent, t_nav_node *node)
 	start = node;
 	next = NULL;
 	if (start)
-		agent->rota = new_array();
+		agent->path = new_array();
 	while (start)
 	{
 		start->next = next;
@@ -55,11 +55,12 @@ static void	create_rota(t_nav_mesh	*agent, t_nav_node *node)
 	while (start)
 	{
 		v = malloc_ob(sizeof(t_vector));
-		v->x = start->x * GRID_SIZE;
-		v->y = start->y * GRID_SIZE;
-		array(agent->rota)->add(v);
+		v->x = start->x;
+		v->y = start->y;
+		array(agent->path)->add(v);
 		start = start->next;
 	}
+	printf("path: %i\n", array(agent->path)->size);
 }
 
 static t_nav_node	*check_pathfinding(t_nav_mesh *agent, t_element *e, \
@@ -99,7 +100,7 @@ void	__pathfinding(t_nav_mesh	*agent, t_nav_node	*node)
 		return ;
 	array(agent->close)->add(node);
 	if (__expand(agent, node))
-		create_rota(agent, node);
+		create_path(agent, node);
 	else if (array(agent->open)->size > 0)
 		__pathfinding(agent, NULL);
 }

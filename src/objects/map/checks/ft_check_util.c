@@ -18,71 +18,48 @@ void	destroy_node(t_node	*n)
 	free_ob(n);
 }
 
-static t_player	*init_player(int x, int y, char c)
+static t_player	*init_player(t_player	*p, int x, int y, char c)
 {
-	t_player	*p;
-
-	p = new_player();
-	p->pos.x = x;
-	p->pos.y = y;
+	p->vector.x = x;
+	p->vector.y = y;
 	if (c == 'N')
 	{
 		p->dir.y = -1;
 		p->plane.x = +0.66;
 	}
-	if (c == 'E')
+	else if (c == 'E')
 	{
 		p->dir.x = 1;
 		p->plane.y = +0.66;
 	}
-	if (c == 'S')
+	else if (c == 'S')
 	{
 		p->dir.y = 1;
 		p->plane.x = -0.66;
 	}
-	if (c == 'W')
+	else if (c == 'W')
 	{
-		p->dir.x = -1;
-		p->plane.y = -0.66;
+	
 	}
+	(map())->player = vector(x, y, 1, 1);
 	return (p);
 }
 
 static t_object	*add_object_scene(double x, double y, char c)
 {
-	double		angle;
 	t_object	*obj;
 
-	angle = 0;
 	if (c == 'T')
-		obj = new_teste();
-	if (c == 'D')
+		obj = new_enemy();
+	else if (c == 'D')
 		obj = new_door();
 	else if (c == '1')
 		obj = new_wall();
 	else if (string().contains("NSWE", _str(c)))
-	{
-		obj = (scene())->add(init_player(x, y, c));
-		(map())->player = vector(x * GRID_SIZE, y * GRID_SIZE, \
-		GRID_SIZE, GRID_SIZE);
-	}
+		obj = (t_object *) init_player(new_player(), x, y, c);
 	else
 		return (NULL);
-	if (c == 'W')
-		angle = 180;
-	if (c == 'N')
-		angle = 90;
-	if (c == 'S')
-		angle = -90;
-	obj->vector = vector(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
-	obj->vector.angle = angle;
-	obj->vector.radius = GRID_SIZE;
-	if (string().contains("NSWE", _str(c)) || c == 'T')
-	{
-		obj->vector.w = 10;
-		obj->vector.h = 10;
-		obj->vector.radius = 15;
-	}
+	obj->vector = vector(x, y, 1, 1);
 	scene()->add(obj);
 	if (obj->type == PLAYER)
 		return (NULL);

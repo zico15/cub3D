@@ -35,6 +35,8 @@ typedef struct s_animation
 	int			index;
 	int			size;
 	int			is_run;
+	int			count;
+	double		time;
 	t_sprites	*animations;
 }	t_animation;
 

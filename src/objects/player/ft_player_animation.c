@@ -19,7 +19,7 @@ void	__load_animation(t_player *p)
 	static t_sprites	*animations;
 	static char			file[20] = "imgs/IMG/Arma01.xpm";
 	static int			i = 0;
-	static int			size = 69;
+	static int			size = 9;
 
 	if (!animations)
 	{

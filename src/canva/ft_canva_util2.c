@@ -67,3 +67,23 @@ void	__image_pos(t_sprite *sprite, int x1, int y1)
 		}
 	}
 }
+
+void	__draw_line(t_vector begin, t_vector end, int color)
+{
+	int			pixels;
+	t_vector	delta;
+
+	delta.x = end.x - begin.x;
+	delta.y = end.y - begin.y;
+	pixels = sqrt((delta.x * delta.x) + (delta.y * delta.y));
+	delta.x /= pixels;
+	delta.y /= pixels;
+	delta.w = begin.x;
+	delta.h = begin.y;
+	while (pixels-- > 0)
+	{
+		canva()->pixel(delta.w, delta.h, color);
+		delta.w  += delta.x;
+		delta.h += delta.y;
+	}
+}

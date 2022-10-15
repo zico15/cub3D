@@ -21,7 +21,7 @@ static void	__collision(t_object *collided)
 
 static void	__reander(t_buffer *b)
 {
-	b->rectangle(this()->vector, 0x0000FF00);
+	b->rectangle(vector_grid(this()->vector), 0x0000FF00);
 }
 
 static t_sprite	*get_sprite(t_ray ray)
@@ -30,7 +30,7 @@ static t_sprite	*get_sprite(t_ray ray)
 
 	(void) ray;
 	if (sprite == NULL)
-		sprite = engine()->load_sprite("imgs/wall.xpm");
+		sprite = engine()->load_sprite("imgs/wall_s.xpm");
 	return (sprite);
 }
 
@@ -40,6 +40,7 @@ t_object	*new_wall(void)
 
 	wall = new_object_instance(sizeof(t_object));
 	wall->type = WALL;
+	wall->render = __reander;
 	wall->collision = __collision;
 	wall->get_sprite = get_sprite;
 	return (wall);

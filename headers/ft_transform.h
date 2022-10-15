@@ -105,6 +105,7 @@ typedef struct f_image
 }	t_image;
 
 t_vector	vector(double x, double y, double w, double h);
+t_vector	vector_grid(t_vector v);
 t_vector	vector_zero(void);
 t_collision	collision(void);
 t_vector	*copy_vector(t_vector *v);

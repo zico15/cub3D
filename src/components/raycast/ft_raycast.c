@@ -26,7 +26,7 @@ void			draw_texture(t_ray *ray, int x, t_sprite *sprite);
 t_face			get_face_dir(t_ray ray);
 
 static void		render_ray(t_ray ray, int x);
-static t_ray	init_ray(t_player p, int x);
+static t_ray	init_ray(t_player p, t_vector pos, int x);
 
 void	render_view(t_player *p)
 {
@@ -35,7 +35,7 @@ void	render_view(t_player *p)
 
 	x = -1;
 	while (++x < W_WIDTH)
-		render_ray(init_ray(*p, x), x);
+		render_ray(init_ray(*p, p->vector, x), x);
 }
 
 static t_ray	update_ray(t_ray ray)
@@ -77,38 +77,39 @@ static void	render_ray(t_ray ray, int x)
 			ray.cross = get_ray_cross(ray);
 			if (ray.obj->type != WALL)
 				render_ray(ray, x);
-			draw_texture(&ray, x, ray.obj->get_sprite(ray));
+			if (ray.obj->get_sprite)
+				draw_texture(&ray, x, ray.obj->get_sprite(ray));
 		}
 	}
 	fthis()->object = ob;
 }
 
-static t_ray	init_ray2(t_ray ray, t_player p)
+static t_ray	init_ray2(t_ray ray, t_vector pos)
 {
 	if (ray.dir.x < 0)
 	{
 		ray.step.x = -1;
-		ray.side_dist.x = (p.pos.x - ray.map_cell.x) * ray.delta_dist.x;
+		ray.side_dist.x = (pos.x - ray.map_cell.x) * ray.delta_dist.x;
 	}
 	else
 	{
 		ray.step.x = 1;
-		ray.side_dist.x = (ray.map_cell.x + 1 - p.pos.x) * ray.delta_dist.x;
+		ray.side_dist.x = (ray.map_cell.x + 1 - pos.x) * ray.delta_dist.x;
 	}
 	if (ray.dir.y < 0)
 	{
 		ray.step.y = -1;
-		ray.side_dist.y = (p.pos.y - ray.map_cell.y) * ray.delta_dist.y;
+		ray.side_dist.y = (pos.y - ray.map_cell.y) * ray.delta_dist.y;
 	}
 	else
 	{
 		ray.step.y = 1;
-		ray.side_dist.y = (ray.map_cell.y + 1 - p.pos.y) * ray.delta_dist.y;
+		ray.side_dist.y = (ray.map_cell.y + 1 - pos.y) * ray.delta_dist.y;
 	}
 	return (ray);
 }
 
-static t_ray	init_ray(t_player p, int x)
+static t_ray	init_ray(t_player p, t_vector pos, int x)
 {
 	t_ray	ray;
 
@@ -116,8 +117,8 @@ static t_ray	init_ray(t_player p, int x)
 	ray.camera.x = 2 * x / (double) W_WIDTH - 1;
 	ray.dir.x = p.dir.x + p.plane.x * ray.camera.x;
 	ray.dir.y = p.dir.y + p.plane.y * ray.camera.x;
-	ray.map_cell.x = (int) p.pos.x;
-	ray.map_cell.y = (int) p.pos.y;
+	ray.map_cell.x = (int) pos.x;
+	ray.map_cell.y = (int) pos.y;
 	if (ray.dir.x == 0)
 		ray.delta_dist.x = 1e30;
 	else
@@ -126,5 +127,5 @@ static t_ray	init_ray(t_player p, int x)
 		ray.delta_dist.y = 1e30;
 	else
 		ray.delta_dist.y = fabs(1 / ray.dir.y);
-	return (init_ray2(ray, p));
+	return (init_ray2(ray, pos));
 }
