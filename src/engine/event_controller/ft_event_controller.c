@@ -12,13 +12,13 @@
 
 #include <ft_util.h>
 
-int	funct_key_engine(int *key, int type_event)
+int	funct_key_engine(int *key, int event)
 {
 	int				i;
 
 	if (scene())
-		(scene()->funct_key)(key, type_event);
-	if (key[65451] || key[65453])
+		(scene()->funct_key)(key, event);
+	if (event == EVENT_CLICK && (key[65451] || key[65453]))
 	{
 		i = engine()->index_scene;
 		i += (key[65451] - key[65453]);
@@ -44,9 +44,10 @@ int	__funct_mousse_engine(int keycode, void *vars)
 
 int	__funct_key_press(int key, void *o)
 {
-	(void) o;
+	(void) o;	
 	engine()->keys[key] = 1;
 	engine()->is_key_press++;
+	funct_key_engine(engine()->keys, EVENT_CLICK);
 	return (0);
 }
 
@@ -55,5 +56,6 @@ int	__funct_key_release(int key, void *o)
 	(void) o;
 	engine()->is_key_press--;
 	engine()->keys[key] = 0;
+	funct_key_engine(engine()->keys, EVENT_RELEASE);
 	return (0);
 }

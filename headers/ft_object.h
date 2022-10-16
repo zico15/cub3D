@@ -56,7 +56,8 @@ struct s_object
 {
 	t_type			type;
 	t_sprite		*sprite;
-	t_animation		animation;
+	t_animation		*animation;
+	int				size_animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
@@ -72,7 +73,8 @@ struct s_map
 {
 	t_type			type;
 	t_sprite		*sprite;
-	t_animation		animation;
+	t_animation		*animation;
+	int				size_animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
@@ -96,15 +98,18 @@ struct s_map
 	int				f_color;
 	int				size_width;
 	int				size_height;
+	int				grid_width;
+	int				grid_height;
+	int				is_print;
 	t_object		***maps_ob;
-	t_object		*wall;
 };
 
 struct s_player
 {
 	t_type			type;
 	t_sprite		*sprite;
-	t_animation		animation;
+	t_animation		*animation;
+	int				size_animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
@@ -117,13 +122,15 @@ struct s_player
 	void			(*atacar)(void);
 	t_vector		dir;
 	t_vector		plane;
+	int				life;
 };
 
 struct s_enemy
 {
 	t_type			type;
 	t_sprite		*sprite;
-	t_animation		animation;
+	t_animation		*animation;
+	int				size_animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
@@ -141,7 +148,8 @@ struct s_camera
 {
 	t_type			type;
 	t_sprite		*sprite;
-	t_animation		animation;
+	t_animation		*animation;
+	int				size_animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
@@ -152,16 +160,14 @@ struct s_camera
 	void			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*render_view)(t_element *e, void *o);
-	t_v				pos;
-	t_v				dir;
-	t_v				plane;
 };
 
 struct s_door
 {
 	t_type			type;
 	t_sprite		*sprite;
-	t_animation		animation;
+	t_animation		*animation;
+	int				size_animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);

@@ -33,8 +33,6 @@ int	main(int argc, char **argv)
 	array(li)->add("C");
 	array(li)->remove_index(1);
 	array(li)->for_each(fun, NULL);
-
-	//return 0;
 	(void) e;
 	if (argc < 2)
 		printf("ERROR ARG!\n");

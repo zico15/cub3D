@@ -12,20 +12,31 @@
 
 #include <ft_util.h>
 
-void	set_animation(t_object *obj, int i)
+void update_animation(t_object *ob, int animation)
 {
-	int	j;
+	int i;
 
-	if (obj->animation.animations && i < obj->animation.size)
+	i = animation;
+	if (!ob->animation)
+		return;
+	if (ob->animation[i].is_run && (ob->animation[i].time < now()))
 	{
-		j = obj->animation.animations[i].index;
-		j += 1;
-		if (j >= obj->animation.animations[i].size)
-		{
-			j = 0;
-			obj->animation.is_run = obj->animation.animations[i].is_repeat;
+		if (++ob->animation[i].index >= ob->animation[i].size)
+		{	
+			ob->animation[i].index = 0;
+			ob->animation[i].is_run = ob->animation[i].is_repeat;
 		}
-		obj->sprite = obj->animation.animations[i].list[j];
-		obj->animation.animations[i].index = j;
+		ob->animation[i].time = now() + ob->animation[i].time_delay;
+		ob->sprite = ob->animation[i].list[ob->animation[i].index];
 	}
 }
+
+void update_animation_all(t_object *ob)
+{
+	int	i;
+
+	i = -1;
+	while (++i < ob->size_animation)
+		update_animation(ob, i);
+}
+

@@ -22,25 +22,19 @@ typedef struct s_sprite
 	t_vector	v;
 }	t_sprite;
 
-typedef struct s_sprites
-{
-	t_sprite	**list;
-	int			index;
-	int			size;
-	int			is_repeat;
-}	t_sprites;
-
 typedef struct s_animation
 {
 	int			index;
 	int			size;
+	t_sprite	**list;
 	int			is_run;
-	int			count;
+	int			is_repeat;
 	double		time;
-	t_sprites	*animations;
+	double		time_delay;
 }	t_animation;
 
 t_sprite	*new_sprite(int w, int h);
-void		set_animation(t_object *obj, int i);
+void 		update_animation(t_object *ob, int animation);
+void 		update_animation_all(t_object *ob);
 
 #endif

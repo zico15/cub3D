@@ -13,31 +13,21 @@
 #include <ft_util.h>
 #include <ft_object_base.h>
 
-static int	check_collision(t_vector v)
+static void	__funct_key(int *key, int event)
 {
-	t_vector	p;
-
-	p = fthis()->player->vector;
-	
-
-	return (collision().rectangular(v, p));
-}
-
-static void	__funct_key(int *key, int type_event)
-{
-	t_vector	v;
 	t_door		*door;
+	int			distance;
 
-	(void) type_event;
-	door = (t_door *) this();
-	if (key[KEY_SPACE])
+	
+	if (key[KEY_SPACE] && event == EVENT_CLICK)
 	{
-		door->is_open = !door->is_open;
-		door->is_run = 1;
-		//printf("door[KEY_SPACE]\n");
-		if (check_collision(door->vector))
+		door = (t_door *) this();
+		distance = vector_distance(scene()->player->vector, this()->vector);
+		printf("distance: %i\n", distance);
+		if (distance <= 1)
 		{
-			door->is_open = 1;
+			door->is_open = !door->is_open;
+			door->is_run = 1;
 			array(scene()->colliders_list)->remove_value(this());
 			printf("dor--> player open\n");
 		}
@@ -100,26 +90,23 @@ static void	__render(t_buffer *b)
 	t_door	*door;
 
 	door = (t_door *) this();
-	if (door->collision)
+	if (map()->is_print && door->collision)
 		b->rectangle(vector_grid(door->vector), 0xee82ee);
 }
 
 t_object	*new_door(void)
 {
 	t_door			*door;
-	static t_sprite	*sprite;
 
 	door = new_object_instance(sizeof(t_door));
-	if (sprite == NULL)
-		sprite = engine()->load_sprite("imgs/door.xpm");
 	door->type = DOOR;
 	door->update = __updade;
 	door->collision = __collision_base;
 	door->funct_key = __funct_key;
 	door->get_sprite = get_sprite;
 	door->render = __render;
-	door->sprite = sprite;
-	door->sprite_animation = copy_sprite(sprite);
+	door->sprite = engine()->load_sprite("imgs/door.xpm");
+	door->sprite_animation = copy_sprite(door->sprite);
 	door->count_max = 1;
 	return ((t_object *) door);
 }

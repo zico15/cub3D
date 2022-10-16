@@ -14,6 +14,12 @@
 #include <ft_object_base.h>
 #include <ft_check.h>
 
+static void	__funct_key(int *key, int event)
+{
+	if (event == EVENT_CLICK && key[KEY_M])
+		map()->is_print = !map()->is_print;
+}
+
 int	check_map_color(char *map_color)
 {
 	char	*clean_str;
@@ -107,6 +113,7 @@ t_map	*new_map(void)
 	map->type = MAP;
 	map->map = new_array();
 	map->load = __load_map;
+	map->funct_key = __funct_key;
 	fthis()->map = map;
 	return (map);
 }

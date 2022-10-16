@@ -73,8 +73,9 @@ void	add_object_all_map(t_map *map)
 
 	map->size_width = map->vector.w / GRID_SIZE;
 	map->size_height = map->vector.h / GRID_SIZE;
+	map->grid_width = W_WIDTH / (map->size_width - 2);
+	map->grid_height = W_HEIGHT / map->size_height;
 	y = 0;
-	map->wall = new_wall();
 	map->maps_ob = malloc_ob(sizeof(t_object ***) * (map->size_height + 1));
 	while (y < map->size_height)
 	{

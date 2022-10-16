@@ -20,7 +20,6 @@ typedef struct s_ray		t_ray;
 typedef struct s_object		t_object;
 typedef enum e_face			t_face;
 typedef struct s_texture	t_texture;
-typedef struct s_v			t_v;
 
 enum e_face
 {
@@ -106,6 +105,8 @@ typedef struct f_image
 
 t_vector	vector(double x, double y, double w, double h);
 t_vector	vector_grid(t_vector v);
+t_vector	vector_grid_size(t_vector v, double w, double h);
+int			vector_distance(t_vector a, t_vector b);
 t_vector	vector_zero(void);
 t_collision	collision(void);
 t_vector	*copy_vector(t_vector *v);

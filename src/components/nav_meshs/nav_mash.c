@@ -42,7 +42,7 @@ static void	*__set_destination(t_vector start, t_vector dest)
 	agent = fthis()->agent;
 	__clear_date();
 	if (start.x == dest.x && start.y == dest.y)
-		return;
+		return (NULL);
 	agent->open = new_array();
 	agent->close = new_array();
 	agent->start = start;

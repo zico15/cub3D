@@ -18,7 +18,7 @@ void	pathte(t_player *p, double angle);
 void	move_dir(t_player *p, double x, double y);
 void	move_perp_dir(t_player *p, double x, double y);
 
-void	__funct_key(int *key, int type_event)
+void	__funct_key(int *key, int event)
 {
 	t_player	*p;
 
@@ -48,9 +48,9 @@ void	__funct_mouse(int x, int y, int keycode)
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))
 		pathte(p, (double)(-delta / 100000.0));
-	if (keycode == 1 && !p->animation.is_run)
+	if (keycode == 1 && !p->animation[0].is_run)
 	{	
-		p->animation.is_run = 1;
+		p->animation[0].is_run = 1;
 		printf("p->animation.is_run \n");
 	}
 }

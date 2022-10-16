@@ -14,6 +14,23 @@
 #include <ft_object_base.h>
 #include <ft_check.h>
 
+
+static void	__load_animation(t_object *ob)
+{
+	t_animation	*animations;
+	
+
+	animations = malloc_ob(sizeof(t_animation));
+	animations[0].list = malloc_ob(sizeof(t_sprite *) * 4);
+	animations[0].size = 4;
+	animations->list[0] = engine()->load_sprite("imgs/wall_s.xpm");
+	animations->list[1] = engine()->load_sprite("imgs/wall_s.xpm");
+	animations->list[2] = engine()->load_sprite("imgs/wall_s.xpm");
+	animations->list[3] = engine()->load_sprite("imgs/wall_s.xpm");
+	ob->size_animation = 1;
+	ob->animation = animations;
+}
+
 static void	__collision(t_object *collided)
 {
 	(void) collided;
@@ -21,17 +38,13 @@ static void	__collision(t_object *collided)
 
 static void	__reander(t_buffer *b)
 {
-	b->rectangle(vector_grid(this()->vector), 0x0000FF00);
+	if (map()->is_print)
+		b->rectangle(vector_grid(this()->vector), 0x0000FF00);
 }
 
 static t_sprite	*get_sprite(t_ray ray)
 {
-	static t_sprite	*sprite;
-
-	(void) ray;
-	if (sprite == NULL)
-		sprite = engine()->load_sprite("imgs/wall_s.xpm");
-	return (sprite);
+	return (this()->animation->list[0]);
 }
 
 t_object	*new_wall(void)
@@ -43,5 +56,6 @@ t_object	*new_wall(void)
 	wall->render = __reander;
 	wall->collision = __collision;
 	wall->get_sprite = get_sprite;
+	__load_animation(wall);
 	return (wall);
 }

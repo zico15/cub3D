@@ -14,6 +14,8 @@
 #include <ft_check.h>
 #include <ft_object_base.h>
 
+void	__load_animation_life(t_object *ob);
+
 static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 {
 	t_vector	v;
@@ -43,13 +45,18 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 static void	__reander(t_buffer *b)
 {
 	t_vector	p;
+	t_sprite	*sprite;
 
-	p = fthis()->player->vector;
+	p = scene()->player->vector;
 	p.x = ((p.x - (p.w / 2) - GRID_SIZE) / GRID_SIZE) - 1;
 	p.y = ((p.y - (p.h / 2) - GRID_SIZE) / GRID_SIZE);
-	//mini_map(b, p, this()->vector);
-	if (fthis()->player->sprite)
-		b->image_pos(fthis()->player->sprite, 0, 100);
+	mini_map(b, p, this()->vector);
+	if (scene()->player->sprite)
+		b->image_pos(scene()->player->sprite, 0, 100);
+	if (!scene()->player->life)
+		return;
+	sprite = this()->animation[0].list[5 - scene()->player->life];
+	b->image_pos(sprite, this()->vector.x, 156);
 }
 
 t_object	*new_menu(void)
@@ -62,5 +69,6 @@ t_object	*new_menu(void)
 	ob->vector.h = 156;
 	ob->vector.x = engine()->width - ob->vector.w;
 	ob->vector.y = 0;
+	__load_animation_life(ob);
 	return (ob);
 }

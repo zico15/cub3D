@@ -37,12 +37,12 @@ t_scene	*__load_maps(char **args, int size)
 	while (++i < size)
 	{
 		scene = engine()->add_scene(new_scene());
+		scene->add(new_camera());
+		scene->add(new_menu());
 		map = (t_map *) scene->add(new_map());
 		scene->map = map;
 		map->load(args[i]);
-		scene->player = fthis()->player;
-		scene->add(new_camera());
-		scene->add(new_menu());
+		scene->player = fthis()->player;	
 	}
 	scene = __set_scene(0);
 	return (scene);

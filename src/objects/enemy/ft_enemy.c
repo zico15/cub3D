@@ -16,6 +16,7 @@
 
 t_nav_mesh	*agent(void);
 t_sprite	*__get_sprite_enemy(t_ray ray);
+void 		__collision_enemy(t_object *collided);
 
 static int	check_line(t_vector begin, t_vector end)
 {
@@ -48,12 +49,10 @@ static void	__render_tester(t_buffer *b)
 
 	p = scene()->player;
 	v = vector_grid(this()->vector);
-	b->rectangle(v, 0x0df2c9);
+	if (map()->is_print)
+		b->rectangle(vector_grid_size(this()->vector, 2, 2), 0xfa0000);
 	if ((!agent()->path || array(agent()->path)->size == 0) && check_line(this()->vector, p->vector))
-	{	
 		agent()->set_destination(this()->vector, p->vector);
-		canva()->line(v, vector_grid(p->vector), 0x8b4513);
-	}
 }
 
 static void	__update(void)
@@ -67,6 +66,11 @@ static void	__update(void)
 	{
 		if (array(path)->size == 0 || count++ < 100)
 			return ;
+		if (vector_distance(scene()->player->vector, this()->vector) <= 1)
+		{
+			agent()->clear();
+			return ;
+		}
 		count = 0;
 		v = array(path)->get(0);
 		this()->set_position(*v);
@@ -88,6 +92,7 @@ t_object	*new_enemy(void)
 	ob->update = __update;
 	ob->render = __render_tester;
 	ob->agent = new_nav_mesh();
+	ob->collision = __collision_enemy;
 	ob->get_sprite = __get_sprite_enemy;
 	agent()->ob = (t_object *) ob;
 	return ((t_object *) ob);

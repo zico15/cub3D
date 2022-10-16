@@ -22,29 +22,15 @@ static void	__collision(t_object *collided)
 
 static void	__render(t_buffer *b)
 {
-	t_player	*p;
-	t_vector	v;
+	static t_vector v;
 
-	p = scene()->player;
-	v = vector((p->vector.x * GRID_SIZE) - 3, (p->vector.y * GRID_SIZE) - 3, 6, 6);
-	b->rectangle(v, 0xffff00);
+	if (map()->is_print)
+		b->rectangle(vector_grid_size(this()->vector, 2, 2), 0xffff00);
 }
 
 static void	__update(void)
 {
-	t_player	*p;
-
-	p = scene()->player;
-	if (p->animation.is_run && (p->animation.time < now()))
-	{
-		if (++p->animation.index >= p->animation.animations->size)
-		{	
-			p->animation.index = 0;
-			p->animation.is_run = 0;
-		}
-		p->animation.time = now() + 60;
-		p->sprite = p->animation.animations->list[p->animation.index];
-	}
+	update_animation_all(this());
 }
 
 t_player	*new_player(void)
@@ -61,9 +47,10 @@ t_player	*new_player(void)
 	p->vector.h = 10;
 	p->update = __update;
 	p->render = __render;
+	p->life = 5;
 	p->set_position = __set_position;
 	__load_animation(p);
-	p->sprite = *p->animation.animations->list;
+	p->sprite = *p->animation[0].list;
 	fthis()->player = p;
 	return (p);
 }

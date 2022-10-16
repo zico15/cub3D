@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_teste.c                                         :+:      :+:    :+:   */
+/*   ft_menu.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 19:06:57 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/14 18:51:34 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,25 @@
 #include <ft_check.h>
 #include <ft_object_base.h>
 
-t_nav_mesh *agent(void)
+void	__load_animation_life(t_object *ob)
 {
-	t_enemy		*e;
+	static t_animation	*animations;
+	static char			file[20] = "imgs/life/life00.xpm";
+	static int			i = 0;
+	static int			size = 5;
 
-	e = (t_enemy *) this();	
-	fthis()->agent = e->agent;
-	return (fthis()->agent);
-}
-
-t_sprite	*__get_sprite_enemy(t_ray ray)
-{
-	t_enemy	*enemy;
-
-	enemy = (t_enemy *) this();
-	return (enemy->sprite);
-}
-
-void __collision_enemy(t_object *collided)
-{
-	static t_player	*p;
-
-	if (collided->type == PLAYER)
-	{	
-		p = (t_player *) collided;
-		if (p->life)
-			p->life -= 1;
+	i = -1;
+	animations = malloc_ob(sizeof(t_animation));
+	animations[0].size = 1;
+	animations[0].list = malloc_ob(sizeof(t_sprite *) * size);
+	animations[0].size = size;
+	animations[0].time_delay = 60;
+	while (++i < size)
+	{
+		file[14] = (i / 10) + '0';
+		file[15] = (i % 10) + '0';
+		animations[0].list[i] = engine()->load_sprite(file);
 	}
+	ob->size_animation = 1;
+	ob->animation = animations;
 }

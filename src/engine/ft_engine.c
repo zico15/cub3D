@@ -38,7 +38,7 @@ int	game_loop(t_engine *e)
 		return (0);
 	__funct_mousse_engine(0, 0);
 	if (e->is_key_press)
-		funct_key_engine(e->keys, 0);
+		funct_key_engine(e->keys, EVENT_PRESS);
 	scene()->update();
 	e->canva->rectangle(vector(0, 0, e->width, e->height / 2), map()->c_color);
 	e->canva->rectangle(

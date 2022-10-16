@@ -32,6 +32,8 @@ struct s_scene
 {
 	t_type			type;
 	t_sprite		*sprite;
+	t_animation		*animation;
+	int				size_animation;
 	t_vector		vector;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
