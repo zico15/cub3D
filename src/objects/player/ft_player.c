@@ -25,7 +25,7 @@ static void	__render(t_buffer *b)
 	static t_vector v;
 
 	if (map()->is_print)
-		b->rectangle(vector_grid_size(this()->vector, 2, 2), 0xffff00);
+		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xffff00);
 }
 
 static void	__update(void)

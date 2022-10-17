@@ -87,6 +87,7 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.width = width;
 	e.height = height;
 	e.canva = __canva();
+	e.imags = new_hashmap();
 	e.load_sprite = __load_sprite;
 	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_press, NULL);

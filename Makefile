@@ -10,7 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-
 #CC			= 	gcc -fsanitize=address -g
 CC			= 	gcc
 CFLAGS		= 	-Wall -Wextra -Werror -fsanitize=address

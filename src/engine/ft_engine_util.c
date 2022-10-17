@@ -65,10 +65,14 @@ void	*__load_img(t_vector *v, char *file_name)
 
 t_sprite	*__load_sprite(char *file_name)
 {
+	t_element 	*e;
 	t_sprite	*s;
 	int			w;
 	int			h;
 
+	e = hashmap(engine()->imags)->get_key(file_name);
+	if (e)
+		return (e->value);
 	s = malloc_ob(sizeof(*s));
 	s->img = mlx_xpm_file_to_image(engine()->mlx, file_name, \
 	&w, &h);
@@ -77,5 +81,6 @@ t_sprite	*__load_sprite(char *file_name)
 	s->data.img = s->img;
 	s->data.addr = mlx_get_data_addr(s->data.img, &s->data.bits_per_pixel, \
 	&s->data.line_length, &s->data.endian);
+	hashmap(engine()->imags)->put(string().copy(file_name), s);
 	return (s);
 }

@@ -60,7 +60,6 @@ static void	__updade(void)
 				v.y, color);
 			}
 		}
-		//printf("animation: %i [%i]\n", door->count_max, door->is_open);
 		if (door->is_open && door->count_max < 31)
 			door->count_max++;
 		else if (!door->is_open && door->count_max > -1)

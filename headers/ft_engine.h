@@ -37,6 +37,7 @@ struct s_engine
 	void			*(*load_img)(t_vector *v, char *file_name);
 	t_sprite		*(*load_sprite)(char *file_name);
 	int				(*close)(char *msg);
+	void			*imags;
 };
 
 t_engine	*engine(void);
