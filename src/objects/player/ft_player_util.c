@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/14 18:57:27 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 10:24:31 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <ft_object_base.h>
 #include <ft_player.h>
 
-void	pathte(t_player *p, double angle);
+void	rotate(t_player *p, double angle);
 void	move_dir(t_player *p, double x, double y);
 void	move_perp_dir(t_player *p, double x, double y);
 
@@ -32,9 +32,9 @@ void	__funct_key(int *key, int event)
 	if (key[KEY_A])
 		move_perp_dir(p, -1, -1);
 	if (key[KEY_LEFT])
-		pathte(p, -pathTION_LEN);
+		rotate(p, -ROTATION_LEN);
 	if (key[KEY_RIGHT])
-		pathte(p, pathTION_LEN);
+		rotate(p, ROTATION_LEN);
 }
 
 void	__funct_mouse(int x, int y, int keycode)
@@ -47,7 +47,7 @@ void	__funct_mouse(int x, int y, int keycode)
 	p = scene()->player;
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))
-		pathte(p, (double)(-delta / 100000.0));
+		rotate(p, (double)(-delta / 100000.0));
 	if (keycode == 1 && !p->animation[0].is_run)
 	{	
 		p->animation[0].is_run = 1;

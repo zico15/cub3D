@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:56:49 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/14 18:57:06 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 10:24:39 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <ft_object_base.h>
 #include <ft_player.h>
 
-void	pathte(t_player *p, double angle)
+void	rotate(t_player *p, double angle)
 {
 	double	old_dir_x;
 	double	old_plane_x;

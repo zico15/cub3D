@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 19:07:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 10:24:53 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define EVENT_RELEASE 1
 # define EVENT_CLICK 2
 # define MOVE_LEN 0.08
-# define pathTION_LEN 0.01	
+# define ROTATION_LEN 0.01	
 # define W_WIDTH 1080
 # define W_HEIGHT 860
 # define VIEW_ANGLE 50
