@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/14 19:35:36 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 18:12:22 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	draw_texture_loop(t_sprite *sprite, t_texture t, int x)
 	while (++y < t.line_h)
 	{
 		color = __get_color_sprite(sprite, (int) t.pos.x, (int) t.pos.y);
-		(canva())->pixel(x, t.draw_start_y + y, color);
+		(canva())->pixel(x, t.draw_start.y + y, color);
 		t.pos.y += t.y_step;
 	}
 }
@@ -44,7 +44,7 @@ void	draw_texture(t_ray *ray, int x, t_sprite *sprite)
 		t.y_offset = (int)(t.line_h - W_HEIGHT) / 2.0;
 		t.line_h = W_HEIGHT;
 	}
-	t.draw_start_y = W_HEIGHT / 2 - t.line_h / 2;
+	t.draw_start.y = W_HEIGHT / 2 - t.line_h / 2;
 	t.pos.y = t.y_offset * t.y_step;
 	y = -1;
 	draw_texture_loop(sprite, t, x);
@@ -63,7 +63,6 @@ double	get_ray_cross(t_ray ray)
 	return (cross);
 }
 
-/* to check if it return the right face */
 t_face	get_face_dir(t_ray ray)
 {
 	t_face	face_dir;
