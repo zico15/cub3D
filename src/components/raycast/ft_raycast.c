@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/14 19:16:23 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 15:24:39 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static void	render_ray(t_ray ray, int x)
 				render_ray(ray, x);
 			if (ray.obj->get_sprite)
 				draw_texture(&ray, x, ray.obj->get_sprite(ray));
+			fthis()->camera->perp_distance_wall[x] = ray.perp_distance;
 		}
 	}
 	fthis()->object = ob;
