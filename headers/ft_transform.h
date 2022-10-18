@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 19:13:36 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 18:00:54 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ struct s_texture
 	double		y_step;
 	int			line_h;
 	int			draw_start_y;
+	t_vector	draw_start;
+	t_vector	draw_end;
 };
 
 typedef struct f_image
