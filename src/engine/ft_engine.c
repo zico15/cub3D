@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:42:33 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 14:53:08 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.width = width;
 	e.height = height;
 	e.canva = __canva();
-	e.imags = new_hashmap();
+	e.images = new_hashmap();
 	e.load_sprite = __load_sprite;
 	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_press, NULL);

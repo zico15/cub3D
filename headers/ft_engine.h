@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 18:14:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:52:39 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct s_engine
 	void			*(*load_img)(t_vector *v, char *file_name);
 	t_sprite		*(*load_sprite)(char *file_name);
 	int				(*close)(char *msg);
-	void			*imags;
+	void			*images;
 };
 
 t_engine	*engine(void);

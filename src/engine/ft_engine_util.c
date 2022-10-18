@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:41:29 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 14:52:18 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_sprite	*__load_sprite(char *file_name)
 	int			w;
 	int			h;
 
-	e = hashmap(engine()->imags)->get_key(file_name);
+	e = hashmap(engine()->images)->get_key(file_name);
 	if (e)
 		return (e->value);
 	s = malloc_ob(sizeof(*s));
@@ -81,6 +81,6 @@ t_sprite	*__load_sprite(char *file_name)
 	s->data.img = s->img;
 	s->data.addr = mlx_get_data_addr(s->data.img, &s->data.bits_per_pixel, \
 	&s->data.line_length, &s->data.endian);
-	hashmap(engine()->imags)->put(string().copy(file_name), s);
+	hashmap(engine()->images)->put(string().copy(file_name), s);
 	return (s);
 }

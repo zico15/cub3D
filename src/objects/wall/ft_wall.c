@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 10:34:22 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 14:51:51 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	__load_animation(t_object *ob)
 	animations = malloc_ob(sizeof(t_animation));
 	animations[0].list = malloc_ob(sizeof(t_sprite *) * 4);
 	animations[0].size = 4;
-	animations->list[0] = engine()->load_sprite("imgs/wall_s.xpm");
+	animations->list[0] = engine()->load_sprite("imgs/stone2.xpm");
 	animations->list[1] = engine()->load_sprite("imgs/wall_s.xpm");
-	animations->list[2] = engine()->load_sprite("imgs/wall_s.xpm");
-	animations->list[3] = engine()->load_sprite("imgs/wall_s.xpm");
+	animations->list[2] = engine()->load_sprite("imgs/wall.xpm");
+	animations->list[3] = engine()->load_sprite("imgs/wall_w.xpm");
 	ob->size_animation = 1;
 	ob->animation = animations;
 }
@@ -44,7 +44,7 @@ static void	__render(t_buffer *b)
 
 static t_sprite	*get_sprite(t_ray ray)
 {
-	return (this()->animation->list[0]);
+	return (this()->animation->list[ray.face_dir]);
 }
 
 t_object	*new_wall(void)
