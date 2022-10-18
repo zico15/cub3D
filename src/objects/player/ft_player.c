@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/14 19:01:38 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 10:53:08 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_player	*new_player(void)
 	p->funct_mouse = __funct_mouse;
 	p->collision = __collision;
 	p->vector.angle = 90;
-	p->vector.w = 10;
-	p->vector.h = 10;
+	p->vector.w = 20;
+	p->vector.h = 20;
 	p->update = __update;
 	p->render = __render;
 	p->life = 5;

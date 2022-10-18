@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 19:08:21 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 10:34:22 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	__collision(t_object *collided)
 	(void) collided;
 }
 
-static void	__reander(t_buffer *b)
+static void	__render(t_buffer *b)
 {
 	if (map()->is_print)
 		b->rectangle(vector_grid(this()->vector), 0x0000FF00);
@@ -53,7 +53,7 @@ t_object	*new_wall(void)
 
 	wall = new_object_instance(sizeof(t_object));
 	wall->type = WALL;
-	wall->render = __reander;
+	wall->render = __render;
 	wall->collision = __collision;
 	wall->get_sprite = get_sprite;
 	__load_animation(wall);

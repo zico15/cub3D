@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:51:34 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 10:56:31 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	t_vector	v;
 	t_vector	p_rel;
 	t_vector	direction;
+	t_player	*player;
 	double		val;
 
+	player = scene()->player;
 	v = vector(p.x * GRID_MIN_SIZE, p.y * GRID_MIN_SIZE, 200, 150);
 	b->rectangle_border(m, 0xe5e6e6, 3, 0xdf0707);
 	m.x += 3;
@@ -30,26 +32,22 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	m.w -= 6;
 	m.h -= 6;
 	map()->sprite->v = m;
-	p_rel.x = m.x + 91;
-	p_rel.y = m.y + 72;
-	p_rel.angle = p.angle;
-	val = M_PI / 180;
-	direction.y = p_rel.y - (20 * sin(p.angle * val));
-	direction.x = p_rel.x + (20 * cos(p.angle * val));
+	p_rel.x = m.x + 91 - 2 * GRID_MIN_SIZE;
+	p_rel.y = m.y + 72 - GRID_MIN_SIZE;
+	direction.x = p_rel.x + p.w / 2 + player->dir.x * 10;
+	direction.y = p_rel.y + p.h / 2 + player->dir.y * 10;
 	b->image_sub(map()->sprite, v);
-	b->rectangle(vector(p_rel.x, p_rel.y, 10, 10), 0xd36a0d);
-	b->rectangle(vector(direction.x + 5 - 1, direction.y + 5 - 1, 2, 2),
+	b->rectangle(vector(p_rel.x - p.w / 2, p_rel.y - p.h / 2, p.w, p.h), 0xd36a0d);
+	b->rectangle(vector(direction.x, direction.y, 2, 2),
 		0x00990099);
 }
 
-static void	__reander(t_buffer *b)
+static void	__render(t_buffer *b)
 {
 	t_vector	p;
 	t_sprite	*sprite;
 
 	p = scene()->player->vector;
-	p.x = ((p.x - (p.w / 2) - GRID_SIZE) / GRID_SIZE) - 1;
-	p.y = ((p.y - (p.h / 2) - GRID_SIZE) / GRID_SIZE);
 	mini_map(b, p, this()->vector);
 	if (scene()->player->sprite)
 		b->image_pos(scene()->player->sprite, 0, 100);
@@ -64,7 +62,7 @@ t_object	*new_menu(void)
 	t_object	*ob;
 
 	ob = new_object_instance(sizeof(t_object));
-	ob->render = __reander;
+	ob->render = __render;
 	ob->vector.w = 206;
 	ob->vector.h = 156;
 	ob->vector.x = engine()->width - ob->vector.w;

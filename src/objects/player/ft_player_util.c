@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/18 10:24:31 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 10:32:13 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	__funct_mouse(int x, int y, int keycode)
 	p = scene()->player;
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))
-		rotate(p, (double)(-delta / 100000.0));
+		rotate(p, (double)(-delta * ROTATION_LEN / 500.0));
 	if (keycode == 1 && !p->animation[0].is_run)
 	{	
 		p->animation[0].is_run = 1;
