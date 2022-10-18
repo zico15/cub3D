@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/18 15:24:39 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:31:36 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	render_ray(t_ray ray, int x)
 	{
 		ray = update_ray(ray);
 		ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
+		if (ray.obj && ray.obj->type == ENEMY)
+			ray.obj = NULL;
 		if (ray.obj)
 		{
 			

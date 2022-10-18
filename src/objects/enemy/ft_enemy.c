@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_teste.c                                         :+:      :+:    :+:   */
+/*   ft_enemy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 19:06:57 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:25:20 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,10 @@ static void	__update(void)
 t_object	*new_enemy(void)
 {
 	t_enemy			*ob;
-	static t_sprite	*sprite;
 
 	ob = new_object_instance(sizeof(t_enemy));
-	if (sprite == NULL)
-		sprite = engine()->load_sprite("imgs/enemy.xpm");
 	ob->type = ENEMY;
-	ob->sprite = sprite;
+	ob->sprite = engine()->load_sprite("imgs/enemy.xpm");;
 	ob->update = __update;
 	ob->render = __render_tester;
 	ob->agent = new_nav_mesh();

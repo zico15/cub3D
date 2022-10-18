@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:23:18 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ t_scene	*new_scene(void)
 	s->render = __render;
 	s->add = __add;
 	s->destroy = __destroy;
+	s->enemies = new_array();
 	s->objects = new_array();
 	s->funct_key = __funct_key_scene;
 	s->funct_mouse = __funct_mouse_scene;

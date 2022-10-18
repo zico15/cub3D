@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 15:30:04 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct s_scene
 	t_map			*map;
 	t_player		*player;
 	t_camera		*camera;
+	void			*enemies;
 };
 
 t_scene	*new_scene(void);

@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:50:40 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:23:05 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ static t_object	*add_object_scene(double x, double y, char c)
 	t_object	*obj;
 
 	if (c == 'T')
+	{	
 		obj = new_enemy();
+		array(scene()->enemies)->add(obj);
+	}
 	else if (c == 'D')
 		obj = new_door();
 	else if (c == '1')
