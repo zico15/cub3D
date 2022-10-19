@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:37:32 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/18 18:09:54 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/19 14:55:36 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	render_object(t_object *obj, t_player *player)
 	double		screen_x;
 	double		inv_det;
 
-	rel_pos.x = obj->vector.x - player->vector.x;
-	rel_pos.y = obj->vector.y - player->vector.y;
+	rel_pos.x = obj->vector.x - player->vector.x + 0.5;
+	rel_pos.y = obj->vector.y - player->vector.y + 0.5;
 	inv_det = 1.0 / (player->plane.x * player->dir.y
 			- player->dir.x * player->plane.y);
 	transform.x = inv_det * (player->dir.y * rel_pos.x
