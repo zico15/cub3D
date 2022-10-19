@@ -62,7 +62,7 @@ t_object	*new_menu(void)
 	t_object	*ob;
 
 	ob = new_object_instance(sizeof(t_object));
-	//ob->render = __render;
+	ob->render = __render;
 	ob->vector.w = 206;
 	ob->vector.h = 156;
 	ob->vector.x = engine()->width - ob->vector.w;

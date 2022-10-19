@@ -33,8 +33,17 @@ typedef struct s_animation
 	double		time_delay;
 }	t_animation;
 
+typedef	struct s_fanimation
+{
+	t_animation 	*(*create)(t_object *ob, int size);
+	void			(*load_animation)(char *fileName, int size, t_animation \
+	*animations, double velocity);
+	void 			(*update_all)(t_object *ob);
+	void 			(*updated)(t_object *ob, int animation);
+}	t_fanimation;
+
+
 t_sprite	*new_sprite(int w, int h);
-void 		update_animation(t_object *ob, int animation);
-void 		update_animation_all(t_object *ob);
+t_fanimation animation();
 
 #endif

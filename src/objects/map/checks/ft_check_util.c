@@ -60,10 +60,7 @@ static t_object	*add_object_scene(double x, double y, char c)
 		array(scene()->free_objects)->add(obj);
 	}
 	else if (c == 'D')
-	{	
 		obj = new_door();
-		array(scene()->free_objects)->add(obj);
-	}
 	else if (c == '1')
 		obj = new_wall();
 	else if (string().contains("NSWE", _str(c)))
@@ -72,7 +69,7 @@ static t_object	*add_object_scene(double x, double y, char c)
 		return (NULL);
 	obj->vector = vector(x, y, 1, 1);
 	scene()->add(obj);
-	if (obj->type == WALL)
+	if (obj->type == WALL || obj->type == DOOR)
 		return (obj);
 	return (NULL);
 }

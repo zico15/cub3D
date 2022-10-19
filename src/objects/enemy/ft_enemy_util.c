@@ -23,14 +23,6 @@ t_nav_mesh *agent(void)
 	return (fthis()->agent);
 }
 
-t_sprite	*__get_sprite_enemy(t_ray ray)
-{
-	t_enemy	*enemy;
-
-	enemy = (t_enemy *) this();
-	return (enemy->sprite);
-}
-
 void __collision_enemy(t_object *collided)
 {
 	static t_player	*p;

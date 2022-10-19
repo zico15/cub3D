@@ -15,7 +15,6 @@
 #include <ft_object_base.h>
 
 t_nav_mesh	*agent(void);
-t_sprite	*__get_sprite_enemy(t_ray ray);
 void 		__collision_enemy(t_object *collided);
 
 static int	check_line(t_vector begin, t_vector end)
@@ -112,7 +111,6 @@ t_object	*new_enemy(void)
 	ob->funct_key = funct_key;
 	ob->agent = new_nav_mesh();
 	ob->collision = __collision_enemy;
-	ob->get_sprite = __get_sprite_enemy;
 	agent()->ob = (t_object *) ob;
 	agent()->velocity = 60;
 	return ((t_object *) ob);

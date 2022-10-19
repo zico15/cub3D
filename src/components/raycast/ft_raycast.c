@@ -73,12 +73,12 @@ static void	render_ray(t_ray ray, int x)
 				ray.perp_distance = ray.side_dist.x - ray.delta_dist.x;
 			else
 				ray.perp_distance = ray.side_dist.y - ray.delta_dist.y;
-			ray.cross = get_ray_cross(ray);
-			fthis()->camera->perp_distance_wall[x] = ray.perp_distance;
+			ray.cross = get_ray_cross(ray);			
 			if (ray.obj->type != WALL)
 				render_ray(ray, x);
 			if (ray.obj->get_sprite)
 				draw_texture(&ray, x, ray.obj->get_sprite(ray));
+			fthis()->camera->perp_distance_wall[x] = ray.perp_distance;
 			
 		}
 	}

@@ -26,11 +26,7 @@ static void	__render(t_buffer *b)
 
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xffff00);
-}
-
-static void	__update(void)
-{
-	update_animation_all(this());
+	animation().update_all(this());
 }
 
 t_player	*new_player(void)
@@ -45,11 +41,12 @@ t_player	*new_player(void)
 	p->vector.angle = 90;
 	p->vector.w = 20;
 	p->vector.h = 20;
-	p->update = __update;
 	p->render = __render;
 	p->life = 5;
 	p->set_position = __set_position;
-	__load_animation(p);
+	p->animation = animation().create(this(), 1);
+	animation().load_animation("imgs/IMG/Arma00.xpm", 9, &(p->animation[0]), \
+	25);
 	p->sprite = *p->animation[0].list;
 	fthis()->player = p;
 	return (p);
