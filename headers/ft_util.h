@@ -78,6 +78,7 @@ t_image		image(void);
 void		pixel_put_sprite(t_sprite *sprite, int x, int y, int color);
 t_sprite	*copy_sprite(t_sprite	*sprite);
 int** 		baffer_int();
+void		destroy_sprite(t_sprite *sprite);
 
 //			memory
 int			free_ob(void *v);
@@ -92,5 +93,6 @@ int			funct_key_engine(int *key, int type_event);
 //			time
 double		now(void);
 t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
+int 		random_number(int min_num, int max_num);
 
 #endif

@@ -84,3 +84,13 @@ t_sprite	*__load_sprite(char *file_name)
 	hashmap(engine()->images)->put(string().copy(file_name), s);
 	return (s);
 }
+
+void	__destroy_element_sprite(t_element	*e)
+{
+	t_sprite *sprite;
+
+	free_ob(e->key);
+	sprite = (t_sprite *) e->value;
+	destroy_sprite(sprite);
+	free_ob(e);
+}

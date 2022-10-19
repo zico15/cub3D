@@ -1,7 +1,7 @@
 /* XPM */
 static char * frame_13_xpm[] = {
 "192 192 67 1",
-" 	c None",
+" 	c #d411aa",
 ".	c #000000",
 "+	c #00001C",
 "@	c #00002C",

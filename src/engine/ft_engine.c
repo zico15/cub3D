@@ -13,11 +13,16 @@
 #include <ft_util.h>
 #include <ft_engine_util.h>
 
+void	__destroy_element_sprite(t_element	*e);
+
 static int	__close(char *msg)
 {
 	printf("%s\n", msg);
 	array(engine()->scenes)->destroy();
+	hashmap(engine()->images)->destroy();
 	mlx_destroy_window(engine()->mlx, engine()->win);
+	mlx_destroy_display(engine()->mlx);
+	free_ob(engine()->mlx);
 	exit(0);
 	return (0);
 }
@@ -88,6 +93,7 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.height = height;
 	e.canva = __canva();
 	e.images = new_hashmap();
+	array(hashmap(e.images)->list)->destroy_element = __destroy_element_sprite;
 	e.load_sprite = __load_sprite;
 	e.win = mlx_new_window(e.mlx, width, height, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_press, NULL);

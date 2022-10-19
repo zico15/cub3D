@@ -52,3 +52,11 @@ void	pixel_put_sprite(t_sprite *sprite, int x, int y, int color)
 	* (sprite->data.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
+void	destroy_sprite(t_sprite *sprite)
+{
+	if (!sprite)
+		return;
+	mlx_destroy_image(engine()->mlx, sprite->img);
+	free_ob(sprite);
+}

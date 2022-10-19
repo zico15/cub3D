@@ -16,6 +16,7 @@
 
 t_nav_mesh	*agent(void);
 void 		__collision_enemy(t_object *collided);
+void 		laod_animation_enemy(t_object	*ob);
 
 static int	check_line(t_vector begin, t_vector end)
 {
@@ -67,6 +68,7 @@ static void	__render_tester(t_buffer *b)
 		}
 		
 	}
+	animation().update_all(this());
 }
 
 static void	__update(void)
@@ -77,13 +79,18 @@ static void	__update(void)
 	path = agent()->path;
 	if (path)
 	{
+		this()->animation[0].is_run = array(path)->size > 0;
 		if (array(path)->size == 0 ||  now() < agent()->delay)
 			return ;
 		if (vector_distance(scene()->player->vector, this()->vector) <= 1)
 		{
+			printf("stop\n");
+			this()->animation[0].is_run = 0;
+			this()->animation[1].is_run = 1;
 			agent()->clear();
 			return ;
 		}
+
 		v = array(path)->get(0);
 		this()->set_position(*v);
 		array(path)->remove_index(0);
@@ -105,13 +112,13 @@ t_object	*new_enemy(void)
 
 	ob = new_object_instance(sizeof(t_enemy));
 	ob->type = ENEMY;
-	ob->sprite = engine()->load_sprite("imgs/enemy.xpm");;
 	ob->update = __update;
 	ob->render = __render_tester;
 	ob->funct_key = funct_key;
 	ob->agent = new_nav_mesh();
 	ob->collision = __collision_enemy;
+	laod_animation_enemy((t_object *) ob);
 	agent()->ob = (t_object *) ob;
-	agent()->velocity = 60;
+	agent()->velocity = 90 + random_number(0, 80);
 	return ((t_object *) ob);
 }
