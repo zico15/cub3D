@@ -206,6 +206,8 @@ struct s_nav_mesh
 	t_vector	start;
 	t_vector	dest;
 	t_object	*ob;
+	double		velocity;
+	double		delay;
 	void		(*clear)();
 	void		(*destroy)();
 	void		*(*set_destination)(t_vector start, t_vector dest);
@@ -220,5 +222,6 @@ t_object	*new_wall(void);
 t_object	*new_menu(void);
 t_object	*new_camera(void);
 t_object	*new_door(void);
+t_object	*new_barrel(void);
 
 #endif

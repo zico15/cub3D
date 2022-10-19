@@ -110,7 +110,7 @@ t_scene	*new_scene(void)
 	s->render = __render;
 	s->add = __add;
 	s->destroy = __destroy;
-	s->enemies = new_array();
+	s->free_objects = new_array();
 	s->objects = new_array();
 	s->funct_key = __funct_key_scene;
 	s->funct_mouse = __funct_mouse_scene;

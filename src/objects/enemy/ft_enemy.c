@@ -46,37 +46,58 @@ static void	__render_tester(t_buffer *b)
 {
 	t_player	*p;
 	t_vector	v;
+	void		*path;
+	t_element	*e;
+	t_vector	*pos;
 
 	p = scene()->player;
 	v = vector_grid(this()->vector);
 	if (map()->is_print)
-		b->rectangle(vector_grid_size(this()->vector, 2, 2), 0xfa0000);
+		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xfa0000);
 	if ((!agent()->path || array(agent()->path)->size == 0) && check_line(this()->vector, p->vector))
 		agent()->set_destination(this()->vector, p->vector);
+	path = agent()->path;
+	if (path && array(path)->size > 0)
+	{
+		e = array(path)->begin;
+		while (e)
+		{
+			pos = e->value;
+			b->rectangle(vector_grid_size(*pos, 1, 1), 0xB01455);
+			e = e->next;
+		}
+		
+	}
 }
 
 static void	__update(void)
 {
 	t_vector		*v;
-	static int		count;
 	void			*path;
 
 	path = agent()->path;
 	if (path)
 	{
-		if (array(path)->size == 0 || count++ < 100)
+		if (array(path)->size == 0 ||  now() < agent()->delay)
 			return ;
 		if (vector_distance(scene()->player->vector, this()->vector) <= 1)
 		{
 			agent()->clear();
 			return ;
 		}
-		count = 0;
 		v = array(path)->get(0);
 		this()->set_position(*v);
-		printf("vx: %f vy: %f\n", v->x, v->y);
 		array(path)->remove_index(0);
+		agent()->delay = now() + agent()->velocity;
 	}
+}
+
+static void funct_key(int *key, int event)
+{
+	
+	if (event != EVENT_CLICK)
+		return;
+	agent()->set_destination(this()->vector, scene()->player->vector);
 }
 
 t_object	*new_enemy(void)
@@ -88,9 +109,11 @@ t_object	*new_enemy(void)
 	ob->sprite = engine()->load_sprite("imgs/enemy.xpm");;
 	ob->update = __update;
 	ob->render = __render_tester;
+	ob->funct_key = funct_key;
 	ob->agent = new_nav_mesh();
 	ob->collision = __collision_enemy;
 	ob->get_sprite = __get_sprite_enemy;
 	agent()->ob = (t_object *) ob;
+	agent()->velocity = 60;
 	return ((t_object *) ob);
 }

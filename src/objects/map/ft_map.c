@@ -110,6 +110,7 @@ t_map	*new_map(void)
 
 	map = new_object_instance(sizeof(t_map));
 	map->is_map_ok = 1;
+	map->is_print = 0;
 	map->type = MAP;
 	map->map = new_array();
 	map->load = __load_map;

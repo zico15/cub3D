@@ -54,7 +54,7 @@ struct s_scene
 	t_map			*map;
 	t_player		*player;
 	t_camera		*camera;
-	void			*enemies;
+	void			*free_objects;
 };
 
 t_scene	*new_scene(void);

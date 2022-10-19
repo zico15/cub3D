@@ -35,3 +35,13 @@ int			vector_distance(t_vector a, t_vector b)
 	return (x + y);
 }
 
+t_vector *new_vector(double x, double y)
+{
+	t_vector *tmp;
+	
+	tmp  = malloc_ob(sizeof(t_vector));
+	tmp->x = x;
+	tmp->y = y;
+	return (tmp);
+}
+

@@ -23,7 +23,7 @@ static void	__load_animation(t_object *ob)
 	animations = malloc_ob(sizeof(t_animation));
 	animations[0].list = malloc_ob(sizeof(t_sprite *) * 4);
 	animations[0].size = 4;
-	animations->list[0] = engine()->load_sprite("imgs/stone2.xpm");
+	animations->list[0] = engine()->load_sprite("imgs/dust2_grafitti64.xpm");
 	animations->list[1] = engine()->load_sprite("imgs/wall_s.xpm");
 	animations->list[2] = engine()->load_sprite("imgs/wall.xpm");
 	animations->list[3] = engine()->load_sprite("imgs/wall_w.xpm");

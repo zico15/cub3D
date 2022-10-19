@@ -51,11 +51,19 @@ static t_object	*add_object_scene(double x, double y, char c)
 
 	if (c == 'T')
 	{	
+		obj = new_barrel();
+		array(scene()->free_objects)->add(obj);
+	}
+	else if (c == 'E')
+	{	
 		obj = new_enemy();
-		array(scene()->enemies)->add(obj);
+		array(scene()->free_objects)->add(obj);
 	}
 	else if (c == 'D')
+	{	
 		obj = new_door();
+		array(scene()->free_objects)->add(obj);
+	}
 	else if (c == '1')
 		obj = new_wall();
 	else if (string().contains("NSWE", _str(c)))
@@ -64,9 +72,9 @@ static t_object	*add_object_scene(double x, double y, char c)
 		return (NULL);
 	obj->vector = vector(x, y, 1, 1);
 	scene()->add(obj);
-	if (obj->type == PLAYER)
-		return (NULL);
-	return (obj);
+	if (obj->type == WALL)
+		return (obj);
+	return (NULL);
 }
 
 void	add_object_all_map(t_map *map)

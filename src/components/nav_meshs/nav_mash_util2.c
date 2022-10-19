@@ -34,6 +34,32 @@ int	__expand(t_nav_mesh *agent, t_nav_node *n)
 	return ((n->x == (int)(agent->dest).x && n->y == (int)(agent->dest).y));
 }
 
+void expand_path(t_nav_mesh *agent, t_vector *v1, t_vector *v2)
+{
+	t_vector 	*tmp;
+	t_vector	dif;
+	if (!v1 || !v2 || !agent)
+		return;
+	dif = vector((v1->x != v2->x), (v1->y != v2->y), 0, 1);
+	if (v1->x < v2->x)
+		dif.x *= 0.2;
+	else
+		dif.x *= -0.2;
+	if (v1->y < v2->y)
+		dif.y *= 0.2;
+	else
+		dif.y *= -0.2;
+	while (dif.w++ < 5)
+	{	
+		tmp  = new_vector(v1->x + dif.x, v1->y + dif.y);
+		printf("vx: %f vy: %f\n", tmp->x, tmp->y);
+		array(agent->path)->add(tmp);
+		v1 = tmp;
+	}
+	array(agent->path)->add(v2);
+	//free(v2);
+}
+
 static void	create_path(t_nav_mesh	*agent, t_nav_node *node)
 {
 	t_nav_node	*start;
@@ -54,10 +80,11 @@ static void	create_path(t_nav_mesh	*agent, t_nav_node *node)
 	}
 	while (start)
 	{
-		v = malloc_ob(sizeof(t_vector));
-		v->x = start->x;
-		v->y = start->y;
-		array(agent->path)->add(v);
+		v = new_vector(start->x, start->y);
+		if (array(agent->path)->size > 0)
+			expand_path(agent, array(agent->path)->end->value, v);
+		else
+			array(agent->path)->add(v);
 		start = start->next;
 	}
 	printf("path: %i\n", array(agent->path)->size);

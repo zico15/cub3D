@@ -43,7 +43,7 @@ struct s_vector
 	double			w;
 	double			h;
 	double			angle;
-	double			radius;
+	double			distance;
 };
 
 typedef struct s_data
@@ -108,6 +108,7 @@ t_vector	vector(double x, double y, double w, double h);
 t_vector	vector_grid(t_vector v);
 t_vector	vector_grid_size(t_vector v, double w, double h);
 int			vector_distance(t_vector a, t_vector b);
+t_vector	*new_vector(double x, double y);
 t_vector	vector_zero(void);
 t_collision	collision(void);
 t_vector	*copy_vector(t_vector *v);

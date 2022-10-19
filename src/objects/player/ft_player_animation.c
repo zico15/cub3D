@@ -26,13 +26,14 @@ void	__load_animation(t_player *p)
 	animations[0].size = 1;
 	animations[0].list = malloc_ob(sizeof(t_sprite *) * size);
 	animations[0].size = size;
-	animations[0].time_delay = 60;
+	animations[0].time_delay = 25;
 	while (++i <= size)
 	{
 		file[13] = (i / 10) + '0';
 		file[14] = (i % 10) + '0';
 		animations[0].list[i - 1] = engine()->load_sprite(file);
 	}
+	animations->is_repeat = 1;
 	p->size_animation = 1;
 	p->animation = animations;
 }

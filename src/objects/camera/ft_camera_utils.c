@@ -16,20 +16,32 @@ static void	draw_object(double screen_x, t_vector transform, t_object *obj);
 static void	draw_stripe(
 				int stripe, t_texture t, t_object *obj, double screen_x);
 static void	render_object(t_object *obj, t_player *player);
+void		swap_list(t_element *e, t_object	**obs, int index);
 
 void	render_object_list(t_camera *camera)
 {
-	t_element	*e;
-	t_object	*obj;
-	t_player	*player;
+	t_element			*e;
+	t_object			*obj;
+	t_player			*player;
+	static	t_object	*objs[1090];
+	int					i;
 
 	player = scene()->player;
-	e = array(scene()->enemies)->begin;
+	e = array(scene()->free_objects)->begin;
 	while (e)
 	{
 		obj = e->value;
-		render_object(obj, player);
+		obj->vector.distance = ((player->vector.x - obj->vector.x) * \
+		(player->vector.x - obj->vector.x) + (player->vector.y - \
+		obj->vector.y) * (player->vector.y - obj->vector.y));
 		e = e->next;
+	}	
+	swap_list(array(scene()->free_objects)->begin, objs, 0);
+	i -1;
+	while (objs[++i])
+	{	
+		render_object(objs[i], player);
+		objs[i] = 0;
 	}
 }
 

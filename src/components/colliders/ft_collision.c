@@ -63,7 +63,7 @@ static int	__circular_collision(t_vector a, t_vector b)
 	dx = a.x - b.x;
 	dy = a.y - b.y;
 	distance = sqrt(dx * dx + dy * dy);
-	if (distance < a.radius + b.radius)
+	if (distance < a.distance + b.distance)
 		return (1);
 	return (0);
 }
@@ -86,7 +86,7 @@ static t_object	*__pixel_collision(t_object *object, double px, double py)
 		return (0);
 	e = array(scene()->colliders_list)->begin;
 	v = vector(px, py, 1, 1);
-	v.radius = 1;
+	v.distance = 1;
 	while (e)
 	{
 		o = e->value;

@@ -22,6 +22,32 @@ static void	__render(t_buffer *b)
 	render_object_list(fthis()->camera);
 }
 
+void	swap_list(t_element *e, t_object	**obs, int index)
+{
+	t_object *s;
+	t_object *temp;
+
+	if (!e)
+		return;
+	s = e->value;
+	while (index < 1080 && s)
+	{
+		if (!obs[index])
+		{	
+			obs[index] = s;
+			break;
+		}
+		else if (s->vector.distance > obs[index]->vector.distance)
+		{
+			temp = obs[index];
+			obs[index] = s;
+			s = temp;
+		}
+		index++;
+	}
+	swap_list(e->next, obs, 0);
+}
+
 t_object	*new_camera(void)
 {
 	t_camera	*camera;
