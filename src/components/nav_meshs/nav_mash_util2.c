@@ -51,13 +51,11 @@ void expand_path(t_nav_mesh *agent, t_vector *v1, t_vector *v2)
 		dif.y *= -0.2;
 	while (dif.w++ < 5)
 	{	
-		tmp  = new_vector(v1->x + dif.x, v1->y + dif.y);
-		printf("vx: %f vy: %f\n", tmp->x, tmp->y);
+		tmp  = new_vector(v1->x + dif.x, v1->y + dif.y);		
 		array(agent->path)->add(tmp);
 		v1 = tmp;
 	}
 	array(agent->path)->add(v2);
-	//free(v2);
 }
 
 static void	create_path(t_nav_mesh	*agent, t_nav_node *node)
@@ -87,7 +85,6 @@ static void	create_path(t_nav_mesh	*agent, t_nav_node *node)
 			array(agent->path)->add(v);
 		start = start->next;
 	}
-	printf("path: %i\n", array(agent->path)->size);
 }
 
 static t_nav_node	*check_pathfinding(t_nav_mesh *agent, t_element *e, \

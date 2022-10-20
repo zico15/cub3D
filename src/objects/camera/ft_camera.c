@@ -14,12 +14,12 @@
 #include <ft_object_base.h>
 
 void	render_view(t_player *p);
-void	render_object_list(t_camera *camera);
+void	render_object_list();
 
 static void	__render(t_buffer *b)
 {
 	render_view(scene()->player);
-	render_object_list(fthis()->camera);
+	render_object_list();
 }
 
 void	swap_list(t_element *e, t_object	**obs, int index)

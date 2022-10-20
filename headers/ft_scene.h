@@ -41,7 +41,7 @@ struct s_scene
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	void			(*set_position)(t_vector v);
+	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			*objects;
 	void			*render_list;
@@ -55,6 +55,7 @@ struct s_scene
 	t_player		*player;
 	t_camera		*camera;
 	void			*free_objects;
+	void			(*remove_object)(t_object *ob);
 };
 
 t_scene	*new_scene(void);

@@ -42,15 +42,15 @@ static void	_printf_rectangle(t_map *m,	t_vector p, t_vector v)
 	(image()).rectangle(m->sprite->img, p, color);
 }
 
-void	cread_map(t_map *m)
+void	cread_mini_map(t_map *m)
 {
 	t_vector	v;
 
 	v = m->vector;
 	v.w = (v.w / GRID_SIZE) * GRID_MIN_SIZE;
 	v.h = (v.h / GRID_SIZE) * GRID_MIN_SIZE;
-	m->sprite = new_sprite((int) v.w + 100, (int) v.h + 100);
-	m->vector_mini_map = vector(0, 0, v.w + 100, v.h + 100);
+	m->sprite = new_sprite((int) v.w + 200, (int) v.h + 200);
+	m->vector_mini_map = vector(0, 0, v.w + 200, v.h + 200);
 	while (v.y < v.h)
 	{
 		v.x = 0;
@@ -62,6 +62,13 @@ void	cread_map(t_map *m)
 		}
 		v.y += GRID_MIN_SIZE;
 	}
+}
+
+t_object	*__get_object_map(int x, int y)
+{
+	if (x >= 0 && x < map()->size_width && y >= 0 && x < map()->size_height)
+		return (map()->maps_ob[y][x]);
+	return (NULL);
 }
 
 t_map	*map(void)

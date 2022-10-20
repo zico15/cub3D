@@ -28,29 +28,17 @@ void	rotate(t_player *p, double angle)
 }
 
 void	move_dir(t_player *p, double x, double y)
-{
-	t_object *ob;
-
-	ob = map()->maps_ob[(int) p->vector.y][(int)(p->vector.x + \
-	x * MOVE_LEN * p->dir.x)];
-	if (!ob || !ob->collision)
-		p->vector.x += x * MOVE_LEN * p->dir.x;
-	else if (ob)
-		ob->collision((t_object *) p);
-	ob = map()->maps_ob[(int)(p->vector.y + y * MOVE_LEN * \
-	p->dir.y)][(int)p->vector.x];
-	if (!ob || !ob->collision)
-		p->vector.y += y * MOVE_LEN * p->dir.y;
-	else if (ob)
-		ob->collision((t_object *) p);
+{	
+	p->set_position(vector(p->vector.x + x * MOVE_LEN * \
+	p->dir.x, p->vector.y, 1, 1));
+	p->set_position(vector(p->vector.x,  (p->vector.y + y * MOVE_LEN * \
+	p->dir.y), 1, 1));
 }
 
 void	move_perp_dir(t_player *p, double x, double y)
 {
-	if (map()->maps[(int) p->vector.y][(int)(p->vector.x + x * MOVE_LEN * \
-	p->plane.x)] == '0')
-		p->vector.x += x * MOVE_LEN * p->plane.x;
-	if (map()->maps[(int)(p->vector.y + y * MOVE_LEN * \
-	p->plane.y)][(int)p->vector.x] == '0')
-		p->vector.y += y * MOVE_LEN * p->plane.y;
+	p->set_position(vector(p->vector.x + x * MOVE_LEN * \
+	p->plane.x, p->vector.y, 1, 1));
+	p->set_position(vector(p->vector.x, p->vector.y + y * MOVE_LEN * \
+	p->plane.y, 1, 1));	
 }

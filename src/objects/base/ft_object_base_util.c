@@ -23,17 +23,23 @@ void	__collision_base(t_object *collided)
 	(void) collided;
 }
 
-static void	__set_position(t_vector v)
+static int	__set_position(t_vector v)
 {
 	t_vector	temp;
-	//t_object	*ob;
+	t_object	*ob;
 
 	temp = this()->vector;
-	//ob = map()->maps_ob[(int) temp.y][(int) temp.x];
-	//map()->maps_ob[(int) temp.y][(int) temp.x] = NULL;
+	ob	= map()->maps_ob[(int) v.y][(int) v.x];
+	if (ob && ob->type != DOOR)
+		return (0);
+	if (ob)
+	{
+		map()->maps_ob[(int) temp.y][(int) temp.x] = NULL;
+		map()->maps_ob[(int) v.y][(int) v.x] = this();
+	}
 	this()->vector.x = v.x;
 	this()->vector.y = v.y;
-	//map()->maps_ob[(int) v.y][(int) v.x] = ob;
+	return (1);
 }
 
 static t_sprite	*__get_sprite_base(t_ray ray)

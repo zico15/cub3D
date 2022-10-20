@@ -65,8 +65,7 @@ static void	__render_tester(t_buffer *b)
 			pos = e->value;
 			b->rectangle(vector_grid_size(*pos, 1, 1), 0xB01455);
 			e = e->next;
-		}
-		
+		}	
 	}
 	animation().update_all(this());
 }
@@ -84,13 +83,11 @@ static void	__update(void)
 			return ;
 		if (vector_distance(scene()->player->vector, this()->vector) <= 1)
 		{
-			printf("stop\n");
 			this()->animation[0].is_run = 0;
 			this()->animation[1].is_run = 1;
 			agent()->clear();
 			return ;
 		}
-
 		v = array(path)->get(0);
 		this()->set_position(*v);
 		array(path)->remove_index(0);

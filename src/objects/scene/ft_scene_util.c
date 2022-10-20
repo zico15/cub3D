@@ -52,3 +52,22 @@ void	__funct_key_scene(int *key, int type_event)
 	}
 	fthis()->object = this_ob;
 }
+
+
+void __init_scene(t_scene *scene)
+{
+	scene->free_objects = new_array();
+	scene->objects = new_array();
+	scene->mouse_list = new_array();
+	scene->key_list = new_array();
+	scene->updade_list = new_array();
+	scene->render_list = new_array();
+	scene->colliders_list = new_array();
+	array(scene->free_objects)->is_value_destroy = 0;
+	array(scene->key_list)->is_value_destroy = 0;
+	array(scene->mouse_list)->is_value_destroy = 0;
+	array(scene->updade_list)->is_value_destroy = 0;
+	array(scene->render_list)->is_value_destroy = 0;
+	array(scene->colliders_list)->is_value_destroy = 0;
+	array(scene->objects)->destroy_element = __destroy_element_object;
+}

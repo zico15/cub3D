@@ -44,12 +44,13 @@ static int	check_case_node_free(t_nav_mesh *agent, int x, int y)
 
 int	check_case_node(t_nav_mesh *agent, t_vector v, int check_value)
 {
-	if ((v.x >= 0.0 && v.x < v.w) && (v.y >= 0.0 && v.y < v.h) && \
-	(!map()->maps_ob[(int)v.y][(int)v.x] || \
-	map()->maps_ob[(int)v.y][(int)v.x] == agent->ob || \
-	!map()->maps_ob[(int)v.y][(int)v.x]->collision) && \
-	check_case_node_free(agent, v.x, v.y))	
-		return (1);
+	static t_object	*ob;
+
+	
+	if ((v.x >= 0.0 && v.x < v.w) && (v.y >= 0.0 && v.y < v.h))
+		ob = map()->maps_ob[(int)v.y][(int)v.x];
+		return ((!ob || (ob != agent->ob && !ob->collision)) && \
+		check_case_node_free(agent, v.x, v.y));
 	return (0);
 }
 

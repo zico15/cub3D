@@ -18,10 +18,10 @@ void	destroy_node(t_node	*n)
 	free_ob(n);
 }
 
-static t_player	*init_player(t_player	*p, int x, int y, char c)
+static t_object *init_player(t_player	*p, int x, int y, char c)
 {
-	p->vector.x = x;
-	p->vector.y = y;
+	p->vector.x = x + 0.5;
+	p->vector.y = y + 0.5;
 	if (c == 'N')
 	{
 		p->dir.y = -1;
@@ -37,39 +37,26 @@ static t_player	*init_player(t_player	*p, int x, int y, char c)
 		p->dir.y = 1;
 		p->plane.x = -0.66;
 	}
-	else if (c == 'W')
-	{
-	
-	}
-	(map())->player = vector(x, y, 1, 1);
-	return (p);
+	return ((t_object *) p);
 }
 
 static t_object	*add_object_scene(double x, double y, char c)
 {
 	t_object	*obj;
 
-	if (c == 'T')
-	{	
-		obj = new_barrel();
-		array(scene()->free_objects)->add(obj);
-	}
-	else if (c == 'E')
-	{	
-		obj = new_enemy();
-		array(scene()->free_objects)->add(obj);
-	}
-	else if (c == 'D')
-		obj = new_door();
-	else if (c == '1')
-		obj = new_wall();
-	else if (string().contains("NSWE", _str(c)))
-		obj = (t_object *) init_player(new_player(), x, y, c);
-	else
+	obj = NULL;
+	if (engine()->new_obs[c])
+		obj = engine()->new_obs[c]();
+	if (!obj)
 		return (NULL);
-	obj->vector = vector(x, y, 1, 1);
+	if (obj->type == PLAYER)
+		obj = init_player((t_player* ) new_player(), x, y, c);	
+	else
+		obj->vector = vector(x, y, 1, 1);
 	scene()->add(obj);
-	if (obj->type == WALL || obj->type == DOOR)
+	if (obj->type != PLAYER && obj->type != WALL && obj->type != DOOR)
+		array(scene()->free_objects)->add(obj);
+	if (obj->type != PLAYER)
 		return (obj);
 	return (NULL);
 }

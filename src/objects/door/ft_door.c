@@ -69,7 +69,10 @@ static void	__updade(void)
 		if (!door->is_run)
 		{
 			if (door->is_open)
+			{	
 				door->collision = NULL;
+				printf("door->collision: %i\n", door->collision != NULL);
+			}
 			else
 				door->collision = __collision_base;
 		}

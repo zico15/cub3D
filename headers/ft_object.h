@@ -33,7 +33,8 @@ typedef enum e_type_ob
 	PLAYER,
 	WALL,
 	DOOR,
-	ENEMY
+	ENEMY,
+	COLLECTABLE
 }	t_type;
 
 struct s_buffer
@@ -65,7 +66,7 @@ struct s_object
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	void			(*set_position)(t_vector v);
+	int			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 };
 
@@ -82,7 +83,7 @@ struct s_map
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	void			(*set_position)(t_vector v);
+	int			(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*load)(char *path);
 	char			*f;
@@ -101,6 +102,7 @@ struct s_map
 	int				grid_width;
 	int				grid_height;
 	int				is_print;
+	t_object		*(*get_object)(int x, int y);
 	t_object		***maps_ob;
 };
 
@@ -117,7 +119,7 @@ struct s_player
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	void			(*set_position)(t_vector v);
+	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*atacar)(void);
 	t_vector		dir;
@@ -138,7 +140,7 @@ struct s_enemy
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	void			(*set_position)(t_vector v);
+	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*atacar)(void);
 	t_nav_mesh		*agent;
@@ -157,10 +159,10 @@ struct s_camera
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	void			(*set_position)(t_vector v);
+	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*render_view)(t_element *e, void *o);
-	double			perp_distance_wall[1080]; // should be W_WIDTH
+	double			perp_distance_wall[1500]; // should be W_WIDTH
 };
 
 struct s_door
@@ -176,7 +178,7 @@ struct s_door
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	void			(*set_position)(t_vector v);
+	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	int				is_open;
 	int				is_run;
@@ -215,13 +217,14 @@ struct s_nav_mesh
 
 t_object	*new_object(void);
 void		*new_object_instance(size_t size);
-t_map		*new_map(void);
+t_object	*new_map(void);
 t_object	*new_enemy(void);
-t_player	*new_player(void);
+t_object	*new_player(void);
 t_object	*new_wall(void);
 t_object	*new_menu(void);
 t_object	*new_camera(void);
 t_object	*new_door(void);
 t_object	*new_barrel(void);
+t_object	*new_kit(void);
 
 #endif

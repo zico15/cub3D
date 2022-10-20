@@ -14,6 +14,7 @@
 #include <ft_engine_util.h>
 
 void	__destroy_element_sprite(t_element	*e);
+void	init_list_objects_functions();;
 
 static int	__close(char *msg)
 {
@@ -56,25 +57,6 @@ int	game_loop(t_engine *e)
 	return (0);
 }
 
-void	render_map(void)
-{
-	int	y;
-	int	x;
-
-	y = -1;
-	while (++y < (int)(map()->vector.h / GRID_SIZE))
-	{
-		x = -1;
-		while (++x < (int)(map()->vector.w / GRID_SIZE))
-		{
-			mlx_string_put(engine()->mlx, engine()->win,
-				x * GRID_SIZE + GRID_SIZE / 2,
-				y * GRID_SIZE + GRID_SIZE / 2, 0,
-				_str(map()->maps[y][x]));
-		}
-	}
-}
-
 t_engine	*cread_engine(char *title, char *path, int width, int height)
 {
 	static t_engine	e;
@@ -93,6 +75,7 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.height = height;
 	e.canva = __canva();
 	e.images = new_hashmap();
+	init_list_objects_functions();
 	array(hashmap(e.images)->list)->destroy_element = __destroy_element_sprite;
 	e.load_sprite = __load_sprite;
 	e.win = mlx_new_window(e.mlx, width, height, title);

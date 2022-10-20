@@ -14,33 +14,29 @@
 #include <ft_check.h>
 #include <ft_object_base.h>
 
-
 static void	__render(t_buffer *b)
 {
 	if (map()->is_print)
-		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0x24799e);
-	animation().update_all(this());
+		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0x7fff00);
 }
 
-static void key(int *key, int event)
+static void	__collision_ki(t_object *collided)
 {
-
-	if (event == EVENT_CLICK && key[KEY_SPACE])
-		this()->animation->is_run = 1;
+	if (collided->type == PLAYER)
+	{
+		printf("collided: player\n");
+		scene()->remove_object(this());
+	}	
 }
 
-t_object	*new_barrel(void)
+t_object	*new_kit(void)
 {
 	t_object		*ob;
 
 	ob = new_object_instance(sizeof(t_object));
-	ob->type = OBJECT;
+	ob->type = COLLECTABLE;
 	ob->render = __render;
-	ob->funct_key = key;
-	ob->collision = __collision_base;
-	ob->animation = animation().create(ob, 1);
-	animation().load_animation("imgs/barrel/frame-00.xpm", 20, \
-	&(ob->animation[0]), 20);
-	ob->sprite = *ob->animation->list;
+	ob->collision = __collision_ki;
+	ob->sprite = engine()->load_sprite("imgs/kit/frame-00.xpm");
 	return ((t_object *) ob);
 }

@@ -25,7 +25,7 @@ double			get_ray_cross(t_ray ray);
 void			draw_texture(t_ray *ray, int x, t_sprite *sprite);
 t_face			get_face_dir(t_ray ray);
 
-static void		render_ray(t_ray ray, int x);
+static void		render_ray(t_ray ray, int x, t_object	*ob);
 static t_ray	init_ray(t_player p, t_vector pos, int x);
 
 void	render_view(t_player *p)
@@ -35,7 +35,7 @@ void	render_view(t_player *p)
 
 	x = -1;
 	while (++x < W_WIDTH)
-		render_ray(init_ray(*p, p->vector, x), x);
+		render_ray(init_ray(*p, p->vector, x), x, fthis()->object);
 }
 
 static t_ray	update_ray(t_ray ray)
@@ -55,17 +55,14 @@ static t_ray	update_ray(t_ray ray)
 	return (ray);
 }
 
-static void	render_ray(t_ray ray, int x)
+static void	render_ray(t_ray ray, int x, t_object	*ob)
 {
-	t_object	*ob;
-
-	ray.obj = NULL;
-	ob = fthis()->object;
-	while (ray.obj == NULL)
+	while (1)
 	{
+		ray.obj = NULL;
 		ray = update_ray(ray);
 		ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
-		if (ray.obj)
+		if (ray.obj && (ray.obj->type == WALL || ray.obj->type == DOOR))
 		{
 			fthis()->object = ray.obj;
 			ray.face_dir = get_face_dir(ray);
@@ -75,11 +72,11 @@ static void	render_ray(t_ray ray, int x)
 				ray.perp_distance = ray.side_dist.y - ray.delta_dist.y;
 			ray.cross = get_ray_cross(ray);			
 			if (ray.obj->type != WALL)
-				render_ray(ray, x);
+				render_ray(ray, x, fthis()->object);
 			if (ray.obj->get_sprite)
 				draw_texture(&ray, x, ray.obj->get_sprite(ray));
 			fthis()->camera->perp_distance_wall[x] = ray.perp_distance;
-			
+			break;
 		}
 	}
 	fthis()->object = ob;

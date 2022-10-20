@@ -18,7 +18,7 @@ static void	draw_stripe(
 static void	render_object(t_object *obj, t_player *player);
 void		swap_list(t_element *e, t_object	**obs, int index);
 
-void	render_object_list(t_camera *camera)
+void	render_object_list()
 {
 	t_element			*e;
 	t_object			*obj;

@@ -40,16 +40,22 @@ void laod_animation_enemy(t_object	*ob)
 	int	i;
 
 	i = random_number(0, 1);
+	i = 2;
 	ob->animation = animation().create(ob, 2);
 	if (i == 0)
 	{
-		animation().load_animation("imgs/enemy_a/move/frame-00.xpm", 2, &ob->animation[0], 150);
+		animation().load_animation("imgs/enemy_a/move/frame-00.xpm", 2, &ob->animation[0], 250);
 		animation().load_animation("imgs/enemy_a/attack/frame-00.xpm", 3, &ob->animation[1], 200);
 	}
 	else if (i == 1)
 	{
 		animation().load_animation("imgs/enemy_b/move/frame-00.xpm", 8, &ob->animation[0], 150);
 		animation().load_animation("imgs/enemy_b/attack/frame-00.xpm", 3, &ob->animation[1], 200);
+	}
+	else if (i == 2)
+	{
+		animation().load_animation("imgs/enemy_d/move/tile00.xpm", 4, &ob->animation[0], 150);
+		animation().load_animation("imgs/enemy_d/attack/tile00.xpm", 5, &ob->animation[1], 200);
 	}
 	ob->sprite = *ob->animation[0].list;
 }

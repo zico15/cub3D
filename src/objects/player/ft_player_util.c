@@ -55,10 +55,27 @@ void	__funct_mouse(int x, int y, int keycode)
 	}
 }
 
-void	__set_position(t_vector v)
+int	__set_position(t_vector v)
 {
-	if (collision().collision_ob(this(), v.x, v.y))
-		return ;
+	t_object	*ob;
+	t_object	*t;
+
+	ob	= map()->maps_ob[(int) v.y][(int) v.x];
+	if (ob && (ob->type == DOOR && ob->collision))
+		return (0);
+	if (ob)
+	{	
+		t = this();
+		if (t->collision)	
+			t->collision(ob);
+		fthis()->object = ob;
+		if (ob->collision)	
+			ob->collision(t);
+		fthis()->object = t;
+		if (ob->type != COLLECTABLE && ob->type != DOOR)
+			return (0);
+	}
 	this()->vector.x = v.x;
 	this()->vector.y = v.y;
+	return (1);
 }

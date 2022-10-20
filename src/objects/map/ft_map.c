@@ -14,6 +14,9 @@
 #include <ft_object_base.h>
 #include <ft_check.h>
 
+void		cread_mini_map(t_map *m);
+t_object	*__get_object_map(int x, int y);
+
 static void	__funct_key(int *key, int event)
 {
 	if (event == EVENT_CLICK && key[KEY_M])
@@ -89,8 +92,7 @@ static void	__load_map(char *path)
 	file = new_array();
 	while (array(file)->add(get_next_line(fd)))
 		;
-	if (file)
-		(array(file))->for_each(check_color, map);
+	(array(file))->for_each(check_color, map);
 	check_map(map, -1, -1);
 	array(file)->destroy();
 	add_object_all_map(map);
@@ -101,10 +103,10 @@ static void	__load_map(char *path)
 		printf("load map: %s\n", path);
 	map->c_color = upload_map_color(map->c);
 	map->f_color = upload_map_color(map->f);
-	cread_map(map);
+	cread_mini_map(map);
 }
 
-t_map	*new_map(void)
+t_object	*new_map(void)
 {
 	t_map		*map;
 
@@ -115,6 +117,7 @@ t_map	*new_map(void)
 	map->map = new_array();
 	map->load = __load_map;
 	map->funct_key = __funct_key;
+	map->get_object = __get_object_map;
 	fthis()->map = map;
-	return (map);
+	return ((t_object *) map);
 }

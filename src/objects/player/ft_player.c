@@ -29,7 +29,7 @@ static void	__render(t_buffer *b)
 	animation().update_all(this());
 }
 
-t_player	*new_player(void)
+t_object	*new_player(void)
 {
 	t_player	*p;
 
@@ -49,5 +49,5 @@ t_player	*new_player(void)
 	25);
 	p->sprite = *p->animation[0].list;
 	fthis()->player = p;
-	return (p);
+	return ((t_object *) p);
 }
