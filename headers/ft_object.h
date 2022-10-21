@@ -125,6 +125,7 @@ struct s_player
 	t_vector		dir;
 	t_vector		plane;
 	int				life;
+	t_object		*mira;
 };
 
 struct s_enemy

@@ -110,6 +110,8 @@ static void	draw_stripe(
 	int			y;
 
 	y = t.draw_start.y - 1;
+	if (obj && stripe == (W_WIDTH / 2))
+		scene()->player->mira = obj;
 	while (++y < t.draw_end.y)
 	{
 		t.pos.x = (int)(256 * (stripe - (-obj->vector.w / 2 + screen_x))

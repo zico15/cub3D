@@ -25,6 +25,8 @@ static void	__render(t_buffer *b)
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xffff00);
 	animation().update_all(this());
+	if (scene()->player->mira)
+		printf("mira: %i\n", scene()->player->mira->type);
 }
 
 t_object	*new_player(void)

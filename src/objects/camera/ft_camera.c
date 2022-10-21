@@ -19,6 +19,7 @@ void	render_object_list(void);
 static void	__render(t_buffer *b)
 {
 	render_view(scene()->player);
+	scene()->player->mira = NULL;
 	render_object_list();
 }
 
