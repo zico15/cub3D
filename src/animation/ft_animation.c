@@ -12,17 +12,17 @@
 
 #include <ft_util.h>
 
-static void  __update_animation(t_object *ob, int animation)
+static void	__update_animation(t_object *ob, int animation)
 {
-	int i;
+	int	i;
 
 	i = animation;
 	if (!ob->animation)
-		return;
+		return ;
 	if (ob->animation[i].is_run && (ob->animation[i].time < now()))
 	{
 		if (++ob->animation[i].index >= ob->animation[i].size)
-		{	
+		{
 			ob->animation[i].index = 0;
 			ob->animation[i].is_run = ob->animation[i].is_repeat;
 		}
@@ -31,7 +31,7 @@ static void  __update_animation(t_object *ob, int animation)
 	}
 }
 
-static void  __update_animation_all(t_object *ob)
+static void	__update_animation_all(t_object *ob)
 {
 	int	i;
 
@@ -40,16 +40,17 @@ static void  __update_animation_all(t_object *ob)
 		__update_animation(ob, i);
 }
 
-static t_animation *__create_animation(t_object *ob, int size)
+static t_animation	*__create_animation(t_object *ob, int size)
 {
-	t_animation *animation;
+	t_animation	*animation;
 
 	animation = malloc_ob(sizeof(t_animation) * (size + 1));
 	ob->size_animation = size;
 	return (animation);
 }
 
-static void	 __load_animation(char *file, int size, t_animation *animations, double velocity)
+static void	__load_animation(char *file, int size, t_animation \
+*animations, double velocity)
 {
 	static int			i = 0;
 	int					k[2];
@@ -77,13 +78,12 @@ static void	 __load_animation(char *file, int size, t_animation *animations, dou
 	free_ob(file);
 }
 
-t_fanimation animation()
+t_fanimation	animation(void)
 {
-	static t_fanimation a = {
+	static t_fanimation	a = {
 		__create_animation, __load_animation, __update_animation_all,
 		__update_animation
 	};
 
 	return (a);
 }
-

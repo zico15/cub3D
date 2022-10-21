@@ -44,7 +44,8 @@ int	__funct_mousse_engine(int keycode, void *vars)
 
 int	__funct_key_press(int key, void *o)
 {
-	(void) o;	
+	printf("key: %i\n", key);
+	(void) o;
 	engine()->keys[key] = 1;
 	engine()->is_key_press++;
 	funct_key_engine(engine()->keys, EVENT_CLICK);

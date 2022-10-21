@@ -23,7 +23,7 @@ typedef struct s_nav_node	t_nav_node;
 typedef struct s_buffer		t_buffer;
 typedef struct s_camera		t_camera;
 typedef struct s_door		t_door;
-typedef	struct s_enemy		t_enemy;
+typedef struct s_enemy		t_enemy;
 
 typedef enum e_type_ob
 {
@@ -66,7 +66,7 @@ struct s_object
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	int			(*set_position)(t_vector v);
+	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 };
 
@@ -83,7 +83,7 @@ struct s_map
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
-	int			(*set_position)(t_vector v);
+	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*load)(char *path);
 	char			*f;
@@ -162,7 +162,7 @@ struct s_camera
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	void			(*render_view)(t_element *e, void *o);
-	double			perp_distance_wall[1500]; // should be W_WIDTH
+	double			perp_distance_wall[2500];
 };
 
 struct s_door

@@ -37,27 +37,30 @@ double	now(void)
 	return (now_msec);
 }
 
-int** baffer_int()
+int	**baffer_int(void)
 {
-	static int i[1000][1000];
+	static int	i[2000][2000];
 
 	return ((int **) i);
 }
 
- int random_number(int min_num, int max_num)
-    {
-        int result = 0, low_num = 0, hi_num = 0;
+int	random_number(int min_num, int max_num)
+{
+	int	low_num;
+	int	hi_num;
 
-        if (min_num < max_num)
-        {
-            low_num = min_num;
-            hi_num = max_num + 1;
-        } else {
-            low_num = max_num + 1;
-            hi_num = min_num;
-        }
-
-        srand(now());
-        result = (rand() % (hi_num - low_num)) + low_num;
-        return result;
-    }
+	low_num = 0;
+	hi_num = 0;
+	if (min_num < max_num)
+	{
+		low_num = min_num;
+		hi_num = max_num + 1;
+	}
+	else
+	{
+		low_num = max_num + 1;
+		hi_num = min_num;
+	}
+	srand(now());
+	return ((rand() % (hi_num - low_num)) + low_num);
+}

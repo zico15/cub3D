@@ -23,17 +23,6 @@ int	main(int argc, char **argv)
 	t_engine	*e;
 	int			fd;
 
-	void *li;
-
-	li = new_array();
-	array(li)->is_value_destroy = 0;
-	array(li)->add("D");
-	t_element *f = array(li)->add("A");
-	array(li)->add("B");
-	array(li)->add("C");
-	array(li)->remove_index(1);
-	array(li)->for_each(fun, NULL);
-	(void) e;
 	if (argc < 2)
 		printf("ERROR ARG!\n");
 	e = cread_engine("cub3D", argv[1], W_WIDTH, W_HEIGHT);

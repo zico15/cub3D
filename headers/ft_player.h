@@ -17,7 +17,7 @@
 
 void		__funct_key(int *key, int type_event);
 void		__funct_mouse(int x, int y, int type_event);
-int 		__set_position(t_vector v);
+int			__set_position(t_vector v);
 t_nav_mesh	nav_mesh(t_nav_mesh	*agent);
 void		__load_animation(t_player *p);
 

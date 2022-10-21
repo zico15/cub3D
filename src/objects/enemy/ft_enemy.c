@@ -13,10 +13,10 @@
 #include <ft_util.h>
 #include <ft_check.h>
 #include <ft_object_base.h>
+#include <ft_nav_mesh.h>
 
-t_nav_mesh	*agent(void);
-void 		__collision_enemy(t_object *collided);
-void 		laod_animation_enemy(t_object	*ob);
+void		__collision_enemy(t_object *collided);
+void		laod_animation_enemy(t_object	*ob, int i);
 
 static int	check_line(t_vector begin, t_vector end)
 {
@@ -36,7 +36,7 @@ static int	check_line(t_vector begin, t_vector end)
 		ob = map()->maps_ob[(int) delta.h][(int) delta.w];
 		if (ob && ob != this() && ob->type != PLAYER && ob->collision)
 			return (0);
-		delta.w  += delta.x;
+		delta.w += delta.x;
 		delta.h += delta.y;
 	}
 	return (1);
@@ -54,8 +54,9 @@ static void	__render_tester(t_buffer *b)
 	v = vector_grid(this()->vector);
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xfa0000);
-	if ((!agent()->path || array(agent()->path)->size == 0) && check_line(this()->vector, p->vector))
-		agent()->set_destination(this()->vector, p->vector);
+	if ((!agent()->path || array(agent()->path)->size == 0) && \
+	check_line(this()->vector, p->vector))
+		(agent())->set_destination(this()->vector, p->vector);
 	path = agent()->path;
 	if (path && array(path)->size > 0)
 	{
@@ -65,7 +66,7 @@ static void	__render_tester(t_buffer *b)
 			pos = e->value;
 			b->rectangle(vector_grid_size(*pos, 1, 1), 0xB01455);
 			e = e->next;
-		}	
+		}
 	}
 	animation().update_all(this());
 }
@@ -79,7 +80,7 @@ static void	__update(void)
 	if (path)
 	{
 		this()->animation[0].is_run = array(path)->size > 0;
-		if (array(path)->size == 0 ||  now() < agent()->delay)
+		if (array(path)->size == 0 || now() < agent()->delay)
 			return ;
 		if (vector_distance(scene()->player->vector, this()->vector) <= 1)
 		{
@@ -95,12 +96,11 @@ static void	__update(void)
 	}
 }
 
-static void funct_key(int *key, int event)
+static void	funct_key(int *key, int event)
 {
-	
 	if (event != EVENT_CLICK)
-		return;
-	agent()->set_destination(this()->vector, scene()->player->vector);
+		return ;
+	(agent())->set_destination(this()->vector, scene()->player->vector);
 }
 
 t_object	*new_enemy(void)
@@ -114,8 +114,8 @@ t_object	*new_enemy(void)
 	ob->funct_key = funct_key;
 	ob->agent = new_nav_mesh();
 	ob->collision = __collision_enemy;
-	laod_animation_enemy((t_object *) ob);
+	laod_animation_enemy((t_object *) ob, random_number(0, 2));
 	agent()->ob = (t_object *) ob;
-	agent()->velocity = 90 + random_number(0, 80);
+	(agent())->velocity = 90 + random_number(0, 80);
 	return ((t_object *) ob);
 }

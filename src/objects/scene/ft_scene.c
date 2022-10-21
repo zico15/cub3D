@@ -13,6 +13,7 @@
 #include <ft_util.h>
 #include <ft_scene_util.h>
 
+void	__destroy_scene(void *object);
 void	__init_scene(t_scene *scene);
 
 static void	__update(void)
@@ -32,7 +33,7 @@ static void	__update(void)
 			o->update();
 		}
 		e = e->next;
-	}	
+	}
 }
 
 static void	__render(t_buffer *b)
@@ -53,25 +54,6 @@ static void	__render(t_buffer *b)
 		}
 		e = e->next;
 	}
-}
-
-static void	__destroy(void *object)
-{
-	t_scene		*scene;
-	t_array		*this;
-	t_object	*o;
-
-	o = (t_object *) object;
-	this = fthis()->array;
-	scene = (t_scene *) o;
-	printf("destroy->scene\n");
-	array(scene->key_list)->destroy();
-	array(scene->mouse_list)->destroy();
-	array(scene->updade_list)->destroy();
-	array(scene->render_list)->destroy();
-	array(scene->colliders_list)->destroy();
-	array(scene->objects)->destroy();
-	array(this);
 }
 
 static t_object	*__add(void *o)
@@ -95,7 +77,7 @@ static t_object	*__add(void *o)
 	return (ob);
 }
 
-static void		__remove_object(t_object *ob)
+static void	__remove_object(t_object *ob)
 {
 	if (!ob)
 		return ;
@@ -125,7 +107,7 @@ t_scene	*new_scene(void)
 	s->update = __update;
 	s->render = __render;
 	s->add = __add;
-	s->destroy = __destroy;
+	s->destroy = __destroy_scene;
 	s->funct_key = __funct_key_scene;
 	s->funct_mouse = __funct_mouse_scene;
 	s->remove_object = __remove_object;

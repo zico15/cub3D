@@ -14,7 +14,7 @@
 #include <ft_engine_util.h>
 
 void	__destroy_element_sprite(t_element	*e);
-void	init_list_objects_functions();;
+void	init_list_objects_functions(void);
 
 static int	__close(char *msg)
 {

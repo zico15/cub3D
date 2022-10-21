@@ -12,7 +12,7 @@
 
 #include <ft_util.h>
 
-void	init_list_objects_functions()
+void	init_list_objects_functions(void)
 {
 	engine()->new_obs['1'] = new_wall;
 	engine()->new_obs['I'] = new_enemy;

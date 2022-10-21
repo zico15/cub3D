@@ -14,7 +14,7 @@
 #include <ft_object_base.h>
 
 void	render_view(t_player *p);
-void	render_object_list();
+void	render_object_list(void);
 
 static void	__render(t_buffer *b)
 {
@@ -24,18 +24,18 @@ static void	__render(t_buffer *b)
 
 void	swap_list(t_element *e, t_object	**obs, int index)
 {
-	t_object *s;
-	t_object *temp;
+	t_object	*s;
+	t_object	*temp;
 
 	if (!e)
-		return;
+		return ;
 	s = e->value;
 	while (index < 1080 && s)
 	{
 		if (!obs[index])
-		{	
+		{
 			obs[index] = s;
-			break;
+			break ;
 		}
 		else if (s->vector.distance > obs[index]->vector.distance)
 		{

@@ -22,5 +22,6 @@ int			__expand(t_nav_mesh *agent, t_nav_node *n);
 void		nav_render(void);
 t_nav_mesh	*new_nav_mesh(void);
 void		free_nav_mash_list(t_nav_mesh *agent);
+t_nav_mesh	*agent(void);
 
 #endif

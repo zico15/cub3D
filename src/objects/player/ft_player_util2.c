@@ -28,10 +28,10 @@ void	rotate(t_player *p, double angle)
 }
 
 void	move_dir(t_player *p, double x, double y)
-{	
+{
 	p->set_position(vector(p->vector.x + x * MOVE_LEN * \
 	p->dir.x, p->vector.y, 1, 1));
-	p->set_position(vector(p->vector.x,  (p->vector.y + y * MOVE_LEN * \
+	p->set_position(vector(p->vector.x, (p->vector.y + y * MOVE_LEN * \
 	p->dir.y), 1, 1));
 }
 
@@ -40,5 +40,5 @@ void	move_perp_dir(t_player *p, double x, double y)
 	p->set_position(vector(p->vector.x + x * MOVE_LEN * \
 	p->plane.x, p->vector.y, 1, 1));
 	p->set_position(vector(p->vector.x, p->vector.y + y * MOVE_LEN * \
-	p->plane.y, 1, 1));	
+	p->plane.y, 1, 1));
 }

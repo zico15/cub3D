@@ -22,8 +22,6 @@ static void	__collision(t_object *collided)
 
 static void	__render(t_buffer *b)
 {
-	static t_vector v;
-
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xffff00);
 	animation().update_all(this());
@@ -45,7 +43,7 @@ t_object	*new_player(void)
 	p->life = 5;
 	p->set_position = __set_position;
 	p->animation = animation().create(this(), 1);
-	animation().load_animation("imgs/IMG/Arma00.xpm", 9, &(p->animation[0]), \
+	(animation()).load_animation("imgs/IMG/Arma00.xpm", 9, &(p->animation[0]), \
 	25);
 	p->sprite = *p->animation[0].list;
 	fthis()->player = p;

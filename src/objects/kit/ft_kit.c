@@ -22,10 +22,17 @@ static void	__render(t_buffer *b)
 
 static void	__collision_ki(t_object *collided)
 {
+	t_player	*p;
+
 	if (collided->type == PLAYER)
 	{
+		p = (t_player *) collided;
 		printf("collided: player\n");
-		scene()->remove_object(this());
+		if (p->life < 5)
+		{
+			p->life++;
+			scene()->remove_object(this());
+		}
 	}	
 }
 

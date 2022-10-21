@@ -34,12 +34,13 @@ int	__expand(t_nav_mesh *agent, t_nav_node *n)
 	return ((n->x == (int)(agent->dest).x && n->y == (int)(agent->dest).y));
 }
 
-void expand_path(t_nav_mesh *agent, t_vector *v1, t_vector *v2)
+void	expand_path(t_nav_mesh *agent, t_vector *v1, t_vector *v2)
 {
-	t_vector 	*tmp;
+	t_vector	*tmp;
 	t_vector	dif;
+
 	if (!v1 || !v2 || !agent)
-		return;
+		return ;
 	dif = vector((v1->x != v2->x), (v1->y != v2->y), 0, 1);
 	if (v1->x < v2->x)
 		dif.x *= 0.2;
@@ -50,8 +51,8 @@ void expand_path(t_nav_mesh *agent, t_vector *v1, t_vector *v2)
 	else
 		dif.y *= -0.2;
 	while (dif.w++ < 5)
-	{	
-		tmp  = new_vector(v1->x + dif.x, v1->y + dif.y);		
+	{
+		tmp = new_vector(v1->x + dif.x, v1->y + dif.y);
 		array(agent->path)->add(tmp);
 		v1 = tmp;
 	}

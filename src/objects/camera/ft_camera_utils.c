@@ -18,12 +18,12 @@ static void	draw_stripe(
 static void	render_object(t_object *obj, t_player *player);
 void		swap_list(t_element *e, t_object	**obs, int index);
 
-void	render_object_list()
+void	render_object_list(void)
 {
 	t_element			*e;
 	t_object			*obj;
 	t_player			*player;
-	static	t_object	*objs[1090];
+	static t_object		*objs[1090];
 	int					i;
 
 	player = scene()->player;
@@ -35,11 +35,11 @@ void	render_object_list()
 		(player->vector.x - obj->vector.x) + (player->vector.y - \
 		obj->vector.y) * (player->vector.y - obj->vector.y));
 		e = e->next;
-	}	
+	}
 	swap_list(array(scene()->free_objects)->begin, objs, 0);
 	i -1;
 	while (objs[++i])
-	{	
+	{
 		render_object(objs[i], player);
 		objs[i] = 0;
 	}

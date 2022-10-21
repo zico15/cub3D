@@ -82,8 +82,8 @@ void	__draw_line(t_vector begin, t_vector end, int color)
 	delta.h = begin.y;
 	while (pixels-- > 0)
 	{
-		canva()->pixel(delta.w, delta.h, color);
-		delta.w  += delta.x;
+		(canva())->pixel(delta.w, delta.h, color);
+		delta.w += delta.x;
 		delta.h += delta.y;
 	}
 }

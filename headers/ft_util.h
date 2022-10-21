@@ -23,7 +23,6 @@
 # include <unistd.h>
 # include <mlx.h>
 # include <ft_object.h>
-# include <ft_nav_mesh.h>
 # include <ft_engine.h>
 # include <limits.h>
 # include <sys/time.h>
@@ -44,7 +43,7 @@
 # define EVENT_RELEASE 1
 # define EVENT_CLICK 2
 # define MOVE_LEN 0.08
-# define ROTATION_LEN 0.01	
+# define ROTATION_LEN 0.01
 # define W_WIDTH 1080
 # define W_HEIGHT 860
 # define VIEW_ANGLE 50
@@ -76,7 +75,7 @@ void		__destroy_element_object(t_element	*e);
 t_image		image(void);
 void		pixel_put_sprite(t_sprite *sprite, int x, int y, int color);
 t_sprite	*copy_sprite(t_sprite	*sprite);
-int** 		baffer_int();
+int			**baffer_int(void);
 void		destroy_sprite(t_sprite *sprite);
 
 //			memory
@@ -92,6 +91,6 @@ int			funct_key_engine(int *key, int type_event);
 //			time
 double		now(void);
 t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
-int 		random_number(int min_num, int max_num);
+int			random_number(int min_num, int max_num);
 
 #endif

@@ -14,7 +14,6 @@
 #include <ft_check.h>
 #include <ft_object_base.h>
 
-
 static void	__render(t_buffer *b)
 {
 	if (map()->is_print)
@@ -22,9 +21,8 @@ static void	__render(t_buffer *b)
 	animation().update_all(this());
 }
 
-static void key(int *key, int event)
+static void	key(int *key, int event)
 {
-
 	if (event == EVENT_CLICK && key[KEY_SPACE])
 		this()->animation->is_run = 1;
 }
@@ -39,7 +37,7 @@ t_object	*new_barrel(void)
 	ob->funct_key = key;
 	ob->collision = __collision_base;
 	ob->animation = animation().create(ob, 1);
-	animation().load_animation("imgs/barrel/frame-00.xpm", 20, \
+	(animation()).load_animation("imgs/barrel/frame-00.xpm", 20, \
 	&(ob->animation[0]), 20);
 	ob->sprite = *ob->animation->list;
 	return ((t_object *) ob);

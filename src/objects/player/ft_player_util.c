@@ -35,6 +35,10 @@ void	__funct_key(int *key, int event)
 		rotate(p, -ROTATION_LEN);
 	if (key[KEY_RIGHT])
 		rotate(p, ROTATION_LEN);
+	if (event == EVENT_CLICK && key[65362] && p->life < 5)
+		p->life++;
+	if (event == EVENT_CLICK && key[65364] && p->life > 0)
+		p->life--;
 }
 
 void	__funct_mouse(int x, int y, int keycode)
@@ -49,7 +53,7 @@ void	__funct_mouse(int x, int y, int keycode)
 	if (abs(delta) > (W_WIDTH / 5))
 		rotate(p, (double)(-delta * ROTATION_LEN / 500.0));
 	if (keycode == 1 && !p->animation[0].is_run)
-	{	
+	{
 		p->animation[0].is_run = 1;
 		printf("p->animation.is_run \n");
 	}
@@ -60,16 +64,16 @@ int	__set_position(t_vector v)
 	t_object	*ob;
 	t_object	*t;
 
-	ob	= map()->maps_ob[(int) v.y][(int) v.x];
+	ob = map()->maps_ob[(int) v.y][(int) v.x];
 	if (ob && (ob->type == DOOR && ob->collision))
 		return (0);
 	if (ob)
-	{	
+	{
 		t = this();
-		if (t->collision)	
+		if (t->collision)
 			t->collision(ob);
 		fthis()->object = ob;
-		if (ob->collision)	
+		if (ob->collision)
 			ob->collision(t);
 		fthis()->object = t;
 		if (ob->type != COLLECTABLE && ob->type != DOOR)

@@ -14,15 +14,15 @@
 #include <ft_check.h>
 #include <ft_nav_mesh.h>
 
-void	__free_nav_mash_list();
+void	__free_nav_mash_list(void);
 
-static void	__clear_date()
+static void	__clear_date(void)
 {
 	t_nav_mesh	*agent;
 
 	agent = fthis()->agent;
-	if (agent->path)		
-		array((agent)->path)->destroy();
+	if (agent->path)
+		array(agent->path)->destroy();
 	if (agent->open)
 		array(agent->open)->destroy();
 	if (agent->close)
@@ -50,7 +50,6 @@ static void	*__set_destination(t_vector start, t_vector dest)
 	agent->start.h = 1;
 	agent->begin = create_nav_node(agent, NULL, agent->start);
 	__expand(agent, agent->begin);
-
 	if (agent && agent->open && agent->close)
 		__pathfinding(agent, NULL);
 	return (agent->path);

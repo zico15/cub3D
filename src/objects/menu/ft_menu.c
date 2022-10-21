@@ -37,7 +37,8 @@ static void	mini_map(t_buffer *b, t_vector p, t_vector m)
 	direction.x = p_rel.x + p.w / 2 + player->dir.x * 10;
 	direction.y = p_rel.y + p.h / 2 + player->dir.y * 10;
 	b->image_sub(map()->sprite, v);
-	b->rectangle(vector(p_rel.x - p.w / 2, p_rel.y - p.h / 2, p.w, p.h), 0xd36a0d);
+	b->rectangle(vector(p_rel.x - p.w / 2, p_rel.y - p.h / 2, \
+	p.w, p.h), 0xd36a0d);
 	b->rectangle(vector(direction.x, direction.y, 2, 2),
 		0x00990099);
 }
@@ -52,7 +53,7 @@ static void	__render(t_buffer *b)
 	if (scene()->player->sprite)
 		b->image_pos(scene()->player->sprite, 0, 100);
 	if (!scene()->player->life)
-		return;
+		return ;
 	sprite = this()->animation[0].list[5 - scene()->player->life];
 	b->image_pos(sprite, this()->vector.x, 156);
 }

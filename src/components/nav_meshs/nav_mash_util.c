@@ -46,12 +46,10 @@ int	check_case_node(t_nav_mesh *agent, t_vector v, int check_value)
 {
 	static t_object	*ob;
 
-	
 	if ((v.x >= 0.0 && v.x < v.w) && (v.y >= 0.0 && v.y < v.h))
 		ob = map()->maps_ob[(int)v.y][(int)v.x];
-		return ((!ob || (ob != agent->ob && !ob->collision)) && \
+	return ((!ob || (ob != agent->ob && !ob->collision)) && \
 		check_case_node_free(agent, v.x, v.y));
-	return (0);
 }
 
 static double	cal_cust(t_vector start, t_vector dest)
@@ -76,13 +74,13 @@ static double	cal_cust(t_vector start, t_vector dest)
 		d = (x * 10) + (y * 10);
 }
 
-void	__free_nav_mash_list()
+void	__free_nav_mash_list(void)
 {
-	t_nav_mesh *agent;
+	t_nav_mesh	*agent;
 
 	agent = fthis()->agent;
 	if (!agent)
-		return;
+		return ;
 	agent->clear();
 	free_ob(agent);
 	fthis()->agent = NULL;

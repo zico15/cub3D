@@ -42,7 +42,7 @@ t_scene	*__load_maps(char **args, int size)
 		map = (t_map *) scene->add(new_map());
 		scene->map = map;
 		map->load(args[i]);
-		scene->player = fthis()->player;	
+		scene->player = fthis()->player;
 	}
 	scene = __set_scene(0);
 	return (scene);
@@ -65,7 +65,7 @@ void	*__load_img(t_vector *v, char *file_name)
 
 t_sprite	*__load_sprite(char *file_name)
 {
-	t_element 	*e;
+	t_element	*e;
 	t_sprite	*s;
 	int			w;
 	int			h;
@@ -81,13 +81,13 @@ t_sprite	*__load_sprite(char *file_name)
 	s->data.img = s->img;
 	s->data.addr = mlx_get_data_addr(s->data.img, &s->data.bits_per_pixel, \
 	&s->data.line_length, &s->data.endian);
-	hashmap(engine()->images)->put(string().copy(file_name), s);
+	(hashmap(engine()->images))->put(string().copy(file_name), s);
 	return (s);
 }
 
 void	__destroy_element_sprite(t_element	*e)
 {
-	t_sprite *sprite;
+	t_sprite	*sprite;
 
 	free_ob(e->key);
 	sprite = (t_sprite *) e->value;

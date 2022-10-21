@@ -17,7 +17,7 @@
 
 typedef struct s_engine	t_engine;
 typedef struct s_buffer	t_buffer;
-typedef t_object *(*new_obj)();
+typedef t_object		*(*t_new_obj)(void);
 
 struct s_engine
 {
@@ -38,7 +38,7 @@ struct s_engine
 	void			*(*load_img)(t_vector *v, char *file_name);
 	t_sprite		*(*load_sprite)(char *file_name);
 	int				(*close)(char *msg);
-	new_obj			new_obs[256];
+	t_new_obj		new_obs[256];
 	void			*images;
 };
 

@@ -34,9 +34,11 @@ t_sprite	*copy_sprite(t_sprite	*sprite)
 
 	s = new_sprite(sprite->v.w, sprite->v.h);
 	y = -1;
-	while (++y < sprite->v.h){
+	while (++y < sprite->v.h)
+	{
 		x = -1;
-		while (++x < sprite->v.w){
+		while (++x < sprite->v.w)
+		{
 			pixel_put_sprite(s, x, y, \
 			__get_color_sprite(sprite, x, y));
 		}
@@ -56,7 +58,7 @@ void	pixel_put_sprite(t_sprite *sprite, int x, int y, int color)
 void	destroy_sprite(t_sprite *sprite)
 {
 	if (!sprite)
-		return;
+		return ;
 	mlx_destroy_image(engine()->mlx, sprite->img);
 	free_ob(sprite);
 }

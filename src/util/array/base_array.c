@@ -65,8 +65,6 @@ void	__base_remove_element_index(int index)
 	t_element	*atual;
 	int			i;
 
-	if (!fthis()->array || index < 0 || index >= fthis()->array->size)
-		return ;
 	atual = (fthis()->array)->begin;
 	prev = NULL;
 	i = -1;

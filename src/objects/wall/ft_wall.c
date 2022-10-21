@@ -14,11 +14,9 @@
 #include <ft_object_base.h>
 #include <ft_check.h>
 
-
 static void	__load_animation(t_object *ob)
 {
 	t_animation	*animations;
-	
 
 	animations = malloc_ob(sizeof(t_animation));
 	animations[0].list = malloc_ob(sizeof(t_sprite *) * 4);

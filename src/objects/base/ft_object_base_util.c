@@ -29,7 +29,7 @@ static int	__set_position(t_vector v)
 	t_object	*ob;
 
 	temp = this()->vector;
-	ob	= map()->maps_ob[(int) v.y][(int) v.x];
+	ob = map()->maps_ob[(int) v.y][(int) v.x];
 	if (ob && ob->type != DOOR)
 		return (0);
 	if (ob)
