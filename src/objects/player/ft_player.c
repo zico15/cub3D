@@ -14,10 +14,11 @@
 #include <ft_object_base.h>
 #include <ft_player.h>
 
+int	__damage_player(double d);
+
 static void	__collision(t_object *collided)
 {
-	if (!collided)
-		printf("collided: %i\n", collided->type);
+
 }
 
 static void	__render(t_buffer *b)
@@ -25,8 +26,6 @@ static void	__render(t_buffer *b)
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xffff00);
 	animation().update_all(this());
-	if (scene()->player->mira)
-		printf("mira: %i\n", scene()->player->mira->type);
 }
 
 t_object	*new_player(void)
@@ -43,6 +42,7 @@ t_object	*new_player(void)
 	p->vector.h = 20;
 	p->render = __render;
 	p->life = 5;
+	p->damage = __damage_player;
 	p->set_position = __set_position;
 	p->animation = animation().create(this(), 1);
 	(animation()).load_animation("imgs/IMG/Arma00.xpm", 9, &(p->animation[0]), \

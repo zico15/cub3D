@@ -54,7 +54,7 @@ static void	__render(t_buffer *b)
 		b->image_pos(scene()->player->sprite, 0, 100);
 	if (!scene()->player->life)
 		return ;
-	sprite = this()->animation[0].list[5 - scene()->player->life];
+	sprite = this()->animation[0].list[5 - (int) scene()->player->life];
 	b->image_pos(sprite, this()->vector.x, 156);
 }
 

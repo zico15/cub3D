@@ -42,3 +42,26 @@ void	move_perp_dir(t_player *p, double x, double y)
 	p->set_position(vector(p->vector.x, p->vector.y + y * MOVE_LEN * \
 	p->plane.y, 1, 1));
 }
+
+void	attack_player(void)
+{
+	t_player	*p;
+	t_object	*tmp;
+
+	p = (t_player *) this();
+	if (!p->mira || !p->mira->damage)
+		return ;
+	tmp = this();
+	fthis()->object = p->mira;
+	printf("attack_player: %i\n", p->mira->damage(1.0));
+	fthis()->object = tmp;
+}
+
+int	__damage_player(double d)
+{
+	printf("life: %f\n", this()->life);
+	this()->life -= d;
+	if (this()->life < 1)
+		this()->life = 0;
+	return (1);
+}

@@ -17,6 +17,8 @@
 
 void		__collision_enemy(t_object *collided);
 void		laod_animation_enemy(t_object	*ob, int i);
+int			__damage_enemy(double d);
+void		attack_enemy(void);
 
 static int	check_line(t_vector begin, t_vector end)
 {
@@ -69,6 +71,8 @@ static void	__render_tester(t_buffer *b)
 		}
 	}
 	animation().update_all(this());
+	if (this()->animation[1].is_run && this()->animation[1].index)
+		attack_enemy();
 }
 
 static void	__update(void)
@@ -109,6 +113,8 @@ t_object	*new_enemy(void)
 
 	ob = new_object_instance(sizeof(t_enemy));
 	ob->type = ENEMY;
+	ob->life = 5.0;
+	ob->damage = __damage_enemy;
 	ob->update = __update;
 	ob->render = __render_tester;
 	ob->funct_key = funct_key;

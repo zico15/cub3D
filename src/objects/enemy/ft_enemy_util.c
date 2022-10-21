@@ -61,3 +61,22 @@ void	laod_animation_enemy(t_object	*ob, int i)
 	}
 	ob->sprite = *ob->animation[0].list;
 }
+
+int	__damage_enemy(double d)
+{
+	printf("enemy life: %f\n", this()->life);
+	this()->life -= d;
+	if (this()->life < 0)
+		this()->life = 0;
+	return (1);
+}
+
+void	attack_enemy(void)
+{
+	t_object	*tmp;
+
+	tmp = this();
+	fthis()->object = (t_object *) scene()->player;
+	printf("attack_enemy: %i\n", fthis()->object->damage(0.025));
+	fthis()->object = tmp;
+}

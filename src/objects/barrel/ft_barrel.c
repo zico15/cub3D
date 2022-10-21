@@ -19,6 +19,8 @@ static void	__render(t_buffer *b)
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0x24799e);
 	animation().update_all(this());
+	if (this()->life <= 0 && this()->animation->index == 19)
+		scene()->remove_object(this());
 }
 
 static void	key(int *key, int event)
@@ -27,12 +29,52 @@ static void	key(int *key, int event)
 		this()->animation->is_run = 1;
 }
 
+static void	__attack_barrel(t_object	*ob)
+{
+	t_object	*tmp;
+
+	if (!ob || ob == this())
+		return ;
+	if (vector_distance(ob->vector, this()->vector) < 2 \
+	&& ob->damage)
+	{
+		tmp = this();
+		fthis()->object = ob;
+		ob->damage(1);
+		fthis()->object = tmp;
+	}
+}
+
+static int	__damage(double d)
+{
+	t_element	*e;
+	void		*list;
+
+	this()->life -= d;
+	if (this()->life <= 0)
+	{
+		this()->animation->is_run = 1;
+		__attack_barrel((t_object *) scene()->player);
+		list = fthis()->array;
+		e = array(scene()->free_objects)->begin;
+		while (e)
+		{
+			__attack_barrel((t_object *) e->value);
+			e = e->next;
+		}
+		fthis()->array = list;
+	}
+	return (this()->life <= 0);
+}
+
 t_object	*new_barrel(void)
 {
 	t_object		*ob;
 
 	ob = new_object_instance(sizeof(t_object));
 	ob->type = OBJECT;
+	ob->life = 2;
+	ob->damage = __damage;
 	ob->render = __render;
 	ob->funct_key = key;
 	ob->collision = __collision_base;

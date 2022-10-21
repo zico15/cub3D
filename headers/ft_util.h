@@ -36,6 +36,7 @@
 # define KEY_D 100
 # define KEY_A 97
 # define KEY_M 109
+# define KEY_E 101
 # define KEY_SPACE 32
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363

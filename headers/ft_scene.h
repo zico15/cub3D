@@ -35,6 +35,7 @@ struct s_scene
 	t_animation		*animation;
 	int				size_animation;
 	t_vector		vector;
+	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
 	void			(*destroy)(void *o);
@@ -43,6 +44,7 @@ struct s_scene
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
+	int				(*damage)(double	d);
 	void			*objects;
 	void			*render_list;
 	void			*updade_list;

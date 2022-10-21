@@ -18,7 +18,7 @@ static void	__funct_key(int *key, int event)
 	t_door		*door;
 	int			distance;
 
-	if (key[KEY_SPACE] && event == EVENT_CLICK)
+	if (key[KEY_E] && event == EVENT_CLICK)
 	{
 		door = (t_door *) this();
 		distance = vector_distance(scene()->player->vector, this()->vector);

@@ -60,6 +60,7 @@ struct s_object
 	t_animation		*animation;
 	int				size_animation;
 	t_vector		vector;
+	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
@@ -68,6 +69,7 @@ struct s_object
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
+	int				(*damage)(double	d);
 };
 
 struct s_map
@@ -77,6 +79,7 @@ struct s_map
 	t_animation		*animation;
 	int				size_animation;
 	t_vector		vector;
+	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
@@ -85,6 +88,7 @@ struct s_map
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
+	int				(*damage)(double	d);
 	void			(*load)(char *path);
 	char			*f;
 	char			*c;
@@ -113,6 +117,7 @@ struct s_player
 	t_animation		*animation;
 	int				size_animation;
 	t_vector		vector;
+	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
@@ -121,10 +126,9 @@ struct s_player
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
-	void			(*atacar)(void);
+	int				(*damage)(double	d);
 	t_vector		dir;
 	t_vector		plane;
-	int				life;
 	t_object		*mira;
 };
 
@@ -135,6 +139,7 @@ struct s_enemy
 	t_animation		*animation;
 	int				size_animation;
 	t_vector		vector;
+	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)(void *o);
@@ -143,7 +148,7 @@ struct s_enemy
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
-	void			(*atacar)(void);
+	int				(*damage)(double	d);
 	t_nav_mesh		*agent;
 };
 
@@ -154,6 +159,7 @@ struct s_camera
 	t_animation		*animation;
 	int				size_animation;
 	t_vector		vector;
+	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
 	void			(*destroy)(void *o);
@@ -162,6 +168,7 @@ struct s_camera
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
+	int				(*damage)(double	d);
 	void			(*render_view)(t_element *e, void *o);
 	double			perp_distance_wall[2500];
 };
@@ -173,6 +180,7 @@ struct s_door
 	t_animation		*animation;
 	int				size_animation;
 	t_vector		vector;
+	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
 	void			(*destroy)(void *o);
@@ -181,6 +189,7 @@ struct s_door
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
+	int				(*damage)(double	d);
 	int				is_open;
 	int				is_run;
 	int				count;

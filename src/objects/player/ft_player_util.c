@@ -14,9 +14,10 @@
 #include <ft_object_base.h>
 #include <ft_player.h>
 
-void	rotate(t_player *p, double angle);
-void	move_dir(t_player *p, double x, double y);
-void	move_perp_dir(t_player *p, double x, double y);
+void		rotate(t_player *p, double angle);
+void		move_dir(t_player *p, double x, double y);
+void		move_perp_dir(t_player *p, double x, double y);
+void		attack_player(void);
 
 void	__funct_key(int *key, int event)
 {
@@ -51,11 +52,11 @@ void	__funct_mouse(int x, int y, int keycode)
 	p = scene()->player;
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))
-		rotate(p, (double)(-delta * ROTATION_LEN / 500.0));
+		rotate(p, (double)(-delta * ROTATION_LEN / 300.0));
 	if (keycode == 1 && !p->animation[0].is_run)
 	{
 		p->animation[0].is_run = 1;
-		printf("p->animation.is_run \n");
+		attack_player();
 	}
 }
 
