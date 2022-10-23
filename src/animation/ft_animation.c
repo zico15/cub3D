@@ -12,6 +12,8 @@
 
 #include <ft_util.h>
 
+void	__destroy_animation(t_object *ob);
+
 static void	__update_animation(t_object *ob, int animation)
 {
 	int	i;
@@ -82,7 +84,7 @@ t_fanimation	animation(void)
 {
 	static t_fanimation	a = {
 		__create_animation, __load_animation, __update_animation_all,
-		__update_animation
+		__update_animation, __destroy_animation
 	};
 
 	return (a);

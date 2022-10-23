@@ -13,6 +13,8 @@
 #include <ft_util.h>
 #include <ft_object_base.h>
 
+void	__destroy_ob_door();
+
 static void	__funct_key(int *key, int event)
 {
 	t_door		*door;
@@ -104,6 +106,7 @@ t_object	*new_door(void)
 	door->funct_key = __funct_key;
 	door->get_sprite = get_sprite;
 	door->render = __render;
+	door->destroy = __destroy_ob_door;
 	door->sprite = engine()->load_sprite("imgs/door.xpm");
 	door->sprite_animation = copy_sprite(door->sprite);
 	door->count_max = 1;

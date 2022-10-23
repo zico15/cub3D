@@ -18,6 +18,8 @@ void	render_object_list(void);
 
 static void	__render(t_buffer *b)
 {
+	if (!scene()->player)
+		return ;
 	render_view(scene()->player);
 	scene()->player->mira = NULL;
 	render_object_list();

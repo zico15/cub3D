@@ -21,8 +21,6 @@ static void	__update(void)
 	t_element	*e;
 	t_object	*o;
 
-	if (!array(scene()->updade_list)->to_str)
-		return ;
 	e = array(scene()->updade_list)->begin;
 	while (e)
 	{
@@ -41,8 +39,6 @@ static void	__render(t_buffer *b)
 	t_element	*e;
 	t_object	*o;
 
-	if (!array(scene()->render_list)->size)
-		return ;
 	e = array(scene()->render_list)->begin;
 	while (e)
 	{

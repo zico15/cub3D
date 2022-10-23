@@ -20,6 +20,7 @@ t_buffer	*__canva(void)
 {
 	static t_buffer	b;
 
+	printf("__canva\n");
 	b.buffer = mlx_new_image(engine()->mlx, engine()->width, engine()->height);
 	b.data.img = b.buffer;
 	b.data.addr = mlx_get_data_addr(b.data.img, &b.data.bits_per_pixel, \

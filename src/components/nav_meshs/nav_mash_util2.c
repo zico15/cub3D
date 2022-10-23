@@ -43,14 +43,14 @@ void	expand_path(t_nav_mesh *agent, t_vector *v1, t_vector *v2)
 		return ;
 	dif = vector((v1->x != v2->x), (v1->y != v2->y), 0, 1);
 	if (v1->x < v2->x)
-		dif.x *= 0.2;
+		dif.x *= 0.1;
 	else
-		dif.x *= -0.2;
+		dif.x *= -0.1;
 	if (v1->y < v2->y)
-		dif.y *= 0.2;
+		dif.y *= 0.1;
 	else
-		dif.y *= -0.2;
-	while (dif.w++ < 5)
+		dif.y *= -0.1;
+	while (dif.w++ < 10)
 	{
 		tmp = new_vector(v1->x + dif.x, v1->y + dif.y);
 		array(agent->path)->add(tmp);

@@ -21,16 +21,16 @@ int	free_ob(void *v)
 	return (1);
 }
 
-int	free_list(char **str)
+int	free_list(void **values)
 {
 	int		i;
 
-	if (str)
+	if (values)
 	{
 		i = -1;
-		while (str[++i])
-			free_ob(str[i]);
-		free_ob(str);
+		while (values[++i])
+			free_ob(values[i]);
+		free_ob(values);
 		return (i);
 	}
 	return (0);

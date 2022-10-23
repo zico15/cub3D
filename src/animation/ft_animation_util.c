@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_animation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/09 19:59:32 by edos-san         ###   ########.fr       */
+/*   Created: 2022/08/02 13:39:12 by edos-san          #+#    #+#             */
+/*   Updated: 2022/10/14 18:19:37 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-int	main(int argc, char **argv)
+void	__destroy_animation(t_object *ob)
 {
-	t_engine	*e;
-	int			fd;
+	t_animation *a;
+	int			i;
 
-	if (argc < 2)
-		printf("ERROR ARG!\n");
-	e = cread_engine("cub3D", argv[1], W_WIDTH, W_HEIGHT);
-	e->load_maps(argv, argc);
-	mlx_hook(e->win, 17, 0, e->close, "exit");
-	return (mlx_loop(e->mlx));
+	a = ob->animation;
+	if (!a)
+		return ;
+	i = -1;
+	while (++i < ob->size_animation)
+		free_ob(ob->animation[i].list);
+	free_ob(ob->animation);
+	ob->animation = NULL;
+	ob->size_animation = 0;
 }

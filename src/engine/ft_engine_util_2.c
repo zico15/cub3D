@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_engine_util.c                                   :+:      :+:    :+:   */
+/*   ft_engine_util_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 14:52:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/23 19:19:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_list_objects_functions(void)
 {
+	engine()->is_game = 1;
 	engine()->new_obs['1'] = new_wall;
 	engine()->new_obs['I'] = new_enemy;
 	engine()->new_obs['K'] = new_kit;

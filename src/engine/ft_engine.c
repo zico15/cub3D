@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 14:53:08 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/23 19:19:38 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,19 @@ void	init_list_objects_functions(void);
 
 static int	__close(char *msg)
 {
-	printf("%s\n", msg);
+
+	engine()->is_game = 0;
 	array(engine()->scenes)->destroy();
 	hashmap(engine()->images)->destroy();
+	if (canva()->buffer)
+		mlx_destroy_image(engine()->mlx, canva()->buffer);
 	mlx_destroy_window(engine()->mlx, engine()->win);
 	mlx_destroy_display(engine()->mlx);
 	free_ob(engine()->mlx);
+	printf("========================================\n");
+	printf("DESTROY: ENGINE\n");
+	printf("MSG: %s\n", msg);
+	printf("========================================\n");
 	exit(0);
 	return (0);
 }
@@ -40,15 +47,12 @@ int	game_loop(t_engine *e)
 	double			time2;
 
 	time1 = now();
-	if (!scene())
+	if (!engine()->is_game || !scene())
 		return (0);
 	__funct_mousse_engine(0, 0);
 	if (e->is_key_press)
 		funct_key_engine(e->keys, EVENT_PRESS);
 	scene()->update();
-	e->canva->rectangle(vector(0, 0, e->width, e->height / 2), map()->c_color);
-	e->canva->rectangle(
-		vector(0, e->height / 2, e->width, e->height / 2), map()->f_color);
 	scene()->render(e->canva);
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
 	, 0, 0);

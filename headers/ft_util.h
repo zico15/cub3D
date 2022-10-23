@@ -37,6 +37,7 @@
 # define KEY_A 97
 # define KEY_M 109
 # define KEY_E 101
+# define KEY_ESC 65307
 # define KEY_SPACE 32
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
@@ -78,10 +79,12 @@ void		pixel_put_sprite(t_sprite *sprite, int x, int y, int color);
 t_sprite	*copy_sprite(t_sprite	*sprite);
 int			**baffer_int(void);
 void		destroy_sprite(t_sprite *sprite);
+char		*get_type_str(t_type object_type);
+int			check_collision_line(t_vector begin, t_vector end);
 
 //			memory
 int			free_ob(void *v);
-int			free_list(char **str);
+int			free_list(void **values);
 void		*malloc_ob(size_t __size);
 
 //			remove - testes

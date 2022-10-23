@@ -40,6 +40,7 @@ typedef struct s_fanimation
 	*animations, double velocity);
 	void			(*update_all)(t_object *ob);
 	void			(*updated)(t_object *ob, int animation);
+	void			(*destroy)(t_object *ob);
 }	t_fanimation;
 
 t_sprite		*new_sprite(int w, int h);

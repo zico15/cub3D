@@ -1,0 +1,13 @@
+NO imgs/wall_s.xpm
+SO imgs/wall_s.xpm
+WE imgs/wall_s.xpm
+EA imgs/wall_s.xpm
+
+F 0,40,300
+C 225,30,0
+
+111 1    111
+1N1111111101
+100000000001        0
+111111111111
+

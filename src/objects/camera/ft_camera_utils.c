@@ -23,7 +23,7 @@ void	render_object_list(void)
 	t_element			*e;
 	t_object			*obj;
 	t_player			*player;
-	static t_object		*objs[1090];
+	static t_object		*objs[2090];
 	int					i;
 
 	player = scene()->player;
@@ -37,11 +37,12 @@ void	render_object_list(void)
 		e = e->next;
 	}
 	swap_list(array(scene()->free_objects)->begin, objs, 0);
-	i -1;
-	while (objs[++i])
+	objs[array(scene()->free_objects)->size] = NULL;
+	i = -1;
+	while (objs[++i] != NULL)
 	{
 		render_object(objs[i], player);
-		objs[i] = 0;
+		objs[i] = NULL;
 	}
 }
 

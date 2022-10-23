@@ -3,8 +3,8 @@ SO ./path_to_the_south_texture_so
 WE ./path_to_the_west_texture_we
 EA ./path_to_the_east_texture_ea
 
-F 220,100,0
-C 225,30,0
+F 255, 127, 80
+C 222, 184, 135
 
 11111111111111111111111111111111
 10000000000000000000000000000001

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+         #
+#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/09/06 19:17:10 by nprimo           ###   ########.fr        #
+#    Updated: 2022/10/23 20:39:24 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 # ^ primeira dependencia
 # @ nome da regra
-all: $(NAME) 
+all: $(NAME)
 
 $(NAME): $(OBJS)
 		@$(CC) $(^) $(MLX_FLAGS) -o $(@)
@@ -61,12 +61,15 @@ norm :
 m: fclean
 
 v:
-	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D
+	@make re && make clean && clear && valgrind  --leak-check=full ./cub3D map/map4.cub
+
+vv:
+	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D map/map14.cub
 r:
-	@make re && make clean && clear && ./cub3D map/map3.car map/map1.car map/map2.car
+	@make re && make clean && clear && ./cub3D map/map3.cub map/map1.cub map/map2.cub
 
 rr:
-	@make re && make clean && clear && ./cub3D map/map1.car
+	@make re && make clean && clear && ./cub3D map/map4.cub
 
 
 .PHONY: all re clean fclean m

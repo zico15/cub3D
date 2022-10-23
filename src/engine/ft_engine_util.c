@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 14:52:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/23 21:14:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_scene	*__set_scene(int index_scene)
 {
 	t_scene	*s;
 
+	if (index_scene >= array(engine()->scenes)->size)
+		return (NULL);
 	s = (t_scene *) array(engine()->scenes)->get(index_scene);
 	fthis()->scene = s;
 	fthis()->map = s->map;
@@ -36,15 +38,17 @@ t_scene	*__load_maps(char **args, int size)
 	i = 0;
 	while (++i < size)
 	{
+		fthis()->player = NULL;
 		scene = engine()->add_scene(new_scene());
-		scene->add(new_camera());
-		scene->add(new_menu());
 		map = (t_map *) scene->add(new_map());
 		scene->map = map;
 		map->load(args[i]);
+		scene->add(new_camera());
+		scene->add(new_menu());
 		scene->player = fthis()->player;
 	}
 	scene = __set_scene(0);
+	printf("load_maps\n");
 	return (scene);
 }
 
@@ -54,6 +58,7 @@ void	*__load_img(t_vector *v, char *file_name)
 	int		h;
 	int		w;
 
+	printf("load_img\n");
 	img = mlx_xpm_file_to_image(engine()->mlx, file_name, \
 	&w, &h);
 	if (!v)
@@ -92,5 +97,6 @@ void	__destroy_element_sprite(t_element	*e)
 	free_ob(e->key);
 	sprite = (t_sprite *) e->value;
 	destroy_sprite(sprite);
+	printf("destroy_element_sprite\n");
 	free_ob(e);
 }

@@ -38,7 +38,7 @@ struct s_scene
 	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
-	void			(*destroy)(void *o);
+	void			(*destroy)();
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);

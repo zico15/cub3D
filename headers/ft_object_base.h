@@ -17,6 +17,6 @@
 
 t_object	*this(void);
 
-void		__destroy_ob(void *o);
+void		__destroy_ob();
 void		__collision_base(t_object *collided);
 #endif

@@ -20,28 +20,14 @@ void		laod_animation_enemy(t_object	*ob, int i);
 int			__damage_enemy(double d);
 void		attack_enemy(void);
 
-static int	check_line(t_vector begin, t_vector end)
+void	__destroy_ob_enemy()
 {
-	int			pixels;
-	t_vector	delta;
-	t_object	*ob;
+	t_enemy *e;
 
-	delta.x = end.x - begin.x;
-	delta.y = end.y - begin.y;
-	pixels = sqrt((delta.x * delta.x) + (delta.y * delta.y));
-	delta.x /= pixels;
-	delta.y /= pixels;
-	delta.w = begin.x;
-	delta.h = begin.y;
-	while (pixels-- > 0)
-	{
-		ob = map()->maps_ob[(int) delta.h][(int) delta.w];
-		if (ob && ob != this() && ob->type != PLAYER && ob->collision)
-			return (0);
-		delta.w += delta.x;
-		delta.h += delta.y;
-	}
-	return (1);
+	e = (t_enemy *) this();
+	__destroy_ob();
+	printf("DESTROY: %s\n", get_type_str(this()->type));
+	agent()->destroy();
 }
 
 static void	__render_tester(t_buffer *b)
@@ -57,7 +43,7 @@ static void	__render_tester(t_buffer *b)
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xfa0000);
 	if ((!agent()->path || array(agent()->path)->size == 0) && \
-	check_line(this()->vector, p->vector))
+	check_collision_line(this()->vector, p->vector))
 		(agent())->set_destination(this()->vector, p->vector);
 	path = agent()->path;
 	if (path && array(path)->size > 0)

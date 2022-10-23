@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_util.c                                    :+:      :+:    :+:   */
+/*   ft_load_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 16:23:05 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/23 21:18:17 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	destroy_node(t_node	*n)
 	free_ob(n);
 }
 
-static t_object *init_player(t_player	*p, int x, int y, char c)
+static t_object	*init_player(t_player	*p, int x, int y, char c)
 {
 	p->vector.x = x + 0.5;
 	p->vector.y = y + 0.5;
@@ -50,7 +50,7 @@ static t_object	*add_object_scene(double x, double y, char c)
 	if (!obj)
 		return (NULL);
 	if (obj->type == PLAYER)
-		obj = init_player((t_player* ) new_player(), x, y, c);	
+		obj = init_player((t_player *) new_player(), x, y, c);
 	else
 		obj->vector = vector(x, y, 1, 1);
 	scene()->add(obj);
@@ -66,8 +66,6 @@ void	add_object_all_map(t_map *map)
 	int			x;
 	int			y;
 
-	map->size_width = map->vector.w / GRID_SIZE;
-	map->size_height = map->vector.h / GRID_SIZE;
 	map->grid_width = W_WIDTH / (map->size_width - 2);
 	map->grid_height = W_HEIGHT / map->size_height;
 	y = 0;

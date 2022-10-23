@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 15:23:27 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/23 21:02:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ struct s_object
 	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
-	void			(*destroy)(void *o);
+	void			(*destroy)();
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
@@ -82,7 +82,7 @@ struct s_map
 	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
-	void			(*destroy)(void *o);
+	void			(*destroy)();
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
@@ -93,11 +93,13 @@ struct s_map
 	char			*f;
 	char			*c;
 	int				dir;
-	void			*map;
+	void			*file;
 	char			**maps;
+	char			**check_maps;
 	t_vector		player;
 	t_vector		vector_mini_map;
-	int				check[100][100];
+	int				ckeck_file[7];
+	t_sprite		*sprits_wall[4];
 	int				is_map_ok;
 	int				c_color;
 	int				f_color;
@@ -120,7 +122,7 @@ struct s_player
 	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
-	void			(*destroy)(void *o);
+	void			(*destroy)();
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
@@ -142,7 +144,7 @@ struct s_enemy
 	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
-	void			(*destroy)(void *o);
+	void			(*destroy)();
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
@@ -162,7 +164,7 @@ struct s_camera
 	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
-	void			(*destroy)(void *o);
+	void			(*destroy)();
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
@@ -183,7 +185,7 @@ struct s_door
 	double			life;
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
-	void			(*destroy)(void *o);
+	void			(*destroy)();
 	void			(*funct_key)(int *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_door.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/09/09 19:59:32 by edos-san         ###   ########.fr       */
+/*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
+/*   Updated: 2022/10/14 18:44:32 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <ft_object_base.h>
 
-int	main(int argc, char **argv)
+void	__destroy_ob_door()
 {
-	t_engine	*e;
-	int			fd;
+	t_door *door;
 
-	if (argc < 2)
-		printf("ERROR ARG!\n");
-	e = cread_engine("cub3D", argv[1], W_WIDTH, W_HEIGHT);
-	e->load_maps(argv, argc);
-	mlx_hook(e->win, 17, 0, e->close, "exit");
-	return (mlx_loop(e->mlx));
+	door = (t_door *) this();
+	__destroy_ob();
+	destroy_sprite(door->sprite_animation);
 }

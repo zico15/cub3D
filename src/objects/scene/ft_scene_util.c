@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/05 18:23:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/23 19:20:21 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,21 @@ void	__init_scene(t_scene *scene)
 	array(scene->objects)->destroy_element = __destroy_element_object;
 }
 
-void	__destroy_scene(void *object)
+void	__destroy_scene(void)
 {
-	t_scene		*scene;
 	t_array		*this;
 	t_object	*o;
 
-	o = (t_object *) object;
 	this = fthis()->array;
-	scene = (t_scene *) o;
-	printf("destroy->scene\n");
-	array(scene->key_list)->destroy();
-	array(scene->mouse_list)->destroy();
-	array(scene->updade_list)->destroy();
-	array(scene->render_list)->destroy();
-	array(scene->colliders_list)->destroy();
-	array(scene->objects)->destroy();
+	printf("========================================\n");
+	printf("DESTROY: SCENE\n");
+	printf("========================================\n");
+	array(scene()->free_objects)->destroy();
+	array(scene()->key_list)->destroy();
+	array(scene()->mouse_list)->destroy();
+	array(scene()->updade_list)->destroy();
+	array(scene()->render_list)->destroy();
+	array(scene()->colliders_list)->destroy();
+	array(scene()->objects)->destroy();
 	array(this);
 }
