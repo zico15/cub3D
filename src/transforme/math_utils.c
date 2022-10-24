@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 12:49:38 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/14 19:09:05 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 19:51:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,20 @@
 
 double	ft_cos(double angle)
 {
-	double	val;
-
-	val = M_PI / 180;
-	return (cos(angle * val));
+	return (cos(angle * 0.017453293));
 }
 
 double	ft_sin(double angle)
 {
-	double	val;
-
-	val = M_PI / 180;
-	return (sin(angle * val));
+	return (sin(angle * 0.017453293));
 }
 
 double	ft_tan(double angle)
 {
-	double	val;
-
-	val = M_PI / 180;
-	return (tan(angle * val));
+	return (tan(angle * 0.017453293));
 }
 
 double	ft_atan2(double y, double x)
 {
-	double	val;
-
-	val = M_PI / 180;
-	return (atan2(y, x) * 180 / M_PI);
+	return (atan2(y, x) * 0.017453293);
 }

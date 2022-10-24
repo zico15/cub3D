@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 21:08:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:16:21 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void		__destroy_ob_map(void);
 void		__render_map(t_buffer	*b);
 int			check_path(char *path);
 int			ckeck_all(void *file);
-int			check_maps_nodes(t_map *map, int x, int y);
+int			check_maps_nodes(t_map *map, char **temp, int x, int y);
 
 void		cread_mini_map(t_map *m);
 t_object	*__get_object_map(int x, int y);
 
-static void	__funct_key(int *key, int event)
+static void	__funct_key(char *key, int event)
 {
 	if (event == EVENT_CLICK && key[KEY_M])
 		map()->is_print = !map()->is_print;
@@ -32,6 +32,7 @@ static void	__funct_key(int *key, int event)
 static void	__load_map(char *path)
 {
 	t_map		*map;
+	char		**temp;
 
 	map = (t_map *) this();
 	map->is_map_ok = check_path(path);
@@ -44,13 +45,14 @@ static void	__load_map(char *path)
 	map->is_map_ok = ckeck_all(map->file);
 	if (map->is_map_ok)
 	{
-		map->maps = (char **) array(map->file)->to_str();
-		if (check_maps_nodes(map, -1, -1))
-		{
-			printf("MAP: add_object_all_map\n");
+		temp = (char **) array(map->file)->to_str();
+		if (check_maps_nodes(map, temp, -1, -1))
 			add_object_all_map(map);
-		}
+		free_ob(temp);
+		free_list((void **) map->maps);
 	}
+	array(map->file)->destroy();
+	printf("load_maps: %i\n", map->is_map_ok);
 }
 
 t_object	*new_map(void)

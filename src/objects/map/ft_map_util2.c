@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 21:03:57 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:13:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,11 @@
 void	__destroy_ob_map(void)
 {
 	t_map	*m;
-	void	*list;
 
 	m = (t_map *) this();
-	list = fthis()->array;
 	__destroy_ob();
-	free_ob(m->f);
-	free_ob(m->c);
-	array(m->file)->destroy();
 	destroy_sprite(m->sprite);
-	free_ob(m->maps);
 	free_list((void **) m->maps_ob);
-	fthis()->array = list;
 }
 
 void	__render_map(t_buffer	*b)

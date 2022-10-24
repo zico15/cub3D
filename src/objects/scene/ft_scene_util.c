@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 19:20:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 19:28:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	__funct_mouse_scene(int x, int y, int type_event)
 	t_object	*ob;
 	t_object	*this_ob;
 
-	if (array(scene()->mouse_list) <= 0)
+	if (array(scene()->mouse_list)->size <= 0)
 		return ;
 	this_ob = fthis()->object;
 	e = array(scene()->mouse_list)->begin;
@@ -33,13 +33,13 @@ void	__funct_mouse_scene(int x, int y, int type_event)
 	fthis()->object = this_ob;
 }
 
-void	__funct_key_scene(int *key, int type_event)
+void	__funct_key_scene(char *key, int type_event)
 {
 	t_element	*e;
 	t_object	*ob;
 	t_object	*this_ob;
 
-	if (array(scene()->key_list) <= 0)
+	if (array(scene()->key_list)->size <= 0)
 		return ;
 	this_ob = fthis()->object;
 	e = array(scene()->key_list)->begin;
@@ -74,7 +74,6 @@ void	__init_scene(t_scene *scene)
 void	__destroy_scene(void)
 {
 	t_array		*this;
-	t_object	*o;
 
 	this = fthis()->array;
 	printf("========================================\n");

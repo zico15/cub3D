@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_canva_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:35:07 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:03:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,6 @@ void	__image(t_sprite *sprite)
 			__get_color_img(sprite->data, x, y));
 		}
 	}
-}
-
-static t_vector	get_vector_sub(t_vector img, t_vector sub)
-{
-	sub.w += sub.x;
-	sub.h += sub.y;
-	if (sub.w > (img.w))
-		sub.w = img.w;
-	if (sub.h > (img.h))
-		sub.h = img.h;
-	sub.x = sub.x * (sub.x >= 0);
-	sub.y = sub.y * (sub.y >= 0);
-	return (sub);
 }
 
 void	__image_sub(t_sprite *sprite, t_vector sub)

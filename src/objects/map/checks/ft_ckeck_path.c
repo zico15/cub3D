@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:02:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 19:58:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:57:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ int	ckeck_all(void *file)
 		if (string().size(line) > 0)
 			line = string().trim(line);
 		if (string().size(line) > 0)
-		{	
-			printf("line: %s size: %i\n", line, string().size(line));
+		{
 			count = 0;
 			count += ckeck_color(line);
 			count += check_path_image(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/18 10:32:13 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 19:31:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		move_dir(t_player *p, double x, double y);
 void		move_perp_dir(t_player *p, double x, double y);
 void		attack_player(void);
 
-void	__funct_key(int *key, int event)
+void	__funct_key(char *key, int event)
 {
 	t_player	*p;
 
@@ -49,6 +49,7 @@ void	__funct_mouse(int x, int y, int keycode)
 
 	if (x < 0 || x > W_WIDTH)
 		return ;
+	(void) y;
 	p = scene()->player;
 	delta = W_WIDTH / 2.0 - x;
 	if (abs(delta) > (W_WIDTH / 5))

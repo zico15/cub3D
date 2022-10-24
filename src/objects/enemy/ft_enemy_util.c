@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_teste.c                                         :+:      :+:    :+:   */
+/*   ft_enemy_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 19:06:57 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 16:39:38 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	__collision_enemy(t_object *collided)
 void	laod_animation_enemy(t_object	*ob, int i)
 {
 	ob->animation = animation().create(ob, 2);
+	i = 2;
 	if (i == 0)
-	{
+	{	
 		(animation()).load_animation("imgs/enemy_a/move/frame-00.xpm", 2, \
 		&ob->animation[0], 250);
 		(animation()).load_animation("imgs/enemy_a/attack/frame-00.xpm", 3, \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:44:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 19:08:55 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:06:23 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ double	get_vectors_distance(t_vector a, t_vector b, double angle)
 
 	delta_x = a.x - b.x;
 	delta_y = a.y - b.y;
+	(void) angle;
 	return (sqrt(delta_x * delta_x + delta_y * delta_y));
 }

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 21:02:13 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:39:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ struct s_buffer
 	void	(*image_sub)(t_sprite *sprite, t_vector sub);
 	void	(*object)(t_object *ob);
 	void	(*line)(t_vector begin, t_vector end, int color);
+	void	(*image_resize)(t_sprite *sprite, double width, double height);
 };
 
 struct s_object
@@ -64,7 +65,7 @@ struct s_object
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)();
-	void			(*funct_key)(int *key, int type_event);
+	void			(*funct_key)(char *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
@@ -83,16 +84,13 @@ struct s_map
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)();
-	void			(*funct_key)(int *key, int type_event);
+	void			(*funct_key)(char *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	int				(*damage)(double	d);
 	void			(*load)(char *path);
-	char			*f;
-	char			*c;
-	int				dir;
 	void			*file;
 	char			**maps;
 	char			**check_maps;
@@ -123,7 +121,7 @@ struct s_player
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)();
-	void			(*funct_key)(int *key, int type_event);
+	void			(*funct_key)(char *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
@@ -145,7 +143,7 @@ struct s_enemy
 	void			(*update)(void);
 	void			(*render)(t_buffer *b);
 	void			(*destroy)();
-	void			(*funct_key)(int *key, int type_event);
+	void			(*funct_key)(char *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
@@ -165,7 +163,7 @@ struct s_camera
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
 	void			(*destroy)();
-	void			(*funct_key)(int *key, int type_event);
+	void			(*funct_key)(char *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);
@@ -186,7 +184,7 @@ struct s_door
 	void			(*update)(void);
 	void			(*render)(t_buffer	*b);
 	void			(*destroy)();
-	void			(*funct_key)(int *key, int type_event);
+	void			(*funct_key)(char *key, int type_event);
 	void			(*funct_mouse)(int x, int y, int type_event);
 	void			(*collision)(t_object *collided);
 	int				(*set_position)(t_vector v);

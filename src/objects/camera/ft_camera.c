@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_camera.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/18 17:51:34 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 14:19:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	render_object_list(void);
 
 static void	__render(t_buffer *b)
 {
+	(void) b;
 	if (!scene()->player)
 		return ;
 	render_view(scene()->player);

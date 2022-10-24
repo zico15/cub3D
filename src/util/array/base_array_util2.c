@@ -41,3 +41,11 @@ void	__base_remove_element_value(void *value)
 		atual = atual->next;
 	}
 }
+
+void	__base_remove_element_all(void)
+{
+	if (!fthis()->array || array(fthis()->array)->size <= 0)
+		return ;
+	while (array(fthis()->array)->size)
+		array(fthis()->array)->remove_index(0);
+}

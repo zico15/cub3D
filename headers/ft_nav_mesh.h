@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_nav_mesh.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/07 12:51:41 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:02:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <ft_util.h>
 
 t_nav_node	*create_nav_node(t_nav_mesh *agent, t_nav_node *previu, t_vector v);
-int			check_case_node(t_nav_mesh *agent, t_vector v, int check_value);
+int			check_case_node(t_nav_mesh *agent, t_vector v);
 void		__pathfinding(t_nav_mesh	*agent, t_nav_node	*node);
 int			__expand(t_nav_mesh *agent, t_nav_node *n);
 void		nav_render(void);

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/08/01 14:04:50 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:08:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	__expand(t_nav_mesh *agent, t_nav_node *n)
 	size_h = map()->size_height;
 	if (!agent)
 		return (0);
-	if (check_case_node(agent, vector(n->x, n->y + 1, size_w, size_h), 10))
+	if (check_case_node(agent, vector(n->x, n->y + 1, size_w, size_h)))
 		create_nav_node(agent, n, vector(n->x, n->y + 1, 10, 0));
-	if (check_case_node(agent, vector(n->x + 1, n->y, size_w, size_h), 10))
+	if (check_case_node(agent, vector(n->x + 1, n->y, size_w, size_h)))
 		create_nav_node(agent, n, vector(n->x + 1, n->y, 10, 0));
-	if (check_case_node(agent, vector(n->x, n->y - 1, size_w, size_h), 10))
+	if (check_case_node(agent, vector(n->x, n->y - 1, size_w, size_h)))
 		create_nav_node(agent, n, vector(n->x, n->y - 1, 10, 0));
-	if (check_case_node(agent, vector(n->x - 1, n->y, size_w, size_h), 10))
+	if (check_case_node(agent, vector(n->x - 1, n->y, size_w, size_h)))
 		create_nav_node(agent, n, vector(n->x - 1, n->y, 10, 0));
 	return ((n->x == (int)(agent->dest).x && n->y == (int)(agent->dest).y));
 }

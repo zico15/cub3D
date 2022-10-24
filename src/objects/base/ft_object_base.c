@@ -6,14 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/07/31 18:27:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:52:50 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
 
-void	__destroy_ob()
+void	__destroy_ob(void)
 {
 	animation().destroy(this());
 	printf("DESTROY: %s\n", get_type_str(this()->type));

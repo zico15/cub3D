@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 19:19:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:06:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 void	__destroy_element_sprite(t_element	*e);
 void	init_list_objects_functions(void);
+void	__destroy_element_scene(t_element	*e);
 
 static int	__close(char *msg)
 {
-
 	engine()->is_game = 0;
+	fthis()->player = NULL;
 	array(engine()->scenes)->destroy();
 	hashmap(engine()->images)->destroy();
 	if (canva()->buffer)
@@ -61,7 +62,7 @@ int	game_loop(t_engine *e)
 	return (0);
 }
 
-t_engine	*cread_engine(char *title, char *path, int width, int height)
+t_engine	*cread_engine(char *title, int width, int height)
 {
 	static t_engine	e;
 
@@ -69,7 +70,7 @@ t_engine	*cread_engine(char *title, char *path, int width, int height)
 	e.mlx = mlx_init();
 	e.index_scene = 0;
 	e.scenes = new_array();
-	array(e.scenes)->destroy_element = __destroy_element_object;
+	array(e.scenes)->destroy_element = __destroy_element_scene;
 	e.add_scene = __add_scene;
 	e.load_maps = __load_maps;
 	e.close = __close;

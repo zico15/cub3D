@@ -6,12 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 15:38:15 by edos-san          #+#    #+#             */
-/*   Updated: 2022/06/19 01:24:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 12:40:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string_util.h>
 #include <stdio.h>
+
+char	**__copy_list(const char **list);
 
 static int	ft_size(const char *s)
 {
@@ -83,7 +85,7 @@ t_string	string(void)
 	static t_string	str = {
 		ft_contains, ft_size, ft_copy, __join, __copy_n, __str_trim,
 		__equals, __equals_n, __is_space, __strnstr, __size_list, __replace,
-		__isalnum, __split_spacer, __itoa, __atoi, __isnumber
+		__isalnum, __split_spacer, __itoa, __atoi, __isnumber, __copy_list
 	};
 
 	return (str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object_base_util.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:35:58 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:01:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static int	__set_position(t_vector v)
 
 static t_sprite	*__get_sprite_base(t_ray ray)
 {
+	(void) ray;
 	return (this()->sprite);
 }
 

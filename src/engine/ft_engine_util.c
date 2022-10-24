@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 21:14:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:59:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_scene	*__load_maps(char **args, int size)
 {
 	t_scene		*scene;
 	t_map		*map;
-	void		*o;
 	int			i;
 
 	i = 0;
@@ -43,12 +42,12 @@ t_scene	*__load_maps(char **args, int size)
 		map = (t_map *) scene->add(new_map());
 		scene->map = map;
 		map->load(args[i]);
-		scene->add(new_camera());
+		if (fthis()->player)
+			scene->add(new_camera());
 		scene->add(new_menu());
 		scene->player = fthis()->player;
 	}
 	scene = __set_scene(0);
-	printf("load_maps\n");
 	return (scene);
 }
 

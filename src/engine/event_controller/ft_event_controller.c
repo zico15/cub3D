@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_event_controller.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:08:19 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/14 18:42:33 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 19:44:13 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
-int	funct_key_engine(int *key, int event)
+int	funct_key_engine(char *key, int event)
 {
 	int				i;
 
@@ -44,6 +44,7 @@ int	__funct_mousse_engine(int keycode, void *vars)
 
 int	__funct_key_press(int key, void *o)
 {
+	printf("key: %i\n", key);
 	(void) o;
 	if (key == KEY_ESC)
 		engine()->close("ESC");

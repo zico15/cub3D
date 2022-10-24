@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/18 18:12:22 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 20:01:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ static void	draw_texture_loop(t_sprite *sprite, t_texture t, int x)
 void	draw_texture(t_ray *ray, int x, t_sprite *sprite)
 {
 	t_texture	t;
-	int			y;
-	int			color;
 
 	t.line_h = (int)(W_HEIGHT / ray->perp_distance);
 	t.pos.x = (int)(ray->cross * sprite->v.w);
@@ -46,7 +44,6 @@ void	draw_texture(t_ray *ray, int x, t_sprite *sprite)
 	}
 	t.draw_start.y = W_HEIGHT / 2 - t.line_h / 2;
 	t.pos.y = t.y_offset * t.y_step;
-	y = -1;
 	draw_texture_loop(sprite, t, x);
 }
 

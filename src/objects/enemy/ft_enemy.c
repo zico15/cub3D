@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_enemy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 16:25:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 23:25:00 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,20 @@ void		laod_animation_enemy(t_object	*ob, int i);
 int			__damage_enemy(double d);
 void		attack_enemy(void);
 
-void	__destroy_ob_enemy()
+static void	__destroy_ob_enemy(void)
 {
-	t_enemy *e;
-
-	e = (t_enemy *) this();
 	__destroy_ob();
-	printf("DESTROY: %s\n", get_type_str(this()->type));
 	agent()->destroy();
 }
 
-static void	__render_tester(t_buffer *b)
+static	void	__render_tester(t_buffer *b)
 {
 	t_player	*p;
-	t_vector	v;
 	void		*path;
 	t_element	*e;
 	t_vector	*pos;
 
 	p = scene()->player;
-	v = vector_grid(this()->vector);
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xfa0000);
 	if ((!agent()->path || array(agent()->path)->size == 0) && \
@@ -86,13 +80,6 @@ static void	__update(void)
 	}
 }
 
-static void	funct_key(int *key, int event)
-{
-	if (event != EVENT_CLICK)
-		return ;
-	(agent())->set_destination(this()->vector, scene()->player->vector);
-}
-
 t_object	*new_enemy(void)
 {
 	t_enemy			*ob;
@@ -103,8 +90,8 @@ t_object	*new_enemy(void)
 	ob->damage = __damage_enemy;
 	ob->update = __update;
 	ob->render = __render_tester;
-	ob->funct_key = funct_key;
 	ob->agent = new_nav_mesh();
+	ob->destroy = __destroy_ob_enemy;
 	ob->collision = __collision_enemy;
 	laod_animation_enemy((t_object *) ob, random_number(0, 2));
 	agent()->ob = (t_object *) ob;

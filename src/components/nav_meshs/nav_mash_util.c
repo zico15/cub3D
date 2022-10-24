@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nav_mash_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ezequeil <ezequeil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/07/07 17:36:38 by ezequeil         ###   ########.fr       */
+/*   Updated: 2022/10/24 22:43:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	check_case_node_free(t_nav_mesh *agent, int x, int y)
 	return (1);
 }
 
-int	check_case_node(t_nav_mesh *agent, t_vector v, int check_value)
+int	check_case_node(t_nav_mesh *agent, t_vector v)
 {
 	static t_object	*ob;
 
@@ -72,6 +72,7 @@ static double	cal_cust(t_vector start, t_vector dest)
 	}
 	else
 		d = (x * 10) + (y * 10);
+	return (d);
 }
 
 void	__free_nav_mash_list(void)
@@ -82,6 +83,7 @@ void	__free_nav_mash_list(void)
 	if (!agent)
 		return ;
 	agent->clear();
+	array(agent->path)->destroy();
 	free_ob(agent);
 	fthis()->agent = NULL;
 }

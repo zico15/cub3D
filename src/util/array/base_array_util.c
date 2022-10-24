@@ -13,6 +13,8 @@
 #include <ft_base_array_util.h>
 #include <ft_util.h>
 
+void	__base_remove_element_all(void);
+
 static t_element	*base_add_element(void *value)
 {
 	t_element	*e;
@@ -126,6 +128,7 @@ void	*new_array(void)
 		a->destroy_element = __destroy_element;
 		a->is_value_destroy = 1;
 		a->remove_value = __base_remove_element_value;
+		a->remove_all = __base_remove_element_all;
 		array(a);
 	}
 	return (a);

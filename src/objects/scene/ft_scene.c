@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_scene.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 16:23:18 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 22:07:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ t_scene	*new_scene(void)
 	s->funct_mouse = __funct_mouse_scene;
 	s->remove_object = __remove_object;
 	__init_scene(s);
-	fthis()->scene = s;
 	array(this);
 	fthis()->scene = s;
 	return (s);

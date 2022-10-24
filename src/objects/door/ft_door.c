@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_door.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/14 18:44:32 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 20:57:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
 
-void	__destroy_ob_door();
+void	__destroy_ob_door(void);
 
-static void	__funct_key(int *key, int event)
+static void	__funct_key(char *key, int event)
 {
 	t_door		*door;
 	int			distance;
@@ -83,6 +83,7 @@ static t_sprite	*get_sprite(t_ray ray)
 	t_door	*door;
 
 	door = (t_door *) this();
+	(void) ray;
 	return (door->sprite_animation);
 }
 

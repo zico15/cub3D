@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_animation.c                                     :+:      :+:    :+:   */
+/*   ft_animation_util.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:39:12 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:19:37 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 21:45:44 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	__destroy_animation(t_object *ob)
 {
-	t_animation *a;
+	t_animation	*a;
 	int			i;
 
 	a = ob->animation;

@@ -3,31 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wall.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 14:51:51 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 21:46:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
 #include <ft_check.h>
-
-static void	__load_animation(t_object *ob)
-{
-	t_animation	*animations;
-
-	animations = malloc_ob(sizeof(t_animation));
-	animations[0].list = malloc_ob(sizeof(t_sprite *) * 4);
-	animations[0].size = 4;
-	animations->list[0] = engine()->load_sprite("imgs/dust2_grafitti64.xpm");
-	animations->list[1] = engine()->load_sprite("imgs/wall_s.xpm");
-	animations->list[2] = engine()->load_sprite("imgs/wall.xpm");
-	animations->list[3] = engine()->load_sprite("imgs/wall_w.xpm");
-	ob->size_animation = 1;
-	ob->animation = animations;
-}
 
 static void	__collision(t_object *collided)
 {
@@ -42,7 +27,7 @@ static void	__render(t_buffer *b)
 
 static t_sprite	*get_sprite(t_ray ray)
 {
-	return (this()->animation->list[ray.face_dir]);
+	return (map()->sprits_wall[ray.face_dir]);
 }
 
 t_object	*new_wall(void)
@@ -54,6 +39,5 @@ t_object	*new_wall(void)
 	wall->render = __render;
 	wall->collision = __collision;
 	wall->get_sprite = get_sprite;
-	__load_animation(wall);
 	return (wall);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_canva.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:33:40 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 23:39:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	__image_pos(t_sprite *sprite, int x, int y);
 void	__draw_line(t_vector begin, t_vector end, int color);
+void	__image_resize(t_sprite *sprite, double width, double height);
 
 t_buffer	*__canva(void)
 {
@@ -34,6 +35,7 @@ t_buffer	*__canva(void)
 	b.rectangle_border = __rectangle_border;
 	b.image_pos = __image_pos;
 	b.line = __draw_line;
+	b.image_resize = __image_resize;
 	return (&b);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 10:24:53 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 20:02:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ void		__destroy_element_object(t_element	*e);
 t_image		image(void);
 void		pixel_put_sprite(t_sprite *sprite, int x, int y, int color);
 t_sprite	*copy_sprite(t_sprite	*sprite);
-int			**baffer_int(void);
 void		destroy_sprite(t_sprite *sprite);
 char		*get_type_str(t_type object_type);
 int			check_collision_line(t_vector begin, t_vector end);
+void		print_list(char **list);
 
 //			memory
 int			free_ob(void *v);
@@ -90,7 +90,7 @@ void		*malloc_ob(size_t __size);
 //			remove - testes
 int			__get_color(void *img, int x, int y);
 int			__get_color_sprite(t_sprite *sprite, int x, int y);
-int			funct_key_engine(int *key, int type_event);
+int			funct_key_engine(char *key, int type_event);
 
 //			time
 double		now(void);

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_door.c                                          :+:      :+:    :+:   */
+/*   ft_door_util.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/14 18:44:32 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 21:38:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_object_base.h>
 
-void	__destroy_ob_door()
+void	__destroy_ob_door(void)
 {
-	t_door *door;
+	t_door	*door;
 
 	door = (t_door *) this();
 	__destroy_ob();

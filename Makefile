@@ -6,13 +6,13 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/10/23 20:39:24 by edos-san         ###   ########.fr        #
+#    Updated: 2022/10/24 23:47:44 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#CC			= 	gcc -fsanitize=address -g
-CC			= 	gcc
-CFLAGS		= 	-Wall -Wextra -Werror -fsanitize=address
+CC			= 	gcc -Wall -Wextra -Werror #-fsanitize=address -g
+//CC			= 	gcc
+CFLAGS		= 	-Wall -Wextra -Werror #-fsanitize=address
 RM			= 	/bin/rm -f
 NAME		= 	cub3D
 INCLUDES	= 	-Iheaders/
@@ -61,15 +61,15 @@ norm :
 m: fclean
 
 v:
-	@make re && make clean && clear && valgrind  --leak-check=full ./cub3D map/map4.cub
+	@make re && make clean && clear && valgrind ./cub3D
 
 vv:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D map/map14.cub
 r:
-	@make re && make clean && clear && ./cub3D map/map3.cub map/map1.cub map/map2.cub
+	@make re && make clean && clear && valgrind ./cub3D map/map3.cub map/map1.cub map/map2.cub
 
 rr:
-	@make re && make clean && clear && ./cub3D map/map4.cub
+	@make re && make clean && clear && ./cub3D map/map1.cub
 
 
 .PHONY: all re clean fclean m

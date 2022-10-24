@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 21:21:32 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:48:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 static int	check_case(t_map *map, int x, int y)
 {
 	char	c;
+	int		size;
 
+	size = string().size(map->check_maps[y]);
 	if (y < 0 || y >= map->size_height)
 		return (0);
-	if (x < 0 || x >= string().size(map->check_maps[y]))
+	if (x < 0 || x >= size)
 		return (0);
 	c = map->check_maps[y][x];
-	if (c != '0' && !engine()->new_obs[c])
+	if (c != '1' && (x == 0 || x >= (size - 1)))
+	{
+		map->is_map_ok = 0;
+		return (0);
+	}
+	if (c != '0' && !engine()->new_obs[(int) c])
 	{
 		map->is_map_ok = 0;
 		return (0);
@@ -34,24 +41,14 @@ static int	check_case(t_map *map, int x, int y)
 
 static void	expand(t_map *map, int x, int y)
 {
-	if (check_case(map, x + 1, y))
+	if (map->is_map_ok && check_case(map, x + 1, y))
 		expand(map, x + 1, y);
-	if (check_case(map, x - 1, y))
+	if (map->is_map_ok && check_case(map, x - 1, y))
 		expand(map, x - 1, y);
-	if (check_case(map, x, y + 1))
+	if (map->is_map_ok && check_case(map, x, y + 1))
 		expand(map, x, y + 1);
-	if (check_case(map, x, y - 1))
+	if (map->is_map_ok && check_case(map, x, y - 1))
 		expand(map, x, y - 1);
-}
-
-static void	copy_map(t_map *map)
-{
-	int	y;
-
-	map->check_maps = malloc_ob(sizeof(char *) * (map->size_height));
-	y = -1;
-	while (map->maps[++y])
-		map->check_maps[y] = string().copy(map->maps[y]);
 }
 
 static int	chech_case_map(t_map *map)
@@ -61,13 +58,15 @@ static int	chech_case_map(t_map *map)
 	char	c;
 
 	y = -1;
+	if (!map->is_map_ok)
+		return (map->is_map_ok);
 	while (map->check_maps[++y])
 	{
 		x = -1;
 		while (map->check_maps[y][++x])
 		{
 			c = map->check_maps[y][x];
-			if (!string().is_space(c) && c != '0' &&!engine()->new_obs[c])
+			if (!string().is_space(c) && c != '0' &&!engine()->new_obs[(int) c])
 			{
 				map->is_map_ok = 0;
 				break ;
@@ -81,19 +80,21 @@ static int	chech_case_map(t_map *map)
 	return (map->is_map_ok);
 }
 
-int	check_maps_nodes(t_map *map, int x, int y)
+int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 {
 	map->is_map_ok = 0;
+	map->check_maps = string().copy_list((const char **) temp);
+	map->maps = string().copy_list((const char **) temp);
 	map->size_height = string().size_list(map->maps);
-	copy_map(map);
-	while (map->maps[++y])
+	while (map->check_maps[++y])
 	{
 		x = -1;
-		while (map->maps[y][++x])
+		while (map->check_maps[y][++x])
 		{
-			if ((string().contains)("NSWE", _str(map->maps[y][x])))
-			{	
-				map->is_map_ok = 1;
+			if ((string().contains)("NSWE", _str(map->check_maps[y][x])))
+			{
+				map->is_map_ok = !(x == 0 || x >= \
+				(string().size(map->check_maps[y]) - 1));
 				map->player = vector(x, y, 1, 1);
 				map->check_maps[y][x] = '1';
 				expand(map, x, y);
@@ -101,5 +102,7 @@ int	check_maps_nodes(t_map *map, int x, int y)
 			}
 		}
 	}
+	print_list(map->check_maps);
+	map->size_height = y;
 	return (chech_case_map(map));
 }

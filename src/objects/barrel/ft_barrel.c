@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_enemy.c                                         :+:      :+:    :+:   */
+/*   ft_barrel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 16:25:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 19:29:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	__render(t_buffer *b)
 		scene()->remove_object(this());
 }
 
-static void	key(int *key, int event)
+static void	key(char *key, int event)
 {
 	if (event == EVENT_CLICK && key[KEY_SPACE])
 		this()->animation->is_run = 1;

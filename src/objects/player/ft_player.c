@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/18 10:53:08 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/24 23:40:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 #include <ft_player.h>
 
 int	__damage_player(double d);
-
-static void	__collision(t_object *collided)
-{
-
-}
 
 static void	__render(t_buffer *b)
 {
@@ -36,12 +31,10 @@ t_object	*new_player(void)
 	p->type = PLAYER;
 	p->funct_key = __funct_key;
 	p->funct_mouse = __funct_mouse;
-	p->collision = __collision;
 	p->vector.angle = 90;
 	p->vector.w = 20;
 	p->vector.h = 20;
 	p->render = __render;
-	p->life = 5;
 	p->damage = __damage_player;
 	p->set_position = __set_position;
 	p->animation = animation().create(this(), 1);
