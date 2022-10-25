@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 20:48:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 23:19:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,16 @@ static void	__render(t_buffer *b)
 	if (scene()->player)
 	{
 		if (scene()->player->sprite)
-			b->image_pos(scene()->player->sprite, 0, 100);
+			b->image_pos(scene()->player->sprite, (win()->w / 2) - \
+			(scene()->player->sprite->v.w / 2), (win()->h \
+			- scene()->player->sprite->v.h));
 		life = scene()->player->life;
 		if (life < 1 || life > 5)
 			return ;
-		//printf("life: %i\n", life);
 		sprite = this()->animation[0].list[5 - life];
 		b->image_pos(sprite, this()->vector.x, 156);
 		mini_map(b, scene()->player->vector, this()->vector);
 	}
-	/*p = scene()->player->vector;
-	(void) p;
-	//mini_map(b, p, this()->vector);
-	if (0 && scene()->player->sprite)
-		b->image_pos(scene()->player->sprite, 0, 100);
-	if (!scene()->player->life)
-		return ;*/
 }
 
 static	void	__render_map_invalido(t_buffer *b)
