@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 23:56:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:15:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	__load_animation_life(t_object *ob);
 
-void	mini_map(t_buffer *b, t_vector p, t_vector m)
+void	mini_map2(t_buffer *b, t_vector p, t_vector m)
 {
 	(void) b;
 	(void) p;
@@ -46,20 +46,45 @@ void	mini_map(t_buffer *b, t_vector p, t_vector m)
 		0x00990099);*/
 }
 
+void	mini_map(t_buffer *b, t_vector p, t_vector m)
+{
+	t_vector	sub;
+	t_vector	p_rel;
+	t_vector	direction;
+
+	sub = vector(p.x * GRID_MIN_SIZE, p.y * GRID_MIN_SIZE, 206, 156);
+	sub.x += 103;
+	sub.y += 78;
+	(void) m;
+	map()->sprite->v.x = m.x;
+	(map())->sprite->v.y = 2.0;
+	(b->image_sub)(map()->sprite, sub);
+	p_rel.x = m.x + 91 - 2 * GRID_MIN_SIZE;
+	p_rel.y = m.y + 72 - GRID_MIN_SIZE;
+	direction.x = p_rel.x + p.w / 2 + scene()->player->dir.x * 10;
+	direction.y = p_rel.y + p.h / 2 + scene()->player->dir.y * 10;
+	b->rectangle(vector(p_rel.x - p.w / 2, p_rel.y - p.h / 2, \
+	5, 5), 0xd36a0d);
+	b->rectangle(vector(direction.x, direction.y, 2, 2),
+		0x00990099);
+}
+
 static void	__render(t_buffer *b)
 {
-	//t_sprite	*sprite;
-	//	int			life;
+	t_sprite	*sprite;
+	int			life;
 
 	if (scene()->player)
 	{
 		if (scene()->player->sprite)
 			b->image_pos(scene()->player->sprite, 0, 100);
-		//life = scene()->player->life;
-		/*if (life < 0 || life > 4)
+		life = scene()->player->life;
+		if (life < 1 || life > 5)
 			return ;
-		sprite = this()->animation[0].list[5 - (int) scene()->player->life];
-		b->image_pos(sprite, this()->vector.x, 156);*/
+		printf("life: %i\n", life);
+		sprite = this()->animation[0].list[5 - life];
+		b->image_pos(sprite, this()->vector.x, 156);
+		mini_map(b, scene()->player->vector, this()->vector);
 	}
 	/*p = scene()->player->vector;
 	(void) p;
@@ -93,7 +118,7 @@ t_object	*new_menu(void)
 	ob->vector.x = engine()->width - ob->vector.w;
 	ob->vector.y = 0;
 	ob->animation = (animation()).create(ob, 1);
-	(animation()).load_animation("imgs/life/life00.xpm", 4, \
+	(animation()).load_animation("imgs/life/life00.xpm", 5, \
 	&(ob->animation[0]), 1);
 	return (ob);
 }

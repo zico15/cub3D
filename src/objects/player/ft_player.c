@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/24 23:40:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:09:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_object	*new_player(void)
 	p->funct_key = __funct_key;
 	p->funct_mouse = __funct_mouse;
 	p->vector.angle = 90;
+	p->life = 5;
 	p->vector.w = 20;
 	p->vector.h = 20;
 	p->render = __render;

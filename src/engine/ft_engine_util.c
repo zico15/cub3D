@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 22:59:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:19:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ t_scene	*__load_maps(char **args, int size)
 		fthis()->player = NULL;
 		scene = engine()->add_scene(new_scene());
 		map = (t_map *) scene->add(new_map());
+		scene->add(new_camera());
+		fthis()->object = (t_object *) map;
 		scene->map = map;
 		map->load(args[i]);
-		if (fthis()->player)
-			scene->add(new_camera());
 		scene->add(new_menu());
 		scene->player = fthis()->player;
 	}
 	scene = __set_scene(0);
+	engine()->is_game = 1;
 	return (scene);
 }
 

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:34:45 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/24 23:35:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:03:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,24 @@ void	__rectangle_border(t_vector v, int color, int border, int color_border)
 
 void	__image_resize(t_sprite *sprite, double width, double height)
 {
-	double	temp_x;
-	double	temp_y;
-	double	resize_x;
-	double	resize_y;
-	int		x;
-	int		y;
+	t_vector	v;
+	int			x;
+	int			y;
 
-	temp_y = 0;
+	v.y = 0;
 	y = -1;
-	resize_x = ((double) sprite->v.w / width);
-	resize_y = ((double) sprite->v.h / height);
+	v.w = ((double) sprite->v.w / width);
+	v.h = ((double) sprite->v.h / height);
 	while (++y < (int) height)
 	{
-		temp_x = 0;
+		v.x = 0;
 		x = -1;
 		while (++x < (int) width)
 		{
-			__pixel(x, y, __get_color_sprite(sprite, (int) temp_x, temp_y));
-			temp_x += resize_x;
+			__pixel(x, y, __get_color_sprite(sprite, (int) v.x, v.y));
+			v.x += v.w;
 		}
-		temp_y += resize_y;
+		v.y += v.h;
 	}
 }
 

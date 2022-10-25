@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/24 14:19:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:16:18 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	render_view(t_player *p);
 void	render_object_list(void);
 
-static void	__render(t_buffer *b)
+void	__render(t_buffer *b)
 {
 	(void) b;
 	if (!scene()->player)

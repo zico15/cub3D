@@ -6,11 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 22:22:32 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:25:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_check.h>
+
+void	cread_mini_map(t_map *m);
 
 t_object	*init_player(t_player	*p, int x, int y, char c)
 {
@@ -63,8 +65,11 @@ void	add_object_all_map(t_map *map)
 	y = -1;
 	if (map->size_width < 1 || map->size_height < 1 || !map->maps)
 		return ;
+	map->vector.w = map->size_width * GRID_SIZE;
+	map->vector.h = map->size_height * GRID_SIZE;
 	map->grid_width = W_WIDTH / (map->size_width - 2);
 	map->grid_height = W_HEIGHT / map->size_height;
+	cread_mini_map(map);
 	map->maps_ob = malloc_ob(sizeof(t_object ***) * (map->size_height + 1));
 	while (map->maps[++y])
 	{

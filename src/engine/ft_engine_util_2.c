@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 22:20:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:17:37 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_list_objects_functions(void)
 {
-	engine()->is_game = 1;
+	engine()->is_game = 0;
 	engine()->new_obs['1'] = new_wall;
 	engine()->new_obs['I'] = new_enemy;
 	engine()->new_obs['K'] = new_kit;
