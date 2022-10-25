@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/24 17:03:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:24:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	render_view(t_player *p)
 	int			x;
 
 	x = -1;
-	while (++x < W_WIDTH)
+	while (++x < win()->w)
 		render_ray(init_ray(*p, p->vector, x), x, fthis()->object);
 }
 
@@ -111,7 +111,7 @@ static t_ray	init_ray(t_player p, t_vector pos, int x)
 	t_ray	ray;
 
 	ray.hit = 0;
-	ray.camera.x = 2 * x / (double) W_WIDTH - 1;
+	ray.camera.x = 2 * x / (double) win()->w - 1;
 	ray.dir.x = p.dir.x + p.plane.x * ray.camera.x;
 	ray.dir.y = p.dir.y + p.plane.y * ray.camera.x;
 	ray.map_cell.x = (int) pos.x;

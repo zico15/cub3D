@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/25 14:16:18 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:25:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_object	*new_camera(void)
 
 	camera = new_object_instance(sizeof(t_camera));
 	camera->render = __render;
-	camera->vector = vector(0, 0, W_WIDTH, W_HEIGHT);
+	camera->vector = vector(0, 0, win()->w, win()->h);
 	fthis()->camera = camera;
 	fthis()->scene->camera = camera;
 	return ((t_object *) camera);

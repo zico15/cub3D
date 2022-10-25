@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/24 19:31:03 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:24:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	__funct_mouse(int x, int y, int keycode)
 	int			delta;
 	t_player	*p;
 
-	if (x < 0 || x > W_WIDTH)
+	if (x < 0 || x > win()->w)
 		return ;
 	(void) y;
 	p = scene()->player;
-	delta = W_WIDTH / 2.0 - x;
-	if (abs(delta) > (W_WIDTH / 5))
+	delta = win()->w / 2.0 - x;
+	if (abs(delta) > (win()->w / 5))
 		rotate(p, (double)(-delta * ROTATION_LEN / 300.0));
 	if (keycode == 1 && !p->animation[0].is_run)
 	{

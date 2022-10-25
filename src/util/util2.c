@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 22:24:36 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:43:40 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,13 @@ void	__destroy_element_object(t_element	*e)
 	free_ob(e);
 	fthis()->object = temp;
 	fthis()->array = list;
+}
+
+/*
+# define WIDTH 1080
+# define HEIGHT 860
+*/
+t_vector	*win(void)
+{
+	return (&engine()->v);
 }

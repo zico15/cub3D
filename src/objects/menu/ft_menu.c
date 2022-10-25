@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 15:15:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:48:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	__render(t_buffer *b)
 		life = scene()->player->life;
 		if (life < 1 || life > 5)
 			return ;
-		printf("life: %i\n", life);
+		//printf("life: %i\n", life);
 		sprite = this()->animation[0].list[5 - life];
 		b->image_pos(sprite, this()->vector.x, 156);
 		mini_map(b, scene()->player->vector, this()->vector);
@@ -102,7 +102,7 @@ static	void	__render_map_invalido(t_buffer *b)
 	if (!sprite)
 		sprite = engine()->load_sprite("imgs/background.xpm");
 	else
-		b->image_resize(sprite, W_WIDTH, W_HEIGHT);
+		b->image_resize(sprite, win()->w, win()->h);
 }
 
 t_object	*new_menu(void)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_camera_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:37:32 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/19 14:55:36 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/25 20:25:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	render_object(t_object *obj, t_player *player)
 			- player->dir.x * rel_pos.y);
 	transform.y = inv_det * (-player->plane.y * rel_pos.x
 			+ player->plane.x * rel_pos.y);
-	screen_x = ((int)(W_WIDTH / 2)) * (1 + transform.x / transform.y);
+	screen_x = ((int)(win()->w / 2)) * (1 + transform.x / transform.y);
 	draw_object(screen_x, transform, obj);
 }
 
@@ -70,20 +70,20 @@ static t_texture	init_draw_start_end(
 {
 	t_texture	t;
 
-	obj->vector.h = abs((int)(W_HEIGHT / transform.y));
-	t.draw_start.y = -obj->vector.h / 2 + W_HEIGHT / 2;
+	obj->vector.h = abs((int)(win()->h / transform.y));
+	t.draw_start.y = -obj->vector.h / 2 + win()->h / 2;
 	if (t.draw_start.y < 0)
 		t.draw_start.y = 0;
-	t.draw_end.y = obj->vector.h / 2 + W_HEIGHT / 2;
-	if (t.draw_end.y > W_HEIGHT)
-		t.draw_end.y = W_HEIGHT - 1;
-	obj->vector.w = abs((int)(W_HEIGHT / transform.y));
+	t.draw_end.y = obj->vector.h / 2 + win()->h / 2;
+	if (t.draw_end.y > win()->h)
+		t.draw_end.y = win()->h - 1;
+	obj->vector.w = abs((int)(win()->h / transform.y));
 	t.draw_start.x = -obj->vector.w + screen_x;
 	if (t.draw_start.x < 0)
 		t.draw_start.x = 0;
 	t.draw_end.x = obj->vector.w / 2 + screen_x;
-	if (t.draw_end.x > W_WIDTH)
-		t.draw_end.x = W_WIDTH - 1;
+	if (t.draw_end.x > win()->w)
+		t.draw_end.x = win()->w - 1;
 	return (t);
 }
 
@@ -98,7 +98,7 @@ static void	draw_object(double screen_x, t_vector transform, t_object *obj)
 	stripe = t.draw_start.x - 1;
 	while (++stripe < t.draw_end.x)
 	{
-		if (transform.y > 0 && stripe > 0 && stripe < W_WIDTH
+		if (transform.y > 0 && stripe > 0 && stripe < win()->w
 			&& transform.y < camera->perp_distance_wall[stripe])
 			draw_stripe(stripe, t, obj, screen_x);
 	}
@@ -111,14 +111,14 @@ static void	draw_stripe(
 	int			y;
 
 	y = t.draw_start.y - 1;
-	if (obj && stripe == (W_WIDTH / 2))
+	if (obj && stripe == (win()->w / 2))
 		scene()->player->mira = obj;
 	while (++y < t.draw_end.y)
 	{
 		t.pos.x = (int)(256 * (stripe - (-obj->vector.w / 2 + screen_x))
 				* obj->sprite->v.w / obj->vector.w) / 256;
 		t.pos.y = (int)(
-				((int)(y * 256 - W_HEIGHT * 128 + obj->vector.h * 128)
+				((int)(y * 256 - win()->h * 128 + obj->vector.h * 128)
 					* obj->sprite->v.h) / obj->vector.h) / 256;
 		color = __get_color_sprite(obj->sprite, t.pos.x, t.pos.y);
 		((canva())->pixel(stripe, y, color));

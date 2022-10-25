@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 23:39:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:29:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	__pixel(int x, int y, int color)
 	char		*dst;
 	t_data		*data;
 
-	if (color == COLOR_TRANSPARENT || (x >= W_WIDTH || y >= W_HEIGHT))
+	if (color == COLOR_TRANSPARENT || (x >= win()->w || y >= win()->h))
 		return ;
 	data = &canva()->data;
 	dst = data->addr + (y * data->line_length + x \

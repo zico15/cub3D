@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 20:02:55 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 21:08:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@
 # define EVENT_CLICK 2
 # define MOVE_LEN 0.08
 # define ROTATION_LEN 0.01
-# define W_WIDTH 1080
-# define W_HEIGHT 860
 # define VIEW_ANGLE 50
 # define N_RAYS	W_WIDTH
 # define COLOR_TRANSPARENT 0xd411aa
@@ -97,4 +95,7 @@ double		now(void);
 t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
 int			random_number(int min_num, int max_num);
 
+//			file
+void		save(t_engine o);
+void		load(t_engine *o);
 #endif

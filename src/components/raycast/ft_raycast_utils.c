@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:03:46 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/24 20:01:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/25 20:25:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ void	draw_texture(t_ray *ray, int x, t_sprite *sprite)
 {
 	t_texture	t;
 
-	t.line_h = (int)(W_HEIGHT / ray->perp_distance);
+	t.line_h = (int)(win()->h / ray->perp_distance);
 	t.pos.x = (int)(ray->cross * sprite->v.w);
 	if ((ray->side == 0 && ray->dir.x > 0)
 		|| (ray->side == 1 && ray->dir.y < 0))
 		t.pos.x = sprite->v.w - 1 - t.pos.x;
 	t.y_offset = 0;
 	t.y_step = sprite->v.h / (double) t.line_h;
-	if (t.line_h >= W_HEIGHT)
+	if (t.line_h >= win()->h)
 	{
-		t.y_offset = (int)(t.line_h - W_HEIGHT) / 2.0;
-		t.line_h = W_HEIGHT;
+		t.y_offset = (int)(t.line_h - win()->h) / 2.0;
+		t.line_h = win()->h;
 	}
-	t.draw_start.y = W_HEIGHT / 2 - t.line_h / 2;
+	t.draw_start.y = win()->h / 2 - t.line_h / 2;
 	t.pos.y = t.y_offset * t.y_step;
 	draw_texture_loop(sprite, t, x);
 }
