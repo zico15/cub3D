@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 15:23:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:43:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static int	chech_case_map(t_map *map)
 	map->check_maps = NULL;
 	return (map->is_map_ok);
 }
-
 
 int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 {

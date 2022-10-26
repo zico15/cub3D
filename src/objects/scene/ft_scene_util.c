@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 19:28:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:12:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,14 @@ void	__init_scene(t_scene *scene)
 	scene->updade_list = new_array();
 	scene->render_list = new_array();
 	scene->colliders_list = new_array();
+	scene->remove_object_list = new_array();
 	array(scene->free_objects)->is_value_destroy = 0;
 	array(scene->key_list)->is_value_destroy = 0;
 	array(scene->mouse_list)->is_value_destroy = 0;
 	array(scene->updade_list)->is_value_destroy = 0;
 	array(scene->render_list)->is_value_destroy = 0;
 	array(scene->colliders_list)->is_value_destroy = 0;
+	array(scene->remove_object_list)->is_value_destroy = 0;
 	array(scene->objects)->destroy_element = __destroy_element_object;
 }
 
@@ -85,6 +87,31 @@ void	__destroy_scene(void)
 	array(scene()->updade_list)->destroy();
 	array(scene()->render_list)->destroy();
 	array(scene()->colliders_list)->destroy();
+	array(scene()->remove_object_list)->destroy();
 	array(scene()->objects)->destroy();
 	array(this);
+}
+
+void	scene_remove_objects_list(void)
+{
+	t_object	*ob;
+
+	while (array(scene()->remove_object_list)->size > 0)
+	{
+		ob = array(scene()->remove_object_list)->get(0);
+		if (ob->funct_key)
+			array(scene()->key_list)->remove_value(ob);
+		if (ob->funct_mouse)
+			array(scene()->mouse_list)->remove_value(ob);
+		if (ob->update)
+			array(scene()->updade_list)->remove_value(ob);
+		if (ob->render)
+			array(scene()->render_list)->remove_value(ob);
+		if (ob->type != PLAYER && ob->type != WALL && ob->type != DOOR)
+			array(scene()->free_objects)->remove_value(ob);
+		if (map()->maps_ob[(int) ob->vector.y][(int) ob->vector.x] == ob)
+			map()->maps_ob[(int) ob->vector.y][(int) ob->vector.x] = NULL;
+		printf("remove_objectr\n");
+		array(scene()->remove_object_list)->remove_index(0);
+	}
 }

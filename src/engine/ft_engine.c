@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 20:32:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:03:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	game_loop(t_engine *e)
 	__funct_mousse_engine(0, 0);
 	if (e->is_key_press)
 		funct_key_engine(e->keys, EVENT_PRESS);
+	scene_remove_objects_list();
 	scene()->update();
 	scene()->render(e->canva);
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \

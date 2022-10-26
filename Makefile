@@ -6,13 +6,11 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/10/26 12:39:15 by edos-san         ###   ########.fr        #
+#    Updated: 2022/10/26 15:49:47 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= 	gcc -Wall -Wextra -Werror #-fsanitize=address -g
-//CC			= 	gcc
-CFLAGS		= 	-Wall -Wextra -Werror #-fsanitize=address
+CC			= 	gcc -Wall -Wextra -Werror -fsanitize=address -g
 RM			= 	/bin/rm -f
 NAME		= 	cub3D
 INCLUDES	= 	-Iheaders/

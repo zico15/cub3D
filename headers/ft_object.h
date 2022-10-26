@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 14:49:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:36:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,8 @@ struct s_door
 	int				is_open;
 	int				is_run;
 	int				count;
+	double			time;
+	double			delay;
 	int				count_max;
 	t_sprite		*sprite_animation;
 };

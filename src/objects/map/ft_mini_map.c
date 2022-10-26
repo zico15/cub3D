@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 14:38:28 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:51:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ static int	get_color(t_map *m, t_vector v)
 
 	x = (int) v.x;
 	y = (int) v.y;
+	if (x < 0 || x >= string().size(m->maps[y]))
+		return (0xe5e6e6);
+	if (y < 0 || y >= m->size_height)
+		return (0xe5e6e6);
 	if (m->maps[y][x] == '1')
 		return (0x949e9e);
 	if (0 && m->maps[y][x] == ' ')
