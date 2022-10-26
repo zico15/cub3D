@@ -6,11 +6,13 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 23:48:35 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:23:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_check.h>
+
+int	check_borde(t_map *m, int x, int y);
 
 static int	check_case(t_map *map, int x, int y)
 {
@@ -23,7 +25,7 @@ static int	check_case(t_map *map, int x, int y)
 	if (x < 0 || x >= size)
 		return (0);
 	c = map->check_maps[y][x];
-	if (c != '1' && (x == 0 || x >= (size - 1)))
+	if (!check_borde(map, x, y))
 	{
 		map->is_map_ok = 0;
 		return (0);
@@ -39,7 +41,7 @@ static int	check_case(t_map *map, int x, int y)
 	return ((c != '1'));
 }
 
-static void	expand(t_map *map, int x, int y)
+void	expand(t_map *map, int x, int y)
 {
 	if (map->is_map_ok && check_case(map, x + 1, y))
 		expand(map, x + 1, y);
@@ -80,6 +82,7 @@ static int	chech_case_map(t_map *map)
 	return (map->is_map_ok);
 }
 
+
 int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 {
 	map->is_map_ok = 0;
@@ -93,8 +96,8 @@ int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 		{
 			if ((string().contains)("NSWE", _str(map->check_maps[y][x])))
 			{
-				map->is_map_ok = !(x == 0 || x >= \
-				(string().size(map->check_maps[y]) - 1));
+				map->is_map_ok = check_borde(map, x, y);
+				map->is_map_ok = check_pos_init(map, x, y);
 				map->player = vector(x, y, 1, 1);
 				map->check_maps[y][x] = '1';
 				expand(map, x, y);
@@ -102,7 +105,8 @@ int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 			}
 		}
 	}
-	print_list(map->check_maps);
+	if (map->count_player != 1)
+		map->is_map_ok = 0;
 	map->size_height = y;
 	return (chech_case_map(map));
 }

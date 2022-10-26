@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 23:39:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 14:49:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ struct s_map
 	int				is_print;
 	t_object		*(*get_object)(int x, int y);
 	t_object		***maps_ob;
+	int				count_player;
 };
 
 struct s_player
