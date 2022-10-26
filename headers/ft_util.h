@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 21:08:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 19:02:19 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define VIEW_ANGLE 50
 # define N_RAYS	W_WIDTH
 # define COLOR_TRANSPARENT 0xd411aa
+# define MINIMAP_FRAME 200
+
 
 typedef struct s_this
 {

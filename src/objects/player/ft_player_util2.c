@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:56:49 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/18 10:24:39 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/26 19:11:13 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	rotate(t_player *p, double angle)
 
 void	move_dir(t_player *p, double x, double y)
 {
-	p->set_position(vector(p->vector.x + x * MOVE_LEN * \
-	p->dir.x, p->vector.y, 1, 1));
+	p->set_position(vector((p->vector.x + x * MOVE_LEN * \
+	p->dir.x), p->vector.y, 1, 1));
 	p->set_position(vector(p->vector.x, (p->vector.y + y * MOVE_LEN * \
 	p->dir.y), 1, 1));
 }

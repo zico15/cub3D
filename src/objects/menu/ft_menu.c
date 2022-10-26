@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_menu.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 13:20:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:56:30 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_check.h>
 #include <ft_object_base.h>
+
+#define MINIMAP_W 206
+#define MINIMAP_H 156
 
 void	__load_animation_life(t_object *ob);
 
@@ -46,8 +49,6 @@ void	mini_map2(t_buffer *b, t_vector p, t_vector m)
 		0x00990099);
 }
 
-#define MINIMAP_W 206
-#define MINIMAP_H 156
 
 void	mini_map(t_buffer *b, t_player *p, t_vector m)
 {
@@ -55,18 +56,18 @@ void	mini_map(t_buffer *b, t_player *p, t_vector m)
 	/*t_vector	p_rel;
 	t_vector	direction;*/
 
-	sub = vector(p->vector.x * GRID_MIN_SIZE, p->vector.y * GRID_MIN_SIZE, MINIMAP_W, MINIMAP_H);
+	sub = vector(p->vector.x * GRID_MIN_SIZE, (p->vector.y + 2) * GRID_MIN_SIZE, MINIMAP_W, MINIMAP_H);
 	sub.x += (MINIMAP_W / 2);
 	sub.y += (MINIMAP_H / 2);
-	(void) m;
 	map()->sprite->v.x = m.x;
-	(map())->sprite->v.y = 2.0;
+	(map())->sprite->v.y = 0;
 	(b->image_sub)(map()->sprite, sub);
+	int width = 1;
 	b->rectangle(vector(
 		m.x + MINIMAP_W / 2,
 		MINIMAP_H / 2,
-		5,
-		5), 0xd36a0d);
+		width,
+		width), 0xd36a0d);
 	/*-p_rel.x = m.x + p->vector.x;
 	p_rel.y = m.y + p->vector.y;
 	direction.x = p_rel.x + p->vector.w / 2 + p->dir.x * 10;
@@ -92,10 +93,9 @@ static void	__render(t_buffer *b)
 		if (life < 1 || life > 5)
 			return ;
 		sprite = this()->animation[0].list[5 - life];
-		b->image_pos(sprite, this()->vector.x, 156);
+		b->image_pos(sprite, this()->vector.x, MINIMAP_H);
 		map()->sprite->v.x = 0;
-		// b->image(map()->sprite);
-		mini_map2(b, scene()->player->vector, this()->vector);
+		mini_map(b, scene()->player, this()->vector);
 	}
 }
 
@@ -117,8 +117,8 @@ t_object	*new_menu(void)
 	ob->render = __render_map_invalido;
 	if (fthis()->player)
 		ob->render = __render;
-	ob->vector.w = 206;
-	ob->vector.h = 156;
+	ob->vector.w = MINIMAP_W;
+	ob->vector.h = MINIMAP_H;
 	ob->vector.x = engine()->width - ob->vector.w;
 	ob->vector.y = 0;
 	ob->animation = (animation()).create(ob, 1);
