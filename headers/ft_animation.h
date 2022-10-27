@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_animation.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 19:23:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:21:42 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/27 14:44:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ typedef struct s_fanimation
 	void			(*update_all)(t_object *ob);
 	void			(*updated)(t_object *ob, int animation);
 	void			(*destroy)(t_object *ob);
+	void			(*destroy_size)(t_animation	*a, int size);
 }	t_fanimation;
 
 t_sprite		*new_sprite(int w, int h);
 t_fanimation	animation(void);
+
 
 #endif

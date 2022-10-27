@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 13:04:02 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:34:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	mini_map(t_buffer *b, t_player *p, t_vector m)
 	b->rectangle(sub, 0xd36a0d);
 }
 
-static void	__render(t_buffer *b)
+void	__render2(t_buffer *b)
 {
 	t_sprite	*sprite;
 	int			life;
@@ -90,7 +90,7 @@ static void	__render(t_buffer *b)
 	}
 }
 
-static	void	__render_map_invalido(t_buffer *b)
+void	__render_map_invalido(t_buffer *b)
 {
 	static t_sprite	*sprite;
 
@@ -107,7 +107,7 @@ t_object	*new_menu(void)
 	ob = new_object_instance(sizeof(t_object));
 	ob->render = __render_map_invalido;
 	if (fthis()->player)
-		ob->render = __render;
+		ob->render = __render2;
 	ob->vector.w = 206;
 	ob->vector.h = 156;
 	ob->vector.x = engine()->width - ob->vector.w;

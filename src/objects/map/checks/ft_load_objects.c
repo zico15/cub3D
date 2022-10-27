@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 15:15:00 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:51:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	add_object_all_map(t_map *map)
 	map->grid_width = win()->w / (map->size_width - 2);
 	map->grid_height = win()->h / map->size_height;
 	cread_mini_map(map);
-	map->is_map_ok = 0;
 	map->maps_ob = malloc_ob(sizeof(t_object ***) * (map->size_height + 1));
 	while (map->maps[++y])
 	{

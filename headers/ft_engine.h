@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 18:04:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:01:22 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ struct s_engine
 	double			delta;
 	int				is_game;
 	int				is_key_press;
+	int				is_mouse_press;
 	char			keys[75000];
+	char			**args;
+	int				maps[50];
+	int				size_maps;
 	t_vector		v;
 	t_buffer		*canva;
 	t_scene			*(*add_scene)(t_scene *scene);
@@ -42,6 +46,7 @@ struct s_engine
 	int				(*close)(char *msg);
 	t_new_obj		new_obs[256];
 	void			*images;
+	t_sprite		*alfabeto[256];
 };
 
 t_vector	*win(void);

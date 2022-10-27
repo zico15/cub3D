@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_animation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:39:12 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/14 18:19:37 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/27 14:44:29 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 
 void	__destroy_animation(t_object *ob);
+void	__destroy_animation_size(t_animation	*a, int size);
 
 static void	__update_animation(t_object *ob, int animation)
 {
@@ -47,7 +48,8 @@ static t_animation	*__create_animation(t_object *ob, int size)
 	t_animation	*animation;
 
 	animation = malloc_ob(sizeof(t_animation) * (size + 1));
-	ob->size_animation = size;
+	if (ob)
+		ob->size_animation = size;
 	return (animation);
 }
 
@@ -84,7 +86,7 @@ t_fanimation	animation(void)
 {
 	static t_fanimation	a = {
 		__create_animation, __load_animation, __update_animation_all,
-		__update_animation, __destroy_animation
+		__update_animation, __destroy_animation, __destroy_animation_size
 	};
 
 	return (a);

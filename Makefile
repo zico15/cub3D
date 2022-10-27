@@ -6,7 +6,7 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/10/27 13:28:19 by edos-san         ###   ########.fr        #
+#    Updated: 2022/10/27 17:09:13 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ v:
 vv:
 	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D map/map14.cub
 r:
-	@make re && make clean && clear && ./cub3D map/map3.cub map/map1.cub map/map2.cub
+	@make re && make clean && clear && ./cub3D map/map3.cub map/map1.cub map/map2.cub teste dfsdsdfsdfs/sasd
 
 rr:
 	@make re && make clean && clear && ./cub3D map/map1.cub

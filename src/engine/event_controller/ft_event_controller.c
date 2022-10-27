@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:08:19 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/26 18:13:17 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:02:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	__funct_mousse_engine(int keycode, void *vars)
 	int	y;
 
 	(void) vars;
+	engine()->is_mouse_press = keycode;
 	mlx_mouse_get_pos(engine()->mlx, engine()->win, &x, &y);
 	if (scene())
 		(scene()->funct_mouse)(x, y, keycode);

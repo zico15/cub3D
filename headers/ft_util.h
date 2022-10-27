@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 21:08:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:42:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,5 @@ t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
 int			random_number(int min_num, int max_num);
 
 //			file
-void		save(t_engine o);
-void		load(t_engine *o);
+void		laod_alfabeto(void);
 #endif

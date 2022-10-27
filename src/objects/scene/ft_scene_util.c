@@ -6,14 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 18:12:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:55:10 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_scene_util.h>
 
-void	__funct_mouse_scene(int x, int y, int type_event)
+void	__funct_mouse_scene(int x, int y, int event)
 {
 	t_element	*e;
 	t_object	*ob;
@@ -27,7 +27,7 @@ void	__funct_mouse_scene(int x, int y, int type_event)
 	{
 		ob = (t_object *) e->value;
 		fthis()->object = ob;
-		ob->funct_mouse(x, y, type_event);
+		ob->funct_mouse(x, y, event);
 		e = e->next;
 	}
 	fthis()->object = this_ob;

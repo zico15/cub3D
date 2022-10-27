@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_menu_initial_util.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 15:17:27 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
+/*   Updated: 2022/10/27 18:00:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <ft_check.h>
+#include <ft_object_base.h>
 
-int	main(int argc, char **argv)
+void	__mouse_menu(int x, int y, int event)
 {
-	t_engine	*e;
+	t_menu		*m;	
 
-	if (argc < 2 || argc >= 50)
-		printf("ERROR ARG!\n");
-	e = cread_engine("cub3D");
-	e->load_maps(argv, argc);
-	mlx_hook(e->win, 17, 0, e->close, "exit");
-	return (mlx_loop(e->mlx));
+	m = (t_menu *) this();
+	m->mouse.x = x;
+	m->mouse.y = y;
+	m->mouse_event = event;
 }
