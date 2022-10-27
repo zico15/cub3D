@@ -6,13 +6,15 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/24 22:43:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:36:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_check.h>
 #include <ft_nav_mesh.h>
+
+t_nav_node	*cread_node(t_nav_mesh *agent, int x, int y);
 
 static int	check_case_node_free(t_nav_mesh *agent, int x, int y)
 {
@@ -82,8 +84,10 @@ void	__free_nav_mash_list(void)
 	agent = fthis()->agent;
 	if (!agent)
 		return ;
-	agent->clear();
 	array(agent->path)->destroy();
+	array(agent->close)->destroy();
+	array(agent->open)->destroy();
+	array(agent->memory)->destroy();
 	free_ob(agent);
 	fthis()->agent = NULL;
 }
@@ -92,9 +96,7 @@ t_nav_node	*create_nav_node(t_nav_mesh *agent, t_nav_node *previu, t_vector v)
 {
 	t_nav_node		*n;
 
-	n = malloc_ob(sizeof(t_nav_node));
-	n->x = v.x;
-	n->y = v.y;
+	n = cread_node(agent, v.x, v.y);
 	if (previu)
 		previu->next = n;
 	n->previu = previu;

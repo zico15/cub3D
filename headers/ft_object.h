@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 15:36:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:22:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ struct s_nav_mesh
 	void		*open;
 	void		*close;
 	void		*path;
+	void		*memory;
 	t_nav_node	*begin;
 	t_vector	start;
 	t_vector	dest;

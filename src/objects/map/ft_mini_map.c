@@ -64,8 +64,8 @@ void	cread_mini_map(t_map *m)
 		v.x = 0;
 		while (v.x < m->size_width)
 		{
-			img.x = (v.x * GRID_MIN_SIZE) + 200;
-			img.y = (v.y * GRID_MIN_SIZE) + 200;
+			img.x = (v.x * GRID_MIN_SIZE);
+			img.y = (v.y * GRID_MIN_SIZE);
 			_printf_rectangle(m, img, v);
 			v.x++;
 		}

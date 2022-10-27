@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/24 17:08:02 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:34:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ static void	create_path(t_nav_mesh	*agent, t_nav_node *node)
 
 	start = node;
 	next = NULL;
-	if (start)
-		agent->path = new_array();
 	while (start)
 	{
 		start->next = next;
@@ -91,28 +89,30 @@ static void	create_path(t_nav_mesh	*agent, t_nav_node *node)
 static t_nav_node	*check_pathfinding(t_nav_mesh *agent, t_element *e, \
 t_nav_node *node)
 {
-	t_element	*select_e;
+	int			i;
+	int			select;
 	t_nav_node	*temp;
 
+	i = -1;
 	while (e)
 	{
+		++i;
 		temp = (t_nav_node *) e->value;
 		if (!node)
 		{
-			select_e = e;
+			select = i;
 			node = temp;
 		}
 		if (temp->f < node->f)
 		{
 			node = temp;
-			select_e = e;
+			select = i;
 		}
 		e = e->next;
 	}
 	if (!node)
 		return (NULL);
-	select_e->value = NULL;
-	array(agent->open)->remove(select_e);
+	array(agent->open)->remove_index(select);
 	return (node);
 }
 

@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		printf("ERROR ARG!\n");
-	printf("w: %i\n", (string().contains("NSWE", _str('W'))));
 	e = cread_engine("cub3D");
 	e->load_maps(argv, argc);
 	mlx_hook(e->win, 17, 0, e->close, "exit");

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 13:20:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:04:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,19 @@ void	mini_map2(t_buffer *b, t_vector p, t_vector m)
 void	mini_map(t_buffer *b, t_player *p, t_vector m)
 {
 	t_vector	sub;
-	/*t_vector	p_rel;
-	t_vector	direction;*/
 
-	sub = vector(p->vector.x * GRID_MIN_SIZE, p->vector.y * GRID_MIN_SIZE, MINIMAP_W, MINIMAP_H);
-	sub.x += (MINIMAP_W / 2);
-	sub.y += (MINIMAP_H / 2);
+	sub = vector(p->vector.x * GRID_MIN_SIZE, p->vector.y * \
+	GRID_MIN_SIZE, MINIMAP_W, MINIMAP_H);
+	sub.x += (MINIMAP_W / 2) - 200;
+	sub.y += (MINIMAP_H / 2) - 200;
 	(void) m;
-	map()->sprite->v.x = m.x;
-	(map())->sprite->v.y = 2.0;
+	map()->sprite->v.x = 0;
 	(b->image_sub)(map()->sprite, sub);
-	b->rectangle(vector(
-		m.x + MINIMAP_W / 2,
-		MINIMAP_H / 2,
-		5,
-		5), 0xd36a0d);
-	/*-p_rel.x = m.x + p->vector.x;
-	p_rel.y = m.y + p->vector.y;
-	direction.x = p_rel.x + p->vector.w / 2 + p->dir.x * 10;
-	direction.y = p_rel.y + p->vector.h / 2 + p->dir.y * 10;
-	b->rectangle(vector(p_rel.x - p->vector.w / 2, p_rel.y - p->vector.h / 2, \
-	5, 5), 0xd36a0d);
-	b->rectangle(vector(direction.x, direction.y, 2, 2),
-		0x00990099);*/
+	sub.x = p->vector.x * GRID_MIN_SIZE;
+	sub.y = p->vector.y * GRID_MIN_SIZE;
+	sub.w = 20;
+	sub.h = 20;
+	b->rectangle(sub, 0xd36a0d);
 }
 
 static void	__render(t_buffer *b)
@@ -93,9 +83,10 @@ static void	__render(t_buffer *b)
 			return ;
 		sprite = this()->animation[0].list[5 - life];
 		b->image_pos(sprite, this()->vector.x, 156);
-		map()->sprite->v.x = 0;
-		// b->image(map()->sprite);
-		mini_map2(b, scene()->player->vector, this()->vector);
+				map()->sprite->v.x = 0;
+		//b->image(map()->sprite);
+
+		mini_map(b, scene()->player, this()->vector);
 	}
 }
 
