@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 17:59:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:04:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <ft_object_base.h>
 
 void	__mouse_menu(int x, int y, int event);
+void	__effect_sound(int i);
 
 void	__render_select(t_buffer *b, t_menu *m, int i, t_vector v)
 {
@@ -22,8 +23,7 @@ void	__render_select(t_buffer *b, t_menu *m, int i, t_vector v)
 	(m->mouse.x >= v.x && (m->mouse.x) <= (v.w + v.x)))
 	{
 		if (m->mouse_event)
-			printf("map: %i | %i\n", i, (int)m->mouse.w);
-		//printf("scene __mouse_menu: %i\n", m->mouse_event);
+			__effect_sound(i);
 		b->rectangle(v, 0xff5c0a);
 	}
 }
@@ -58,7 +58,7 @@ static t_vector	render_line(t_buffer *b, char *line, int y)
 static	void	__render(t_buffer *b)
 {
 	int			y;
-	t_menu		*m;	
+	t_menu		*m;
 
 	m = (t_menu *) this();
 	b->image_resize(m->background, win()->w, win()->h);

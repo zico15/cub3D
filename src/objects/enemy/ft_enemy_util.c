@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 16:39:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:04:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	__collision_enemy(t_object *collided)
 void	laod_animation_enemy(t_object	*ob, int i)
 {
 	ob->animation = animation().create(ob, 2);
-	i = 2;
+	//i = 2;
 	if (i == 0)
 	{	
 		(animation()).load_animation("imgs/enemy_a/move/frame-00.xpm", 2, \

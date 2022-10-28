@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 18:05:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:29:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static int	__damage(double d)
 	if (this()->life <= 0)
 	{
 		this()->animation->is_run = 1;
+		engine()->player_sound("sound/bomb-03.mp3");
 		__attack_barrel((t_object *) scene()->player);
 		list = fthis()->array;
 		e = array(scene()->free_objects)->begin;

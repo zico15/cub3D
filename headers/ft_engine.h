@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 18:01:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:20:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ struct s_engine
 	void			*(*load_img)(t_vector *v, char *file_name);
 	t_sprite		*(*load_sprite)(char *file_name);
 	int				(*close)(char *msg);
+	void			(*player_sound)(char *file);
 	t_new_obj		new_obs[256];
 	void			*images;
 	t_sprite		*alfabeto[256];
