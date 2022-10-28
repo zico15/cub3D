@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_enemy.c                                         :+:      :+:    :+:   */
+/*   ft_kit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/18 16:25:20 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/28 17:34:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	__collision_ki(t_object *collided)
 	if (collided->type == PLAYER)
 	{
 		p = (t_player *) collided;
-		printf("collided: player\n");
 		if (p->life < 5)
 		{
 			p->life++;

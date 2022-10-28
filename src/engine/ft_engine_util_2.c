@@ -6,17 +6,38 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 14:49:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 16:40:38 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+
+/*
+	cvlc
+	nvlc
+	vlc, qvlc, svlc, nvlc, rvlc, cvlc
+*/
+static void	__player_soud(char *file)
+{
+	char	*cmd;
+
+	if (!file)
+		return ;
+	cmd = string().join("cvlc ", file);
+	if (!fork())
+	{
+		system(cmd);
+		exit(0);
+	}
+	free_ob(cmd);
+}
 
 void	init_list_objects_functions(void)
 {
 	int		w;
 	int		h;
 
+	engine()->player_sound = __player_soud;
 	mlx_get_screen_size(engine()->mlx, &w, \
 	&h);
 	engine()->v.w = 1080;

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 13:07:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:30:08 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,19 @@ static void	__destroy_ob_enemy(void)
 
 static	void	__render_tester(t_buffer *b)
 {
-	t_player	*p;
-
-	p = scene()->player;
-	if (map()->is_print)
-		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xfa0000);
-	if ((!agent()->path || array(agent()->path)->size == 0) && \
-	check_collision_line(this()->vector, p->vector))
-		(agent())->set_destination(this()->vector, p->vector);
-	/*path = agent()->path;
-	if (path && array(path)->size > 0)
-	{
-		e = array(path)->begin;
-		while (e)
-		{
-			pos = e->value;
-			b->rectangle(vector_grid_size(*pos, 1, 1), 0xB01455);
-			e = e->next;
-		}
-	}*/
+	(void) b;
 	animation().update_all(this());
 	if (this()->animation[1].is_run && this()->animation[1].index)
 		attack_enemy();
+	else if (this()->animation[2].is_run && this()->animation[2].index == 3)
+		this()->animation[2].is_run = 0;
+}
+
+static void	update_agent(t_player	*p)
+{
+	if ((!agent()->path || array(agent()->path)->size == 0) && \
+	check_collision_line(this()->vector, p->vector))
+		(agent())->set_destination(this()->vector, p->vector);
 }
 
 static void	__update(void)
@@ -57,6 +48,7 @@ static void	__update(void)
 	t_vector		*v;
 	void			*path;
 
+	update_agent(scene()->player);
 	path = agent()->path;
 	if (path)
 	{
@@ -90,7 +82,7 @@ t_object	*new_enemy(void)
 	ob->agent = new_nav_mesh();
 	ob->destroy = __destroy_ob_enemy;
 	ob->collision = __collision_enemy;
-	laod_animation_enemy((t_object *) ob, random_number(0, 2));
+	laod_animation_enemy((t_object *) ob, 2);
 	agent()->ob = (t_object *) ob;
 	(agent())->velocity = 90 + random_number(0, 80);
 	return ((t_object *) ob);

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 16:39:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:31:36 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,38 +37,30 @@ void	__collision_enemy(t_object *collided)
 
 void	laod_animation_enemy(t_object	*ob, int i)
 {
-	ob->animation = animation().create(ob, 2);
-	i = 2;
-	if (i == 0)
-	{	
-		(animation()).load_animation("imgs/enemy_a/move/frame-00.xpm", 2, \
-		&ob->animation[0], 250);
-		(animation()).load_animation("imgs/enemy_a/attack/frame-00.xpm", 3, \
-		&ob->animation[1], 200);
-	}
-	else if (i == 1)
-	{
-		(animation()).load_animation("imgs/enemy_b/move/frame-00.xpm", 8, \
-		&ob->animation[0], 150);
-		(animation()).load_animation("imgs/enemy_b/attack/frame-00.xpm", 3, \
-		&ob->animation[1], 200);
-	}
-	else if (i == 2)
-	{
-		(animation()).load_animation("imgs/enemy_d/move/tile00.xpm", 4, \
-		&ob->animation[0], 150);
-		(animation()).load_animation("imgs/enemy_d/attack/tile00.xpm", 5, \
-		&ob->animation[1], 200);
-	}
+	ob->animation = animation().create(ob, 3);
+	(void) i;
+	(animation()).load_animation("imgs/enemy_d/move/tile00.xpm", 4, \
+	&ob->animation[0], 150);
+	(animation()).load_animation("imgs/enemy_d/attack/tile00.xpm", 5, \
+	&ob->animation[1], 200);
+	(animation()).load_animation("imgs/enemy_d/death/tile00.xpm", 4, \
+	&ob->animation[2], 200);
 	ob->sprite = *ob->animation[0].list;
 }
 
 int	__damage_enemy(double d)
 {
-	printf("enemy life: %f\n", this()->life);
-	this()->life -= d;
-	if (this()->life < 0)
+	if (this()->life > -99)
+		this()->life -= d;
+	if (this()->life < 0 && this()->life > -99)
+	{	
 		this()->life = 0;
+		array(scene()->updade_list)->remove_value(this());
+		this()->animation[0].is_run = 0;
+		this()->animation[1].is_run = 0;
+		this()->animation[2].is_run = 1;
+		this()->life = -100;
+	}
 	return (1);
 }
 
@@ -78,6 +70,5 @@ void	attack_enemy(void)
 
 	tmp = this();
 	fthis()->object = (t_object *) scene()->player;
-	printf("attack_enemy: %i\n", fthis()->object->damage(0.025));
 	fthis()->object = tmp;
 }

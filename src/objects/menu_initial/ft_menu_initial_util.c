@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 18:00:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:04:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,33 @@ void	__mouse_menu(int x, int y, int event)
 	m->mouse.x = x;
 	m->mouse.y = y;
 	m->mouse_event = event;
+}
+
+void	__effect_sound(int i)
+{
+	static int	select_err;
+	static int	index;
+
+	if (i == index)
+		select_err++;
+	else
+		select_err = 0;
+	index = i;
+	if (engine()->maps[i])
+	{
+		select_err = 0;
+		index = 0;
+		engine()->player_sound("sound/pok.mp3");
+		engine()->set_scene(i);
+	}
+	else
+	{
+		if (select_err > 2)
+		{	
+			engine()->player_sound("sound/per.mp3");
+			select_err = 0;
+		}
+		else
+			engine()->player_sound("sound/pe.mp3");
+	}
 }

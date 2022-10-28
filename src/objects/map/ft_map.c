@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 15:51:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 15:48:23 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_object	*__get_object_map(int x, int y);
 static void	__funct_key(char *key, int event)
 {
 	if (event == EVENT_CLICK && key[KEY_M])
-		map()->is_print = !map()->is_print;
+		engine()->set_scene(0);
 }
 
 static void	__load_map(char *path)
