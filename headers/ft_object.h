@@ -54,6 +54,8 @@ struct s_buffer
 	void	(*object)(t_object *ob);
 	void	(*line)(t_vector begin, t_vector end, int color);
 	void	(*image_resize)(t_sprite *sprite, double width, double height);
+	void	(*triangle)(t_vector pos, t_vector dir, \
+	t_vector perp_dir, int color);
 };
 
 struct s_object

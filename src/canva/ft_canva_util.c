@@ -60,3 +60,28 @@ void	__object(t_object *ob)
 	if (ob->sprite)
 		__image(ob->sprite);
 }
+
+void	__triangle(t_vector pos, t_vector dir, t_vector perp_dir, int color)
+{
+	int			width;
+	t_vector	direction_point;
+	t_vector	base_left;
+	t_vector	base_right;
+
+	width = 5;
+	direction_point = vector(
+			pos.x + dir.x * width * 2,
+			pos.y + dir.y * width * 2,
+			1, 1);
+	base_left = vector(
+			pos.x - perp_dir.x * width,
+			pos.y - perp_dir.y * width,
+			1, 1);
+	base_right = vector(
+			pos.x + perp_dir.x * width,
+			pos.y + perp_dir.y * width,
+			1, 1);
+	__draw_line(direction_point, base_left, color);
+	__draw_line(direction_point, base_right, color);
+	__draw_line(base_right, base_left, color);
+}

@@ -51,7 +51,6 @@
 # define COLOR_TRANSPARENT 0xd411aa
 # define MINIMAP_FRAME 200
 
-
 typedef struct s_this
 {
 	t_array			*array;

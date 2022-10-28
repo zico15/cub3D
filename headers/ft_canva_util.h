@@ -22,6 +22,7 @@ int		__get_color_img(t_data	data, int x, int y);
 void	__image(t_sprite *sprite);
 void	__image_sub(t_sprite *sprite, t_vector sub);
 void	__object(t_object *ob);
-void	__print_line(t_vector begin, t_vector end, int color);
+void	__draw_line(t_vector begin, t_vector end, int color);
+void	__triangle(t_vector pos, t_vector dir, t_vector perp_dir, int color);
 
 #endif

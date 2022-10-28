@@ -14,8 +14,6 @@
 #include <ft_object_base.h>
 #include <ft_player.h>
 
-#define PLAYER_W 0.5
-
 void	rotate(t_player *p, double angle)
 {
 	double	old_dir_x;
@@ -29,31 +27,20 @@ void	rotate(t_player *p, double angle)
 	p->plane.y = old_plane_x * sin(angle) + p->plane.y * cos(angle);
 }
 
-int	sign(double x)
-{
-	if (x < 0)
-		return (-1);
-	return (1);
-}
-
 void	move_dir(t_player *p, double x, double y)
 {
 	p->set_position(vector((p->vector.x + x * MOVE_LEN * \
-	p->dir.x), p->vector.y, PLAYER_W * sign(x) * sign(p->dir.x),\
-	PLAYER_W * sign(y) * sign(p->dir.y)));
+	p->dir.x), p->vector.y, 0, 0));
 	p->set_position(vector(p->vector.x, (p->vector.y + y * MOVE_LEN * \
-	p->dir.y), PLAYER_W * sign(x) * sign(p->dir.x),\
-	PLAYER_W * sign(y) * sign(p->dir.y)));
+	p->dir.y), 0, 0));
 }
 
 void	move_perp_dir(t_player *p, double x, double y)
 {
 	p->set_position(vector(p->vector.x + x * MOVE_LEN * \
-	p->plane.x, p->vector.y, PLAYER_W * sign(p->plane.x) * sign(x),\
-	PLAYER_W * sign(p->plane.y) * sign(y)));
+	p->plane.x, p->vector.y, 0, 0));
 	p->set_position(vector(p->vector.x, p->vector.y + y * MOVE_LEN * \
-	p->plane.y, PLAYER_W * sign(p->plane.x) * sign(x),\
-	PLAYER_W * sign(p->plane.y) * sign(y)));
+	p->plane.y, 0, 0));
 }
 
 void	attack_player(void)

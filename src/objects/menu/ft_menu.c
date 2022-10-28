@@ -19,61 +19,19 @@
 
 void	__load_animation_life(t_object *ob);
 
-void	mini_map2(t_buffer *b, t_vector p, t_vector m)
-{
-	(void) b;
-	(void) p;
-	(void) m;
-	t_vector	v;
-	t_vector	p_rel;
-	t_vector	direction;
-	t_player	*player;
-	//double		val;
-
-	player = scene()->player;
-	v = vector(p.x * GRID_MIN_SIZE, p.y * GRID_MIN_SIZE, 200, 150);
-	//b->rectangle_border(m, 0xe5e6e6, 3, 0xdf0707);
-	m.x += 3;
-	m.y += 3;
-	m.w -= 6;
-	m.h -= 6;
-	//map()->sprite->v = m;
-	p_rel.x = m.x + 91 - 2 * GRID_MIN_SIZE;
-	p_rel.y = m.y + 72 - GRID_MIN_SIZE;
-	direction.x = p_rel.x + p.w / 2 + player->dir.x * 10;
-	direction.y = p_rel.y + p.h / 2 + player->dir.y * 10;
-	b->image_sub(map()->sprite, v);
-	b->rectangle(vector(p_rel.x - p.w / 2, p_rel.y - p.h / 2, \
-	p.w, p.h), 0xd36a0d);
-	b->rectangle(vector(direction.x, direction.y, 2, 2),
-		0x00990099);
-}
-
-
 void	mini_map(t_buffer *b, t_player *p, t_vector m)
 {
 	t_vector	sub;
 
-	sub = vector(p->vector.x * GRID_MIN_SIZE, (p->vector.y + 2) * GRID_MIN_SIZE, MINIMAP_W, MINIMAP_H);
+	sub = vector(p->vector.x * GRID_MIN_SIZE - 6, \
+	(p->vector.y + 2) * GRID_MIN_SIZE + 4, MINIMAP_W, MINIMAP_H);
 	sub.x += (MINIMAP_W / 2);
 	sub.y += (MINIMAP_H / 2);
 	map()->sprite->v.x = m.x;
 	(map())->sprite->v.y = 0;
 	(b->image_sub)(map()->sprite, sub);
-	int width = 1;
-	b->rectangle(vector(
-		m.x + MINIMAP_W / 2,
-		MINIMAP_H / 2,
-		width,
-		width), 0xd36a0d);
-	/*-p_rel.x = m.x + p->vector.x;
-	p_rel.y = m.y + p->vector.y;
-	direction.x = p_rel.x + p->vector.w / 2 + p->dir.x * 10;
-	direction.y = p_rel.y + p->vector.h / 2 + p->dir.y * 10;
-	b->rectangle(vector(p_rel.x - p->vector.w / 2, p_rel.y - p->vector.h / 2, \
-	5, 5), 0xd36a0d);
-	b->rectangle(vector(direction.x, direction.y, 2, 2),
-		0x00990099);*/
+	b->triangle(vector(m.x + MINIMAP_W / 2, MINIMAP_H / 2, 1, 1), \
+	p->dir, p->plane, 0xd36a0d);
 }
 
 void	__render2(t_buffer *b)

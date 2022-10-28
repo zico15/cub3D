@@ -36,6 +36,7 @@ t_buffer	*__canva(void)
 	b.image_pos = __image_pos;
 	b.line = __draw_line;
 	b.image_resize = __image_resize;
+	b.triangle = __triangle;
 	return (&b);
 }
 

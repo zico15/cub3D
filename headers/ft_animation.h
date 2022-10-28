@@ -47,5 +47,4 @@ typedef struct s_fanimation
 t_sprite		*new_sprite(int w, int h);
 t_fanimation	animation(void);
 
-
 #endif
