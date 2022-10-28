@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 14:58:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:36:11 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,5 @@ void	__destroy_element_sprite(t_element	*e)
 	free_ob(e->key);
 	sprite = (t_sprite *) e->value;
 	destroy_sprite(sprite);
-	printf("destroy_element_sprite\n");
 	free_ob(e);
 }

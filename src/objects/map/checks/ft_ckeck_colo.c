@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:02:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/23 19:57:01 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 17:33:28 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static int	ckeck_numbes(char c, char **v)
 		is_n = string().isnumber(tmp);
 		if (is_n)
 			color[i] = string().atoi(tmp);
+		if (color[i] > 255 || color[i] < 0)
+			is_n = 0;
 		free_ob(tmp);
 	}
 	free_list((void **) v);
