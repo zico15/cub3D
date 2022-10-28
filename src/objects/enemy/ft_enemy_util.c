@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_enemy_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 20:22:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 20:31:55 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	attack_enemy(t_enemy *e)
 {
 	t_object	*tmp;
 
+	e = (void *) e;
 	tmp = this();
 	fthis()->object = (t_object *) scene()->player;
 	fthis()->object->damage(0.07);
