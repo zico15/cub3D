@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 20:32:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:02:53 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,17 @@ int	game_loop(t_engine *e)
 	time1 = now();
 	if (!engine()->is_game || !scene())
 		return (0);
-	__funct_mousse_engine(0, 0);
+	__funct_mousse_engine(e->is_mouse_press, NULL);
 	if (e->is_key_press)
 		funct_key_engine(e->keys, EVENT_PRESS);
+	scene_remove_objects_list();
 	scene()->update();
 	scene()->render(e->canva);
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
 	, 0, 0);
 	time2 = now();
 	e->delta = (time2 - time1) / 1000.0;
+	e->is_mouse_press = 0;
 	return (0);
 }
 
@@ -81,6 +83,7 @@ t_engine	*cread_engine(char *title)
 	e.images = new_hashmap();
 	array(hashmap(e.images)->list)->destroy_element = __destroy_element_sprite;
 	e.load_sprite = __load_sprite;
+	laod_alfabeto();
 	e.win = mlx_new_window(e.mlx, win()->w, win()->h, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_press, NULL);
 	mlx_hook(e.win, 3, (1L << 1), __funct_key_release, NULL);

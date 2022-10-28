@@ -47,7 +47,7 @@ void	__funct_mouse(int x, int y, int keycode)
 	int			delta;
 	t_player	*p;
 
-	if (x < 0 || x > win()->w)
+	if (x < 0 || x > win()->w || y < 0 || y > win()->h)
 		return ;
 	(void) y;
 	p = scene()->player;

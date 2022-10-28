@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 14:49:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:57:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_buffer		t_buffer;
 typedef struct s_camera		t_camera;
 typedef struct s_door		t_door;
 typedef struct s_enemy		t_enemy;
+typedef struct s_menu		t_menu;
 
 typedef enum e_type_ob
 {
@@ -34,7 +35,8 @@ typedef enum e_type_ob
 	WALL,
 	DOOR,
 	ENEMY,
-	COLLECTABLE
+	COLLECTABLE,
+	MENU
 }	t_type;
 
 struct s_buffer
@@ -194,8 +196,32 @@ struct s_door
 	int				is_open;
 	int				is_run;
 	int				count;
+	double			time;
+	double			delay;
 	int				count_max;
 	t_sprite		*sprite_animation;
+};
+
+struct s_menu
+{
+	t_type			type;
+	t_sprite		*sprite;
+	t_animation		*animation;
+	int				size_animation;
+	t_vector		vector;
+	double			life;
+	void			(*update)(void);
+	void			(*render)(t_buffer *b);
+	void			(*destroy)();
+	void			(*funct_key)(char *key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*collision)(t_object *collided);
+	int				(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
+	int				(*damage)(double	d);
+	t_sprite		*background;
+	t_vector		mouse;
+	int				mouse_event;
 };
 
 struct s_nav_node
@@ -215,6 +241,7 @@ struct s_nav_mesh
 	void		*open;
 	void		*close;
 	void		*path;
+	void		*memory;
 	t_nav_node	*begin;
 	t_vector	start;
 	t_vector	dest;
@@ -237,5 +264,6 @@ t_object	*new_camera(void);
 t_object	*new_door(void);
 t_object	*new_barrel(void);
 t_object	*new_kit(void);
+t_object	*new_menu_initial(void);
 
 #endif

@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.c                                             :+:      :+:    :+:   */
+/*   ft_menu_initial_util.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 20:44:33 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 21:08:49 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
+/*   Updated: 2022/10/27 18:00:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <ft_check.h>
+#include <ft_object_base.h>
 
-void	save(t_engine o)
+void	__mouse_menu(int x, int y, int event)
 {
-	printf("save: %li\n", sizeof(o));
-	int fd = open("test.dat",  O_RDWR | O_CREAT, 0666);
-	write(fd, &o, sizeof(o));
-}
+	t_menu		*m;	
 
-void	load(t_engine *o)
-{
-	printf("load: %li\n", sizeof(o));
-	int fd = open("test.dat",  O_RDWR);
-	read(fd, o, sizeof(*o));
+	m = (t_menu *) this();
+	m->mouse.x = x;
+	m->mouse.y = y;
+	m->mouse_event = event;
 }

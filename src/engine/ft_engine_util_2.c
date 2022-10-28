@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 12:42:05 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:49:01 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	init_list_objects_functions(void)
 
 	mlx_get_screen_size(engine()->mlx, &w, \
 	&h);
-	engine()->v.w = (w - 400);
-	engine()->v.h = (h - 100);
+	engine()->v.w = 1080;
+	engine()->v.h = 800;
 	engine()->width = engine()->v.w;
 	engine()->height = engine()->v.h;
 	engine()->is_game = 0;

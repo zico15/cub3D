@@ -6,7 +6,11 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/26 19:02:07 by nprimo           ###   ########.fr       */
+=======
+/*   Updated: 2022/10/26 15:51:34 by edos-san         ###   ########.fr       */
+>>>>>>> ezequiel
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +23,10 @@ static int	get_color(t_map *m, t_vector v)
 
 	x = (int) v.x;
 	y = (int) v.y;
+	if (x < 0 || x >= string().size(m->maps[y]))
+		return (0xe5e6e6);
+	if (y < 0 || y >= m->size_height)
+		return (0xe5e6e6);
 	if (m->maps[y][x] == '1')
 		return (0x949e9e);
 	if (0 && m->maps[y][x] == ' ')
@@ -60,8 +68,13 @@ void	cread_mini_map(t_map *m)
 		v.x = 0;
 		while (v.x < m->size_width)
 		{
+<<<<<<< HEAD
 			img.x = (v.x * GRID_MIN_SIZE) + MINIMAP_FRAME;
 			img.y = (v.y * GRID_MIN_SIZE) + MINIMAP_FRAME;
+=======
+			img.x = (v.x * GRID_MIN_SIZE);
+			img.y = (v.y * GRID_MIN_SIZE);
+>>>>>>> ezequiel
 			_printf_rectangle(m, img, v);
 			v.x++;
 		}

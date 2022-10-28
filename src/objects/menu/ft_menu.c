@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 18:56:30 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/27 15:34:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	mini_map2(t_buffer *b, t_vector p, t_vector m)
 void	mini_map(t_buffer *b, t_player *p, t_vector m)
 {
 	t_vector	sub;
-	/*t_vector	p_rel;
-	t_vector	direction;*/
 
 	sub = vector(p->vector.x * GRID_MIN_SIZE, (p->vector.y + 2) * GRID_MIN_SIZE, MINIMAP_W, MINIMAP_H);
 	sub.x += (MINIMAP_W / 2);
@@ -78,7 +76,7 @@ void	mini_map(t_buffer *b, t_player *p, t_vector m)
 		0x00990099);*/
 }
 
-static void	__render(t_buffer *b)
+void	__render2(t_buffer *b)
 {
 	t_sprite	*sprite;
 	int			life;
@@ -99,7 +97,7 @@ static void	__render(t_buffer *b)
 	}
 }
 
-static	void	__render_map_invalido(t_buffer *b)
+void	__render_map_invalido(t_buffer *b)
 {
 	static t_sprite	*sprite;
 

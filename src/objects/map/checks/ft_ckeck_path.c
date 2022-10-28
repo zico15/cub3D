@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 15:02:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 13:57:02 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:18:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ckeck_all(void *file)
 	int		count;
 
 	is = 1;
+	if (array(file)->size == 0)
+		return (0);
 	while (array(file)->size && is && !check_date())
 	{
 		line = array(file)->get(0);

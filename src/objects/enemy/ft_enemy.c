@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 14:00:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:07:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ static void	__destroy_ob_enemy(void)
 static	void	__render_tester(t_buffer *b)
 {
 	t_player	*p;
-	void		*path;
-	t_element	*e;
-	t_vector	*pos;
 
 	p = scene()->player;
 	if (map()->is_print)
@@ -39,7 +36,7 @@ static	void	__render_tester(t_buffer *b)
 	if ((!agent()->path || array(agent()->path)->size == 0) && \
 	check_collision_line(this()->vector, p->vector))
 		(agent())->set_destination(this()->vector, p->vector);
-	path = agent()->path;
+	/*path = agent()->path;
 	if (path && array(path)->size > 0)
 	{
 		e = array(path)->begin;
@@ -49,7 +46,7 @@ static	void	__render_tester(t_buffer *b)
 			b->rectangle(vector_grid_size(*pos, 1, 1), 0xB01455);
 			e = e->next;
 		}
-	}
+	}*/
 	animation().update_all(this());
 	if (this()->animation[1].is_run && this()->animation[1].index)
 		attack_enemy();

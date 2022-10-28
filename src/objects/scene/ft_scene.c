@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 22:07:32 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:05:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,21 +75,7 @@ static t_object	*__add(void *o)
 
 static void	__remove_object(t_object *ob)
 {
-	if (!ob)
-		return ;
-	if (ob->funct_key)
-		array(scene()->key_list)->remove_value(ob);
-	if (ob->funct_mouse)
-		array(scene()->mouse_list)->remove_value(ob);
-	if (ob->update)
-		array(scene()->updade_list)->remove_value(ob);
-	if (ob->render)
-		array(scene()->render_list)->remove_value(ob);
-	if (ob->type != PLAYER && ob->type != WALL && ob->type != DOOR)
-		array(scene()->free_objects)->remove_value(ob);
-	if (map()->maps_ob[(int) ob->vector.y][(int) ob->vector.x] == ob)
-		map()->maps_ob[(int) ob->vector.y][(int) ob->vector.x] = NULL;
-	printf("remove_objectr\n");
+	array(scene()->remove_object_list)->add(ob);
 }
 
 t_scene	*new_scene(void)

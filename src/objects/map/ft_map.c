@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 22:16:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/27 15:51:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static void	__load_map(char *path)
 		free_ob(temp);
 		free_list((void **) map->maps);
 	}
+	engine()->maps[++engine()->size_maps] = map->is_map_ok;
 	array(map->file)->destroy();
 	printf("load_maps: %i\n", map->is_map_ok);
 }

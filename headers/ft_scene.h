@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 19:28:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 18:05:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ struct s_scene
 	void			*colliders_list;
 	void			*key_list;
 	void			*mouse_list;
+	void			*remove_object_list;
 	t_object		*(*add)(void *o);
 	int				is_print;
 	t_map			*map;
@@ -61,5 +62,6 @@ struct s_scene
 };
 
 t_scene	*new_scene(void);
+void	scene_remove_objects_list(void);
 
 #endif

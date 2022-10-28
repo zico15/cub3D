@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:37:32 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/26 12:33:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:46:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,8 @@ static void	draw_stripe(
 	{
 		t.pos.x = (int)(256 * (stripe - (-obj->vector.w / 2 + screen_x))
 				* obj->sprite->v.w / obj->vector.w) / 256;
-		t.pos.y = (int)(
-				((int)(y * 256 - win()->h * 128 + obj->vector.h * 128)
-					* obj->sprite->v.h) / obj->vector.h) / 256;
+		t.pos.y = (int)(((int)(y * 256 - win()->h * 128 + \
+		(obj->vector.h) * 128) * obj->sprite->v.h) / obj->vector.h) / 256;
 		color = __get_color_sprite(obj->sprite, t.pos.x, t.pos.y);
 		((canva())->pixel(stripe, y, color));
 	}
