@@ -4,6 +4,7 @@ cub3D
 
 # Prerequisites
 *.d
+.nfs*
 
 # Object files
 *.o
