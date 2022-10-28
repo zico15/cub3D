@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 17:57:57 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 20:18:25 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ struct s_enemy
 	t_sprite		*(*get_sprite)(t_ray ray);
 	int				(*damage)(double	d);
 	t_nav_mesh		*agent;
+	double			time;
 };
 
 struct s_camera

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/25 14:09:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 20:05:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	__damage_player(double d);
 
 static void	__render(t_buffer *b)
 {
-	if (map()->is_print)
-		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0xffff00);
+	(void) b;
 	animation().update_all(this());
 }
 

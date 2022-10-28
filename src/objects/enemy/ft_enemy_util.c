@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 19:24:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 20:22:52 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,12 @@ int	__damage_enemy(double d)
 	return (1);
 }
 
-void	attack_enemy(void)
+void	attack_enemy(t_enemy *e)
 {
 	t_object	*tmp;
 
 	tmp = this();
 	fthis()->object = (t_object *) scene()->player;
+	fthis()->object->damage(0.07);
 	fthis()->object = tmp;
 }
