@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:13:41 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 17:01:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 19:27:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,8 @@ static int	__set_position(t_vector v)
 	ob = map()->maps_ob[(int) v.y][(int) v.x];
 	if (ob && ob->type != DOOR)
 		return (0);
-	if (ob)
-	{
-		map()->maps_ob[(int) temp.y][(int) temp.x] = NULL;
-		map()->maps_ob[(int) v.y][(int) v.x] = this();
-	}
+	map()->maps_ob[(int) temp.y][(int) temp.x] = NULL;
+	map()->maps_ob[(int) v.y][(int) v.x] = this();
 	this()->vector.x = v.x;
 	this()->vector.y = v.y;
 	return (1);

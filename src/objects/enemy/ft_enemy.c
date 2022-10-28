@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 17:30:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 19:28:32 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <ft_object_base.h>
 #include <ft_nav_mesh.h>
 
-void		__collision_enemy(t_object *collided);
 void		laod_animation_enemy(t_object	*ob, int i);
 int			__damage_enemy(double d);
 void		attack_enemy(void);
@@ -81,7 +80,7 @@ t_object	*new_enemy(void)
 	ob->render = __render_tester;
 	ob->agent = new_nav_mesh();
 	ob->destroy = __destroy_ob_enemy;
-	ob->collision = __collision_enemy;
+	ob->collision = NULL;
 	laod_animation_enemy((t_object *) ob, 2);
 	agent()->ob = (t_object *) ob;
 	(agent())->velocity = 90 + random_number(0, 80);

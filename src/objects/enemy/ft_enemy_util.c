@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 17:31:36 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 19:24:14 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,6 @@ t_nav_mesh	*agent(void)
 	e = (t_enemy *) this();
 	fthis()->agent = e->agent;
 	return (fthis()->agent);
-}
-
-void	__collision_enemy(t_object *collided)
-{
-	static t_player	*p;
-
-	if (collided->type == PLAYER)
-	{
-		p = (t_player *) collided;
-		if (p->life)
-			p->life -= 1;
-	}
 }
 
 void	laod_animation_enemy(t_object	*ob, int i)
