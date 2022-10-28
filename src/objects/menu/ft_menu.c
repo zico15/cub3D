@@ -114,7 +114,7 @@ t_object	*new_menu(void)
 	ob = new_object_instance(sizeof(t_object));
 	ob->render = __render_map_invalido;
 	if (fthis()->player)
-		ob->render = __render;
+		ob->render = __render2;
 	ob->vector.w = MINIMAP_W;
 	ob->vector.h = MINIMAP_H;
 	ob->vector.x = engine()->width - ob->vector.w;

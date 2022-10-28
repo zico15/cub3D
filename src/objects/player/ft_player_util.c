@@ -66,7 +66,7 @@ int	__set_position(t_vector v)
 	t_object	*ob;
 	t_object	*t;
 
-	ob = map()->maps_ob[(int) v.y][(int) v.x];
+	ob = map()->maps_ob[(int) (v.y + v.h)][(int) (v.x + v.w)];
 	if (ob && (ob->type == DOOR && ob->collision))
 		return (0);
 	if (ob)

@@ -6,11 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2022/10/26 19:02:07 by nprimo           ###   ########.fr       */
-=======
-/*   Updated: 2022/10/26 15:51:34 by edos-san         ###   ########.fr       */
->>>>>>> ezequiel
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +64,8 @@ void	cread_mini_map(t_map *m)
 		v.x = 0;
 		while (v.x < m->size_width)
 		{
-<<<<<<< HEAD
 			img.x = (v.x * GRID_MIN_SIZE) + MINIMAP_FRAME;
 			img.y = (v.y * GRID_MIN_SIZE) + MINIMAP_FRAME;
-=======
-			img.x = (v.x * GRID_MIN_SIZE);
-			img.y = (v.y * GRID_MIN_SIZE);
->>>>>>> ezequiel
 			_printf_rectangle(m, img, v);
 			v.x++;
 		}
