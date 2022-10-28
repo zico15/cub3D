@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 16:40:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 19:53:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	__player_soud(char *file)
 
 	if (!file)
 		return ;
-	cmd = string().join("cvlc ", file);
+	cmd = string().join("paplay ", file);
 	if (!fork())
 	{
 		system(cmd);
