@@ -6,7 +6,7 @@
 /*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 19:02:07 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/28 19:46:32 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ void	cread_mini_map(t_map *m)
 	v = m->vector;
 	v.w = m->size_width * GRID_MIN_SIZE;
 	v.h = m->size_height * GRID_MIN_SIZE;
-	m->sprite = new_sprite((int) v.w + MINIMAP_FRAME * 2, (int) v.h + MINIMAP_FRAME * 2);
+	m->sprite = new_sprite((int) v.w + MINIMAP_FRAME * 2, \
+	(int) v.h + MINIMAP_FRAME * 2);
 	(image()).rectangle(m->sprite->img, m->sprite->v, 0xe5e6e6);
-	m->vector_mini_map = vector(0, 0, v.w + MINIMAP_FRAME * 2, v.h + MINIMAP_FRAME * 2);
+	m->vector_mini_map = vector(0, 0, v.w + MINIMAP_FRAME * 2, \
+	v.h + MINIMAP_FRAME * 2);
 	img.w = GRID_MIN_SIZE;
 	img.h = GRID_MIN_SIZE;
 	while (v.y < m->size_height)
