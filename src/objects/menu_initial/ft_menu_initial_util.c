@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 17:04:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 19:56:51 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ void	__effect_sound(int i)
 	{
 		select_err = 0;
 		index = 0;
-		engine()->player_sound("sound/pok.mp3");
+		engine()->player_sound("sound/pok.ogg");
 		engine()->set_scene(i);
 	}
 	else
 	{
 		if (select_err > 2)
 		{	
-			engine()->player_sound("sound/per.mp3");
+			engine()->player_sound("sound/per.ogg");
 			select_err = 0;
 		}
 		else
-			engine()->player_sound("sound/pe.mp3");
+			engine()->player_sound("sound/pe.ogg");
 	}
 }
