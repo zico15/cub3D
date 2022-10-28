@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/28 19:28:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 19:45:00 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	__funct_mouse(int x, int y, int keycode)
 	(void) y;
 	p = scene()->player;
 	delta = win()->w / 2.0 - x;
-	if (abs(delta) > (win()->w / 5))
-		rotate(p, (double)(-delta * ROTATION_LEN / 300.0));
+	if (abs(delta) > (win()->w / 10.0))
+		rotate(p, (double)(-delta * ROTATION_LEN / 100.0));
 	if (keycode == 1 && !p->animation[0].is_run)
 	{
 		p->animation[0].is_run = 1;
