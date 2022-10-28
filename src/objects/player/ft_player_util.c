@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/25 20:24:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 19:28:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	__set_position(t_vector v)
 		if (ob->collision)
 			ob->collision(t);
 		fthis()->object = t;
-		if (ob->type != COLLECTABLE && ob->type != DOOR)
+		if (ob->type != COLLECTABLE && ob->type != DOOR && ob->collision)
 			return (0);
 	}
 	this()->vector.x = v.x;
