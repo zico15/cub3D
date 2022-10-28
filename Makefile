@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
+#    By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/10/28 15:46:46 by edos-san         ###   ########.fr        #
+#    Updated: 2022/10/28 20:21:51 by nprimo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,11 @@ MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 # @ nome da regra
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		@$(CC) $(^) $(MLX_FLAGS) -o $(@)
+$(NAME): $(OBJS) 
+	@$(MAKE) -s -C mlx_linux
+	@$(CC) $(^) $(MLX_FLAGS) -o $(@)
 
-%.o: %.c
+%.o: %.c $(MLX_LIB)
 	@$(CC) $(INCLUDES) $(MLX_INCLUDE) -c $(^) -o $(@)
 
 bonus: all
