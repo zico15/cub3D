@@ -6,7 +6,7 @@
 #    By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/10/28 20:21:51 by nprimo           ###   ########.fr        #
+#    Updated: 2022/10/28 20:34:42 by nprimo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ fclean: clean
 re: fclean all
 
 norm :
-	@norminette -R CheckForbiddenSourceHeader $(SRCS)
+	@norminette -R CheckForbiddenSourceHeader $(SRCS) headers/
 
 m: fclean
 
