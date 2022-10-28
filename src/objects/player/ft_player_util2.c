@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:56:49 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/26 19:11:13 by nprimo           ###   ########.fr       */
+/*   Updated: 2022/10/28 20:07:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ void	attack_player(void)
 	t_object	*tmp;
 
 	p = (t_player *) this();
+	engine()->player_sound("sound/ar-epic-shot-1.ogg");
 	if (!p->mira || !p->mira->damage)
 		return ;
 	tmp = this();
 	fthis()->object = p->mira;
-	printf("attack_player: %i\n", p->mira->damage(1.0));
+	p->mira->damage(1.0);
 	fthis()->object = tmp;
 }
 

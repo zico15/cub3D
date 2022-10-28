@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 19:28:32 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 20:19:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void		laod_animation_enemy(t_object	*ob, int i);
 int			__damage_enemy(double d);
-void		attack_enemy(void);
+void		attack_enemy(t_enemy *e);
 
 static void	__destroy_ob_enemy(void)
 {
@@ -30,7 +30,7 @@ static	void	__render_tester(t_buffer *b)
 	(void) b;
 	animation().update_all(this());
 	if (this()->animation[1].is_run && this()->animation[1].index)
-		attack_enemy();
+		attack_enemy((t_enemy *) this());
 	else if (this()->animation[2].is_run && this()->animation[2].index == 3)
 		this()->animation[2].is_run = 0;
 }
