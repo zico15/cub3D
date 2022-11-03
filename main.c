@@ -17,7 +17,10 @@ int	main(int argc, char **argv)
 	t_engine	*e;
 
 	if (argc < 2 || argc >= 50)
+	{
 		printf("ERROR ARG!\n");
+		return (1);
+	}
 	e = cread_engine("cub3D");
 	e->load_maps(argv, argc);
 	mlx_hook(e->win, 17, 0, e->close, "exit");

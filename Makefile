@@ -6,11 +6,11 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/10/28 15:46:46 by edos-san         ###   ########.fr        #
+#    Updated: 2022/11/02 21:45:55 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= 	gcc -Wall -Wextra -Werror -fsanitize=address -g
+CC			= 	gcc-10 -Wall -Wextra -Werror  -g # -fsanitize=address
 RM			= 	/bin/rm -f
 NAME		= 	cub3D
 INCLUDES	= 	-Iheaders/
@@ -35,10 +35,11 @@ MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 # @ nome da regra
 all: $(NAME)
 
-$(NAME): $(OBJS)
-		@$(CC) $(^) $(MLX_FLAGS) -o $(@)
+$(NAME): $(OBJS) 
+	@$(MAKE) -s -C mlx_linux
+	@$(CC) $(^) $(MLX_FLAGS) -o $(@)
 
-%.o: %.c
+%.o: %.c $(MLX_LIB)
 	@$(CC) $(INCLUDES) $(MLX_INCLUDE) -c $(^) -o $(@)
 
 bonus: all
@@ -54,7 +55,7 @@ fclean: clean
 re: fclean all
 
 norm :
-	@norminette -R CheckForbiddenSourceHeader $(SRCS)
+	@norminette -R CheckForbiddenSourceHeader $(SRCS) headers/
 
 m: fclean
 

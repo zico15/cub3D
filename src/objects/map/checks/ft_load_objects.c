@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_load_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 15:51:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/10/28 21:08:48 by nprimo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ t_object	*init_player(t_player	*p, int x, int y, char c)
 	{
 		p->dir.x = 1;
 		p->plane.y = +0.66;
+	}
+	else if (c == 'W')
+	{
+		p->dir.x = -1;
+		p->plane.y = -0.66;
 	}
 	else if (c == 'S')
 	{
