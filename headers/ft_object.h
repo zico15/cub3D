@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 14:42:55 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:42:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ struct s_buffer
 	void	(*image_resize)(t_sprite *sprite, double width, double height);
 	void	(*triangle)(t_vector pos, t_vector dir, \
 	t_vector perp_dir, int color);
+	void	(*image_resize_buffer)(t_sprite *buffer, t_sprite *sprite);
 };
 
 struct s_object
@@ -95,6 +96,9 @@ struct s_portal
 	int				(*set_position)(t_vector v);
 	t_sprite		*(*get_sprite)(t_ray ray);
 	int				(*damage)(double	d);
+	int				action;
+	double			time_action;
+	t_sprite		*sprits_wall[4];
 };
 
 struct s_map

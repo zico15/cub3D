@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 21:57:49 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/03/08 15:01:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:40:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	render_ray(t_ray ray, int x, t_object	*ob)
 		ray.obj = NULL;
 		ray = update_ray(ray);
 		ray.obj = map()->maps_ob[ray.map_cell.y][ray.map_cell.x];
-		if (x == (win()->w / 2))
+		if (!scene()->player->mira && x == (win()->w / 2))
 			scene()->player->mira = ray.obj;
 		if (ray.obj && (ray.obj->type == WALL || ray.obj->type == DOOR))
 		{

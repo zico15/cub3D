@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 16:20:35 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:45:06 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ struct s_engine
 	t_new_obj		new_obs[256];
 	void			*images;
 	t_sprite		*alfabeto[256];
+	t_sprite		*(*new_sprite)(int w, int h);
 };
 
 t_vector	*win(void);

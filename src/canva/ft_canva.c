@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/25 20:29:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:33:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_buffer	*__canva(void)
 	b.line = __draw_line;
 	b.image_resize = __image_resize;
 	b.triangle = __triangle;
+	b.image_resize_buffer = __image_resize_buffer;
 	return (&b);
 }
 

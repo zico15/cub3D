@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 13:26:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:19:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	init_list_objects_functions(void)
 	engine()->width = engine()->v.w;
 	engine()->height = engine()->v.h;
 	engine()->is_game = 0;
-	engine()->new_obs['1'] = new_wall;
+	engine()->new_obs['1'] = new_portal;
 	engine()->new_obs['I'] = new_enemy;
 	engine()->new_obs['K'] = new_kit;
 	engine()->new_obs['D'] = new_door;
@@ -55,4 +55,18 @@ void	init_list_objects_functions(void)
 	engine()->new_obs['E'] = new_player;
 	engine()->new_obs['T'] = new_barrel;
 	engine()->new_obs['P'] = new_portal;
+}
+
+t_sprite	*__new_sprite(int w, int h)
+{
+	t_sprite	*s;
+
+	s = malloc_ob(sizeof(*s));
+	s->img = image().new(w, h);
+	s->v.w = w;
+	s->v.h = h;
+	s->data.img = s->img;
+	s->data.addr = mlx_get_data_addr(s->data.img, &s->data.bits_per_pixel, \
+	&s->data.line_length, &s->data.endian);
+	return (s);
 }

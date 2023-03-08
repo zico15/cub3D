@@ -6,16 +6,17 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 18:02:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:45:37 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
 #include <ft_engine_util.h>
 
-void	__destroy_element_sprite(t_element	*e);
-void	init_list_objects_functions(void);
-void	__destroy_element_scene(t_element	*e);
+void		__destroy_element_sprite(t_element	*e);
+void		init_list_objects_functions(void);
+void		__destroy_element_scene(t_element	*e);
+t_sprite	*__new_sprite(int w, int h);
 
 static int	__close(char *msg)
 {
@@ -79,6 +80,7 @@ t_engine	*cread_engine(char *title)
 	e.close = __close;
 	e.set_scene = __set_scene;
 	e.load_img = __load_img;
+	e.new_sprite = __new_sprite;
 	e.canva = __canva();
 	e.images = new_hashmap();
 	array(hashmap(e.images)->list)->destroy_element = __destroy_element_sprite;
