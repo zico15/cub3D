@@ -47,7 +47,7 @@ typedef struct s_array
 	void			(*remove_all)(void);
 }	t_array;
 
-typedef struct s_hasmap
+typedef struct s_hashmap
 {
 	t_array			*list;
 	int				(*size)(void);

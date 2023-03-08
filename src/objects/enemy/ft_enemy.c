@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/11/02 23:35:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2022/12/26 20:19:30 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,6 @@ static void	__update(void)
 t_object	*new_enemy(void)
 {
 	t_enemy			*ob;
-
-
-
-
 
 	ob = new_object_instance(sizeof(t_enemy));
 	ob->type = ENEMY;

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:37:26 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/27 13:34:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:14:33 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,7 @@ void	__pathfinding(t_nav_mesh	*agent, t_nav_node	*node)
 		create_path(agent, node);
 	else if (array(agent->open)->size > 0)
 		__pathfinding(agent, NULL);
+
+
+		
 }

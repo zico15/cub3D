@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 17:36:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:32:33 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	*__load_img(t_vector *v, char *file_name)
 	return (img);
 }
 
+
+
 t_sprite	*__load_sprite(char *file_name)
 {
 	t_element	*e;
@@ -90,6 +92,7 @@ t_sprite	*__load_sprite(char *file_name)
 	s->data.addr = mlx_get_data_addr(s->data.img, &s->data.bits_per_pixel, \
 	&s->data.line_length, &s->data.endian);
 	(hashmap(engine()->images))->put(string().copy(file_name), s);
+
 	return (s);
 }
 

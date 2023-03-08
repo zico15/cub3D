@@ -1,14 +1,16 @@
-NO ./path_to_the_north_texture_no
-SO ./path_to_the_south_texture_so
-WE ./path_to_the_west_texture_we
-EA ./path_to_the_east_texture_ea
+NO imgs/wall_s.xpm  
+SO imgs/wall_w.xpm
+WE imgs/stone2.xpm
+EA imgs/wall_s.xpm
 
-F 220,100,0
-C 225,30,0
+F 234,230,245
+C 100,30,0
 
-00011100000
-00010000000
-00011111000
-00000000000
-0000000W000
-00000000000
+1111111111111
+1000111000001
+1000100000001
+1000111110001
+1000000000001
+10000000W0001
+1000000000001
+1111111111111

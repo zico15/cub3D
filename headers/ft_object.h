@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 20:18:25 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:42:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_camera		t_camera;
 typedef struct s_door		t_door;
 typedef struct s_enemy		t_enemy;
 typedef struct s_menu		t_menu;
+typedef struct s_portal		t_portal;
 
 typedef enum e_type_ob
 {
@@ -59,6 +60,25 @@ struct s_buffer
 };
 
 struct s_object
+{
+	t_type			type;
+	t_sprite		*sprite;
+	t_animation		*animation;
+	int				size_animation;
+	t_vector		vector;
+	double			life;
+	void			(*update)(void);
+	void			(*render)(t_buffer *b);
+	void			(*destroy)();
+	void			(*funct_key)(char *key, int type_event);
+	void			(*funct_mouse)(int x, int y, int type_event);
+	void			(*collision)(t_object *collided);
+	int				(*set_position)(t_vector v);
+	t_sprite		*(*get_sprite)(t_ray ray);
+	int				(*damage)(double	d);
+};
+
+struct s_portal
 {
 	t_type			type;
 	t_sprite		*sprite;
@@ -267,6 +287,7 @@ t_object	*new_camera(void);
 t_object	*new_door(void);
 t_object	*new_barrel(void);
 t_object	*new_kit(void);
+t_object	*new_portal(void);
 t_object	*new_menu_initial(void);
 
 #endif

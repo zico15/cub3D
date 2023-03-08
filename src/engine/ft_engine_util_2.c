@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine_util_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 20:28:59 by nprimo           ###   ########.fr       */
+/*   Updated: 2023/03/08 13:26:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	init_list_objects_functions(void)
 	engine()->new_obs['W'] = new_player;
 	engine()->new_obs['E'] = new_player;
 	engine()->new_obs['T'] = new_barrel;
+	engine()->new_obs['P'] = new_portal;
 }

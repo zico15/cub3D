@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/11/02 23:37:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:52:58 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	__render(t_buffer *b)
 	(void) b;
 	if (!scene()->player)
 		return ;
-	render_view(scene()->player);
 	scene()->player->mira = NULL;
+	render_view(scene()->player);
 	render_object_list();
 }
 

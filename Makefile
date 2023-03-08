@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC			= 	gcc-10 -Wall -Wextra -Werror  -g # -fsanitize=address
+CC			= 	gcc -Wall -Wextra -Werror  -g # -fsanitize=address
 RM			= 	/bin/rm -f
 NAME		= 	cub3D
 INCLUDES	= 	-Iheaders/
@@ -63,7 +63,7 @@ v:
 	@make re && make clean && clear && valgrind ./cub3D map/map1.cub
 
 vv:
-	@make re && make clean && clear && valgrind --leak-check=full --log-file="logfile.out" -v ./cub3D map/map14.cub
+	@make re && make clean && clear && valgrind  -v ./cub3D map/*
 r:
 	@make re && make clean && clear && ./cub3D map/map3.cub map/map1.cub map/map2.cub teste dfsdsdfsdfs/sasd
 
