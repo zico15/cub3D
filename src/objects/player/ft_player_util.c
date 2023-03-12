@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/03/11 18:41:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:23:23 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,16 @@ void	__funct_key(char *key, int event)
 {
 	t_player	*p;
 
+
 	p = (t_player *) this();
+	if (key[65505] && event == EVENT_CLICK)
+	{
+		if (p->mouse_move)
+			mlx_mouse_show(engine()->mlx, engine()->win);
+		else
+			mlx_mouse_hide(engine()->mlx, engine()->win);
+		p->mouse_move = !p->mouse_move;
+	}
 	if (key[KEY_W])
 		move_dir(p, 1, 1);
 	if (key[KEY_S])
@@ -47,12 +56,17 @@ void	__funct_mouse(int x, int y, int keycode)
 	int			delta;
 	t_player	*p;
 
+	p = scene()->player;
 	if (x < 0 || x > win()->w || y < 0 || y > win()->h)
 		return ;
-	p = scene()->player;
-	delta = win()->w / 2.0 - x;
-	if (abs(delta) > (win()->w / 10.0))
-		rotate(p, (double)(-delta * ROTATION_LEN / 100.0));
+	delta = x - win()->w / 2;
+	if (delta != x && p->mouse_move)
+	{
+		rotate(p, (double)(delta * 0.001));
+		mlx_mouse_move(engine()->mlx, engine()->win, win()->w / 2, win()->h / 2);
+	}
+
+	//tiro-->>>
 	if (keycode == 1 && !p->animation[0].is_run)
 	{
 		p->animation[0].is_run = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 16:45:06 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:25:05 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,21 @@ typedef struct s_engine	t_engine;
 typedef struct s_buffer	t_buffer;
 typedef t_object		*(*t_new_obj)(void);
 
+typedef struct s_world
+{
+	struct timeval	timer;
+	int				fps;
+	int				frames_rate;
+	int				fps_counter;
+	double			world_time;
+	double			last_time;
+	double			last_door;
+	double			delta_time;
+}	t_world;
+
 struct s_engine
 {
+	t_world			world;
 	void			*mlx;
 	void			*win;
 	void			*scenes;

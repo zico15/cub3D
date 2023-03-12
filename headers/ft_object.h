@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/12 14:27:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 15:44:50 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ struct s_player
 	t_vector		dir;
 	t_vector		plane;
 	t_object		*mira;
+	int				mouse_move;
 };
 
 struct s_enemy

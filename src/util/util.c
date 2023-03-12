@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 22:01:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/24 19:35:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:42:44 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ double	now(void)
 	else
 		now_msec = 0;
 	return (now_msec);
+}
+
+struct timeval	get_time(void)
+{
+	struct timeval	now;
+
+	gettimeofday(&now, NULL);
+	return (now);
 }
 
 int	random_number(int min_num, int max_num)

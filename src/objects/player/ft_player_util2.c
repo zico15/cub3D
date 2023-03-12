@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:56:49 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/28 20:07:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:35:20 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	rotate(t_player *p, double angle)
 
 void	move_dir(t_player *p, double x, double y)
 {
-	p->set_position(vector((p->vector.x + x * MOVE_LEN * \
+	p->set_position(vector((p->vector.x + x * (0.00008 * engine()->world.delta_time) * \
 	p->dir.x), p->vector.y, 0, 0));
-	p->set_position(vector(p->vector.x, (p->vector.y + y * MOVE_LEN * \
+	p->set_position(vector(p->vector.x, (p->vector.y + y * (0.00008 * engine()->world.delta_time) * \
 	p->dir.y), 0, 0));
 }
 
 void	move_perp_dir(t_player *p, double x, double y)
 {
-	p->set_position(vector(p->vector.x + x * MOVE_LEN * \
+	p->set_position(vector(p->vector.x + x * (0.00008 * engine()->world.delta_time) * \
 	p->plane.x, p->vector.y, 0, 0));
-	p->set_position(vector(p->vector.x, p->vector.y + y * MOVE_LEN * \
+	p->set_position(vector(p->vector.x, p->vector.y + y * (0.00008 * engine()->world.delta_time) * \
 	p->plane.y, 0, 0));
 }
 

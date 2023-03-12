@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:38:14 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 14:42:07 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:41:59 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int			funct_key_engine(char *key, int type_event);
 
 //			time
 double		now(void);
+struct timeval	get_time(void);
 t_ray		get_ray_return(t_vector p, double rel_angle, int pos);
 int			random_number(int min_num, int max_num);
 

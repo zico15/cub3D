@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 16:45:37 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:25:16 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void		__destroy_element_sprite(t_element	*e);
 void		init_list_objects_functions(void);
 void		__destroy_element_scene(t_element	*e);
+int			__funct_mousse_move(int x, int y, void *vars);
 t_sprite	*__new_sprite(int w, int h);
 
 static int	__close(char *msg)
@@ -43,20 +44,52 @@ static t_scene	*__add_scene(t_scene *scene)
 	return (scene);
 }
 
+void	update_gametime(t_engine *eng)
+{
+	struct timeval	current_time;
+
+	gettimeofday(&current_time, NULL);
+	eng->world.world_time = 1000000 * current_time.tv_sec + \
+current_time.tv_usec;
+	eng->world.delta_time = (eng->world.world_time - eng->world.last_time) / 1000.0;
+}
+
+void	show_fps(t_engine *eng)
+{
+	struct timeval	current_time;
+
+	gettimeofday(&current_time, NULL);
+	if (current_time.tv_sec == eng->world.timer.tv_sec)
+		eng->world.fps_counter++;
+	else if (printf("world.fps_counter: (%d)\n", eng->world.fps_counter))
+	{
+		printf("\e[1;1H\e[2J");
+		eng->world.fps = eng->world.fps_counter;
+		eng->world.fps_counter = 0;
+		gettimeofday(&eng->world.timer, NULL);
+	}
+}
+
 int	game_loop(t_engine *e)
 {
 	double			time1;
 	double			time2;
 
 	time1 = now();
+		show_fps(e);
 	if (!engine()->is_game || !scene())
 		return (0);
-	__funct_mousse_engine(e->is_mouse_press, NULL);
+	//__funct_mousse_engine(e->is_mouse_press, NULL);
 	if (e->is_key_press)
 		funct_key_engine(e->keys, EVENT_PRESS);
 	scene_remove_objects_list();
 	scene()->update();
-	scene()->render(e->canva);
+	update_gametime(e);
+	if (e->world.world_time - e->world.last_time > 50000)
+	{
+		e->world.last_time = e->world.world_time;
+		scene()->render(e->canva);
+	}
 	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
 	, 0, 0);
 	time2 = now();
@@ -90,6 +123,7 @@ t_engine	*cread_engine(char *title)
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_press, NULL);
 	mlx_hook(e.win, 3, (1L << 1), __funct_key_release, NULL);
 	mlx_mouse_hook(e.win, __funct_mousse_engine, &e);
+	mlx_hook(e.win, 6, (1L << 6), __funct_mousse_move, NULL);
 	mlx_loop_hook(e.mlx, game_loop, &e);
 	return (&e);
 }

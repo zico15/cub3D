@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/01 16:43:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:42:26 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	t_engine	*e;
+	t_engine		*e;
+
 
 	if (argc < 2 || argc >= 50)
 	{
@@ -22,6 +23,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	e = cread_engine("cub3D");
+	e->world.timer = get_time();
 	e->load_maps(argv, argc);
 	mlx_hook(e->win, 17, 0, e->close, "exit");
 	return (mlx_loop(e->mlx));

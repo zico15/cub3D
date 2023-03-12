@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_event_controller.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 21:08:19 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/10/27 18:02:35 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:10:11 by ede-alme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ int	funct_key_engine(char *key, int event)
 	}
 	if (key[53])
 		engine()->close("exit");
+	return (0);
+}
+
+int	__funct_mousse_move(int x, int y, void *vars)
+{
+	(void) vars;
+	engine()->is_mouse_press = 0;
+	if (scene())
+		(scene()->funct_mouse)(x, y, 0);
 	return (0);
 }
 
