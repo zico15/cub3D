@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/01/13 22:36:32 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:25:41 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	__damage_player(double d);
 static void	__render(t_buffer *b)
 {
 	(void) b;
-	animation().update_all(this());
+	if (scene()->camera->view == VIEW_3D)
+		animation().update_all(this());
 }
 
 t_object	*new_player(void)

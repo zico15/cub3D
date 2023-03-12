@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2022/12/26 19:08:40 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:29:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	__render2(t_buffer *b)
 	t_sprite	*sprite;
 	int			life;
 
-	if (scene()->player)
+	if (scene()->player && scene()->camera->view == VIEW_3D)
 	{
 		if (scene()->player->sprite)
 			b->image_pos(scene()->player->sprite, (win()->w / 2) - \

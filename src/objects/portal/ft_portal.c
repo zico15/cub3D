@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 17:51:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:45:34 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,67 @@ void	__destroy_portal(t_portal *portal);
 
 static void	__collision(t_object *collided)
 {
-	(void) collided;
+	t_portal	*portal;
+
+	portal = (t_portal *) this();
+	if (collided && collided->type == PLAYER)
+	{
+		if (!portal->next)
+		{
+			__destroy_portal(portal);
+			printf("not end\n");
+			return ;
+		}
+		fthis()->object = collided;
+		collided->set_position(portal->next_position);
+		printf("=======================\npx> %f py: %f", portal->vector.x, \
+		portal->vector.y);
+		printf("	x> %f y: %f\n", portal->next->next_position.x, \
+		portal->next->next_position.y);
+		printf("x> %f y: %f", portal->next_position.x, \
+		portal->next_position.y);
+		printf("	ppx> %f ppxy: %f\n", scene()->player->vector.x, \
+		scene()->player->vector.y);
+		fthis()->object = (t_object *) portal;
+	}
+}
+
+static t_sprite	*__animation__portal(t_portal	*portal)
+{
+	t_sprite	*wall;
+
+	if (now() > portal->animation->time)
+	{
+		if (++portal->animation->index >= portal->animation->size)
+			portal->animation->index = 0;
+		wall = map()->sprits_wall[portal->face];
+		if (!portal->sprits_wall[portal->face])
+			portal->sprits_wall[portal->face] = \
+			engine()->new_sprite(wall->v.w, wall->v.h);
+		portal->sprite = portal->sprits_wall[portal->face];
+		(canva())->image_resize_buffer(portal->sprite, wall);
+		(canva())->image_resize_buffer(portal->sprite, \
+		portal->animation->list[portal->animation->index]);
+		portal->animation->time = now() + 50;
+	}
+	return (portal->sprits_wall[portal->face]);
 }
 
 static t_sprite	*get_sprite(t_ray ray)
 {
 	t_portal	*portal;
-	t_sprite	*sprite;
+	t_sprite	*wall;
 
-	(void) ray;
 	portal = (t_portal *) this();
 	if (portal->sprits_wall[ray.face_dir])
-		return (portal->sprits_wall[ray.face_dir]);
-	sprite = map()->sprits_wall[ray.face_dir];
+		return (__animation__portal(portal));
+	wall = map()->sprits_wall[ray.face_dir];
 	if (portal->action)
 	{
 		__creat_portal(portal, ray.face_dir);
 		return (portal->sprite);
 	}
-	return (sprite);
+	return (wall);
 }
 
 static void	key(char *key, int event)

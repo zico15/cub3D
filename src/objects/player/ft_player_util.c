@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2022/12/16 19:43:30 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:41:20 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	__funct_mouse(int x, int y, int keycode)
 
 	if (x < 0 || x > win()->w || y < 0 || y > win()->h)
 		return ;
-	(void) y;
 	p = scene()->player;
 	delta = win()->w / 2.0 - x;
 	if (abs(delta) > (win()->w / 10.0))

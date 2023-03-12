@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2023/03/08 14:52:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:28:15 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	render_view(t_player *p);
 void	render_object_list(void);
+void	__render_2d(t_buffer *b);
 
 void	__render(t_buffer *b)
 {
@@ -52,12 +53,36 @@ void	swap_list(t_element *e, t_object	**obs, int index)
 	swap_list(e->next, obs, 0);
 }
 
+static void	__funct_key_camera(char *key, int event)
+{
+	t_camera	*camera;
+
+	if (event == EVENT_CLICK && key['v'])
+	{
+		camera = (t_camera *) this();
+		if (camera->view == VIEW_3D)
+		{	
+			this()->render = __render_2d;
+			camera->view = VIEW_2D;
+		}
+		else
+		{	
+			this()->render = __render;
+			camera->view = VIEW_3D;
+		}
+		printf("set model view\n");
+	}
+}
+
+
 t_object	*new_camera(void)
 {
 	t_camera	*camera;
 
 	camera = new_object_instance(sizeof(t_camera));
 	camera->render = __render;
+	camera->view = VIEW_3D;
+	camera->funct_key = __funct_key_camera;
 	camera->vector = vector(0, 0, win()->w, win()->h);
 	fthis()->camera = camera;
 	fthis()->scene->camera = camera;

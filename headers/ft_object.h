@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 16:42:24 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:27:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ typedef struct s_door		t_door;
 typedef struct s_enemy		t_enemy;
 typedef struct s_menu		t_menu;
 typedef struct s_portal		t_portal;
+
+typedef enum e_model_view
+{
+	VIEW_3D,
+	VIEW_2D,
+
+}	t_model_view;
 
 typedef enum e_type_ob
 {
@@ -99,6 +106,9 @@ struct s_portal
 	int				action;
 	double			time_action;
 	t_sprite		*sprits_wall[4];
+	t_portal		*next;
+	t_vector		next_position;
+	t_face			face;
 };
 
 struct s_map
@@ -201,6 +211,7 @@ struct s_camera
 	int				(*damage)(double	d);
 	void			(*render_view)(t_element *e, void *o);
 	double			perp_distance_wall[2500];
+	t_model_view	view;
 };
 
 struct s_door
