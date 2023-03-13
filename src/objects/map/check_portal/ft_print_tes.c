@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:01:43 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 15:35:58 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:54:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void print_test(char **map)
 	char	c;
 
 	y = -1;
+	system("clear");
 	while (map[++y])
 	{
 		x = 0;
@@ -36,11 +37,11 @@ void print_test(char **map)
 			if (c == '1')
 				Orange(c)
             else if (c == 1)
-				Red('A')
+				Green('A')
             else if (c == 2)
 				Blue('B')
              else if (c == 3)
-				Green('B')
+				Red('C')
 			else if (c == 'K')
 				Magenta(c)
 			else

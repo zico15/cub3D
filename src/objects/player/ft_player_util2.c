@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:56:49 by nprimo            #+#    #+#             */
-/*   Updated: 2023/03/12 18:35:20 by ede-alme         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:52:36 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	attack_player(void)
 
 int	__damage_player(double d)
 {
-	printf("life: %f\n", this()->life);
 	this()->life -= d;
 	if (this()->life < 1)
 		this()->life = 0;

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2023/03/12 17:01:08 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:52:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ static void	__funct_key_camera(char *key, int event)
 			this()->render = __render;
 			camera->view = VIEW_3D;
 		}
-		printf("set model view\n");
 	}
 	if (event == EVENT_CLICK && key['p'])
 	{	
@@ -79,7 +78,6 @@ static void	__funct_key_camera(char *key, int event)
 			camera->x = scene()->player->vector.x;
 			camera->y = scene()->player->vector.y;
 		}
-		printf("check\n");
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 16:22:53 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:54:43 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ static int check_case(t_map *map, char **temp, int x, int y)
 	if (x < 0 || y < 0 || !temp[y] || !temp[y][x] || !map->is_portal)
 		return (0);
 	c = temp[y][x];
-	if (c != 1 && !engine()->new_obs[(int) c])
+	if (c != 1 && c != 2 && c != 3 && !engine()->new_obs[(int) c])
 		map->is_portal = 0;
-	if (c == 1 || c == '1' || !engine()->new_obs[(int) c])
+	if (c == 1 || c == 2 || c == 3|| c == '1' || !engine()->new_obs[(int) c])
 		return (0);
 	temp[y][x] = 1;
-	print_test(temp);
 	return (1);
 }
 
@@ -58,6 +57,8 @@ void copy_map_portal(t_map *map, char **temp)
 		if (s > w)
 			w = s;
 	}
+	map->grid_height = h + 1;
+	map->grid_width = w + 1;
 	map->maps_portal = malloc_ob(sizeof(char *) * h);
 	h = -1;
 	while (temp[++h])
@@ -72,15 +73,14 @@ void copy_map_portal(t_map *map, char **temp)
 int	check_maps_portal(t_map *map, char **temp, int x, int y)
 {
 	t_vector pont;
-	
-	print_test(temp);
+
 	if (x < 0 && y < 0)
 	{	
 		return (0);
 	}
+	temp[y][x] = 1;
 	map->is_portal = 1;
 	expand(map, temp, x, y);
-	printf("map->is_portal: %i\n", map->is_portal);
 	if (map->is_portal)
 		pont = close_map(temp, 1, 2);
 	else

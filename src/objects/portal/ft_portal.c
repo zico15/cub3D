@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 18:45:34 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:57:57 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	__collision(t_object *collided)
 		if (!portal->next)
 		{
 			__destroy_portal(portal);
-			printf("not end\n");
 			return ;
 		}
 		fthis()->object = collided;
@@ -89,6 +88,8 @@ static void	key(char *key, int event)
 		printf("ok\n");
 }
 
+void print_test(char **map);
+
 static	int	__damage(double d)
 {
 	t_portal		*portal;
@@ -103,6 +104,7 @@ static	int	__damage(double d)
 		portal->action = 1;
 		portal->time_action = now() + 50;
 		printf("portal->actio: %i\n", portal->action);
+		print_test(map()->maps);
 	}
 	return (0);
 }

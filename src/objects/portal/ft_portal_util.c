@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 18:38:51 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:01:46 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,32 +69,23 @@ static t_vector	get_next_position(t_portal *portal, t_face face_dir)
 
 static t_portal	*next_pont(t_portal *start, t_face face_dir)
 {
-	t_portal	*end;
+	t_object	*end;
 	int			x;
 	int			y;
 
-	end = NULL;
 	x = start->vector.x;
 	y = start->vector.y;
-	if (x <= 0 || y <= 0 || x >= map()->grid_width || y >= map()->grid_height)
-		return (NULL);
-	while (map()->maps_ob[y][x] && map()->maps_ob[y][x]->type == WALL)
+	while (x > 0 && y > 0 && (map()->maps[y][x] > 0))
 	{
-		printf("x: %i y: %i w: %i h: %i\n", x, y, map()->grid_width, map()->grid_height);
-		end = (t_portal *) map()->maps_ob[y][x];
+		end = map()->maps_ob[y][x];
 		x -= (face_dir == W);
 		x += (face_dir == E);
 		y -= (face_dir == S);
 		y += (face_dir == N);
-		printf("x: %i y: %i w: %i h: %i\n", x, y, map()->grid_width, map()->grid_height);
-		if (x <= 0 || y <= 0 || x >= map()->grid_width || y >= map()->grid_height)
-		{
-			printf("Not\n");
-			return (NULL);
-		}
+		if (x > 0 && y > 0 && end && end->type == WALL && map()->maps[y][x] == 2)
+			return ((t_portal	*) end);
 	}
-	printf("fx: %i fy: %i fw: %i fh: %i\n", x, y, map()->grid_width, map()->grid_height);
-	return (end);
+	return (NULL);
 }
 
 

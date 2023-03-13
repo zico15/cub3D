@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 17:05:28 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:57:17 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	__funct_key(char *key, int event)
 	if (event == EVENT_CLICK && key[KEY_M])
 		engine()->set_scene(0);
 }
-
+void print_test(char **map);
 static void	__load_map(char *path)
 {
 	t_map		*map;
@@ -51,15 +51,12 @@ static void	__load_map(char *path)
 		if (check_maps_nodes(map, temp, -1, -1))
 		{	
 			add_object_all_map(map);
-			system("clear");
-			//copy_map_portal(map, map->maps);
 			check_maps_portal(map, map->maps, map->player.x, map->player.y);
 		}
 		free_ob(temp);
 	}
 	engine()->maps[++engine()->size_maps] = map->is_map_ok;
 	array(map->file)->destroy();
-	printf("load_maps: %i\n", map->is_map_ok);
 }
 
 t_object	*new_map(void)

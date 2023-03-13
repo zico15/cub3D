@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:40:47 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 17:01:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:56:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char **copy_map_all(char **temp, int h, int w)
 	y = -1;
     h++;
     w++;
-	copy = malloc_ob(sizeof(char *) * (h + 1));
+	copy = malloc_ob(sizeof(char *) * (h + 2));
 	while (++y <= h)
 	{
 		copy[y] = malloc_ob(sizeof(char) * w + 1);

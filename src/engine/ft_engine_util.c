@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/03 19:32:33 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:51:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	*__load_img(t_vector *v, char *file_name)
 	int		h;
 	int		w;
 
-	printf("load_img\n");
 	img = mlx_xpm_file_to_image(engine()->mlx, file_name, \
 	&w, &h);
 	if (!v)

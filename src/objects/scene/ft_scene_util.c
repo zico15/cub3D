@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/27 17:55:10 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:52:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ void	__destroy_scene(void)
 	t_array		*this;
 
 	this = fthis()->array;
-	printf("========================================\n");
-	printf("DESTROY: SCENE\n");
-	printf("========================================\n");
 	array(scene()->free_objects)->destroy();
 	array(scene()->key_list)->destroy();
 	array(scene()->mouse_list)->destroy();

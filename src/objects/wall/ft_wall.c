@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/03 19:30:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:53:07 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_sprite	*get_sprite(t_ray ray)
 static void	key(char *key, int event)
 {
 	if (event == EVENT_CLICK && key[KEY_SPACE])
-		printf("ok\n");
+		(void) key;
 }
 
 

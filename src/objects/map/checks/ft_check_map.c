@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 17:07:39 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:52:33 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 				map->is_map_ok = check_pos_init(map, x, y);
 				map->player = vector(x, y, 1, 1);
 				map->check_maps[y][x] = '1';
-				printf("player: x: %i y: %i\n", x, y);
 				expand(map, x, y);
 				break ;
 			}

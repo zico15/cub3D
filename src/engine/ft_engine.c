@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_engine.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/12 18:25:16 by ede-alme         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:53:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	__close(char *msg)
 {
 	engine()->is_game = 0;
 	fthis()->player = NULL;
+	printf("%s\n", msg);
 	array(engine()->scenes)->destroy();
 	hashmap(engine()->images)->destroy();
 	if (canva()->buffer)
@@ -30,10 +31,6 @@ static int	__close(char *msg)
 	mlx_destroy_window(engine()->mlx, engine()->win);
 	mlx_destroy_display(engine()->mlx);
 	free_ob(engine()->mlx);
-	printf("========================================\n");
-	printf("DESTROY: ENGINE\n");
-	printf("MSG: %s\n", msg);
-	printf("========================================\n");
 	exit(0);
 	return (0);
 }
@@ -61,9 +58,9 @@ void	show_fps(t_engine *eng)
 	gettimeofday(&current_time, NULL);
 	if (current_time.tv_sec == eng->world.timer.tv_sec)
 		eng->world.fps_counter++;
-	else if (printf("world.fps_counter: (%d)\n", eng->world.fps_counter))
+	else
 	{
-		printf("\e[1;1H\e[2J");
+		//printf("\e[1;1H\e[2J");
 		eng->world.fps = eng->world.fps_counter;
 		eng->world.fps_counter = 0;
 		gettimeofday(&eng->world.timer, NULL);
@@ -103,6 +100,7 @@ t_engine	*cread_engine(char *title)
 	static t_engine	e;
 
 	fthis()->engine = &e;
+	(void) title;
 	e.mlx = mlx_init();
 	init_list_objects_functions();
 	e.index_scene = 0;

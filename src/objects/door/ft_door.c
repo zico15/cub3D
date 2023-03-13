@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 19:20:00 by nprimo            #+#    #+#             */
-/*   Updated: 2022/10/26 15:46:14 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:52:17 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ static void	__funct_key(char *key, int event)
 	{
 		door = (t_door *) this();
 		distance = vector_distance(scene()->player->vector, this()->vector);
-		printf("distance: %i\n", distance);
 		if (distance <= 1)
 		{
 			door->is_open = !door->is_open;
 			door->is_run = 1;
 			array(scene()->colliders_list)->remove_value(this());
-			printf("dor--> player open\n");
 		}
 	}
 }

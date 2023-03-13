@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 15:14:35 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 15:33:30 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:51:24 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_buffer	*__canva(void)
 {
 	static t_buffer	b;
 
-	printf("__canva\n");
 	b.buffer = mlx_new_image(engine()->mlx, engine()->width, engine()->height);
 	b.data.img = b.buffer;
 	b.data.addr = mlx_get_data_addr(b.data.img, &b.data.bits_per_pixel, \
