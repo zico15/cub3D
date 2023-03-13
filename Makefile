@@ -6,7 +6,7 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2022/11/03 15:46:19 by edos-san         ###   ########.fr        #
+#    Updated: 2023/03/13 15:14:53 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ v:
 vv:
 	@make re && make clean && clear && valgrind  -v ./cub3D map/*
 r:
-	@make re && make clean && clear && ./cub3D map/map3.cub map/map1.cub map/map2.cub teste dfsdsdfsdfs/sasd
+	@make re && make clean && clear && ./cub3D map/map0.cub
 
 rr:
 	@make re && make clean && clear && ./cub3D map/*

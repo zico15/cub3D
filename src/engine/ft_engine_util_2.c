@@ -6,11 +6,16 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 19:06:43 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:40:49 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+
+static t_object	*new_object_null(void)
+{
+	return (NULL);
+}
 
 /*
 	cvlc
@@ -45,6 +50,7 @@ void	init_list_objects_functions(void)
 	engine()->width = engine()->v.w;
 	engine()->height = engine()->v.h;
 	engine()->is_game = 0;
+	engine()->new_obs['0'] = new_object_null;
 	engine()->new_obs['1'] = new_portal;
 	engine()->new_obs['I'] = new_enemy;
 	engine()->new_obs['K'] = new_kit;

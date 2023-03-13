@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/12 14:45:46 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:05:28 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void		__render_map(t_buffer	*b);
 int			check_path(char *path);
 int			ckeck_all(void *file);
 int			check_maps_nodes(t_map *map, char **temp, int x, int y);
+int			check_maps_portal(t_map *map, char **temp, int x, int y);
+void 		copy_map_portal(t_map *map, char **temp);
 
 void		cread_mini_map(t_map *m);
 t_object	*__get_object_map(int x, int y);
@@ -47,7 +49,12 @@ static void	__load_map(char *path)
 	{
 		temp = (char **) array(map->file)->to_str();
 		if (check_maps_nodes(map, temp, -1, -1))
+		{	
 			add_object_all_map(map);
+			system("clear");
+			//copy_map_portal(map, map->maps);
+			check_maps_portal(map, map->maps, map->player.x, map->player.y);
+		}
 		free_ob(temp);
 	}
 	engine()->maps[++engine()->size_maps] = map->is_map_ok;

@@ -6,13 +6,14 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 16:03:31 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 15:43:47 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/13 17:07:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_check.h>
 
 int	check_borde(t_map *m, int x, int y);
+char **copy_map(char **temp);
 
 static int	check_case(t_map *map, int x, int y)
 {
@@ -77,17 +78,16 @@ static int	chech_case_map(t_map *map)
 				map->size_width = x;
 		}
 	}
-	free_list((void **) map->check_maps);
-	map->check_maps = NULL;
 	return (map->is_map_ok);
 }
 
 int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 {
 	map->is_map_ok = 0;
-	map->check_maps = string().copy_list((const char **) temp);
-	map->maps = string().copy_list((const char **) temp);
+	map->check_maps = copy_map(temp);
+	map->maps = copy_map(temp);
 	map->size_height = string().size_list(map->maps);
+	system("clear");
 	while (map->check_maps[++y])
 	{
 		x = -1;
@@ -99,6 +99,7 @@ int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 				map->is_map_ok = check_pos_init(map, x, y);
 				map->player = vector(x, y, 1, 1);
 				map->check_maps[y][x] = '1';
+				printf("player: x: %i y: %i\n", x, y);
 				expand(map, x, y);
 				break ;
 			}

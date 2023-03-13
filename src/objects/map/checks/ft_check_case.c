@@ -6,11 +6,12 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:14:54 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 15:27:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:00:16 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_check.h>
+
 
 int	check_borde(t_map *m, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 22:00:43 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/12 14:47:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:37:50 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,14 @@ void	__destroy_ob_map(void)
 
 void	__render_map(t_buffer	*b)
 {
-	b->rectangle(vector(0, 0, win()->w, win()->h / 2), map()->c_color);
-	b->rectangle(vector(0, win()->h / 2, win()->w, win()->h / 2), \
-	map()->f_color);
+	if (scene()->camera->view == VIEW_2D)
+	{
+		b->rectangle(vector(0, 0, win()->w, win()->h), map()->c_color);
+	}
+	else
+	{
+		b->rectangle(vector(0, 0, win()->w, win()->h / 2), map()->c_color);
+		b->rectangle(vector(0, win()->h / 2, win()->w, win()->h / 2), \
+		map()->f_color);
+	}
 }

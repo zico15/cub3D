@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_object.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/12 15:44:50 by ede-alme         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:41:38 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ struct s_map
 	void			(*load)(char *path);
 	void			*file;
 	char			**maps;
+	char			**maps_portal;
 	char			**check_maps;
 	t_vector		player;
 	t_vector		vector_mini_map;
@@ -144,6 +145,7 @@ struct s_map
 	int				grid_width;
 	int				grid_height;
 	int				is_print;
+	int				is_portal;
 	t_object		*(*get_object)(int x, int y);
 	t_object		***maps_ob;
 	int				count_player;
@@ -213,6 +215,8 @@ struct s_camera
 	void			(*render_view)(t_element *e, void *o);
 	double			perp_distance_wall[2500];
 	t_model_view	view;
+	int				x;
+	int				y;
 };
 
 struct s_door
