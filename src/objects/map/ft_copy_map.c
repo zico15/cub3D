@@ -31,7 +31,7 @@ static void copy_data(char **temp, char 	**copy)
 	}
 }
 
-static char **copy_map_all(char **temp, int h, int w)
+static char **copy_map_all(char **temp, int h, int w, t_map *map)
 {
 	char 	**copy;
 	int		y;
@@ -48,11 +48,13 @@ static char **copy_map_all(char **temp, int h, int w)
 		while (++x < w)
 			copy[y][x] = ' ';
 	}
+	map->grid_width = w + 1;
+	map->grid_height = h + 1;
 	copy[y] = 0;
     copy_data(temp, copy);
 	return (copy);
 }
-char **copy_map(char **temp)
+char **copy_map(char **temp, t_map *map)
 {
     int h;
     int w;
@@ -66,5 +68,5 @@ char **copy_map(char **temp)
         if (w < s)
             w = s;
 	}
-    return (copy_map_all(temp, h, w));
+    return (copy_map_all(temp, h, w, map));
 }

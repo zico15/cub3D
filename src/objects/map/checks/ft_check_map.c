@@ -13,7 +13,7 @@
 #include <ft_check.h>
 
 int	check_borde(t_map *m, int x, int y);
-char **copy_map(char **temp);
+char **copy_map(char **temp, t_map *map);
 
 static int	check_case(t_map *map, int x, int y)
 {
@@ -84,8 +84,8 @@ static int	chech_case_map(t_map *map)
 int	check_maps_nodes(t_map *map, char **temp, int x, int y)
 {
 	map->is_map_ok = 0;
-	map->check_maps = copy_map(temp);
-	map->maps = copy_map(temp);
+	map->check_maps = copy_map(temp, map);
+	map->maps = copy_map(temp, map);
 	map->size_height = string().size_list(map->maps);
 	system("clear");
 	while (map->check_maps[++y])

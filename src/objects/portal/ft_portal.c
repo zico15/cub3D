@@ -44,7 +44,7 @@ static void	__collision(t_object *collided)
 	}
 }
 
-static t_sprite	*__animation__portal(t_portal	*portal)
+static t_sprite	*__animation__portal(t_portal	*portal, t_ray ray)
 {
 	t_sprite	*wall;
 
@@ -52,17 +52,17 @@ static t_sprite	*__animation__portal(t_portal	*portal)
 	{
 		if (++portal->animation->index >= portal->animation->size)
 			portal->animation->index = 0;
-		wall = map()->sprits_wall[portal->face];
-		if (!portal->sprits_wall[portal->face])
-			portal->sprits_wall[portal->face] = \
+		wall = map()->sprits_wall[ray.face_dir];
+		if (!portal->sprits_wall[ray.face_dir])
+			portal->sprits_wall[ray.face_dir] = \
 			engine()->new_sprite(wall->v.w, wall->v.h);
-		portal->sprite = portal->sprits_wall[portal->face];
+		portal->sprite = portal->sprits_wall[ray.face_dir];
 		(canva())->image_resize_buffer(portal->sprite, wall);
 		(canva())->image_resize_buffer(portal->sprite, \
 		portal->animation->list[portal->animation->index]);
 		portal->animation->time = now() + 50;
 	}
-	return (portal->sprits_wall[portal->face]);
+	return (portal->sprits_wall[ray.face_dir]);
 }
 
 static t_sprite	*get_sprite(t_ray ray)
@@ -72,7 +72,7 @@ static t_sprite	*get_sprite(t_ray ray)
 
 	portal = (t_portal *) this();
 	if (portal->sprits_wall[ray.face_dir])
-		return (__animation__portal(portal));
+		return (__animation__portal(portal, ray));
 	wall = map()->sprits_wall[ray.face_dir];
 	if (portal->action)
 	{

@@ -75,7 +75,8 @@ static t_portal	*next_pont(t_portal *start, t_face face_dir)
 
 	x = start->vector.x;
 	y = start->vector.y;
-	while (x > 0 && y > 0 && (map()->maps[y][x] > 0))
+	while (x > 0 && y > 0 && x < map()->grid_width && y < \
+	map()->grid_height && (map()->maps[y][x] > 0))
 	{
 		end = map()->maps_ob[y][x];
 		x -= (face_dir == W);
