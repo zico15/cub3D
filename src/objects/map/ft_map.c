@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 20:57:17 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:28:12 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			check_path(char *path);
 int			ckeck_all(void *file);
 int			check_maps_nodes(t_map *map, char **temp, int x, int y);
 int			check_maps_portal(t_map *map, char **temp, int x, int y);
-void 		copy_map_portal(t_map *map, char **temp);
+void		print_test(char **map);
 
 void		cread_mini_map(t_map *m);
 t_object	*__get_object_map(int x, int y);
@@ -30,7 +30,7 @@ static void	__funct_key(char *key, int event)
 	if (event == EVENT_CLICK && key[KEY_M])
 		engine()->set_scene(0);
 }
-void print_test(char **map);
+
 static void	__load_map(char *path)
 {
 	t_map		*map;

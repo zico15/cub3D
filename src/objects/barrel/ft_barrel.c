@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/08 19:14:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:36:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	__render(t_buffer *b)
 {
 	if (map()->is_print)
 		b->rectangle(vector_grid_size(this()->vector, 12, 12), 0x24799e);
-	animation().update_all(this());
+	animation().update_all(this);
 	if (this()->life <= 0 && this()->animation->index == 19)
 		scene()->remove_object(this());
 }

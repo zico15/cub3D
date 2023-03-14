@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 15:01:43 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 20:54:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:32:55 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #define Normal(x) printf("\033[39;49m%c\033[39;49m", x);
 #define Green(x) printf("\033[42m%c\033[39;49m", x);
 
-
 void print_test(char **map)
 {
 	int		x;
@@ -27,6 +26,8 @@ void print_test(char **map)
 	char	c;
 
 	y = -1;
+	if (!MAP_DEBUG)
+		return ;
 	system("clear");
 	while (map[++y])
 	{
@@ -51,4 +52,6 @@ void print_test(char **map)
 		printf("\n");
 	}
 	printf("==========================================\n\033[39;49m");
+	for (long int i = 0; i < 999999; i++)
+		write(0, "", 0);
 }

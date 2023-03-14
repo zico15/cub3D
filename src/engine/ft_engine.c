@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 20:53:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:22:28 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ t_engine	*cread_engine(char *title)
 	array(hashmap(e.images)->list)->destroy_element = __destroy_element_sprite;
 	e.load_sprite = __load_sprite;
 	laod_alfabeto();
+	if (MAP_DEBUG)
+		return (&e);
 	e.win = mlx_new_window(e.mlx, win()->w, win()->h, title);
 	mlx_hook(e.win, 2, (1L << 0), __funct_key_press, NULL);
 	mlx_hook(e.win, 3, (1L << 1), __funct_key_release, NULL);
