@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ede-alme <ede-alme@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/03/12 18:23:23 by ede-alme         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:18:04 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ int	__set_position(t_vector v)
 	}
 	this()->vector.x = v.x;
 	this()->vector.y = v.y;
+	ft_send(((t_player *) this())->socket, vector_to_string(&this()->vector));
 	return (1);
 }

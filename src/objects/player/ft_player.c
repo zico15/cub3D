@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/03/12 14:25:41 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/15 20:56:09 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 
 int	__damage_player(double d);
 
+// static void	tes(char *data)
+// {
+// 	printf("data: %s\n", data);
+// }
+
 static void	__render(t_buffer *b)
 {
 	(void) b;
 	if (scene()->camera->view == VIEW_3D)
 		animation().update_all(this());
+	//ft_listen(((t_player *) this())->socket, tes);
 }
 
 t_object	*new_player(void)
@@ -38,6 +44,8 @@ t_object	*new_player(void)
 	p->render = __render;
 	p->damage = __damage_player;
 	p->set_position = __set_position;
+	p->socket = new_socket("localhost", "1234");
+	ft_send(p->socket, "newPlayer\r\n");
 	p->animation = animation().create(this(), 1);
 	(animation()).load_animation("imgs/IMG/Arma00.xpm", 9, &(p->animation[0]), \
 	25);

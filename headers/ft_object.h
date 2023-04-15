@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 15:41:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:06:45 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_OBJECT_H
 
 # include <ft_util.h>
+# include <ft_socket.h>
 
 typedef struct s_object		t_object;
 typedef struct s_player		t_player;
@@ -172,6 +173,7 @@ struct s_player
 	t_vector		plane;
 	t_object		*mira;
 	int				mouse_move;
+	t_socket		*socket;
 };
 
 struct s_enemy
