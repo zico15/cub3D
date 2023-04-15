@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 18:56:49 by nprimo            #+#    #+#             */
-/*   Updated: 2023/03/13 20:52:36 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/15 21:27:48 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	rotate(t_player *p, double angle)
 
 void	move_dir(t_player *p, double x, double y)
 {
-	p->set_position(vector((p->vector.x + x * (0.00008 * engine()->world.delta_time) * \
+	p->set_position(vector((p->vector.x + x * (0.0008 * 10) * \
 	p->dir.x), p->vector.y, 0, 0));
-	p->set_position(vector(p->vector.x, (p->vector.y + y * (0.00008 * engine()->world.delta_time) * \
+	p->set_position(vector(p->vector.x, (p->vector.y + y * (0.0008 * 10) * \
 	p->dir.y), 0, 0));
 }
 
 void	move_perp_dir(t_player *p, double x, double y)
 {
-	p->set_position(vector(p->vector.x + x * (0.00008 * engine()->world.delta_time) * \
+	p->set_position(vector(p->vector.x + x * (0.0008 * 10) * \
 	p->plane.x, p->vector.y, 0, 0));
-	p->set_position(vector(p->vector.x, p->vector.y + y * (0.00008 * engine()->world.delta_time) * \
+	p->set_position(vector(p->vector.x, p->vector.y + y * (0.0008 * 10) * \
 	p->plane.y, 0, 0));
 }
 

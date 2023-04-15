@@ -24,18 +24,22 @@ static void	init_socket(t_socket *s)
 		exit(0);
 	s->poll[0].fd = s->fd;
 	s->poll[0].events = POLLIN;
+	fcntl(s->fd, F_SETFL, O_NONBLOCK);
+	fcntl(host_connect, F_SETFL, O_NONBLOCK);
 }
 
-static int	recive(t_socket *s, void (*f)(char *data))
+int	recive(t_socket *s, void (*f)(char *data))
 {
 	int			size;
 	int			index;
 	char		buffer[BUFFER_SIZE];
 
 	index = 0;
+	//printf("recive:\n\n");
 	size = recv(s->fd, buffer, BUFFER_SIZE - 1, 0);
+	//printf("recive size: %i\n", size);
 	index = size;
-	while (size)
+	while (size > 0)
 	{
 		if (size < 0)
 			return (1);
@@ -47,9 +51,10 @@ static int	recive(t_socket *s, void (*f)(char *data))
 	if (index < 1)
 		return (0);
 	buffer[index] = 0;
-	s->poll[0].events = POLLIN | POLLHUP;
+	//printf("recive: %s\n", buffer);
+	s->poll[0].events = POLLIN | POLLHUP | POLLOUT;
 	s->poll[0].revents = 0;
-	if (f)
+	if (index > 0 && f)
 		f(buffer);
 	return (1);
 }
@@ -69,7 +74,7 @@ void	ft_listen(t_socket *s, void (*f)(char *data))
 	if (s->poll[0].revents & POLLIN)
 	{
 		if (recive(s, f) == 1)
-			return ;
+	 		return ;
 		s->poll[0].events = POLLIN | POLLHUP;
 		s->poll[0].revents = 0;
 	}
@@ -80,7 +85,7 @@ void	ft_send(t_socket *s, char *message)
 	char	*msg;
 
 	msg = string().join(message, "\r\n");
-	printf("msg: %s", msg);
+	//printf("msg: %s", msg);
 	send(s->fd, msg, string().size(msg), 0);
 	s->poll[0].revents = 0;
 	s->poll[0].events = POLLIN | POLLOUT | POLLHUP;

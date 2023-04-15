@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/12 17:06:45 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:46:38 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,7 +302,7 @@ t_object	*new_object(void);
 void		*new_object_instance(size_t size);
 t_object	*new_map(void);
 t_object	*new_enemy(void);
-t_object	*new_player(void);
+t_object	*new_player(int x, int y);
 t_object	*new_wall(void);
 t_object	*new_menu(void);
 t_object	*new_camera(void);
@@ -311,5 +311,6 @@ t_object	*new_barrel(void);
 t_object	*new_kit(void);
 t_object	*new_portal(void);
 t_object	*new_menu_initial(void);
+t_object	*new_player_online(int x, int y);
 
 #endif

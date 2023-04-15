@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/04/12 17:18:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:48:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ void	__funct_key(char *key, int event)
 		rotate(p, -ROTATION_LEN);
 	if (key[KEY_RIGHT])
 		rotate(p, ROTATION_LEN);
+	if (event == EVENT_CLICK && key[KEY_SPACE])
+	{	
+		// t_object *b = new_barrel();
+		// b->vector.x = 5;
+		// b->vector.y = 5;
+		// map()->maps_ob[5][5] = b;
+		// printf("KEY_SPACE\n");
+		// array(scene()->free_objects)->add(b);
+		// scene()->add(b);
+	}
 	if (event == EVENT_CLICK && key[65362] && p->life < 5)
 		p->life++;
 	if (event == EVENT_CLICK && key[65364] && p->life > 0)

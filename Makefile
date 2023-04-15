@@ -6,11 +6,11 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2023/03/13 17:37:19 by edos-san         ###   ########.fr        #
+#    Updated: 2023/04/15 22:18:26 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC			= 	gcc -Wall -Wextra -Werror  -g # -fsanitize=address
+CC			= 	gcc #-Wall -Wextra -Werror  -g # -fsanitize=address
 RM			= 	/bin/rm -f
 NAME		= 	cub3D
 INCLUDES	= 	-Iheaders/
@@ -65,7 +65,7 @@ v:
 vv:
 	@make re && make clean && clear && valgrind  -v ./cub3D map/*
 r:
-	@make re && make clean && clear && ./cub3D map/map1.cub
+	@make re && make clean && clear && ./cub3D map/map3.cub
 
 rr:
 	@make re && make clean && clear && ./cub3D map/*

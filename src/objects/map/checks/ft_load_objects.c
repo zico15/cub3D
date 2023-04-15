@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_load_objects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nprimo <nprimo@student.42lisboa.com>       +#+  +:+       +#+        */
+/*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/28 21:08:48 by nprimo           ###   ########.fr       */
+/*   Updated: 2023/04/15 22:50:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ t_object	*init_player(t_player	*p, int x, int y, char c)
 		p->dir.y = 1;
 		p->plane.x = -0.66;
 	}
+	char *a = string().join("newPlayer", vector_to_string(&p->vector));
+	ft_send(p->socket, a);
+	free_ob(a);
 	return ((t_object *) p);
 }
 

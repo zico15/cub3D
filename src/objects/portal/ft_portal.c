@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/22 19:07:22 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:26:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,6 @@ static t_sprite	*get_sprite(t_ray ray)
 	return (wall);
 }
 
-static void	key(char *key, int event)
-{
-	if (event == EVENT_CLICK && key[KEY_SPACE])
-		printf("ok\n");
-}
 
 void	print_test(char **map);
 
@@ -117,7 +112,6 @@ t_object	*new_portal(void)
 	portal->type = WALL;
 	portal->action = 0;
 	portal->damage = __damage;
-	portal->funct_key = key;
 	portal->collision = __collision;
 	portal->get_sprite = get_sprite;
 	portal->animation = animation().create((t_object *) portal, 1);

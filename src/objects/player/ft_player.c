@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/04/15 20:56:09 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/15 22:47:59 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,21 @@
 
 int	__damage_player(double d);
 
-// static void	tes(char *data)
-// {
-// 	printf("data: %s\n", data);
-// }
+static void	tes(char *data)
+{
+	printf("data: %s\n", data);
+}
 
 static void	__render(t_buffer *b)
 {
 	(void) b;
 	if (scene()->camera->view == VIEW_3D)
 		animation().update_all(this());
-	//ft_listen(((t_player *) this())->socket, tes);
+	ft_listen(((t_player *) this())->socket, tes);
+	//printf("__render\n");
 }
 
-t_object	*new_player(void)
+t_object	*new_player(int x, int y)
 {
 	t_player	*p;
 
@@ -39,13 +40,14 @@ t_object	*new_player(void)
 	p->funct_mouse = __funct_mouse;
 	p->vector.angle = 90;
 	p->life = 5;
+	p->vector.x = x;
+	p->vector.y = y;
 	p->vector.w = 20;
 	p->vector.h = 20;
 	p->render = __render;
 	p->damage = __damage_player;
 	p->set_position = __set_position;
 	p->socket = new_socket("localhost", "1234");
-	ft_send(p->socket, "newPlayer\r\n");
 	p->animation = animation().create(this(), 1);
 	(animation()).load_animation("imgs/IMG/Arma00.xpm", 9, &(p->animation[0]), \
 	25);

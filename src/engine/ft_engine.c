@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/15 12:29:28 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/15 21:36:11 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	show_fps(t_engine *eng)
 		eng->world.fps_counter++;
 	else
 	{
-		//printf("%i\e[1;1H\e[2J");
+		printf("%i\n", eng->world.fps);
 		eng->world.fps = eng->world.fps_counter;
 		eng->world.fps_counter = 0;
 		gettimeofday(&eng->world.timer, NULL);
@@ -73,7 +73,6 @@ int	game_loop(t_engine *e)
 	double			time2;
 
 	time1 = now();
-	
 	if (!engine()->is_game || !scene())
 		return (0);
 	//__funct_mousse_engine(e->is_mouse_press, NULL);
@@ -86,10 +85,10 @@ int	game_loop(t_engine *e)
 	{
 		e->world.last_time = e->world.world_time;
 		scene()->render(e->canva);
-			show_fps(e);
+		show_fps(e);
+		mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
+		, 0, 0);
 	}
-	mlx_put_image_to_window(e->mlx, e->win, e->canva->buffer \
-	, 0, 0);
 	time2 = now();
 	e->delta = (time2 - time1) / 1000.0;
 	e->is_mouse_press = 0;
