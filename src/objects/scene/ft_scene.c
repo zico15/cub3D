@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/12/10 18:24:52 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:00:31 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	__destroy_scene(void *object);
 void	__init_scene(t_scene *scene);
+void	__add_client(char *fd, double x, double y);
 
 static void	__update(void)
 {
@@ -93,6 +94,7 @@ t_scene	*new_scene(void)
 	s->funct_key = __funct_key_scene;
 	s->funct_mouse = __funct_mouse_scene;
 	s->remove_object = __remove_object;
+	s->add_client = __add_client;
 	__init_scene(s);
 	array(this);
 	fthis()->scene = s;

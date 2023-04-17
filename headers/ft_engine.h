@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/15 21:00:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:05:56 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_ENGINE_H
 
 # include <ft_scene.h>
+# include <ft_socket.h>
 
 # define MAP_DEBUG 0
 
@@ -64,6 +65,8 @@ struct s_engine
 	void			*images;
 	t_sprite		*alfabeto[256];
 	t_sprite		*(*new_sprite)(int w, int h);
+	t_socket		*socket;
+	void			*clients;
 };
 
 t_vector	*win(void);
@@ -71,5 +74,9 @@ t_engine	*engine(void);
 t_buffer	*canva(void);
 t_image		image(void);
 t_engine	*cread_engine(char *title);
+void		send_position(t_player *ob);
+void		send_rotation(t_player *ob);
+void		new_client(const char **data);
+void		set_client_position(const char **data);
 
 #endif

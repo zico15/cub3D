@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/15 22:46:38 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:59:26 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_OBJECT_H
 
 # include <ft_util.h>
-# include <ft_socket.h>
 
 typedef struct s_object		t_object;
 typedef struct s_player		t_player;
@@ -32,7 +31,6 @@ typedef enum e_model_view
 {
 	VIEW_3D,
 	VIEW_2D,
-
 }	t_model_view;
 
 typedef enum e_type_ob
@@ -173,7 +171,7 @@ struct s_player
 	t_vector		plane;
 	t_object		*mira;
 	int				mouse_move;
-	t_socket		*socket;
+	char			*fd;
 };
 
 struct s_enemy
@@ -311,6 +309,6 @@ t_object	*new_barrel(void);
 t_object	*new_kit(void);
 t_object	*new_portal(void);
 t_object	*new_menu_initial(void);
-t_object	*new_player_online(int x, int y);
+t_object	*new_player_online(char *fd, double x, double y);
 
 #endif

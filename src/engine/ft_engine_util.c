@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 20:51:27 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:35:02 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_scene	*__set_scene(int index_scene)
 	fthis()->camera = s->camera;
 	engine()->index_scene = index_scene;
 	mlx_clear_window(engine()->mlx, engine()->win);
+	ft_send(engine()->socket, "FD :-1");
 	return (s);
 }
 

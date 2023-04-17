@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:00:20 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/12 16:58:21 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:15:37 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct ft_socket
 	char				*port;
 	struct pollfd		poll[1];
 }	t_socket;
-
 
 t_socket	*new_socket(char *host, char *port);
 void		ft_send(t_socket *s, char *message);

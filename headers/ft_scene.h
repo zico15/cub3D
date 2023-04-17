@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2022/10/26 18:05:04 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:56:27 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ struct s_scene
 	t_camera		*camera;
 	void			*free_objects;
 	void			(*remove_object)(t_object *ob);
+	void			(*add_client)(char *fd, double x, double y);
 };
 
 t_scene	*new_scene(void);

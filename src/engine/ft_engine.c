@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/15 21:36:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:46:03 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		init_list_objects_functions(void);
 void		__destroy_element_scene(t_element	*e);
 int			__funct_mousse_move(int x, int y, void *vars);
 t_sprite	*__new_sprite(int w, int h);
+void		_commads(char *data);
 
 static int	__close(char *msg)
 {
@@ -47,8 +48,9 @@ void	update_gametime(t_engine *eng)
 
 	gettimeofday(&current_time, NULL);
 	eng->world.world_time = 1000000 * current_time.tv_sec + \
-current_time.tv_usec;
-	eng->world.delta_time = (eng->world.world_time - eng->world.last_time) / 1000.0;
+	current_time.tv_usec;
+	eng->world.delta_time = (eng->world.world_time - \
+	eng->world.last_time) / 1000.0;
 }
 
 void	show_fps(t_engine *eng)
@@ -60,7 +62,7 @@ void	show_fps(t_engine *eng)
 		eng->world.fps_counter++;
 	else
 	{
-		printf("%i\n", eng->world.fps);
+		//printf("%i\n", eng->world.fps);
 		eng->world.fps = eng->world.fps_counter;
 		eng->world.fps_counter = 0;
 		gettimeofday(&eng->world.timer, NULL);
@@ -79,6 +81,7 @@ int	game_loop(t_engine *e)
 	if (e->is_key_press)
 		funct_key_engine(e->keys, EVENT_PRESS);
 	scene_remove_objects_list();
+	ft_listen(engine()->socket, _commads);
 	scene()->update();
 	update_gametime(e);
 	if (e->world.world_time - e->world.last_time > 50000)
@@ -114,6 +117,8 @@ t_engine	*cread_engine(char *title)
 	e.new_sprite = __new_sprite;
 	e.canva = __canva();
 	e.images = new_hashmap();
+	e.clients = new_hashmap();
+	e.socket = new_socket("localhost", "1234");
 	array(hashmap(e.images)->list)->destroy_element = __destroy_element_sprite;
 	e.load_sprite = __load_sprite;
 	laod_alfabeto();

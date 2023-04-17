@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 11:12:48 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/12 17:29:20 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:20:39 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,5 @@ double		ft_cos(double angle);
 double		ft_sin(double angle);
 double		ft_tan(double angle);
 double		ft_atan2(double y, double x);
-char		*vector_to_string(t_vector *v);
 char		*dtostrf(double val, unsigned char prec, char *sout);
 #endif

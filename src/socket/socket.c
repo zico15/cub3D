@@ -51,7 +51,6 @@ int	recive(t_socket *s, void (*f)(char *data))
 	if (index < 1)
 		return (0);
 	buffer[index] = 0;
-	//printf("recive: %s\n", buffer);
 	s->poll[0].events = POLLIN | POLLHUP | POLLOUT;
 	s->poll[0].revents = 0;
 	if (index > 0 && f)
@@ -75,7 +74,7 @@ void	ft_listen(t_socket *s, void (*f)(char *data))
 	{
 		if (recive(s, f) == 1)
 	 		return ;
-		s->poll[0].events = POLLIN | POLLHUP;
+		s->poll[0].events = POLLIN | POLLOUT | POLLHUP;
 		s->poll[0].revents = 0;
 	}
 }

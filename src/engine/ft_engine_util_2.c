@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/21 13:07:48 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:06:42 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	init_list_objects_functions(void)
 	engine()->new_obs['I'] = new_enemy;
 	engine()->new_obs['K'] = new_kit;
 	engine()->new_obs['D'] = new_door;
-	engine()->new_obs['N'] = new_player;
-	engine()->new_obs['S'] = new_player;
-	engine()->new_obs['W'] = new_player;
-	engine()->new_obs['E'] = new_player;
+	engine()->new_obs['N'] = (void *) new_player;
+	engine()->new_obs['S'] = (void *) new_player;
+	engine()->new_obs['W'] = (void *) new_player;
+	engine()->new_obs['E'] = (void *) new_player;
 	engine()->new_obs['T'] = new_barrel;
 	engine()->new_obs['P'] = new_portal;
 }
@@ -75,4 +75,28 @@ t_sprite	*__new_sprite(int w, int h)
 	s->data.addr = mlx_get_data_addr(s->data.img, &s->data.bits_per_pixel, \
 	&s->data.line_length, &s->data.endian);
 	return (s);
+}
+
+
+void	_commads(char *data)
+{
+	t_player		*p;
+	const char		**datas;
+
+	if (!scene() || !scene()->player)
+		return ;
+	p = scene()->player;
+	write(2, data, string().size(data));
+	datas = (void *) string().split(data, ":");
+	if (data[0] == 'F')
+	{	
+		p->fd = string().trim(datas[1]);
+		send_position(p);
+		send_rotation(p);
+	}
+	else if (data[0] == 'N')
+		new_client(datas);
+	else if (data[0] == 'P')
+		set_client_position(datas);
+	free_list((void **) datas);
 }

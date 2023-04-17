@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 12:49:58 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/15 22:50:59 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:34:44 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,21 @@ t_object	*init_player(t_player	*p, int x, int y, char c)
 {
 	p->vector.x = x + 0.5;
 	p->vector.y = y + 0.5;
+	p->dir.y = -1;
 	if (c == 'N')
-	{
-		p->dir.y = -1;
 		p->plane.x = +0.66;
-	}
 	else if (c == 'E')
 	{
 		p->dir.x = 1;
 		p->plane.y = +0.66;
 	}
 	else if (c == 'W')
-	{
-		p->dir.x = -1;
 		p->plane.y = -0.66;
-	}
 	else if (c == 'S')
 	{
 		p->dir.y = 1;
 		p->plane.x = -0.66;
 	}
-	char *a = string().join("newPlayer", vector_to_string(&p->vector));
-	ft_send(p->socket, a);
-	free_ob(a);
 	return ((t_object *) p);
 }
 

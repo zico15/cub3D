@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_barrel.c                                        :+:      :+:    :+:   */
+/*   ft_player_online.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/15 22:45:23 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:59:11 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,23 @@
 
 static int	__damage(double d)
 {
-	printf("damage: player online\n");
+	t_player	*p;
+
+	p = (t_player *) this();
+	printf("damage-> player online: %s\n", p->fd);
 	return (d);
 }
 
-t_object	*new_player_online(int x, int y)
+t_object	*new_player_online(char *fd, double x, double y)
 {
-	t_object		*ob;
+	t_player		*ob;
 
-	ob = new_object_instance(sizeof(t_object));
+	ob = new_object_instance(sizeof(t_player));
 	ob->type = OBJECT;
-	ob->life = 2;
-	ob->vector.x = 5;
-	ob->vector.y = 5;
-	map()->maps_ob[5][5] = ob;
-	array(scene()->free_objects)->add(ob);
-	scene()->add(ob);
+	ob->fd = fd;
+	ob->life = 5;
+	ob->vector.x = x;
+	ob->vector.y = y;
 	ob->damage = __damage;
 	ob->collision = __collision_base;
 	ob->animation = animation().create(ob, 1);

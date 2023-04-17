@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/03/13 20:52:54 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 20:00:19 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,3 +112,4 @@ void	scene_remove_objects_list(void)
 		array(scene()->remove_object_list)->remove_index(0);
 	}
 }
+

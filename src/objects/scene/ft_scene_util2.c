@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_scene_util2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 15:29:37 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/17 15:20:10 by edos-san         ###   ########.fr       */
+/*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
+/*   Updated: 2023/04/17 21:08:43 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_util.h>
+#include <ft_scene_util.h>
 
-
-int	main(int argc, char **argv)
+void	__add_client(char *fd, double x, double y)
 {
-	t_engine		*e;
+	t_object	*b;
 
-	if (argc < 2 || argc >= 50)
-	{
-		printf("ERROR ARG!\n");
-		return ((*argv != NULL));
-	}
-	e = cread_engine("cub3D");
-	e->world.timer = get_time();
-	e->load_maps(argv, argc);
-	if (MAP_DEBUG)
-		e->close("DEBUG");
-	mlx_hook(e->win, 17, 0, e->close, "exit");
-	return (mlx_loop(e->mlx));
+	b = new_player_online(fd, x, y);
+	map()->maps_ob[(int) y][(int) x] = b;
+	array(scene()->free_objects)->add(b);
+	(hashmap(engine()->clients))->put(fd, b);
+	scene()->add(b);
 }

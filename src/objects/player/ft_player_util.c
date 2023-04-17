@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/02 10:17:41 by ezequeil          #+#    #+#             */
-/*   Updated: 2023/04/15 22:48:31 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:40:54 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ void	__funct_mouse(int x, int y, int keycode)
 	if (delta != x && p->mouse_move)
 	{
 		rotate(p, (double)(delta * 0.001));
-		mlx_mouse_move(engine()->mlx, engine()->win, win()->w / 2, win()->h / 2);
+		mlx_mouse_move(engine()->mlx, engine()->win, \
+		win()->w / 2, win()->h / 2);
 	}
-
-	//tiro-->>>
 	if (keycode == 1 && !p->animation[0].is_run)
 	{
 		p->animation[0].is_run = 1;
@@ -106,6 +105,6 @@ int	__set_position(t_vector v)
 	}
 	this()->vector.x = v.x;
 	this()->vector.y = v.y;
-	ft_send(((t_player *) this())->socket, vector_to_string(&this()->vector));
+	send_position(this());
 	return (1);
 }
