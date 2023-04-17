@@ -6,7 +6,7 @@
 #    By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/12 18:43:51 by edos-san          #+#    #+#              #
-#    Updated: 2023/04/15 22:18:26 by edos-san         ###   ########.fr        #
+#    Updated: 2023/04/17 21:46:28 by edos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ r:
 	@make re && make clean && clear && ./cub3D map/map3.cub
 
 rr:
-	@make re && make clean && clear && ./cub3D map/*
+	@make re && make clean && clear && ./cub3D map/map33.cub
 
 
 .PHONY: all re clean fclean m

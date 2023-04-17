@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 13:14:07 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/17 19:59:11 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 22:48:05 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,36 @@ static int	__damage(double d)
 	return (d);
 }
 
+static int	__set_position(t_vector v)
+{
+	t_vector	temp;
+
+	printf("__set_position\n");
+	temp = this()->vector;
+	if (map()->maps_ob[(int) v.y][(int) v.x])
+		return (0);
+	map()->maps_ob[(int) temp.y][(int) temp.x] = NULL;
+	map()->maps_ob[(int) v.y][(int) v.x] = this();
+	this()->vector.x = v.x;
+	this()->vector.y = v.y;
+	return (1);
+}
+
 t_object	*new_player_online(char *fd, double x, double y)
 {
 	t_player		*ob;
 
 	ob = new_object_instance(sizeof(t_player));
-	ob->type = OBJECT;
+	ob->type = ENEMY;
 	ob->fd = fd;
 	ob->life = 5;
 	ob->vector.x = x;
 	ob->vector.y = y;
+	ob->set_position = __set_position;
 	ob->damage = __damage;
 	ob->collision = __collision_base;
 	ob->animation = animation().create(ob, 1);
-	(animation()).load_animation("imgs/barrel/frame-00.xpm", 20, \
+	(animation()).load_animation("imgs/enemy_d/move/tile00.xpm", 4, \
 	&(ob->animation[0]), 20);
 	ob->sprite = *ob->animation->list;
 	return ((t_object *) ob);

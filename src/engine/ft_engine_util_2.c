@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/17 21:06:42 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:44:47 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,10 @@ void	_commads(char *data)
 	if (data[0] == 'F')
 	{	
 		p->fd = string().trim(datas[1]);
-		send_position(p);
-		send_rotation(p);
+		//send_position(p);
+		//send_rotation(p);
+		connect_client(p);
+
 	}
 	else if (data[0] == 'N')
 		new_client(datas);

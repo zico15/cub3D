@@ -6,7 +6,7 @@
 /*   By: edos-san <edos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 01:55:01 by edos-san          #+#    #+#             */
-/*   Updated: 2023/04/17 21:05:56 by edos-san         ###   ########.fr       */
+/*   Updated: 2023/04/17 21:43:35 by edos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void		send_position(t_player *ob);
 void		send_rotation(t_player *ob);
 void		new_client(const char **data);
 void		set_client_position(const char **data);
+void		connect_client(t_player *ob);
 
 #endif
